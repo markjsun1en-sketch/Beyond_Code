@@ -1,0 +1,105 @@
+# Beyond Code Writing Rules
+
+## 1. Purpose
+
+This repository is a living knowledge base and book workspace for
+`Beyond Code: AI-Native Software Engineering`. Its primary purpose is to
+preserve the author's experience, test the resulting ideas against evidence,
+and feed validated lessons back into later AI Game Dev OS design.
+
+Publication readiness is not the default optimization target. Prefer faithful
+reasoning, traceable evidence, and explicit uncertainty over polished certainty.
+
+## 2. Repository Surfaces
+
+- `OringinalDocs/` contains original source material. Treat it as immutable
+  unless the user explicitly asks to edit an original document.
+- `OptimizedDocs/` contains revised or reconstructed working drafts. Do not
+  silently replace the author's original voice or overwrite an original file.
+- `Evidence/` contains the Claim Ledger, Evidence Receipts, counterevidence,
+  and human dispositions.
+- `.agents/skills/` contains repository-scoped writing workflows.
+- `.codex/agents/` contains repository-scoped, explicitly invoked subagents.
+
+The spelling `OringinalDocs` is an existing repository contract. Do not rename
+it incidentally.
+
+## 3. Epistemic Labels
+
+Keep these categories separate in analysis and prose:
+
+1. **Observable fact**: directly supported by a cited file, commit, artifact,
+   test, tool output, or visible task record.
+2. **Contemporaneous judgment**: a decision or interpretation recorded by a
+   human or agent at the time.
+3. **Retrospective inference**: a later explanation derived from one or more
+   observations.
+4. **Current recommendation**: a proposed action or design choice.
+
+Do not present an inference as an observed fact. Do not infer general validity
+from one project without either corroborating cases or a clearly stated scope.
+
+## 4. Evidence Rules
+
+- Register important claims in `Evidence/claim-ledger.md`.
+- Use `$evidence-receipt` for a formal Evidence Receipt.
+- Bind repository evidence to project, path, branch, commit, and worktree
+  status. If a file is uncommitted, say so explicitly.
+- Match evidence to the claim type: runtime claims need runtime evidence;
+  historical decisions need contemporaneous records; experience and aesthetics
+  require human review.
+- Record counterevidence, alternative explanations, and limitations even when
+  evidence supports the claim.
+- Treat Codex task transcripts as observable messages, tool activity, outputs,
+  and file changes only. Never claim access to hidden chain-of-thought.
+- Treat task summaries as supporting context rather than independent proof when
+  stronger primary artifacts exist.
+- Reference large external artifacts in place. Do not duplicate them into this
+  repository unless the user asks for an archival copy.
+
+## 5. Agent Roles and Activation
+
+The main task is the sole writer and integrator. It owns claim selection,
+conflict resolution, Evidence Receipt persistence, and changes to
+`OptimizedDocs/`.
+
+Two read-only project agents are available:
+
+- `evidence_curator`: collect and structure evidence without writing prose or
+  developing the theory.
+- `critical_reviewer`: challenge claims and identify unsupported
+  generalization without directly rewriting the book.
+
+Use them only when the user explicitly requests evidence collection,
+delegation, formal review, or named agent use. Do not spawn them for small edits
+or ordinary conversation. When used together, they may work independently, but
+the main task must wait for both and reconcile their results.
+
+Subagents must not write this repository or any source repository. In
+particular, treat these external evidence sources as read-only:
+
+- `/Users/macsun/lessismore`
+- `/Users/macsun/Documents/AI_DEV_OS_Evolve`
+
+Do not commit, checkout, stash, clean, format, or otherwise mutate either
+external repository while gathering evidence.
+
+## 6. Formal Chapter Revision Workflow
+
+1. Select no more than three core claims from an original chapter.
+2. Allocate Claim IDs and register them in the Claim Ledger.
+3. Explicitly invoke `evidence_curator` when evidence collection is requested.
+4. Persist accepted source findings as Evidence Receipts.
+5. Explicitly invoke `critical_reviewer` for formal falsification review.
+6. Keep, narrow, split, or withdraw each claim.
+7. Write the resulting draft only under `OptimizedDocs/`.
+8. Record the user's human disposition in both the receipt and Claim Ledger.
+9. If a conclusion affects AI Game Dev OS, prepare a separate feedback proposal;
+   do not directly edit the external OS repository without a new request.
+
+## 7. Human Authority
+
+The human author retains final authority over direction, lived experience,
+aesthetics, voice, and whether a claim belongs in the book. Agent output is
+analysis and evidence support, not a substitute for that decision.
+
