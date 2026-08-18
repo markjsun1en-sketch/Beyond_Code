@@ -3,8 +3,9 @@
 
 > 工作稿状态：等待作者裁决，不替代 `OringinalDocs/第6章.md`。  
 > 结构审阅：[RR-010](../RevisedResult/RR-010_第六章Truth与State_Architecture.md)  
-> 核心 Claim：`CLM-C06-001`、`CLM-C06-002`、`CLM-C06-003`。  
-> Evidence：三个 Claim 当前均为 `partial`，因此正文只采用其已支持的范围。
+> 核心 Claim：`CLM-C06-001`、`CLM-C06-002`、`CLM-C06-003`、`CLM-C06-004`；关联边界：`CLM-C09-001`。
+> Evidence：五条 Claim 的证据边界均已在 Receipt 中记录；`CLM-C06-004` 与 `CLM-C09-001` 已由作者接受并收窄，正文只采用收窄后的范围。
+> 本轮证据回接：[RR-015](../RevisedResult/RR-015_第六章Evidence_Generation与Non-result回接.md)
 > 术语标注：遵循已接受的 [RR-013](../RevisedResult/RR-013_双语术语标注规范.md)，核心英文术语仅在首次正式定义时补充中文语义。
 
 上一章讨论 Context Engineering（上下文工程，即持续选择、组织和更新 Agent 可访问信息表面的工程活动）。
@@ -253,6 +254,8 @@ counterevidence
 unresolved
 ```
 
+其中，`verified-for-scope` 只表示证据覆盖了已声明的 Claim 与范围。它不等于 `qualified-for-use`（已经满足某个具体用途的资格条件）。后者还取决于预期用途、风险等级、适用 Gate，以及谁拥有接受该用途的 Authority。
+
 ## Lifecycle Status（生命周期状态）
 
 回答：
@@ -451,29 +454,9 @@ Manifest 的作用不是宣布这些内容都是真实状态，而是声明：
 
 ---
 
-# 6.7 Evidence 支持 Claim，但不创造 Truth
+# 6.7 Evidence 先说明观察了什么，再支持 Claim
 
-一张截图不是 Claim。
-
-一条 Claim 也不因为附上截图就自动成立。
-
-例如：
-
-```text
-Evidence:
-1920×1080 runtime capture
-
-Claim:
-Stage / Limit 在目标战斗场景中被 HP 层级压制
-```
-
-需要继续说明：
-
-- 截图绑定哪个 Build 和 Commit；
-- 是否为目标场景；
-- Claim 是机器测量还是人工审美判断；
-- 是否存在反例分辨率；
-- 谁拥有最终体验裁决权。
+一张 1920×1080 runtime capture 不是 Claim；“Stage / Limit 在目标战斗场景中被 HP 层级压制”才是 Claim。即使二者关联，仍要记录截图绑定的 Build/Commit、场景与反例范围，区分机器测量和人工审美判断，并说明最终体验裁决权属于谁。
 
 所以关系是：
 
@@ -485,17 +468,36 @@ Claim
 Authority / Validation Rule
 ```
 
-Provenance 至少应记录：
+但在判断 Evidence 支持什么之前，还要先回答两个问题：
+
+- **Evidence Generation Integrity（证据生成过程自身的完整性）**：验证器、脚本或 Agent 是否保持了声明的观察边界；
+- **Target Observation Result（对目标实际得到的观察结果）**：目标是否真的执行并被观察。
+
+如果验证器在观察目标前失败，且阻断目标执行或改变 authority-bearing input/surface，就只能得到关于验证器的结果；缺席的目标结果必须记录为 `non-result`（没有形成目标判定结果），不能写成 PASS 或 FAIL。Integrity 不等于绝对没有副作用：已声明、被隔离且不改变观察对象的正常输出不自动构成失败。
+
+一个最小 Evidence Record 可以显式保存：
 
 ```text
-Source
-Producing Activity
-Responsible Agent / Tool / Human
-Timestamp
-Revision
-Scope
-Derivation / Primary Source
+observed_subject
+observation_status
+generator_integrity
+target_result
+intended_use
+scope / revision / timestamp
+provenance / evidence links
 ```
+
+这些字段分别回答：实际观察了谁、观察是否完成、生成过程是否完整、目标得到什么结果、Evidence 准备用于什么决策。它们是一组最小问题，不是统一 Schema。对于观察前被阻断的运行，应拆开记录：
+
+```text
+generator_integrity = compromised
+observation_status = target-not-observed
+target_result = non-result
+```
+
+部分观察必须保留实际 Scope，不能提升为完整目标结果。即使生成过程完整且测试 PASS，也只说明声明范围内的检查通过；`qualified-for-use` 仍须结合 `intended_use` 和相应 Acceptance Authority 判断。
+
+Provenance 至少应记录 Source、Producing Activity、Responsible Agent/Tool/Human、Timestamp、Revision、Scope，以及它是 Derivation 还是 Primary Source。
 
 这些思想并不是 AI 时代才出现。W3C PROV 已经区分 Entity、Activity、Agent、derivation、revision 和 primary source。本书的增量不是重新发明 provenance，而是把它接入 Agent 的 Context、Execution 和 Evidence 链路。
 
@@ -505,21 +507,15 @@ Derivation / Primary Source
 
 真正需要区分的是三种权限：
 
-## State Mutation Authority（状态修改权）
-
-谁能改变代码、配置、数据或部署状态。
-
-## Claim Assertion Authority（主张提交权）
-
-谁能提交某类 Claim 或 Observation。
-
-## Claim Disposition Authority（主张裁决权）
-
-谁能批准、拒绝、标记冲突或使 Claim 成为当前任务可依赖的记录。
+- **State Mutation Authority（状态修改权）**：谁能改变代码、配置、数据或部署状态；
+- **Claim Assertion Authority（主张提交权）**：谁能提交某类 Claim 或 Observation；
+- **Claim Disposition Authority（主张裁决权）**：谁能批准、拒绝、标记冲突，或使 Claim 成为当前任务可依赖的记录。
 
 Test 和 Monitoring 产生 Evidence；Git/Merge 改变 Repository State；授权人作出 Normative Decision。它们不以同一种方式“写 Truth”。
 
 SP122 的结果包展示了这种区分：machine checks 通过、qualifying evidence chain 被人类接受，并没有同时授权 supported adoption 或 production release。[ER-20260810-002](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)
+
+v4.94 的 D-079 又给出一个更窄的边界：候选实现的 42 项 focused tests 通过，但 Human 仍拒绝其超出 E1 所需的实现与验证范围；后续前向修正删除了 262 行，只保留当前契约与 8 个回归用例。PASS 证明的是所选检查在该候选上通过，不证明额外范围必要，也不自动完成 Acceptance、Adoption 或 Release。[ER-20260818-003](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)
 
 ---
 
@@ -739,7 +735,7 @@ B 失效后，A 进入 `needs revalidation`。
 
 ---
 
-# 6.12 两个案例：真实证据与说明性示例
+# 6.12 两个已取证案例
 
 ## 案例一：SP122 Authority Conflict
 
@@ -771,55 +767,46 @@ B 失效后，A 进入 `needs revalidation`。
 
 完整来源与反证见 [ER-20260810-001](../Evidence/receipts/ER-20260810-001__CLM-C06-001.md) 和 [ER-20260810-002](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)。
 
-## 案例二：Save Migration（说明性示例）
+## 案例二：D-048 Verifier Self-mutation（验证器自我修改）
 
-下面是用于解释对象关系的 hypothetical example，不声称对应现有仓库中的已完成任务。
+以下内容来自 AI Game Dev OS v4.94 的已提交 incident 与 corrective review，不是对目标代码结果的事后猜测。
 
-Intent：
+### 可观察事实
 
-> 让 v2 Save 安全迁移到 v3，并保持现有 v3 Save 不受影响。
+- D-048 launcher 在目标 compile harness 执行前进行了普通 Python import；
+- import 在 authority-bearing manifest surface 中生成了 `__pycache__` 与两个 `.pyc` 文件；
+- 第二次 exact-inventory check 检测到变化并 fail closed；
+- 目标 runtime directory 与 compile result 都没有产生。
 
-State Claims：
+### 同期判断与修正边界
 
-```text
-Repository contains v2 → v3 migration path.
-Current target build uses schema v3.
-Three archived v2 samples are available.
-```
+- Review 将其判定为 manifest self-mutation defect，并保留失败现场；
+- corrective request 提议使用 `python -I -B -S -c`、显式禁止 bytecode，并在执行前后检查 exact inventory；
+- 该 request 没有授权或完成目标重试，因此它是修正方案记录，不是成功的 target result。
 
-Decision / Policy：
+### 本书推导
 
-```text
-Do not remove compatibility code before release R.
-Production data writes require rollback capability.
-```
+这次运行产生了一条关于验证器的有效 Claim：Evidence generator 改变了自己的 authority-bearing surface。它没有产生关于目标 compile 是否通过的 Claim。
 
-Assumptions：
+因此应记录为：
 
 ```text
-Some active users still own v2 saves.
-Archived samples cover all important v2 variants.
+observed_subject = verifier
+generator_integrity = compromised
+observation_status = target-not-observed
+target_result = non-result
 ```
 
-Evidence Requirements：
+exact-inventory check 本身并未失效；它检测到了真实变化。错误发生在把验证器失败、目标失败和目标未观察混成同一种结果时。
 
-```text
-v2 sample migration tests
-v3 regression tests
-schema validation
-rollback rehearsal
-data integrity checks
-```
+### 限制
 
-如果“用户是否仍持有 v2 Save”无法确认，系统不应把它改写成事实。可以：
+- 这是一个 Python bytecode 副作用造成的单一案例；
+- 它不证明验证器必须完全无副作用；
+- 已声明并隔离的正常输出不自动构成 Integrity failure；
+- 当前取证没有重跑历史 harness，修正方案的运行效果不能从该 incident 单独推出。
 
-- 保留为 Assumption；
-- 根据影响提高治理；
-- 收集 telemetry；
-- 缩小变更；
-- 请求产品或数据 Authority 决策。
-
-这正是显式 Unknown 的价值。
+完整来源、反证与人工收窄边界见 [ER-20260818-002](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)。
 
 ---
 
@@ -897,14 +884,14 @@ Intent                  desired state
 Decision / Policy       normative authority
 State Claim             described current state
 Assumption              explicit unknown
-Evidence / Provenance   basis for evaluation
+Evidence / Provenance   observed basis and generation boundary
 Context Manifest        information actually supplied
 Execution Baseline      authorized starting bundle
 ```
 
 最终原则是：
 
-> **Agent 不需要一个看起来没有矛盾的世界；它需要一个知道哪些是状态、哪些是决定、哪些是假设、哪些证据只支持有限范围、哪些冲突仍未解决的工程环境。**
+> **Agent 不需要一个看起来没有矛盾的世界；它需要一个知道哪些是状态、哪些是决定、哪些是假设、验证器实际观察了什么、哪些证据只支持有限范围、哪些冲突仍未解决的工程环境。**
 
 有了这层区分，下一章才能进一步讨论 Agent 如何在明确 Intent、Context、State 与 Authority 下打开 Execution Contract、执行、观察风险并形成经过验证的 State Transition。
 
@@ -915,13 +902,14 @@ Execution Baseline      authorized starting bundle
 1. **Store Claims, not “Truth objects”。** 系统管理可修订 Claim 及其依据。
 2. **Source of Truth 必须绑定问题。** Authority 由 Domain、Scope、Version 和 Time 决定。
 3. **Intent、Decision、State Claim、Assumption、Evidence 必须分开。**
-4. **Evidence supports Claims。** Evidence 与批准、采用、发布不是同一状态。
-5. **Provenance before confidence。** 来源和验证边界优先于语言确信感。
-6. **State Snapshot 不包含全部工作语义。** Decision 与 Assumption 通过 Execution Baseline 引用。
-7. **Preserve Unknown and Conflict。** 不确定性不是必须被模型补全的空白。
-8. **Reconstruct the external decision environment。** 不依赖隐藏推理完成审计。
-9. **Agent may assert; authority disposes。** 断言权、状态修改权和裁决权需要分开。
-10. **Governance should fit risk。** Registry、Graph 和 Gate 都是可选机制。
+4. **先确认 Evidence 实际观察了什么。** 验证器结果与目标结果必须分开。
+5. **Evidence supports Claims。** 范围内验证与用途资格、采用、发布不是同一状态。
+6. **Provenance before confidence。** 来源和验证边界优先于语言确信感。
+7. **State Snapshot 不包含全部工作语义。** Decision 与 Assumption 通过 Execution Baseline 引用。
+8. **Preserve Unknown and Conflict。** 不确定性不是必须被模型补全的空白。
+9. **Reconstruct the external decision environment。** 不依赖隐藏推理完成审计。
+10. **Agent may assert; authority disposes。** 断言权、状态修改权和裁决权需要分开。
+11. **Governance should fit risk。** Registry、Graph 和 Gate 都是可选机制。
 
 ---
 
@@ -957,7 +945,11 @@ Snapshot 保存状态与引用；聊天记录只是一种过程证据。
 
 ## 反模式八：测试通过等于产品批准
 
-机器验证、体验裁决、采用和发布属于不同决策面。
+机器验证、范围必要性、体验裁决、采用和发布属于不同决策面。D-079 的 42 项测试通过，并没有使被 Human 拒绝的额外实现范围自动成为必要范围。
+
+## 反模式九：验证器失败等于目标失败
+
+如果失败发生在目标观察之前，应分别记录 Evidence generator 的失败和目标的 `non-result`，不能虚构目标 FAIL。
 
 ---
 
@@ -968,7 +960,11 @@ Snapshot 保存状态与引用；聊天记录只是一种过程证据。
 - Primary Authority 对这个问题是否适用？
 - Claim 绑定哪个 Scope、Version、Time 和环境？
 - 这是 Intent、Decision、State Claim、Assumption 还是 Evidence？
-- Evidence 如何产生，能支持多大范围？
+- Evidence 如何产生，生成过程是否改变了观察边界或 authority-bearing surface？
+- 实际被观察的是目标、验证器，还是二者？
+- 未观察目标时，是否明确记录为 `non-result`，而不是 PASS 或 FAIL？
+- Evidence 能支持多大范围，预期用于哪一种决策？
+- `verified-for-scope` 是否被误写成 `qualified-for-use`？
 - 是否存在 Counterevidence 或替代解释？
 - Observed、Derived、Verified、Approved、Stale 是否被错误塞进同一状态轴？
 - 当前 Repository State 是否包含 Dirty Worktree？

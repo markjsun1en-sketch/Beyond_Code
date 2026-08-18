@@ -29,6 +29,7 @@
 | RR-012 | 2026-08-10 新增内容总裁决 | 有实质推进，但应先统一对象模型并压缩 | [RR-012](RR-012_2026-08-10新增内容总裁决.md) |
 | RR-013 | 双语术语标注规范 | 已接受：首次正式定义提供中文语义，不逐次机械翻译 | [RR-013](RR-013_双语术语标注规范.md) |
 | RR-014 | AI Game Dev OS v4.94 开发证据 | 支持治理活锁、观察者边界和 Evidence/Decision 分离；不证明普遍效率或 Execution Epoch | [RR-014](RR-014_AI_Game_Dev_OS_v4.94开发证据与全书优化.md) |
+| RR-015 | 第六章 Evidence Generation / Non-result 回接 | 已回接工作稿；Claim 已收窄接受，章节措辞待审阅 | [RR-015](RR-015_第六章Evidence_Generation与Non-result回接.md) |
 
 ## 后续使用方式
 
