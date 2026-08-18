@@ -103,3 +103,21 @@ The human author retains final authority over direction, lived experience,
 aesthetics, voice, and whether a claim belongs in the book. Agent output is
 analysis and evidence support, not a substitute for that decision.
 
+## 8. Bilingual Terminology
+
+- Treat English technical terms as stable identifiers, not decorations.
+- At the first formal definition of a core, coined, ambiguous, or
+  book-specific English term, add a concise Chinese semantic explanation.
+- Explain the role the term plays in this book; do not add a literal
+  translation that contributes no meaning.
+- Do not repeat the Chinese parenthetical on every later occurrence.
+- Keep code, schemas, identifiers, paths, command names, and status enum values
+  in English. Define enum meanings once in the surrounding prose or table.
+- Familiar engineering names such as Git, Commit, Runtime, API, and Worktree do
+  not require repeated parenthetical translation.
+- When an English principle sentence is worth preserving, follow its first
+  occurrence with a Chinese semantic restatement. Do not force the restatement
+  inside the English sentence.
+- Apply the same chosen Chinese explanation across chapters. If the meaning
+  changes, state the scoped difference explicitly instead of silently changing
+  the translation.

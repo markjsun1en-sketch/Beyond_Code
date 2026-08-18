@@ -22,6 +22,13 @@
 | RR-005 | 第四章 Intent Engineering | 理论位置成立，需要收窄宣称和压缩结构 | [RR-005](RR-005_第四章Intent_Engineering.md) |
 | RR-006 | 写作 Agent / Skill 基础设施 | 有用但非必要，维持最小体系 | [RR-006](RR-006_写作Agent与Skill体系.md) |
 | RR-007 | 第二章核心主张的证据审阅 | 部分支持，普遍性表述需要收窄 | [RR-007](RR-007_第二章核心主张证据审阅.md) |
+| RR-008 | 第四章 Prompt 边界优化说明 | 修订方向成立，不宜按原提案完整扩写 | [RR-008](RR-008_第四章Prompt边界优化说明.md) |
+| RR-009 | 第五章及 Context Patterns 说明 | 核心成立，Pattern 分类和成熟度需要重构 | [RR-009](RR-009_第五章Context_Engineering及Patterns.md) |
+| RR-010 | 第六章 Truth and State Architecture | 核心问题成立，正式对象模型存在类型混用 | [RR-010](RR-010_第六章Truth与State_Architecture.md) |
+| RR-011 | Execution Epoch 与跨章治理逻辑 | 有条件保留，先试点再跨章扩散 | [RR-011](RR-011_Execution_Epoch与治理逻辑.md) |
+| RR-012 | 2026-08-10 新增内容总裁决 | 有实质推进，但应先统一对象模型并压缩 | [RR-012](RR-012_2026-08-10新增内容总裁决.md) |
+| RR-013 | 双语术语标注规范 | 已接受：首次正式定义提供中文语义，不逐次机械翻译 | [RR-013](RR-013_双语术语标注规范.md) |
+| RR-014 | AI Game Dev OS v4.94 开发证据 | 支持治理活锁、观察者边界和 Evidence/Decision 分离；不证明普遍效率或 Execution Epoch | [RR-014](RR-014_AI_Game_Dev_OS_v4.94开发证据与全书优化.md) |
 
 ## 后续使用方式
 
