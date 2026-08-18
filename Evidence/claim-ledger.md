@@ -13,6 +13,8 @@
 | `CLM-OUTLINE-002` | v4.94 记录了 meta-only 治理活锁及随后分阶段、仍为 NON_QUALIFYING 的 function-first 开发闭环 | 跨章治理；第7/13/20/23章 | fact | `ER-20260818-001` | verified | accepted | keep |
 | `CLM-C06-004` | 观察目标前、阻断执行或改变 authority-bearing surface 的验证器失败应与目标结果分开，并记录 target non-result | 第6/9章 | recommendation | `ER-20260818-002` | partial | accepted | narrow |
 | `CLM-C09-001` | 未获 Acceptance Authority 委托或范围仍待裁决时，Test PASS 不证明范围必要，也不自动完成 Acceptance、Adoption 或 Release | 第4/6/9章 | recommendation | `ER-20260818-003` | partial | accepted | narrow |
+| `CLM-C09-002` | Claimed、Observed、Verified 与 Accepted Completion 不应建模为同质单轴等级；Accepted 是绑定目标与 Authority 的处置 | 第9章 9.1 | recommendation | `ER-20260818-004` | partial | unreviewed | narrow |
+| `CLM-C09-003` | Evidence Stack 不应被解释为跨 Claim 类型的通用强弱排序；Evidence 类型应匹配 Claim、Scope 与用途 | 第9章 9.3 | recommendation | `ER-20260818-005` | partial | unreviewed | narrow |
 
 ## 状态约定
 
