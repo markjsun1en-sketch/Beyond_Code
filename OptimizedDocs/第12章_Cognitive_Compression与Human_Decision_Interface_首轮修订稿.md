@@ -803,6 +803,7 @@ Authority 怎样授予、限制、撤销和降级，由第13章定义。
 - v4.94 或 SP122 验证了统一 Human Control Plane 架构。
 
 这些材料只形成局部案例支持；本章的 Interface Contract 仍是一个有待通过后续原型和任务测试检验的候选设计。
+完整 Episode、失败路径与 shared provenance 边界见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)；这里的多项观察不是彼此独立的架构验证。
 
 ---
 

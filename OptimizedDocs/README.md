@@ -31,6 +31,6 @@
 | [第22章首轮修订稿](第22章_AI_Native工程能力适配_首轮修订稿.md) | 首轮逻辑修订稿 | 将 Level 0–5 拆成可组合能力面，以具名 Workload 的最低控制功能与条件性 Capability Fit Review 取代普遍升级路线 |
 | [第23章首轮修订稿](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md) | 首轮逻辑修订稿 | 将 AI Game Dev OS v4.94 与 lessismore SP122 写为共享来源的纵向案例，将 Test PASS 限定为具名运行中的有范围 Evidence，并保留失败、反例与明确非结论 |
 
-第1–3章与第11–23章为首轮逻辑修订稿；第4、5章明确是非主稿的对象边界接口稿；第6章为完整章节候选；第7–10章为 Phase D 最小完整正文，其中第9章沿用历史文件名。表中“稿件阶段”只描述文档形态；Claim、Receipt、Coverage 与 Human Disposition 保留在 `Evidence/` 和 `RevisedResult/`。第2章证据化修订样例是 Evidence Workflow 示例，不参加正文去审计化。上述工作稿均不替代 `OringinalDocs/`。
+第1–3章与第11–23章为首轮逻辑修订稿；第4、5章明确是非主稿的对象边界接口稿；第6章为完整章节候选；第7–10章为 Phase D 最小完整正文，其中第9章沿用历史文件名。Phase E 已将第6–22章的共享案例复述压成本章专属的“Episode／机制／限制／来源”接口，并让第23章继续独占完整 Case Spine；第16、21章的原则／反模式尾部完成局部压缩试点，第19章安全／法律边界与第23章失败、反证、`NON_QUALIFYING`、无效果结论未做机械删减。表中“稿件阶段”只描述文档形态；Claim、Receipt、Coverage 与 Human Disposition 保留在 `Evidence/` 和 `RevisedResult/`。第2章证据化修订样例是 Evidence Workflow 示例，不参加正文去审计化。上述工作稿均不替代 `OringinalDocs/`。
 
 当前三项 Header 是工作稿脚手架：最终成书时删除“工作稿状态”和“回接说明”，把读者仍需知道的适用边界融入章节开篇或它所约束的具体论证。作者已于 2026-08-25 接受这一处理方式。

@@ -418,41 +418,15 @@ Governance and authority review
 
 ---
 
-# 11.9 AI Game Dev OS v4.94 提供了什么案例
+# 11.9 案例只提供局部负荷信号
 
-本节依据 [认知负担案例记录](../Evidence/receipts/ER-20260824-001__CLM-C11-001.md) 汇集的 AI Game Dev OS v4.94 与 lessismore SP122 材料，区分可观察事实、同期判断与事后推导。
+[认知负担案例记录](../Evidence/receipts/ER-20260824-001__CLM-C11-001.md)保存了事实、同期判断、替代解释与限制；完整事件顺序见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。本章只使用三条关系：被检查的 v4.94 package 有 `2377` 个 tracked files；D-073 至 D-075 增加治理与审阅 Artifact，却没有同步产生 Source、Runtime、Test 或 Qualification 进展；SP122 仍由 Human 直接检查一条有边界的 Evidence Chain 后再作处置。
 
-## 可观察事实
+同期 Human Judgment 记录了审阅与理解吞吐没有随生成吞吐扩展，并出现实现级控制感下降；这是作者当时的经验判断，不是由文件数测得的 Observable Fact。
 
-- 被检查的 v4.94 package 记录了 `2377` 个 tracked files，工程表面覆盖 source、tests、schemas、rules、task workflow、state、memory 与 evidence。
-- D-073 至 D-075 增加了 governance 和 review artifacts，却没有产生 source、runtime、test 或 qualification 进展。
-- 后续恢复把部分 Human disposition 放在具名 Baseline 和 capability milestone，而不是为每个小 slice 单独停止。
-- SP122 仍由 Human 检查一条有边界的 plan、trace、provenance、authority、runtime/visual evidence 与 limitation 链，再作 qualifying disposition。
+这些观察允许提出一个有范围的推导：在该项目阶段，更多可审阅对象没有自动保持有效控制，Review Attention 可能从当前行为与交付 Evidence 转向未来证明义务。因此 Review Unit、Timing 与 Target 需要被明确选择。
 
-## 同期判断
-
-- 作者记录了实现级理解和逐项审阅带来的控制感下降。
-- v4.94 将 D-073 至 D-075 判断为项目级 Governance Livelock。
-- 恢复过程选择了 bounded review 与 milestone-oriented Human disposition。
-
-## 可支持的事后推导
-
-在这个案例里，增加更多可审阅治理对象没有自动保持有效控制，部分 Review Attention 反而从当前行为与交付 Evidence 转向未来证明义务。
-
-案例支持：
-
-> Human Attention 需要更多地围绕具名 Baseline、当前 Hazard、Evidence Use 和 Authority Decision 组织。
-
-它不支持：
-
-- AI 编写或维护了所有对象；
-- 文件数直接等于 Human Judgment Load；
-- 人类已经无法进行直接审阅；
-- AI 生成速度是 Governance Livelock 的唯一原因；
-- milestone review 普遍优于其他 Review 方式；
-- Human Control Plane 已被实现或验证。
-
-SP122 还是一个重要反例：人仍然可以、也有时必须直接检查一条相当完整的 Evidence Chain。真正变化的不是“Human Review 消失”，而是 Review Unit、Review Timing 和 Review Target 需要被明确选择。
+它们不能把文件数换算成 Human Judgment Load，不能证明 AI 速度是 Governance Livelock 的唯一原因，也不能证明 Milestone Review 或 Human Control Plane 普遍更优。SP122 反而保留了重要 Counterevidence：直接、实质的 Human Review 仍可能必要且可行。
 
 ---
 

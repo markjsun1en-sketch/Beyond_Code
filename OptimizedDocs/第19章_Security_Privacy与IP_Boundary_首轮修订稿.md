@@ -1060,33 +1060,13 @@ contain
 
 ---
 
-# 19.31 D-048 支持的是 Tool Integrity 边界，不是安全普遍定律
+# 19.31 D-048 只保留 Tool Integrity 边界
 
-AI Game Dev OS v4.94 的 D-048 记录了一个窄但有价值的事件：
+D-048 中，Launcher 在 Target Compile 前 Import 本地代码并改变 Authority-bearing Manifest Surface；Exact-inventory Check 捕获真实变化并 Fail Closed，Target 因未执行而是 `non-result`。对本章而言，这只说明 Trusted Tool 也可能产生未声明 Side Effect，Precondition / Postcondition 可以保护受控表面，而 Verifier Failure、Target Result 与后续有权修复必须分开。
 
-1. 验证 Launcher 在目标 Compile 前 Import 本地代码；
-2. Python 生成 `__pycache__` 与 `.pyc`；
-3. 这些文件落入应保持精确不变的 Authority-bearing Manifest Surface；
-4. 第二次 Exact-inventory Check 发现变化并 Fail Closed；
-5. Target 没有执行，因此没有 Target PASS 或 FAIL；
-6. 后续建议从干净 Parent 前向修正 Launcher / Observer Boundary，而不是篡改历史 Evidence。
+它不说明所有 Tool 必须零副作用，不证明 Exact Inventory 是唯一控制，也不能把事件改写成 Prompt Injection 或“Fail Closed 已经安全”。现有材料没有重跑历史 Harness，修正方案效果和本章其他 Component 字段的必要性都不能由此推出。
 
-可观察事实支持：
-
-- Trusted Tool 也可能产生未声明 Side Effect；
-- Precondition / Postcondition 可以在目标前发现 Integrity 变化；
-- Verifier Failure 与 Target Result 必须分开；
-- Stop-and-preserve 比把 `non-result` 写成业务失败更诚实。
-
-它不支持：
-
-- 所有 Tool 必须绝对无副作用；
-- Exact Inventory 是唯一正确控制；
-- D-048 是 Prompt Injection；
-- 只要 Fail Closed 就已经安全；
-- 该案例证明本章所有 Component 字段都必要。
-
-详细 Evidence 见 [D-048 验证器自我修改案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md) 与 [Agent Tool 安全边界记录](../Evidence/receipts/ER-20260824-004__CLM-C19-001.md)。
+完整事件与反向证据见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)；来源边界见[D-048 验证器自我修改案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)和[Agent Tool 安全边界记录](../Evidence/receipts/ER-20260824-004__CLM-C19-001.md)。
 
 ---
 

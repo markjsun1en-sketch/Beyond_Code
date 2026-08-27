@@ -491,15 +491,7 @@ Plan Accepted、Assignment Created 与 Execution Authorized 是不同状态。
 
 第10章拥有 Review Independence 的正式定义。本章只说明 Role、Subject Configuration 与协作拓扑如何实现或削弱它；不同 Role 名称本身不构成独立性。
 
-组织设计可以沿第10章的七个维度分别检查：
-
-1. **Producer Independence**：是否由不同 Subject Configuration 审阅；
-2. **Contract Independence**：是否使用不同 Decision Lens 和失败问题；
-3. **Context Independence**：是否只收到 Producer 的结论性 Summary；
-4. **Source Independence**：是否能够访问 Primary Source 和 Counterevidence；
-5. **Method Independence**：是否使用不同 Test、Harness、Model 或检查方式；
-6. **Decision Independence**：Reviewer 的结论是否不受 Producer 自行重写；
-7. **Authority Independence**：是否有另一个有权主体处置重大冲突。
+组织设计直接沿用[第10章的七维定义](第10章_Review_Engineering_首轮修订稿.md)，这里只检查拓扑新增的问题：Producer 与 Reviewer 是否属于可区分的 Subject Configuration，是否共享同一 Context、Source、Model、Method 与失败假设，Reviewer 的 Finding 是否能在不被 Producer 改写的情况下到达具名 Decision Authority。
 
 两个具有不同名称、但使用同一模型、同一 Prompt、同一 Summary 和同一失败假设的 Agent，可以提供额外采样，但不应被写成完整独立审阅。
 
@@ -918,57 +910,17 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 
 ---
 
-# 17.29 现有案例支持哪些有限边界
+# 17.29 案例只保留组织关系投影
 
-本节不把 AI Game Dev OS 或 lessismore 写成多 Agent 效能实验。现有案例材料没有单 Agent / 多 Agent 对照，也没有控制任务难度、Model、Context 和 Human Attention。
+现有材料没有单 Agent / 多 Agent 匹配对照，也没有控制任务难度、Model、Context 与 Human Attention；完整 Case Spine 见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
 
-## 17.29.1 v4.94 的任务投影与控制路径
+| Episode | 本章使用的关系 | 不能说明 |
+|---|---|---|
+| v4.94 Task Projection | Handoff、Cancel、Withdraw 与 Rework 可以通过绑定 Source 的非权威投影外显 | 完整 Multi-Agent Organization、全局 Authority / Detector Health / Revocation 已实现，或 Human Judgment Load 已降低 |
+| D-076 Dual Review | 多个 Review Finding / Recommendation 可以进入后续 Human Decision，而不自动产生 Adoption | 两个 Reviewer 已充分独立、PASS 必然正确或 Dual Review 普遍值得 |
+| SP122 | Evidence Disposition、Adoption 与 Production Release 可以属于不同 Decision Target | 一项组织设计效果测试 |
 
-[v4.94 任务投影与控制路径记录](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md) 显示，v4.94 实现了绑定 Task、Commit 和 Review 的紧凑投影，并暴露 Blocker、Handoff、Cancel、Claim Withdrawal 与 Review Rejection 路径。
-
-这支持：
-
-- 组织状态可以使用非权威投影；
-- Handoff、Cancel、Withdraw 和 Rework 需要可见语义；
-- Summary 应绑定 Source。
-
-它不支持：
-
-- v4.94 已经实现完整 Multi-Agent Organization；
-- 当前投影覆盖全局 Authority、Detector Health 或 Delegation Revocation；
-- 投影已减少 Human Judgment Load。
-
-## 17.29.2 D-076 的 Dual Review
-
-[D-076 双重审阅案例记录](../Evidence/receipts/ER-20260824-003__CLM-C16-001.md) 显示，D-076 的两个 Review PASS 只使候选具备提交 Human 继续裁决的条件，没有自动形成接受处置。
-
-这支持：
-
-- Review Finding / Recommendation 和 Adoption Decision 可以分开；
-- 多个 Review 可以是具名处置的输入；
-- Human Authority 可以保留后续裁决。
-
-它不证明：
-
-- 两个 Reviewer 在本章七个独立性维度上都充分分离；
-- PASS 结论必然正确；
-- Dual Review 对所有任务都值得。
-
-## 17.29.3 SP122 的分离处置
-
-[SP122 分离处置案例记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md) 显示，SP122 的 Human Lead 接受了一条 Qualifying Evidence，同时保留 Adoption Blocked 与 Production Unapproved。
-
-这支持 Evidence Disposition、Adoption 和 Production Release 可以属于不同 Decision Target。
-
-它是一个人工决定记录，不是一项组织设计效果测试。
-
-## 17.29.4 证据结论
-
-三组案例支持的最窄共同结论是：
-
-> Candidate Production、Review、Evidence Disposition、Adoption 和 Release 可以由不同 Role / Authority 处理，并通过有来源记录保留边界。
-
-现有 Evidence 未验证本章的九对象是完整或最小的，也未验证任何 Topology 的净收益。
+来源与限制见[v4.94 任务投影记录](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md)、[D-076 双重审阅记录](../Evidence/receipts/ER-20260824-003__CLM-C16-001.md)和[SP122 分离处置记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。这些共享来源只支持 Role / Authority 与 Decision Target 的分离，没有验证本章九个对象的完备性或任何 Topology 的净收益。
 
 ---
 

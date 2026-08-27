@@ -363,6 +363,7 @@ Target Result:
 该案例不证明所有 Verifier 必须绝对无副作用。已声明、被隔离且不改变观察对象身份和解释边界的正常输出，不自动构成 Integrity Failure。现有材料也没有重跑历史 Harness，因此不能从这次 Incident 单独推出修正方案的运行效果。
 
 完整来源、反证与人工收窄边界见 [D-048 验证器自我修改案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)。
+该 Episode 在全书共享 Provenance 中的位置与后续失败、修正关系见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
 
 ---
 

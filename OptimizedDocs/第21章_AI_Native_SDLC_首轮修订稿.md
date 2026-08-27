@@ -1350,69 +1350,18 @@ Intent and affected-party decision
 
 ---
 
-# 21.37 AI Game Dev OS v4.94 提供状态与处置语义案例
+# 21.37 案例只保留 Lifecycle Transition 投影
 
-AI Game Dev OS v4.94 的既有记录已经在[第16章](第16章_Self_Evolution_Engineering_首轮修订稿.md)、
-[第19章](第19章_Security_Privacy与IP_Boundary_首轮修订稿.md)和
-[第20章](第20章_AgentOps_成本与模型漂移_首轮修订稿.md)中限定了 Evidence 用途。
+完整时间序列由[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)承担；本章只映射四组 Transition。
 
-本章只使用以下 Lifecycle 关系。
+| Episode | Lifecycle 必须保留 | 不能说明 |
+|---|---|---|
+| D-073 至 D-075 | Governance Activity 发生而 Delivery Transition 未推进；Process Warning 指向缺失进展 | 严格治理必然导致 Livelock |
+| D-048 | Verifier Transition 失败、Attempt 在 Target 前停止、Target 为 `non-result`、Baseline Integrity 改变，下一路径是 Preserve 后修正并创建新 Attempt | 所有 Tool 必须零副作用，或 Exact Inventory 是唯一控制 |
+| D-079 | Evaluation 完成、Scope 未获接受、Candidate 未被采用、Forward Correction 进入后续 Baseline | 长期 Improvement 已被证明 |
+| F1–F4a | Source、Replay、Package Identity 与 Bounded Evidence 分阶段形成；结果仍是 `NON_QUALIFYING` | Qualification、Gate 或 Production 已完成 |
 
-## D-073 至 D-075
-
-Governance / Proof Surface 发生变化，但 Source、Runtime、Test、Qualification 与 Gate
-Evidence 没有同步前进。
-
-这说明：
-
-- Governance Activity 不是 Delivery Transition；
-- Artifact 数量不能代替 Outcome State；
-- Process Warning 需要指出当前受保护 Claim 或缺失进展；
-- Lifecycle 需要允许“活动发生但目标未推进”。
-
-它不证明严格治理必然造成 Livelock。
-
-## D-048
-
-Verifier 在 Target 前改变 Authority-bearing Surface，后续 Check Fail Closed，Target
-没有执行。
-
-Lifecycle 需要保存：
-
-~~~text
-verifier transition: failed
-attempt outcome: pre-target-blocked
-target result: non-result
-baseline integrity: changed
-next path: preserve → repair verifier / new attempt
-~~~
-
-它不证明所有 Tool 必须绝对无副作用，也不证明 Exact Inventory 是唯一控制。
-
-## D-079
-
-Over-scoped Candidate 的 Selected Tests 通过，但 Human 没有接受 Scope；较小 Forward
-Correction 成为后续 Baseline。
-
-这说明：
-
-~~~text
-evaluation completed
-≠ scope accepted
-≠ candidate adopted
-≠ long-term improvement proved
-~~~
-
-## F1–F4a
-
-后续形成 Source、Read-only Replay、Package Identity 与 Bounded Test Evidence，但结果仍
-明确为 `NON_QUALIFYING`。
-
-Evidence Use 可以分阶段，`NON_QUALIFYING` 不能从 Lifecycle 图中消失。
-
-这些案例没有提供新旧 Lifecycle 的时间、返工、缺陷、等待或成本对照。
-
-完整时间序列仍由第23章承担。
+这些关系复用[治理活锁与 Function-first 历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)、[D-048 记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)和[D-079 范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。它们没有提供新旧 Lifecycle 的时间、返工、缺陷、等待或成本对照。
 
 ---
 
@@ -1493,52 +1442,22 @@ Lifecycle 引用这些关系，但不成为全书新的 Truth Store。
 
 1. **Traditional SDLC remains.** AI-native 增加受托执行控制关系，不删除软件活动。
 2. **Lifecycle is a transition network, not a mandatory pipeline.** 路径允许循环、停止、恢复和重开。
-3. **Work, Attempt, Outcome, Change and Release are different identities.** 一个 `done` 不覆盖全部对象。
-4. **Phase is not state.** 进入阶段不表示对应结果已发生。
-5. **Intent does not grant every action.** 方向、执行、集成、发布和学习分别需要 Authority。
-6. **Grounding is scoped.** Context、State、Decision、Assumption 与 Conflict 不压成最终 Truth。
-7. **Plan is a proposal; Contract bounds execution.** Plan Review 不自动产生 Permission。
-8. **Every Attempt preserves its baseline.** 新尝试不覆盖旧失败或 `non-result`。
-9. **Observation is not Evidence, and Evidence is not Acceptance.** 每个关系绑定 Claim 与 Decision Use。
-10. **Disposition selects the next path.** Gate 或 Test 结果不能自行跳过 Authority。
-11. **Closure preserves unknowns.** 关闭不把未知、Open Item 或外部不确定结果清零。
-12. **Integration, Release and Operations are separate.** Merge 或 Deploy Command 不等于外部 Outcome 已接受。
-13. **Learning begins with a candidate.** Memory 与 Evolution 不因任务完成自动更新。
-14. **Adaptive governance changes profiles, not protected rights.** 执行者不能自行降低 Floor 或扩大 Authority。
-15. **Execution Epoch is optional.** 它是受控区间，不是超级 Lifecycle。
-16. **Sprint is a planning rhythm, not the only lifecycle unit.** Task、Run、Attempt、Transaction 与 Epoch 保持区分。
-17. **Failure and recovery are first-class branches.** Happy Path 不是完整 Lifecycle。
-18. **More gates do not imply more maturity.** 每个控制需要 Decision Use、Owner、成本和替代路径。
+3. **Identity precedes closure.** Work、Attempt、Outcome、Change、Integration 与 Release 分开；Phase 和一个 `done` 都不能替代实际状态。
+4. **Grounding 与 Contract 有范围。** Context、State、Decision、Assumption 与 Conflict 不压成最终 Truth；Intent 和 Plan 都不自动产生 Permission 或 Authority。
+5. **Observation、Evidence 与 Decision 分开。** PASS、FAIL、Unknown、`non-result` 与 Disposition 绑定具名 Claim、Decision Use 和 Authority。
+6. **Failure、Recovery、Integration、Release 与 Operations 是不同分支。** 新 Attempt 不覆盖旧 Baseline，Closure 保留 Unknown，Deploy Command 不等于外部 Outcome 已接受。
+7. **学习与治理按需要触发。** Memory / Evolution 先形成 Candidate；Execution Epoch、Sprint、Multi-Agent 和完整 Gate Stack 都是可选结构，执行者不能扩大 Authority 或降低 Protected Floor。
 
 ---
 
 # 21.41 常见 Anti-pattern
 
-- 用更长 Pipeline 替代传统 SDLC；
-- 要求每项任务访问所有阶段；
-- Truth Resolution 一次产生最终事实；
-- 把 Context Pack 称为内容已验证；
-- Plan Review 等于执行授权；
-- 每项 Work 固定十个 Gate；
-- Human Approval Everywhere；
-- Gate PASS 等于 Outcome Accepted；
-- Test PASS 等于 Merge、Release 或 Improvement；
-- 用一个 `done` 覆盖 Attempt、Outcome、Integration 与 Release；
-- 把 Verifier Failure 写成 Target FAIL；
-- 把 `non-result` 从指标和 Timeline 中删除；
-- Rebase 时重写旧 Baseline；
-- Sprint 等于 Execution Epoch；
-- 所有任务强制打开 Execution Epoch；
-- 多 Agent 被当成高成熟度的必要条件；
-- Agent 数量决定 Review 独立性；
-- Task 完成后自动 Promote Memory；
-- Reflection 自动修改 Skill / Policy；
-- Deployment 被画成流程终点；
-- Incident 只进入 Root Cause，不先 Contain / Recover；
-- 把 Activity Count 当成 Lifecycle Progress；
-- 为降低 Governance Cost 删除 Protected Floor；
-- 使用固定低／中／高 Profile 掩盖实际风险面；
-- 为所有 Transition 创建独立 Registry 和 Dashboard。
+- 用更长 Pipeline、固定十个 Gate或 Human Approval Everywhere 替代按风险裁剪的传统 SDLC；
+- 把 Truth Resolution、Context Pack、Plan Review、Gate / Test PASS 直接写成最终事实、执行授权、Acceptance、Release 或 Improvement；
+- 用一个 `done` 覆盖 Attempt、Outcome、Integration 与 Release，把 Verifier Failure 写成 Target FAIL，或从 Timeline 删除 `non-result`；
+- 在 Rebase 时重写旧 Baseline，把 Sprint 等同 Execution Epoch，或把 Multi-Agent / Agent 数量写成成熟度与 Review Independence；
+- Task 完成后自动 Promote Memory，Reflection 自动修改 Skill / Policy，或把 Deployment 画成不再需要 Observation 的终点；
+- 用 Activity Count 代替 Lifecycle Progress，为降低成本删除 Protected Floor，或为所有 Transition 建立独立 Registry / Dashboard。
 
 ---
 

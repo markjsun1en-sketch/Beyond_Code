@@ -1023,59 +1023,17 @@ retrieval and review cost
 
 ---
 
-# 15.26 AI Game Dev OS 案例说明怎样避免错误记忆
+# 15.26 案例只保留 Memory 转换风险
 
-现有 Evidence 没有验证完整 Memory Platform，但可以说明错误总结会怎样改变后续解释。
+完整事件见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。本章只保存三条“不得写入长期记忆的结论”：
 
-## D-048：不能记成“目标 Compile 失败”
+| Episode | 必须保留的记录 | 不得压成 |
+|---|---|---|
+| D-048 | Observer Failure、Target 未被观察、`non-result`、Human Disposition 与 Corrective Path | “Source 导致 Target Compile 失败” |
+| D-079 | 42 个 Selected Tests PASS、Human 拒绝 Over-scoped Scope、较小 Forward Correction 成为后续 Baseline | “测试证明较小方案最好” |
+| D-073 至 D-075 | Governance Artifact 增长、Delivery Evidence 停滞与后续路线变化；Strict Fail-closed 曾捕获真实缺陷，后续结果仍是 `NON_QUALIFYING` | “严格治理总是有害”或“Function-first 单独造成恢复” |
 
-D-048 的可观察记录与限制见 [Target `non-result` 案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)。
-
-可观察事实是：
-
-- Verifier 在 Target 前改变自身 authority-bearing inventory；
-- Integrity Check fail closed；
-- Target 未被观察；
-- Target Result 是 `non-result`。
-
-如果 Memory 写成：
-
-> Compile failed because source was invalid.
-
-它同时制造了错误 Target Result 和未经支持的 Root Cause。
-
-合适的记录必须分开 Observer Failure、Target Non-observation、Human Disposition 与 Corrective Path。
-
-## D-079：不能记成“测试通过的方案被证明最好”
-
-D-079 的测试、范围裁决与后续 Baseline 见 [测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md) 和 [演化候选案例记录](../Evidence/receipts/ER-20260824-003__CLM-C16-001.md)。
-
-可观察事实是：
-
-- Over-scoped Candidate 的 42 个 Selected Tests 通过；
-- Human 拒绝它作为 E1 Scope；
-- 较小 Forward Correction 成为后续 Baseline。
-
-Memory 需要同时保留 Test Evidence、Scope Decision、Authority 和后续 Baseline。
-
-它不能把“更小方案长期更好”写成已证明事实，因为现有证据没有长期维护成本对照。
-
-## D-073 至 D-075：不能记成“严格治理总是有害”
-
-D-073 至 D-075 的提交序列与事后判断见 [治理活锁历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)。
-
-可观察事实支持 Governance Artifact 增长、交付 Evidence 停滞与后续路线变化。
-
-Retrospective Inference 可以提出 Stage Coupling 和 Governance Livelock。
-
-但 Memory 还要保留：
-
-- Strict Fail-closed 曾发现真实 D-048 缺陷；
-- Function-first 不是唯一可能原因；
-- 没有受控效率对照；
-- 后续结果仍明确 `NON_QUALIFYING`。
-
-因此更合适的是有范围 Lesson Candidate，而不是全局反治理规则。
+这些内容分别见[Target `non-result` 案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)、[测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)、[演化候选案例记录](../Evidence/receipts/ER-20260824-003__CLM-C16-001.md)和[治理活锁历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)。现有材料没有长期维护成本或受控效率对照；只能形成有范围 Lesson Candidate。
 
 ---
 

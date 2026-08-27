@@ -58,54 +58,15 @@ identify a bounded need
 
 ---
 
-# 22.1 先区分必要、有用与可选
+# 22.1 继承最低控制边界，只新增 Capability Fit 问题
 
-## 必要的最低控制功能
+第21章已经区分必要、条件性与可选控制。本章继承其中的最低语义：Work / Attempt Identity、Scope / Allowed Effect、具名 Authority、Result / Failure / Unknown / `non-result` 可见性，以及 Stop / Recovery / 可安全丢弃边界。现有 Issue、VCS、Sandbox、CI 与 Human Workflow 可以共同承担这些功能，不要求建立独立 Registry 或成熟度平台。
 
-只要 Agent 被委托修改持久状态或产生外部影响，项目在语义上至少需要保留：
+第22章新增的问题不是“机制是否更多”，而是当前 Capability 对具名 Workload 与 Intended Use 是否适配。必要输入只有当前配置与 Evidence、Gap / Excess / Unknown、风险与成本边界，以及能对具名 Decision Target 作出处置的 Authority。
 
-- Work / Attempt Identity；
-- Scope、允许 Action 与允许影响面；
-- 对执行与关闭具有权限的具名 Human / System Authority；
-- Result、Failure、Unknown 或 `non-result` 的可见性；
-- Stop、Recovery 或能够安全丢弃本次 Attempt 的边界。
+Engineering Capability Profile、Capability Fit Review 和更完整的 Baseline、Context、Evidence、Handoff、Memory / Evolution、Multi-Agent 或 Re-evaluation 记录都由实际风险触发。Multi-Agent Topology、Persistent Memory、Self-Evolution、Human Control Plane、Execution Epoch、完整 Decision Graph、全量 Trace 与组织级 Score 仍是可选机制，不是成熟终点。
 
-这些是最低控制功能，不是一组必须分别持久化的书内对象。
-
-现有 Issue、VCS、Sandbox、CI 或 Human Workflow 可以共同承担它们，不要求每个项目建立独立 Registry、Dashboard、Gate Stack 或成熟度平台。
-
-## 条件性／有用
-
-当持续时间、并发、影响、不确定性、Policy / 合同 / Rights、下游处置、恢复要求等具名风险或 Decision Use 触发时，下列能力通常有用：
-
-- Engineering Capability Profile 与 Capability Fit Review；
-- 版本化 Baseline、Context、State、Assumption 与 Conflict Record；
-- Execution Contract、正式 Evidence Plan、Coverage 与 Decision Target；
-- Acceptance、Release Authorization 等下游处置的分立记录；
-- Exception Authority、Independent Review、Checkpoint、Handoff、Takeover 与 Re-evaluation Case；
-- 长期 Memory / Evolution Candidate 的独立 Promotion、Adoption 与运行观察；
-- 在需要并行、专业隔离或 Review Independence 时引入的独立 Multi-Agent Role；
-- Governance 与 Total Production Cost 的有限比较。
-
-## 可选
-
-以下机制由实际需要触发，不是成熟终点：
-
-- Multi-Agent Controller / Worker Topology；
-- Persistent Cross-project Memory；
-- Self-Evolution（包括 Pipeline）；
-- Human Control Plane（包括完整 Dashboard）；
-- Execution Epoch；
-- 完整 Decision Graph；
-- 全量 Prompt、Context 与 Tool Trace；
-- 统一 Truth、Context、Evidence 或 Capability Registry；
-- 十个独立 Gate；
-- 组织级 Capability Score；
-- 所有工作都使用自动 Routing、自动 Review 或自动 Adoption。
-
-一个小型、局部、可逆、易观察的项目，可以用很少的机制形成足够边界。
-
-简单不等于不成熟，复杂也不自动等于成熟。
+简单不等于不成熟，复杂也不自动等于适配。
 
 ---
 
@@ -1405,58 +1366,17 @@ affected-party and Intended Use boundary
 
 ---
 
-# 22.39 AI Game Dev OS v4.94 提供三个反单轴案例
+# 22.39 案例只保留反单轴约束
 
-AI Game Dev OS v4.94 的既有记录已经在[第16章](第16章_Self_Evolution_Engineering_首轮修订稿.md)、
-[第20章](第20章_AgentOps_成本与模型漂移_首轮修订稿.md)和
-[第21章](第21章_AI_Native_SDLC_首轮修订稿.md)中限定了用途。
+完整 Case Spine 见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)；本章只保留 Capability Fit 的三条反例。
 
-本章只使用三组关系。
+| Episode | 反单轴关系 | 不能说明 |
+|---|---|---|
+| D-073 至 D-075 | Governance Mechanism Presence / Activity 不等于 Delivery Outcome 或 Capability Fitness | 严格治理普遍无效，或 Function-first 是唯一恢复路径 |
+| D-079 | Selected Tests PASS 不等于 Scope Acceptance、Adoption 或 Sustained Fitness | 较小实现长期质量或成本更优 |
+| F1–F4a | Source、Replay、Package Identity 与 `48/48 PASS` 可以支持有范围 Development Closure；结果仍是 `NON_QUALIFYING` | Intended-use Qualification、Gate、Production 或更高项目等级已经成立 |
 
-## Governance Activity 与 Delivery Outcome 分开
-
-D-073 至 D-075 扩大了 Governance / Proof Surface，但 Source、Runtime、Test、
-Qualification 与 Gate Evidence 没有同步前进。
-
-这说明：
-
-- Governance Mechanism Presence 不等于当前 Work 推进；
-- Governance Activity 不等于 Delivery Outcome；
-- Artifact 数量不能产生 Capability Fitness；
-- Review 和 Gate 必须指出当前 Decision Use 与成本。
-
-它不证明严格治理普遍无效，也不证明 Function-first 是唯一恢复路径。
-
-## Test PASS 与 Scope Acceptance 分开
-
-D-079 的 Over-scoped Candidate 通过 Selected Tests，但 Human 没有接受该实现范围；
-较小 Forward Correction 成为后续 Baseline。
-
-这说明：
-
-~~~text
-test capability present
-+ selected tests passed
-≠ scope accepted
-≠ candidate adopted
-≠ sustained fitness established
-~~~
-
-它不证明较小实现的长期质量或成本更优。
-
-## Development Closure 与 Qualification 分开
-
-F1–F4a 形成 Source、Read-only Replay、Package Identity 与 48/48 PASS，但闭环仍明确为
-`NON_QUALIFYING`。
-
-这说明：
-
-- 某些开发和验证能力可以存在；
-- 当前 Evidence 可以支持有范围 Development Closure；
-- Intended Use 的 Qualification 仍需独立处置；
-- “完成了更多能力”不能自动升级成更高项目等级。
-
-三个案例支持状态和判断分离，不证明本章候选模型的效果。
+来源与限制见[治理活锁与 Function-first 历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)和[D-079 范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。这些共享案例只约束状态、Evidence Use 与有权判断的分离，不证明本章候选模型的效果。
 
 ---
 
@@ -1551,27 +1471,11 @@ expires_or_re_evaluate_on:
 
 # 22.42 与相邻章节的接口
 
-| 章节 | 第22章复用 | 第22章不重新定义 |
-|---|---|---|
-| 第3章 | AI-native 触发条件与工程目标 | AI-native 定义、统一成熟度分数 |
-| 第4章 | Intent、Scope、Acceptance Target | 目标事实或 Authority |
-| 第5–6章 | Context / State 的 Profile、Coverage、Gap 与 Conflict | Truth Store 或新 Context Registry |
-| 第7章 | Work、Execution Contract、Attempt、Checkpoint 与 Bounded Execution | 执行平台或 Lifecycle |
-| 第8章 | Attempt Outcome、Target Result、Evaluation Result、Failure、`non-result` 与 Recovery | 可靠性总分或成功证明 |
-| 第9章 | Evidence Use、Decision Target、Acceptance、Adoption 与 Release Authorization | Evidence 总分或自动 Acceptance |
-| 第10章 | Review、Review Target、Finding、Review Budget、Review Independence 与 Review Disposition | 通用 Review 方法或默认 Authority |
-| 第11–12章 | Review Bandwidth、Progressive Disclosure 与 Decision Interface | Human 判断的自动替代 |
-| 第13–14章 | Authority、Autonomy Profile、Observation 与 Intervention | 自治等级或 Agent 固有 Trust |
-| 第15–16章 | Memory / Evolution Candidate、Promotion 与 Adoption | 线性学习终点 |
-| 第17章 | Role、Assignment、Topology、Handoff 与 Integration | Work 上位定义或 Agent 数量排名 |
-| 第18–19章 | Trace Purpose、Security、Privacy、Supply Chain 与 IP Boundary | 完整 Trace 或统一法律结论 |
-| 第20章 | Operational Evaluation、Operational Outcome observation、Operational Baseline、Cost、Drift 与 Re-evaluation | 裸 Outcome 上位对象或统一经济指标 |
-| 第21章 | Lifecycle Profile、Transition 与 Decision Target | 固定流程等级 |
-| 第23章 | 具名时间序列和受限案例 | AI Game Dev OS 的总分或排名 |
+第22.8节已经列出完整对象所有权；这里仅保留递进关系。第3–21章提供 AI-native 触发条件，以及 Intent、Context / State、Execution / Result、Evidence / Review、Authority / Observation、Memory / Evolution、Organization / Trace、Security / IP、Operations 与 Lifecycle 的现有配置。
 
-第22章拥有的是跨能力面的适配审查特化关系；基础 Review / Finding 由第10章拥有，基础 Decision Target / Disposition 由第9章拥有。
+第22章只把这些输入投影成 Engineering Capability Profile，并通过第10章的 Finding 与第9章的 Decision Target / Disposition 形成 Capability Fit Review。它不创建新的 Truth、统一总分、可靠性证明、法律结论或默认 Authority。
 
-它不把相邻章节的对象重新复制到 Capability Registry。
+第23章只用具名时间序列暴露 Profile 的适用范围、限制与 Transfer Question，不给 AI Game Dev OS 排名，也不把案例重复出现当成独立验证。
 
 ---
 

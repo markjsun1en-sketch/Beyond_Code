@@ -1187,83 +1187,17 @@ incident reconstruction drill
 
 ---
 
-# 18.29 现有案例支持哪些有限边界
+# 18.29 案例只保留可重建关系
 
-本节只使用已有项目记录绑定的可观察事实，不把设计提案或当前工作稿反向作为事实来源。
+本节只使用已有项目记录，不把当前工作稿反向作为事实来源；完整事件见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
 
-## 18.29.1 SP122 保存了可检查的外部决策环境
+| Episode | 可从外部记录检查的关系 | 保留的反例或限制 |
+|---|---|---|
+| SP122 | Frozen Plan、Revision、Runtime Identity、Machine / Human Evidence 与具名 Decision 可以通过来源关系绑定；Evidence Acceptance 与 Adoption / Release 分开 | 不能恢复隐藏推理，不证明所有字段必需、提高速度或质量，也不自动形成 Accountability |
+| v4.93 Snapshot | Snapshot Generator 与空 `project_status_snapshot.json` 同时存在 | Schema Capability、Artifact Existence、Operational Population 与 Audit Use 是不同状态；有 Registry 不等于已有 Live Trace |
+| D-079 | Test Result、Scope Decision、Source Adoption、Forward Correction、后续 Ancestry 与 Release Non-claim 可以区分 | 不证明 Human Scope Decision 跨项目最优，也不证明较小实现长期成本更低 |
 
-[SP122 外部决策环境案例记录](../Evidence/receipts/ER-20260810-003__CLM-C06-003.md) 显示：
-
-- Frozen Agent Run Plan 在执行前已有不可变 Commit；
-- Plan 声明 Lane Owner、Tool / Skill、输入输出引用、允许写面、Handoff Authority 与 Conflict Rule；
-- Result Manifest 绑定 Plan Commit、Repair Revision、Runtime Identities、Machine Checks、Human Review、Non-claims 与 Evidence Hashes；
-- Human Lead 接受 Evidence Chain，同时保留 Adoption 与 Production Block。
-
-这些 Observable Fact 支持：
-
-- 后来者可以在不依赖隐藏推理的情况下检查当时执行边界；
-- Plan、Revision、Runtime、Evidence 与 Human Decision 可以通过有来源关系绑定；
-- Evidence Acceptance 与后续 Adoption / Release 可以分开。
-
-它们不证明：
-
-- 后来的 Agent 可以从这些材料完整恢复任务；
-- 所有字段都必需；
-- 记录这些字段提高了速度或质量；
-- Runtime Identity 等于完整行动解释；
-- 该 Trace 已经完成组织 Accountability。
-
-## 18.29.2 Snapshot Schema 存在，不表示 Live Trace 已经成立
-
-同一案例记录还显示，AI Game Dev OS v4.93 包含 Snapshot Generator，可导出活动对象、Decision、Risk 与 Next Action 引用。
-
-但当时检查到的 `project_status_snapshot.json` 是空 Registry Skeleton，没有已摄入任务。
-
-这个反例说明：
-
-> Schema Capability、Artifact Existence、Operational Population 与 Audit Use 是不同状态。
-
-不能因为存在 Registry 文件就声称项目已有完整 Traceability。
-
-## 18.29.3 D-079 可以从外部记录重建处置边界
-
-[D-079 测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md) 显示：
-
-- Over-scoped Candidate 的 42 项 Focused Tests PASS；
-- Human Authority 没有接受该 Candidate 作为 E1 Source Baseline；
-- Forward Correction 移除更大范围并进入后续 F1 Ancestry；
-- F4a 后续 Test PASS 仍保留 Qualification、Gate 与 Production Non-claims。
-
-这些记录允许后来者区分：
-
-~~~text
-test result
-scope decision
-source adoption
-forward correction
-later ancestry
-release non-claim
-~~~
-
-这不需要重建 Agent 当时的隐藏推理。
-
-但该序列也不能证明 Human Scope Decision 在所有项目中最优，不能证明较小实现的长期成本更低。
-
-## 18.29.4 Evidence 与 Accountability 的边界
-
-[SP122 结果包案例记录](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md) 和 [D-079 测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md) 支持 Agent Assertion、Machine Validation、Human Evidence Disposition、Adoption 与 Release 应保持可区分。
-
-现有 Evidence 未直接验证：
-
-- 本章十一个 Record Role 的完备性；
-- Decision Graph 比简单 Commit / Decision Log 更有效；
-- Trace Contract 降低事故成本；
-- Random Audit 的最佳方法；
-- Traceability 能自动形成 Accountability；
-- 本章 Accountability Surface 能适用于不同组织、合同或法律环境。
-
-因此，本章把 Accountability Surface 作为候选模型；现有案例只支持 Trace、Authority 与 Decision 的部分分离关系，并未验证该模型的完备性或跨组织适用性。
+来源与限制见[SP122 外部决策环境记录](../Evidence/receipts/ER-20260810-003__CLM-C06-003.md)、[SP122 结果包记录](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)和[D-079 测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。这些材料只支持 Trace、Authority 与 Decision 的部分分离；没有验证十一种 Record Role 的完备性、Decision Graph 的效果、事故成本下降，或跨组织、合同与法律环境的适用性。
 
 ---
 

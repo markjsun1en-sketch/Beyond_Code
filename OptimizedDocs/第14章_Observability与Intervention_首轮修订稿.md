@@ -944,59 +944,15 @@ Observability 是控制机制，也可能成为新的攻击面和认知负担。
 
 ---
 
-# 14.24 AI Game Dev OS v4.94 提供了哪些边界案例
+# 14.24 案例只保留 Observation 与 Intervention 投影
 
-本章使用三组已有项目记录，并区分其中的可观察事实、后续推导与适用限制。
+完整事件序列由[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)承担；第12章保留 Task Projection 的实现与缺口清单。本章只增加三条观察关系：
 
-## D-048：Observer Failure 与 Target `non-result`
+- **D-048：** Observer 在 Target 前改变受控表面，Detector 捕获真实变化并停止；这要求把 Observer Integrity、Target `non-result`、Stop 后 Authority 与 Recovery 分开，但不证明所有静默故障都可检测。
+- **Task Projection：** 绑定 Task、Commit 与 Review 的只读投影说明 Control View 可以引用底层状态而不复制 Truth；它仍没有建立统一 Coverage Health、Detector Health、全局 Takeover 或 Delegation Revocation。
+- **D-073 至 D-075：** `meta-only successor`、Proof Surface 增长与 Delivery Evidence 停滞可以成为 Process Warning；后续 `NON_QUALIFYING` Evidence 不足以证明严格治理是单一根因，也不能让任意 Source / Test 增长自动代表有效进展。
 
-D-048 的可观察记录与限制见 [Target `non-result` 案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md) 与 [控制接口案例记录](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md)。
-
-可观察事实：
-
-- Launcher 在 Target Compile 前改变自身 exact inventory；
-- 第二次检查 fail closed；
-- Target 没有执行，没有形成正常结果；
-- 后续需要 Human 对 Retry 与 Round Accounting 作出处置。
-
-它支持：
-
-- Observer Integrity 与 Target Result 分离；
-- `non-result` 是必要语义；
-- 缺少正常结果不等于健康；
-- Stop 后仍需要 Authority 与 Recovery。
-
-它不证明所有静默故障都能被 Detector 发现。
-
-## v4.94 Task Projection：有用但不完整
-
-相关实现与缺口见 [控制接口案例记录](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md)。
-
-可观察事实：
-
-- Task Adapter 存在绑定 Task、Commit 与 Review 的紧凑只读投影；
-- 实现暴露 Blocker、Handoff、Cancel、Claim Withdrawal 和 Review Rejection 路径；
-- 没有发现统一的 Observation Coverage Health、Detector Health、全局 Takeover 或 Delegation Revocation 界面。
-
-它支持：
-
-- Timeline / Dashboard 可以是 Non-authoritative Projection；
-- Control Path 可以引用底层状态，而不是复制 Truth；
-- “存在部分控制原语”不等于完整 Observability and Intervention Plane 已经实现。
-
-## D-073 至 D-075：过程信号不等于根因证明
-
-D-073 至 D-075 的提交序列与事后判断见 [治理活锁历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)。
-
-可观察事实：
-
-- 连续提交只改变 Governance、Proposal、Review 与 Transaction 路径；
-- 没有 Package Source、Runtime、Test、Qualification 或 Gate Evidence 进展；
-- 后续路线改变后产生了分阶段且明确 `NON_QUALIFYING` 的交付 Evidence。
-
-它支持把 `meta-only successor`、Proof Surface 增长和交付 Evidence 停滞作为 Process Warning。
-
-它不单独证明严格治理是根因，也不证明任意 Source/Test 文件增长就是有效进展。
+D-048 与投影缺口见[Target `non-result` 案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)和[控制接口案例记录](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md)；治理序列、替代解释与限制见[治理活锁历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)。
 
 ---
 

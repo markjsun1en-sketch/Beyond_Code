@@ -1078,80 +1078,16 @@ B 的当前适用性失效后，只有在依赖关系明确时，A 才进入 `ne
 
 ---
 
-# 6.12 两个已取证案例
+# 6.12 两个案例只保留 Truth 与 State 投影
 
-## 案例一：SP122 Authority Conflict
+完整时间线由[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)承担；这里不把同一组共享来源再次写成独立佐证，只保留与本章对象边界直接相关的关系。
 
-以下内容来自版本化工程产物，不是对隐藏推理的重建。
+| Episode | 可观察关系 | 本章能说明 | 不能说明 |
+|---|---|---|---|
+| SP122 Authority Conflict | authority audit 同时保留 active、superseded 与 conflicted sources；一个实现 Commit 被保留为 Implementation Evidence，却没有成为当前 Design Authority；Human 只接受具名 Evidence Chain，Adoption 与 Production 仍未获批准 | Authority 按问题与用途分域；Implementation、Evidence Disposition 与 Adoption Decision 不能互相覆盖 | 所有项目都需要 Truth Registry，或该对象模型已经降低成本 |
+| D-048 Verifier Self-mutation | Verifier 在目标执行前改变自身 authority-bearing inventory；exact-inventory check 捕获真实变化并停止，Target 没有被观察，因而是 `non-result` | Evidence Generator Integrity、Observed Subject 与 Target Result 必须分开 | Target Compile 的行为、修正方案效果，或所有 Verifier 必须零副作用 |
 
-### 可观察事实
-
-- authority audit 同时保留了 active、superseded 和 conflicted sources；
-- 一个实现 commit 被保留为 Implementation Evidence，但被拒绝为当前 Design Authority；
-- audit 保存了历史上 stale/conflicted rule 影响 runtime presentation 和 machine-PASS surface 的事件；
-- 后续 Human review 只接受 qualifying evidence chain，没有批准 supported adoption 或 production release。
-
-### 同期判断
-
-- Reviewer 判定当前 authority 已解决；
-- Human Lead 接受 R2 evidence chain，并明确限制接受范围。
-
-### 本书推导
-
-- 同一来源对不同问题可能具有不同 Authority；
-- Implementation、Evidence Validation 与 Adoption Decision 必须分开；
-- 历史冲突不能因当前修复完成而被重写。
-
-### 限制
-
-- 这是一个项目、一个 UI 生命周期规则案例；
-- 它不能证明所有项目需要 Truth Registry；
-- 它没有提供“使用对象模型前后”的成本对照。
-
-完整来源与反证见 [SP122 authority-audit 案例记录](../Evidence/receipts/ER-20260810-001__CLM-C06-001.md) 和 [SP122 结果包案例记录](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)。
-
-## 案例二：D-048 Verifier Self-mutation（验证器自我修改）
-
-以下内容来自 AI Game Dev OS v4.94 的已提交 incident 与 corrective review，不是对目标代码结果的事后猜测。
-
-### 可观察事实
-
-- D-048 launcher 在目标 compile harness 执行前进行了普通 Python import；
-- import 在 authority-bearing manifest surface 中生成了 `__pycache__` 与两个 `.pyc` 文件；
-- 第二次 exact-inventory check 检测到变化并 fail closed；
-- 目标 runtime directory 与 compile result 都没有产生。
-
-### 同期判断与修正边界
-
-- Review 将其判定为 manifest self-mutation defect，并保留失败现场；
-- corrective request 提议使用 `python -I -B -S -c`、显式禁止 bytecode，并在执行前后检查 exact inventory；
-- 该 request 没有授权或完成目标重试，因此它是修正方案记录，不是成功的 target result。
-
-### 本书推导
-
-这次运行产生了一条关于验证器的有效 Claim：Evidence generator 改变了自己的 authority-bearing surface。它没有产生关于目标 compile 是否通过的 Claim。
-
-因此应记录为：
-
-```text
-observed_subject = verifier
-generator_integrity = compromised
-observation_status = target-not-observed
-target_result = non-result
-```
-
-exact-inventory check 本身并未失效；它检测到了真实变化。直接工程缺陷是 verifier self-mutation；在结果记录层面，还存在把验证器失败、目标失败和目标未观察混成同一种结果的风险。
-
-后一条是本书从事故中提取的对象边界，不是对直接故障原因的替代描述。
-
-### 限制
-
-- 这是一个 Python bytecode 副作用造成的单一案例；
-- 它不证明验证器必须完全无副作用；
-- 已声明并隔离的正常输出不自动构成 Integrity failure；
-- 当前取证没有重跑历史 harness，修正方案的运行效果不能从该 incident 单独推出。
-
-完整来源、反证与人工收窄边界见 [D-048 验证器自我修改案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)。
+SP122 的来源、反证与人工处置边界见 [authority-audit 案例记录](../Evidence/receipts/ER-20260810-001__CLM-C06-001.md)和[结果包案例记录](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)；D-048 的 Incident、未重跑限制与反向证据见[验证器自我修改案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)。当前修复不能重写历史冲突，严格检查捕获真实变化也不能被压成“验证系统无效”。
 
 ---
 

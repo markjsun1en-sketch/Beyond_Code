@@ -388,6 +388,7 @@ evidence accepted for bounded claim
 - v4.94 的 E0–E3 应成为全书通用等级。
 
 来源、版本、反证和限制见 [测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。
+完整时间顺序与 shared provenance 限制由[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)承担；本表不构成三个独立验证样本。
 
 ---
 

@@ -865,64 +865,17 @@ Gate 是 Authority-bearing mechanism，不是 Truth Machine。
 
 ---
 
-# 13.19 AI Game Dev OS v4.94 提供了哪些边界案例
+# 13.19 案例只保留 Authority 投影
 
-本章使用三组已有 Evidence。它们支持下列项目内边界，不证明本章对象模型具有跨项目普遍最优性。
+完整事件与失败路径见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)；本章不重复时间线，只保留每个 Episode 对 Governed Autonomy 的约束。
 
-## D-048：Validator Integrity Failure
+| Episode | 可观察关系 | 本章能说明 | 不能说明 |
+|---|---|---|---|
+| D-048 | Validator 改变自身 exact inventory，检查停止，Target 未被观察 | Protected Stop 可以阻断执行；Target 仍是 `non-result`，后续 Retry 与 Round Accounting 需要有权处置 | 停止等于 Target Failure，或所有 Validator 必须零副作用 |
+| D-073 至 D-075 | Governance / Review Artifact 增长，Delivery Evidence 未同步前进，Gate 仍阻塞 | Process Warning 应指向当前危险与 Evidence Use，Governance Cost 必须进入设计 | 严格治理普遍无效，或新增 Artifact 自动提高安全性 |
+| D-079 | 42 个 Selected Tests 通过，Human 未接受 Over-scoped E1 Candidate，较小 Forward Correction 成为后续 Baseline | Test Evidence 不产生 Scope Acceptance Authority；Reliance、Scope 与 Adoption 分开 | 较小实现长期更好，或本章 Profile Schema 已被验证 |
 
-D-048 的可观察记录与限制见 [相关案例记录](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md)。
-
-可观察事实：
-
-- Validator 在目标执行前改变自身 exact inventory；
-- 第二次检查 fail closed；
-- target compile 没有被观察，也没有 PASS / FAIL；
-- 后续需要单独的 Human disposition 与 corrective path。
-
-它支持：
-
-- Validator Integrity 可以成为 Protected Stop Condition；
-- Hard Stop 后必须记录 Target `non-result`；
-- 停止执行不等于目标失败；
-- Authority 与 Round Accounting 缺口需要独立处置。
-
-## D-073 至 D-075：Governance Livelock
-
-D-073 至 D-075 的提交序列与事后判断见 [治理活锁历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md) 和 [认知负担案例记录](../Evidence/receipts/ER-20260824-001__CLM-C11-001.md)。
-
-可观察事实：
-
-- 连续 successor 增加 Governance、Proposal、Review 和 Transaction Artifact；
-- 没有 source、runtime、test 或 qualification 进展；
-- Gate B 仍然阻塞。
-
-它支持：
-
-- Governance Artifact 增长可以成为 Process Warning；
-- Review 应指出当前危险和 Evidence Use；
-- Warning 不应自动生成下一份同类治理对象；
-- Governance Cost 必须进入设计。
-
-它不证明严格治理普遍无效。
-
-## D-079：Tests PASS，但 Scope 未被接受
-
-D-079 的测试结果、范围裁决和 Forward Correction 见 [测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。
-
-可观察事实：
-
-- over-scoped Candidate 的 42 个 selected tests 通过；
-- Human 拒绝该 E1 Scope；
-- 较小的 forward correction 成为后续 Baseline。
-
-它支持：
-
-- Test Evidence 不产生 Scope Acceptance Authority；
-- Reliance、Implementation Scope 与 Adoption 需要分开；
-- Forward Correction 可以在保留历史的同时收窄 Candidate。
-
-这些案例不证明本章 Autonomy Profile Schema 是唯一正确实现，也没有提供治理成本或自治效率的量化对照。
+来源与限制分别见[控制接口案例记录](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md)、[治理活锁历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)、[认知负担案例记录](../Evidence/receipts/ER-20260824-001__CLM-C11-001.md)和[测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。这些共享来源没有提供自治效率或治理成本的量化对照。
 
 ---
 

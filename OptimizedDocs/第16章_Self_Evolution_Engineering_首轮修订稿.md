@@ -885,66 +885,19 @@ opportunity cost
 
 ---
 
-# 16.24 AI Game Dev OS v4.94 提供了怎样的受限案例
+# 16.24 案例只保留 Candidate、Evaluation 与 Adoption 边界
 
-本节依据 [v4.94 演化候选案例记录](../Evidence/receipts/ER-20260824-003__CLM-C16-001.md) 讨论其可观察范围与限制。
+[v4.94 演化候选案例记录](../Evidence/receipts/ER-20260824-003__CLM-C16-001.md)与[治理活锁和 Function-first 历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)保存来源与限制；完整失败序列见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
 
-## D-073 至 D-075：Observed Problem
+| Episode | 本章使用的关系 | 保留的限制 |
+|---|---|---|
+| D-073 至 D-075 | Governance / Proof Surface 扩大但 Delivery Evidence 未推进，只能形成 Change Signal 与候选问题 | “Governance Livelock”包含事后判断，不是受控因果证明 |
+| D-076 | 窄 Objective、禁止事项、Hard Stop 与 Dual Review 形成可撤回 Pilot；Review 只使 Candidate 可提交 Human 继续裁决 | 没有自动 Adoption，也没有 Throughput、Human Attention 或 Defect Outcome 测量 |
+| D-077 | 架构拆分后的两个受限 Attempt 仍以 `SIGABRT/-6` 结束 | Recovery Plan 与 Safety Envelope 不等于有效执行；该失败阻断顺滑成功叙事 |
+| D-079 | 42 个 Selected Tests PASS，Human 未接受 Over-scoped Candidate，Forward Correction 保留历史 | Test PASS 不等于 Scope Fit；较小实现的长期成本未知 |
+| F1–F4a | Source、Read-only Replay、Package Identity 与 `48/48 PASS` 形成分阶段 Evidence | 结果仍是 `NON_QUALIFYING`，PC-0、Gate 与 Production 未成立 |
 
-可观察事实：
-
-- 连续变更扩大 Governance 与 Proof Surface；
-- 没有 Source、Runtime、Test、Qualification 或 Gate Evidence 进展；
-- 项目将序列记录为 Governance Livelock。
-
-它支持形成 Change Signal 和候选问题。
-
-内部 Incident 对原因的分类仍包含 Retrospective Judgment，不是受控因果证明。
-
-## D-076：Scoped and Retractable Pilot
-
-可观察事实：
-
-- Pilot 保留 Predecessor History；
-- 绑定窄 Objective、Prohibited Activity、Hard Stop 与 Process Warning；
-- Dual Review PASS 只使候选具备提交 Human 继续裁决的条件；
-- 没有自动 Adoption。
-
-它支持 Candidate、Evaluation 与 Adoption Authority 分离。
-
-它没有测量 Production Throughput、Human Attention 或 Defect Outcome。
-
-## D-079：Tests PASS 但 Candidate 未被接受
-
-可观察事实：
-
-- Over-scoped Candidate 的 42 个 Selected Tests 通过；
-- Human 明确未接受这个超出 E1 所需范围的 Candidate；
-- 较小 Forward Correction 成为后续 Baseline。
-
-它直接支持：
-
-- Test PASS 不等于 Scope Fit；
-- Candidate 可以被拒绝而保留部分 Test Evidence；
-- Forward Correction 不必删除历史；
-- Adoption 需要具名 Authority。
-
-它不证明更小实现的长期缺陷成本更低。
-
-## Function-first Closure 与 F4a
-
-证据来源：[治理活锁与 Function-first 演化历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)。
-
-可观察事实：
-
-- 后续形成 F1 Source、F2 Read-only Replay、F3 Package Identity 与 F4a Bounded Test Evidence；
-- F4a 记录 `48/48 PASS`；
-- 结果仍明确 `NON_QUALIFYING`；
-- PC-0、Gate Passage 与 Production 没有被宣称完成。
-
-它支持 Evidence Use 分阶段。
-
-它不证明 Function-first 是恢复的唯一原因，也不证明该 Workflow 已完成长期 Improvement Evaluation。
+这条压缩路径不能证明 Function-first 是恢复的唯一原因，也不能证明该 Workflow 已完成长期 Improvement Evaluation。
 
 ---
 
@@ -1006,47 +959,21 @@ opportunity cost
 # 16.27 本章原则
 
 1. **Self-Evolution 不等于 Self-authorization。** 系统可以提案和取证，不能自行扩大 Grant。
-2. **Change 不等于 Improvement。** Improvement Claim 绑定 Objective、Guardrail、Scope、环境和窗口。
-3. **Reflection 是推导。** Agent Explanation、Pattern 与 Root Cause Candidate 不能伪装成 Observation。
-4. **Failure Result 与 Cause Candidate 分开。** `non-result` 不能被写成 Target FAIL。
-5. **Evolution Surface 不是层级。** 参数、Workflow、Contract、Policy 与 Organization 按实际风险治理。
-6. **Baseline 有范围、有时效。** 不保留永久 Known-Good 神话。
-7. **Comparability 先于数字。** 不可比任务使用有边界的替代评估并保留不确定性。
-8. **Objective 与 Guardrail 分开。** 指标移动不能绕过安全、质量、Authority 和创意边界。
-9. **Evolution Gate 拆成具名 Decision。** Evaluation、Adoption、Activation、Release 和 Expansion 分开。
-10. **Candidate Producer 不应成为高影响变化的唯一评估者。** 独立性与风险相称。
-11. **Adoption 之后继续观察。** 新 Evidence 可以触发收窄、撤回或 Forward Correction。
-12. **Recovery 不等于 Rollback。** 不可逆变化需要前向恢复与明确 Owner。
-13. **Exploration 需要受保护的预算。** 但不能绕过 Production Adoption。
-14. **治理成本进入评价。** 更多 Gate、Review 和 Proof Surface 不自动代表更成熟。
+2. **Change 不等于 Improvement。** Improvement Claim 绑定 Objective、Guardrail、Scope、Environment 与观察窗口。
+3. **观察、推导与原因候选分开。** Reflection 不是事实，Failure Result 不是 Root Cause，`non-result` 不是 Target FAIL。
+4. **Baseline 与比较有边界。** 先检查安全性、适用性与可比性；不可比时保留不确定性，不制造精确提升率。
+5. **Evaluation、Adoption、Activation、Release 与 Expansion 分开。** 高影响 Candidate 的 Producer 不应成为唯一评估者，采用后仍需观察 Drift、Rework 与 Guardrail。
+6. **Recovery 与治理成本进入评价。** 不可逆变化需要 Forward Recovery 与 Owner；更多 Gate、Review、Agent 或 Proof Surface 不自动代表改进。
 
 ---
 
 # 16.28 常见反模式
 
-- 把任意自动修改称为 Self-Evolution；
-- 产生 Candidate 就写“系统已学习”；
-- 合并、Test PASS 或 Review PASS 被写成 Improvement；
-- 同一个 Agent 提案、实现、选测试并独立批准高影响变化；
-- 一次 Failure 自动生成永久 Rule；
-- 把 Target `non-result` 分类成目标失败；
-- 原因分类互斥化，忽略多因素；
-- Configuration、Workflow、Policy 和 Organization 被写成成熟度层级；
-- 永远保留 Known-Good，不检查旧 Baseline 是否安全适用；
-- Candidate 与 Baseline 不可比却计算精确提升百分比；
-- 只优化 Human Interruption，不记录漏报与延迟；
-- Guardrail 数量不断增长，却不能指出被保护风险；
-- 一个 Evolution Gate 同时拥有评估、采用、发布和扩权；
-- Evaluation PASS 自动形成 Production Release；
-- Candidate 修改自己的 Detector、Threshold 和 Authority；
-- Shadow PASS 被宣称为生产安全；
-- Rollback Command 成功被当作状态恢复；
-- Adoption 后不观察 Drift、Rework 和 Guardrail；
-- 固定 80/20 Exploration 比例；
-- 增加 Agent 或 Gate 数量被写成组织进化；
-- 用 v4.94 证明 Function-first 普遍最优；
-- 把 `48/48 PASS NON_QUALIFYING` 改写成完整资格化；
-- 用前后两段项目历史制造未经控制的效率对比。
+- 把 Candidate 产生、Merge、Test / Review PASS 或 Adoption 写成 Improvement；
+- 把一次 Failure 变成永久 Rule、把 `non-result` 写成 Target FAIL，或把多因素压成单一 Root Cause；
+- 让 Candidate 修改自己的 Detector、Threshold、Authority 或 Protected Floor，或由同一主体完成高影响提案、选证与批准；
+- 对失效或不可比 Baseline 计算精确提升率，把 Shadow / Rollback Command 当成生产安全或状态已恢复；
+- 用 v4.94 推出 Function-first 普遍最优，把 `48/48 PASS NON_QUALIFYING` 写成完整资格化，或用无对照的前后历史制造效率结论。
 
 ---
 

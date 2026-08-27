@@ -1165,72 +1165,17 @@ Owner、自动化和 Protected Floor 的信号。
 
 ---
 
-# 20.30 AI Game Dev OS v4.94 提供的是测量语义案例
+# 20.30 案例只约束指标与分母
 
-AI Game Dev OS v4.94 的现有记录可以帮助本章检查指标语义，但没有提供完整的
-前后对照或长期经济数据。
+完整时间线见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)；本章只把共享案例投影到 Metric Contract 与 Cost Boundary。
 
-[第16章](第16章_Self_Evolution_Engineering_首轮修订稿.md) 已保存 Candidate、
-Evaluation 与 Adoption 的案例边界，[第19章](第19章_Security_Privacy与IP_Boundary_首轮修订稿.md)
-已保存 D-048 的 Tool / Verifier 限制；本章只把这些观察投影到运行指标和处置语义。
+| Episode | AgentOps 约束 | 不能说明 |
+|---|---|---|
+| D-073 至 D-075 / F1–F4a | Governance Work、Delivery Outcome、Evidence Stage 与 Claim Use 分开计量；Review、Waiting、Proof Surface 与 Rework进入成本；`NON_QUALIFYING` 不得从完成量中消失 | 严格治理必然造成 Livelock、Function-first 单独导致恢复，或新路径已降低总成本 |
+| D-048 | Verifier Failure 与 Target `non-result` 使用不同分母；不能把未执行 Target 计成 PASS 或 FAIL | Exact Inventory 是唯一正确控制 |
+| D-079 | Selected Test PASS 可进入 Evaluation Evidence；未获接受的 Candidate 不能进入 Accepted Outcome 分母 | 较小实现长期缺陷或维护成本更低 |
 
-## D-073 至 D-075：Governance Activity 不等于 Delivery Outcome
-
-可观察记录显示：
-
-- 连续变更扩大了 Governance 与 Proof Surface；
-- Source、Runtime、Test、Qualification 或 Gate Evidence 没有同步进展；
-- 项目把该序列记录为 Governance Livelock；
-- 后续 Function-first 路径形成 F1–F4a 分阶段 Evidence，但仍明确为 `NON_QUALIFYING`。
-
-它支持第20章保留：
-
-- Governance Work 与 Delivery Outcome 分开计量；
-- Evidence Stage 与 Claim Use 分开；
-- `NON_QUALIFYING` 不能从完成数量中消失；
-- Review、Waiting、Proof Surface 与 Rework 进入 Cost Boundary。
-
-它不支持：
-
-- 严格治理必然造成 Livelock；
-- Function-first 单独导致恢复；
-- 新路径已经降低总成本；
-- 任何 Governance Activity 都没有价值。
-
-## D-048：Verifier Failure 不是 Target Failure
-
-可观察记录显示，验证 Launcher 在目标执行前改变了 Authority-bearing Manifest Surface，
-第二次 Exact-inventory Check Fail Closed，Target 没有执行。
-
-在 AgentOps 中应记录：
-
-~~~text
-verifier_result: failed
-target_result: non_result
-side_effect_observed: true
-baseline_integrity: changed
-~~~
-
-如果把它计成 Target FAIL，会污染 Reliability；如果计成 Target PASS，则会伪造执行结果。
-
-该案例也不证明 Exact Inventory 是所有项目唯一正确的控制。
-
-## D-079：Test PASS 不等于 Accepted Outcome
-
-可观察记录显示：
-
-- Over-scoped Candidate 的 42 个 Selected Tests 通过；
-- Human 没有接受该 Scope；
-- 较小 Forward Correction 成为后续 Baseline。
-
-因此：
-
-- Test PASS 可以进入 Evaluation Evidence；
-- Candidate 是否被接受需要单独 Disposition；
-- Cost per Accepted Outcome 的分母不能把未接受 Candidate 当作 Accepted；
-- 较小实现成为后续 Baseline，不证明它的长期缺陷或维护成本更低。
-
-三个案例共同支持的是记录语义与处置边界，不是 AgentOps 机制的效果量。
+这些关系复用[治理活锁与 Function-first 历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)、[D-048 记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)和[D-079 范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。它们没有提供 AgentOps 机制的前后对照、长期经济数据或效果量。
 
 ---
 
@@ -1270,61 +1215,11 @@ baseline_integrity: changed
 
 # 20.32 与相邻章节的接口
 
-## 第5章：Context Engineering
+第20章直接使用第5–19章提供的 Context / State、Result / Evidence、Human / Authority、Observation、Memory / Evolution、Organization / Trace 与 Security / IP 边界；第20.3节已经给出完整所有权表，这里不再复制。
 
-第5章拥有 Context Contract、Selection、Manifest、Retrieval 与 Projection。
+本章只增加运行期 Baseline、Evaluation Window、Cost / Drift Finding 与 Re-evaluation Disposition。它不从访问记录推断 Model 内部注意，不把 Metric PASS 写成 Acceptance，不从趋势自授权 Evolution，也不从 Agent 数量分配 Responsibility 或法律责任。
 
-第20章观察 Context Identity、Length、Retrieval、Freshness、Token / Attention Cost 和
-与 Outcome 的关系，不从访问记录推断 Model 内部注意。
-
-## 第6章：Truth 与 State
-
-第6章拥有 State Claim、Execution Baseline 与 Conflict。
-
-第20章引用运行依据并发现 Baseline 变化，不建立第二套 Truth 或静默重写历史。
-
-## 第9章：Evidence 与 Decision Disposition
-
-第9章决定 Evaluation Evidence 能支持 Acceptance、Adoption 或 Release 的哪一层。
-
-第20章提供运行窗口和长期观察，不把 Metric PASS 自动写成 Accepted Outcome。
-
-## 第11–12章：Human Cognitive Boundary
-
-第11–12章拥有 Cognitive Overload、Compression 与 Human Decision Interface。
-
-第20章观察 Queue、Waiting、Review、Override 与 Takeover 的有限外部记录，不宣称完整测量 Human Cognition。
-
-## 第13–14章：Autonomy、Observability 与 Intervention
-
-第13章拥有 Authority、Autonomy、Protected Floor 与 Revocation；第14章拥有 Observation、Detector、Signal 与 Intervention。
-
-第20章把这些对象绑定到 Baseline、Window、Cost、Drift 和运行处置。
-
-## 第16章：Self-Evolution
-
-第16章拥有 Self-Evolution 的 Learning / Change Candidate、Evaluation Contract、Activation / Rollout Record 与 Post-adoption Disposition 特化；基础 Adoption 与 Disposition 仍由第9章定义。
-
-第20章提供长期运行 Evidence 和 Re-evaluation Trigger；它不从趋势自动发起自我授权的 Evolution。
-
-## 第17–18章：Organization、Trace 与 Accountability
-
-第17章拥有 Role、Handoff、Conflict 与 Integration；第18章拥有 Trace、Provenance 与 Accountability Surface。
-
-第20章评价 Coordination Cost 与运行变化，但不从 Agent 数量或 Metric 自动分配责任。
-
-## 第19章：Security、Privacy 与 IP Boundary
-
-第19章定义 Data、Model、Tool、Supply Chain 与 IP 边界。
-
-第20章消费 Model / Tool Change、Permission Use、Provider Terms、Incident、Cost 和
-Re-evaluation Trigger。完成本章后，需要回看第19章五个候选对象中哪些字段确有下游用途。
-
-## 第21章：AI-Native SDLC
-
-第21章把这些能力组织成生命周期。
-
-第20章提供运行期 Baseline、Window、Drift 与 Disposition，不预先规定 Sprint 是唯一时间粒度。
+这些运行观察进入第21章的 Lifecycle；Model / Tool、Permission、Provider Terms、Incident 或 Rights Boundary 变化仍须回到第19章的安全、隐私、合同与 IP 判断，不能由成本指标替代。
 
 ---
 
