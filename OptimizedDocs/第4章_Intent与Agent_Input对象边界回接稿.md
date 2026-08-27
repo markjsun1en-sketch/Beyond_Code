@@ -1,10 +1,9 @@
 # 第4章 Intent Engineering
 ## Intent Artifact 如何进入 Agent Execution
 
-> 工作稿状态：对象边界回接稿，等待作者裁决。  
-> 本稿不替代 `OringinalDocs/第4章.md`，也不是完整章节重写。  
-> 审阅依据：[RR-005](../RevisedResult/RR-005_第四章Intent_Engineering.md)、[RR-008](../RevisedResult/RR-008_第四章Prompt边界优化说明.md)。  
-> 跨章类型依据：[第6章重构稿](第6章_Truth与State_Architecture_重构稿.md)。
+> 工作稿状态：对象边界回接稿，不替代 [第4章原稿](../OringinalDocs/第4章.md)，也不是完整章节重写。
+> 回接说明：[RR-020](../RevisedResult/RR-020_前六章首轮分别调整说明.md)。
+> 适用边界：本稿只定义 Intent Artifact 进入 Agent Execution 的接口，不让 Intent 吸收 Context、State、Policy、Authority 或执行控制。
 
 这份回接稿只解决一个问题：
 
@@ -27,9 +26,11 @@
 
 Requirement 可以成为 Intent 的来源，但并不自动成为可执行 Intent。它可能包含冲突、歧义、历史遗留或尚未裁决的偏好。
 
-Task 是 Intent 的执行分解，不应成为新的价值目标。它必须保留 Parent Intent、范围和验收关系。
+当 Task 由某个 Intent 派生时，它不应静默成为新的价值目标，并应保留 Parent Intent、范围和验收关系。
 
-Agent Input 是运行时装配结果。它可以包含 Prompt 文本，但还可能包含：
+并非所有 Task 都起源于 Intent Graph。调查、Incident Response、例行维护或 Evidence Collection 也可能由 Policy、告警或外部事件触发。这类 Task 应记录 Trigger Source；只有当它需要建立或改变长期价值目标时，才创建、派生或升级 Intent。
+
+Agent Input 是一次运行的完整输入装配结果。它可以包含 Prompt 或多轮 Message，但还可能包含：
 
 - System Instructions；
 - Context Manifest 指向的材料；
@@ -37,6 +38,8 @@ Agent Input 是运行时装配结果。它可以包含 Prompt 文本，但还可
 - Execution Contract；
 - Output Schema；
 - 当前 Runtime Observation。
+
+本章所说 Prompt，是 Agent Input 中的指令／消息表达层，而不是所有运行输入的同义词。实际序列化 Prompt 可能具有审计价值，但不应成为长期 Intent 的唯一载体。
 
 因此：
 
@@ -70,9 +73,9 @@ out_of_scope:
 constraints:
   - 必须满足的限制
 
-acceptance_criteria:
+acceptance_targets:
   - AC-01
-required_evidence:
+required_evidence_refs:
   - EV-01
 human_decision_points:
   - HDP-01
@@ -87,15 +90,15 @@ decision_refs:
 
 最后三组字段是引用，不是把其他对象复制进 Intent。
 
-Intent Artifact 不负责保存：
+这里的 Evidence 字段是“需要什么类型或引用的材料”，不是已经产生的 Evidence Record。Intent Artifact 不负责保存：
 
 - 当前代码或 Runtime State；
 - “已经验证”的描述性事实；
-- Agent 实际获得的全部 Context；
+- 本次装配、传输或开放访问的全部 Context Payload；
 - 工具权限和允许写入的文件清单；
 - 一次运行的状态、日志或结果。
 
-这些分别属于 State Claim、Evidence、Context Manifest、Execution Contract 和 Execution Record。
+这些分别属于 State Claim、Evidence、Context Manifest、Execution Contract，以及第7–8章定义的 Attempt、Attempt Outcome 与 Result 记录。
 
 ---
 
@@ -127,16 +130,21 @@ Active
 
 `Executed`、`Verified`、`Accepted` 和 `Failed` 不属于这条生命周期。它们描述某次 Execution 或其结果。
 
-同一个长期 Intent 可能经历多次执行：
+同一个长期 Intent 可能对应一个持续存在的 Work，并经历多次 Attempt：
 
 ```text
 Intent v3
-├── Execution 17 → failed
-├── Execution 18 → verified, rejected
-└── Execution 19 → verified, accepted
+└── Work W-03
+    ├── Attempt A-17 → Attempt Outcome: blocked before target
+    │                  Target Result: `non-result`
+    ├── Attempt A-18 → Target Result + Evaluation Result
+    │                  Acceptance: rejected
+    └── Attempt A-19 → Target Result + Evaluation Result
+                       Acceptance: accepted
+                       Adoption: no Decision Record yet
 ```
 
-一次执行失败不等于 Intent 失效；一次执行被接受，也不一定意味着长期 Intent 已经完成。
+一次 Attempt 失败不等于 Intent 失效；一次 Target Result 被接受，也不一定意味着长期 Intent 已经完成或已经获得 Adoption。
 
 ---
 
@@ -255,14 +263,14 @@ Agent Input
 |---|---|---|
 | Intent Artifact | Desired Outcome | 当前 State、实际 Context、运行权限 |
 | State Claim / Snapshot | 关于当前或历史状态的描述 | 价值目标、规范授权 |
-| Context Contract / Manifest | 应提供什么 / 实际提供了什么 | 证明材料本身为真 |
+| Context Contract / Manifest | 应提供什么 / 装配和记录了什么 | 证明材料本身为真，或证明模型实际采用了它 |
 | Execution Contract | 本次执行被允许做什么、如何结束 | 长期价值目标、项目全部状态 |
 
 跨章装配关系是：
 
 ```text
 Intent Artifact                    desired outcome
-Decision / Policy                  normative authority
+Decision / Policy                  normative content under authority
 State Claims + Assumptions         current basis and unknowns
 Evidence / Provenance              support and counterevidence
         ↓ selection
@@ -273,7 +281,7 @@ Execution Contract                 allowed action and completion gates
 Agent Input
 ```
 
-这不是一个要求所有项目都持久化全部对象的固定框架。低风险任务可以把多个对象压缩进一份短任务说明；高风险、长期或多 Agent 任务才需要稳定 ID、版本和记录。
+这不是一个要求所有项目都持久化全部对象的固定框架。低风险任务可以把多个对象压缩进一份短任务说明；高影响、高复用、跨执行、存在多方 Authority 或失败后难恢复的任务，更可能需要稳定 ID、版本和记录。任务时长与 Agent 数量只是风险信号，不是唯一条件。
 
 ---
 
@@ -284,6 +292,13 @@ Acceptance Criteria 描述“什么结果可被接受”。Required Evidence 描
 ```yaml
 acceptance_id: AC-01
 statement: 旧版 Save 可以在目标 Build 中迁移并加载
+decision_target: bounded-implementation-acceptance
+scope:
+  build: target-build-id
+  save_versions: [v2]
+non_goals:
+  - supported-adoption
+  - production-release
 required_evidence:
   - migration_test_result
   - target_build_runtime_capture
@@ -299,21 +314,27 @@ decision_authority: release-owner
 第六章将这一区分表达为：
 
 ```text
-Evidence supports Claim
-Authority disposes Claim
+Evidence supports or challenges Claim in Scope
+Authority records a Disposition for a named Claim use / Decision Target
 ```
 
-Intent Trace 至少可以追踪：
+Authority 决定一条 Claim 是否足以被用于具名下游裁决，不通过处置把 Claim 本身改写成事实。
+
+Intent Trace 可以按风险追踪：
 
 ```text
 Requirement
 → Intent Version
 → Child Intent / Task
+→ Work
 → Execution Contract
-→ Change
-→ Evidence
-→ Human or Authorized Disposition
+→ Attempt
+→ Change + Attempt Outcome / Target Result
+→ Evidence Use
+→ Authorized Decision Record / Disposition
 ```
+
+第7章拥有 Work、Execution Contract、Attempt 与 Checkpoint；第8章拥有 Attempt Outcome、Target Result、Evaluation Result、Failure、`non-result` 与 Recovery；第9章才处理结果如何进入 Evidence Use，以及具名 Authority 如何对 Decision Target 作出处置。本章只保留从 Intent 到这条执行链的引用关系。
 
 ---
 
@@ -338,7 +359,7 @@ Intent 精度不等于篇幅。是否需要确认、Registry 或完整 Trace，�
 - Acceptance-to-Evidence Mapping；
 - 明确允许写入范围。
 
-## 高风险、长期或多 Agent 任务
+## 高影响、跨执行或多方 Authority 任务
 
 可能需要：
 
@@ -349,7 +370,35 @@ Intent 精度不等于篇幅。是否需要确认、Registry 或完整 Trace，�
 - Execution Baseline；
 - 独立 Review 与 Human Disposition。
 
-Clarification 同样按风险决定。可逆、局部并能验证的未知可以记录为 Assumption 后继续；涉及不可逆数据、外部发布、安全或价值取舍的未知必须升级。
+Clarification 同样按风险决定。可逆、局部并能验证的未知可以记录为 Assumption 后继续；涉及不可逆数据、外部发布、安全或价值取舍的未知必须进入已授权的处置路径，例如 Block、Isolate、Collect Evidence、Invoke Delegated Gate 或 Escalate，而不一定只能询问 Human。
+
+---
+
+# 4.J 多方 Intent 冲突
+
+Parent/Child Drift 不是 Intent 冲突的唯一形式。产品、技术、安全、体验、成本和合规可能同时提出合法但不兼容的目标。
+
+例如：
+
+```text
+Product Intent    保持旧 Save 用户可继续进入游戏
+Security Policy   禁止继续使用存在已知缺陷的解析路径
+Delivery Intent   本周完成版本冻结
+```
+
+Agent 无权把三者压成一个看似一致的新目标。一个可检查的冲突记录至少需要：
+
+```text
+conflicting intent / policy references
+affected scope
+priority or authority source
+known trade-offs
+decision target
+authorized resolver
+current disposition
+```
+
+如果 Authority 和证据不足，允许的结果可以是缩小 Scope、延期某个目标或保留未解决冲突。Intent Engineering 的职责是保存冲突及其裁决接口，不是保证所有目标都能同时满足。
 
 ---
 
@@ -369,6 +418,7 @@ Clarification 同样按风险决定。可逆、局部并能验证的未知可以
 - 同一 Intent 可生成多个角色的 Execution View；
 - Agent Input 由 Intent、Context、Policy、Contract 与 Runtime 共同装配；
 - 执行结果可以追溯回 Intent 与 Acceptance，而不是只追溯回一段 Prompt。
+- 多个合法 Intent 与 Policy 的冲突不会被 Agent 静默调和。
 
 应删除或降级的表述包括：
 

@@ -1,12 +1,9 @@
 # 第6章 Truth and State Architecture
 ## 在 Claim、State、Decision 与 Assumption 之间建立可验证秩序
 
-> 工作稿状态：等待作者裁决，不替代 `OringinalDocs/第6章.md`。  
-> 结构审阅：[RR-010](../RevisedResult/RR-010_第六章Truth与State_Architecture.md)  
-> 核心 Claim：`CLM-C06-001`、`CLM-C06-002`、`CLM-C06-003`、`CLM-C06-004`；关联边界：`CLM-C09-001`。
-> Evidence：五条 Claim 的证据边界均已在 Receipt 中记录；`CLM-C06-004` 与 `CLM-C09-001` 已由作者接受并收窄，正文只采用收窄后的范围。
-> 本轮证据回接：[RR-015](../RevisedResult/RR-015_第六章Evidence_Generation与Non-result回接.md)
-> 术语标注：遵循已接受的 [RR-013](../RevisedResult/RR-013_双语术语标注规范.md)，核心英文术语仅在首次正式定义时补充中文语义。
+> 工作稿状态：完整章节候选，不替代 [第6章原稿](../OringinalDocs/第6章.md)。
+> 回接说明：[RR-020](../RevisedResult/RR-020_前六章首轮分别调整说明.md)。
+> 适用边界：本章治理的是可修订的 Claim 及其依据，而不是“Truth 对象”；Intent、Decision／Policy、State Claim、Assumption 与 Evidence 被建模为语义上可区分的记录，授权使用不等于事实成立。
 
 上一章讨论 Context Engineering（上下文工程，即持续选择、组织和更新 Agent 可访问信息表面的工程活动）。
 
@@ -60,11 +57,23 @@ System stores Claims and Records
 not metaphysical Truth
 ```
 
-本章所说“当前可依赖的事实”，应理解为：
+本章需要分别回答两个问题：
 
-> 在一个明确问题、版本、范围和时间窗口中，经过适当来源与证据支持，当前被授权用于工程决策的 State Claim。
+```text
+Descriptive support
+这条 State Claim 获得了多少适用证据支持？
 
-它必须允许以后被：
+Authorized use
+谁允许它或某条显式 Assumption 被用于哪一个决策目标？
+```
+
+因此，本章不把“当前被授权使用”定义成“事实成立”。更准确的表达是：
+
+> 在明确问题、版本、范围和时间窗口中，一条 State Claim 可以获得不同程度的证据支持；有权角色或授权机制再决定它是否足以作为某个具体决策的依赖依据。
+
+Authority 可以允许团队在不确定条件下行动，但这种允许不会把 Assumption 变成已验证事实。
+
+State Claim 及其使用关系还要允许以后被：
 
 ```text
 revalidated
@@ -78,9 +87,9 @@ rejected
 
 ---
 
-# 6.2 五类记录必须分开
+# 6.2 五种语义角色必须可区分
 
-第六章首先需要建立的不是更多 Truth Domain，而是五类不同工程对象。
+第六章首先需要建立的不是更多 Truth Domain，而是五种不同的工程语义角色。
 
 ## Intent Artifact（意图资产：可版本化的期望结果记录）
 
@@ -94,7 +103,7 @@ rejected
 
 Intent 描述 Desired State（期望达到的状态），不证明系统已经做到。
 
-## Decision / Policy Record（决策／策略记录：当前规范性授权）
+## Decision / Policy Record（决策／策略记录：在有效授权下形成的规范性内容）
 
 表达：
 
@@ -104,7 +113,7 @@ Intent 描述 Desired State（期望达到的状态），不证明系统已经�
 
 > 在 v1.0 前不得移除旧 Save 兼容层。
 
-Decision 是 Normative Authority（规定当前应该如何行动的授权）。它规定应该怎样行动，不描述系统物理上已经怎样运行。
+Decision / Policy Record 规定当前应该怎样行动，不描述系统物理上已经怎样运行。它的规范效力来自有效的 Authority Grant、Scope 与适用条件；记录本身不是授权来源，也不能反向扩大作出它的主体所拥有的 Authority。
 
 ## State Claim（状态主张：关于具体状态的可判断陈述）
 
@@ -142,11 +151,11 @@ Assumption 不是低质量 Truth。它是一个拥有风险、验证路线和失
 
 Evidence 支持或反对 Claim，但 Evidence 不等于 Claim。
 
-五者之间的基本关系是：
+五种角色之间的基本关系是：
 
 ```text
 Intent              desired outcome
-Decision / Policy   normative authority
+Decision / Policy   normative content under authority
 State Claim         description of state
 Assumption          explicit unknown used for work
 Evidence            support or counterevidence
@@ -154,9 +163,28 @@ Evidence            support or counterevidence
 
 它们不能因为出现在同一文档、同一 Context Pack 或同一句自然语言里就静默转换。
 
+“角色可区分”不等于“必须形成五个文件”。同一个不可变测试报告可以既是 Evidence Artifact，也可以成为关于该次运行的 Primary Source；一份任务说明也可以引用 Intent、Decision 和 Assumption。真正需要避免的是：读者或 Agent 无法判断某段内容此刻被用作期望、授权、状态陈述、显式未知，还是支持材料。
+
+是否拆成独立 Record，应由复用范围、冲突风险、生命周期差异和追踪成本决定。
+
+## Claim 是上位类型，不同子类型不共享同一验证标准
+
+本书把 Claim（主张：对具名对象、范围、时间或版本提出的可被支持、挑战、限定或撤回的命题）作为上位语义类型。
+
+一条可检查的 Claim 至少需要能够关联：
+
+- Statement 与 Target；
+- Scope 与 Reference Time / Revision；
+- Producer 与 Provenance；
+- Evidence 与 Counterevidence；
+- Intended Use；
+- 当前仍未成立的结论。
+
+State Claim、Behavior Claim、Completion Claim、Risk Claim、Reliance Claim 与 Improvement Claim 可以共享这些关系，但它们的 Target、评价方法、Authority 与允许用途不同。一个 Behavior Claim 的 Test PASS 不能自动验证 Improvement Claim；一个 Completion Claim 也不能自动形成 Acceptance、Adoption 或 Release。
+
 ---
 
-# 6.3 State Claim 需要正交元数据
+# 6.3 State Claim 需要分别记录多个维度
 
 一个混合 `Type + Status` 字段很容易把不同问题塞在一起。
 
@@ -177,10 +205,10 @@ Rejected
 - Derived 描述推导方式；
 - Verified 描述验证状态；
 - Approved 描述授权裁决；
-- Stale 描述生命周期；
-- Rejected 描述处置结果。
+- Stale 描述对当前 Baseline 的适用性；
+- Rejected 只有在说明是 Evidence 反驳还是有权角色拒绝某种用途时才有明确语义。
 
-更稳妥的 State Claim 可以使用多个正交轴。
+更稳妥的 State Claim 可以分别记录多个维度。只有在值可以独立组合且同一维度内部语义一致时，才把它称为正交轴。
 
 ```text
 Claim ID
@@ -191,13 +219,15 @@ Scope
 Version / State Reference
 
 Epistemic Basis
-Validation Status
-Lifecycle Status
-Disposition
+Validation Coverage
+Evidence Relation
+Conflict Status
+Applicability Status
 
 Provenance
 Evidence Links
-Owner / Authority
+Producer / Owner
+Decision / Disposition Links
 ```
 
 ## Subject Domain（主张所描述的状态领域）
@@ -231,14 +261,14 @@ Domain 不是越多越好。项目只需要区分那些具有不同 Authority、
 ```text
 observed
 measured
-test-verified
 inferred
 reported
+declared
 ```
 
-一条 Derived Claim 仍然可以经过验证，因此 `derived` 与 `verified` 不应互斥。
+这些值只描述 Claim 怎样形成。Test 是否通过以及覆盖了什么，应记录在 Evidence 与 Validation Coverage 中。一条 Derived Claim 仍然可以经过验证，因此 `inferred` 与 `verified-for-scope` 可以同时成立。
 
-## Validation Status（验证覆盖状态）
+## Validation Coverage（验证覆盖程度）
 
 回答：
 
@@ -250,13 +280,43 @@ reported
 unverified
 partial
 verified-for-scope
-counterevidence
-unresolved
 ```
 
 其中，`verified-for-scope` 只表示证据覆盖了已声明的 Claim 与范围。它不等于 `qualified-for-use`（已经满足某个具体用途的资格条件）。后者还取决于预期用途、风险等级、适用 Gate，以及谁拥有接受该用途的 Authority。
 
-## Lifecycle Status（生命周期状态）
+## Evidence Relation（证据与主张的关系）
+
+回答：
+
+> 当前材料是在支持、反驳，还是形成混合结果？
+
+例如：
+
+```text
+none-linked
+supporting
+counterevidence
+mixed
+```
+
+这不是 Evidence 自身的固定强弱等级，而是它与某条具体 Claim 的关系。
+
+## Conflict Status（冲突状态）
+
+回答：
+
+> 是否存在尚未解决的竞争 Claim 或不兼容来源？
+
+例如：
+
+```text
+none-detected
+detected
+unresolved
+resolved-with-record
+```
+
+## Applicability Status（对当前范围的适用状态）
 
 回答：
 
@@ -266,27 +326,28 @@ unresolved
 
 ```text
 active
-stale
+stale-for-current-baseline
 superseded
 expired
 ```
 
-## Disposition（有权角色作出的当前裁决）
+## Claim Use Disposition（针对具名用途的有权处置）
 
 回答：
 
-> 有权角色或机制如何处理它？
+> 对哪个 Decision Target，有权角色或机制允许怎样使用这条 Claim？
 
 例如：
 
 ```text
-proposed
-accepted-for-use
-rejected
-conflicted
+accepted-for-use:<decision-target>
+rejected-for-use:<decision-target>
+deferred-for-use:<decision-target>
 ```
 
-这些维度组合后，系统才能表达：
+Claim Use Disposition 是外部 Decision Record 针对 Claim Use 的结果关系，不是 State Claim 自身的真值或描述性状态。Authority 可以允许、拒绝或延后某种依赖用途，不能通过处置使 Claim 本身成为事实。
+
+这些描述性维度与外部使用关系明确分开后，系统才能表达：
 
 > 这是一条关于 Runtime 的推导性 Claim，证据覆盖部分成立，当前版本仍 Active，但与另一条观测存在未解决冲突。
 
@@ -296,7 +357,7 @@ conflicted
 
 ---
 
-# 6.4 Source of Truth（针对特定问题的优先权威来源）必须绑定问题
+# 6.4 Source of Truth（针对特定问题的优先权威来源）需要授权来源和适用边界
 
 软件团队经常说：
 
@@ -320,7 +381,7 @@ Git 可以回答：
 
 > **Source of Truth is scoped to a question.**
 
-可以建立一个最小 Authority Matrix（问题—权威来源矩阵）：
+对存在多状态面或高冲突成本的项目，可以建立一个最小 Authority Matrix（问题—权威来源矩阵）：
 
 | 问题 | 优先来源 | 常见补充证据 |
 |---|---|---|
@@ -336,10 +397,20 @@ Git 可以回答：
 
 Runtime Observation 可以推翻“界面没有重叠”这类行为 Claim，却不能决定“是否允许重做整个 HUD”。后一个问题属于产品 Decision Authority。
 
-因此：
+因此需要分开：
 
 ```text
-Authority
+Authority Source / Grantor
+= recognized Owner / Role / institutional mandate
+
+Authority Grant
+= Source / Grantor
++ Subject
++ Action / Decision Type
++ Scope / Condition / Time
++ Policy / Delegation references
+
+Authority Applicability
 =
 Question
 + Domain
@@ -354,7 +425,9 @@ Question
 One source rules everything
 ```
 
-关于这一点，现有证据只能支持有限范围。SP122 的 authority audit 显示：实现 commit 对“实际实现了什么”有描述价值，但不能覆盖已经批准的设计方向；历史冲突也必须被保留。[ER-20260810-001](../Evidence/receipts/ER-20260810-001__CLM-C06-001.md)
+授权机制决定谁或什么拥有 Authority；Question、Domain、Scope、Version 和 Time 只限定该 Authority 在哪里适用，不能凭空产生授权。
+
+关于这一点，现有证据只能支持有限范围。SP122 的 authority audit 显示：实现 commit 对“实际实现了什么”有描述价值，但不能覆盖已经批准的设计方向；历史冲突也必须被保留。[SP122 authority-audit 案例记录](../Evidence/receipts/ER-20260810-001__CLM-C06-001.md)
 
 ---
 
@@ -396,7 +469,7 @@ Design Doc as intended state
 Repository State as source implementation baseline
 ```
 
-成熟系统则使用 Typed Records 和 Domain-scoped Authority。
+当项目存在多个独立变化的状态面、高冲突或高恢复成本时，Typed Records 和 Domain-scoped Authority 可能比这条启发式更合适。
 
 ---
 
@@ -420,7 +493,7 @@ Some active users still have v2    Assumption
 
 > 已经证明当前仍有大量 v2 用户。
 
-因此 State Snapshot（状态快照：某时点可观察项目状态的引用集合）只描述状态：
+因此 State Snapshot（状态快照：在声明范围、时点和采集边界内形成的状态观察与引用集合）只描述有界状态记录：
 
 ```text
 State Snapshot
@@ -452,6 +525,108 @@ Manifest 的作用不是宣布这些内容都是真实状态，而是声明：
 
 > 本次执行被授权从哪些状态、规则和显式未知出发。
 
+## Decision Record 需要同时保存理由与生命周期
+
+Decision 不只是一个约束句子。长期项目还需要知道：谁在什么范围内作出决定、为什么这样决定、它何时生效，以及什么条件会使它失效。
+
+一个最小 Decision Record 可以包含：
+
+```yaml
+decision_id: DEC-014
+statement: release R 之前保留 v2 compatibility
+owner: release-owner
+authority_grant_ref: AUTH-REL-001
+decision_target:
+  type: policy-application
+  target_ref: save-migration-release-R
+  intended_use: release-R planning
+scope: save-migration
+effective_version: v3
+
+considered_evidence_refs:
+  - EVD-SAVE-DISTRIBUTION-004
+disposition: approved
+
+rationale: 在用户分布未知时保留有界兼容路径
+assumption_refs:
+  - ASM-009
+options_considered:
+  - remove-v2-loader-now
+chosen_option: keep-bounded-compatibility
+tradeoffs:
+  - temporary maintenance cost
+
+supersedes: DEC-006
+review_condition: v2 usage confirmed below threshold
+expiry: release-R
+validity_mode: temporary
+```
+
+这里至少要保持四个不同维度：
+
+```text
+Record Status        draft / recorded / withdrawn
+Decision Disposition approved / rejected / deferred / conditional
+Applicability Status active / superseded / expired / cancelled
+Validity Mode        temporary / open-ended / condition-bound
+```
+
+`proposed` 属于尚未形成正式 Decision 的 Record Status，不是已经作出的 Decision Disposition。一个 Decision 可以历史上已经批准，但当前因版本变化而过期；也可以只在未被后续 Decision 覆盖的 Scope 中继续 Active。同一 Scope、Version 和时间窗口内，`active` 与 `superseded` 不应同时成立。若把这些维度塞进同一个 `status`，Agent 很容易把“历史上批准过”误读成“当前仍应执行”。
+
+Rejected Options（已被否决但可能再次出现的方案）值得保存时，应记录否决原因和重新考虑条件：
+
+```text
+option
+reason_rejected
+reconsider_when
+```
+
+不需要保存每一次头脑风暴。优先记录成本较高、容易被 Agent 重新提出，或只有在特定条件下才不适用的方案。
+
+## Assumption Record 需要风险、验证路线和失效条件
+
+Assumption 允许任务在信息不完整时继续，但它不能只是一句藏在计划里的“暂时认为”。一个可检查的 Assumption Record 可以包含：
+
+```yaml
+assumption_id: ASM-009
+statement: active users 中仍存在 v2 saves
+source: incomplete telemetry
+reason_for_use: migration scope cannot otherwise be bounded
+
+impact: high
+validation_method: inspect save-version distribution
+owner: data-owner
+expiry: before production migration
+dependent_actions:
+  - enable-v2-write-path
+```
+
+`impact` 不是模型信心分数。它描述假设错误后可能造成的工程后果。项目可以采用自己的策略；一个简单的默认边界是：
+
+| 影响与可逆性 | 当前任务可以怎样使用 |
+|---|---|
+| 低影响、可逆且可快速验证 | 继续执行，同时验证 |
+| 中等影响或会扩大修改范围 | 显式记录，在 Checkpoint 前验证 |
+| 高影响、不可逆或涉及数据／发布 | 阻断依赖动作，或请求有权角色裁决 |
+
+这不是固定的 Low/Medium/High 成熟度模型。风险阈值应由项目 Policy、影响和当前 Authority 决定。
+
+## Assumption Resolution（假设处置）不应改写历史
+
+原稿使用了“Assumption Promotion”这一表达，容易让人理解成把一条假设原地升级为 Truth。更稳妥的记录方式是：
+
+```text
+Assumption ASM-009 remains as historical input
+Evidence EV-021 evaluates it
+A scoped State Claim is created or updated
+ASM-009 resolution becomes supported / refuted / still-unresolved
+ASM-009 lifecycle becomes closed or expired when applicable
+```
+
+如果 Evidence 只覆盖部分样本，新的 Claim 也只能 `verified-for-scope`。如果假设被反驳，应按对象类型处理依赖：State Claim 重新验证，Plan 重新评估，Decision 重新审议或 supersede，尚未执行的动作重新授权。历史记录本身不应被删除。
+
+小型任务可以把这些字段压缩成一句带 Owner 和验证条件的工作说明。只有假设具有高影响、跨任务复用、长期有效或多个依赖者时，才值得持久化完整记录。
+
 ---
 
 # 6.7 Evidence 先说明观察了什么，再支持 Claim
@@ -464,16 +639,26 @@ Manifest 的作用不是宣布这些内容都是真实状态，而是声明：
 Evidence
     supports / contradicts
 Claim
-    accepted for a scope by
-Authority / Validation Rule
+
+Validation Rule
+    updates declared coverage
+
+Authorized Role or Delegated Gate
+    creates a Decision Record
+Decision Record
+    targets a named Decision Target
+    records a Target-specific Disposition
 ```
 
-但在判断 Evidence 支持什么之前，还要先回答两个问题：
+但在判断 Evidence 支持什么之前，还要先回答三个问题：
 
-- **Evidence Generation Integrity（证据生成过程自身的完整性）**：验证器、脚本或 Agent 是否保持了声明的观察边界；
-- **Target Observation Result（对目标实际得到的观察结果）**：目标是否真的执行并被观察。
+- **Evidence Generation Integrity（证据生成过程是否维持声明的观察边界）**：验证器、脚本或 Agent 是否以已声明、受隔离的方式工作，且没有静默改变本次要观察的对象；
+- **Target Observation Status（目标观察状态）**：目标是否真的执行并形成了可识别的观察；
+- **Target Result（前向引用）**：第8章正式定义在具名 Attempt、观察对象与 Scope 下形成的目标结果；本章只读取它来判断 Evidence 实际支持什么。
 
-如果验证器在观察目标前失败，且阻断目标执行或改变 authority-bearing input/surface，就只能得到关于验证器的结果；缺席的目标结果必须记录为 `non-result`（没有形成目标判定结果），不能写成 PASS 或 FAIL。Integrity 不等于绝对没有副作用：已声明、被隔离且不改变观察对象的正常输出不自动构成失败。
+按第8章拥有的 Outcome / Result 语义，如果验证器在观察目标前失败并阻断目标执行，就只能得到关于验证器的结果；缺席的 Target Result 必须记录为 `non-result`（没有形成目标判定结果），不能写成 PASS 或 FAIL。
+
+如果验证器改变了 authority-bearing input/surface（会影响目标身份、授权或解释边界的输入／表面），但目标随后仍被执行和观察，则不能机械记录为 `non-result`。系统应记录实际 `observed_subject`，并说明该结果为何不能支持原预期对象的 Claim。Integrity 也不等于绝对没有副作用：已声明、被隔离且不改变观察对象的正常输出不自动构成失败。
 
 一个最小 Evidence Record 可以显式保存：
 
@@ -487,7 +672,7 @@ scope / revision / timestamp
 provenance / evidence links
 ```
 
-这些字段分别回答：实际观察了谁、观察是否完成、生成过程是否完整、目标得到什么结果、Evidence 准备用于什么决策。它们是一组最小问题，不是统一 Schema。对于观察前被阻断的运行，应拆开记录：
+这些字段分别回答：实际观察了谁、观察是否完成、生成过程是否保持观察边界、目标得到什么结果、Evidence 准备用于什么决策。它们是一组候选问题，不是统一 Schema。对于观察前被阻断的运行，应拆开记录：
 
 ```text
 generator_integrity = compromised
@@ -495,11 +680,11 @@ observation_status = target-not-observed
 target_result = non-result
 ```
 
-部分观察必须保留实际 Scope，不能提升为完整目标结果。即使生成过程完整且测试 PASS，也只说明声明范围内的检查通过；`qualified-for-use` 仍须结合 `intended_use` 和相应 Acceptance Authority 判断。
+部分观察必须保留实际 Scope，不能提升为完整目标结果。即使生成过程完整且测试 PASS，也只说明声明范围内的检查通过；`qualified-for-use` 仍须结合 `intended_use` 和相应 Acceptance Authority 判断。普通 Validation Rule 只更新覆盖状态；只有获得明确委托的自动 Gate，才可以对限定的 Decision Target 同时作出处置。
 
 Provenance 至少应记录 Source、Producing Activity、Responsible Agent/Tool/Human、Timestamp、Revision、Scope，以及它是 Derivation 还是 Primary Source。
 
-这些思想并不是 AI 时代才出现。W3C PROV 已经区分 Entity、Activity、Agent、derivation、revision 和 primary source。本书的增量不是重新发明 provenance，而是把它接入 Agent 的 Context、Execution 和 Evidence 链路。
+这些思想并不是 AI 时代才出现。W3C PROV 已经区分 Entity、Activity、Agent、derivation、revision 和 primary source。本书在此关注的是：怎样把这些已有概念接入 Agent 的 Context、Execution 和 Evidence 链路。
 
 同理：
 
@@ -509,13 +694,13 @@ Provenance 至少应记录 Source、Producing Activity、Responsible Agent/Tool/
 
 - **State Mutation Authority（状态修改权）**：谁能改变代码、配置、数据或部署状态；
 - **Claim Assertion Authority（主张提交权）**：谁能提交某类 Claim 或 Observation；
-- **Claim Disposition Authority（主张裁决权）**：谁能批准、拒绝、标记冲突，或使 Claim 成为当前任务可依赖的记录。
+- **Claim Use Disposition Authority（主张用途裁决权）**：谁能针对具名 Decision Target，允许、拒绝或延后将 Claim 作为当前任务的依赖依据。
 
 Test 和 Monitoring 产生 Evidence；Git/Merge 改变 Repository State；授权人作出 Normative Decision。它们不以同一种方式“写 Truth”。
 
-SP122 的结果包展示了这种区分：machine checks 通过、qualifying evidence chain 被人类接受，并没有同时授权 supported adoption 或 production release。[ER-20260810-002](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)
+SP122 的结果包展示了这种区分：machine checks 通过、qualifying evidence chain 被人类接受，并没有同时授权 supported adoption 或 production release。[SP122 结果包案例记录](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)
 
-v4.94 的 D-079 又给出一个更窄的边界：候选实现的 42 项 focused tests 通过，但 Human 仍拒绝其超出 E1 所需的实现与验证范围；后续前向修正删除了 262 行，只保留当前契约与 8 个回归用例。PASS 证明的是所选检查在该候选上通过，不证明额外范围必要，也不自动完成 Acceptance、Adoption 或 Release。[ER-20260818-003](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)
+v4.94 的 D-079 又给出一个更窄的接口例：候选实现的 42 项 focused tests 通过，但 Human 仍拒绝其超出 E1 所需的实现与验证范围；后续前向修正删除了 262 行，只保留当前契约与 8 个回归用例。PASS 证明的是所选检查在该候选上通过，不证明额外范围必要，也不自动完成 Acceptance、Adoption 或 Release。完整的 Evidence Use 与 Decision Disposition 边界由第9章展开。[D-079 测试与范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)
 
 ---
 
@@ -557,7 +742,7 @@ Conflict unresolved
 Dependent action blocked or narrowed
 ```
 
-成熟系统不需要永远给 Agent 一个确定答案。
+存在高冲突或高错误成本的系统，不需要永远给 Agent 一个确定答案。
 
 它需要让 Agent 知道：
 
@@ -580,7 +765,7 @@ superseded
 
 回答：
 
-> Agent 这次实际看到了什么？
+> 本次向 Agent 装配、传输或开放访问了哪些信息？
 
 ```text
 Context Pack ID
@@ -589,15 +774,18 @@ Versions / hashes
 Selection reason
 Omitted categories
 Freshness checks
+Observable access records, if available
 ```
+
+Manifest 不证明模型注意、理解或使用了其中每一项。若工具能够记录实际读取行为，应把 Access Log 作为另一类可观察过程证据，而不是把它等同于模型认知状态。
 
 ## State Snapshot
 
 回答：
 
-> 项目在某个时间点处于什么可观察状态？
+> 在声明的 Domain、Scope、采集时间和能力边界内，记录了哪些状态观察、Claim 与引用？
 
-Agent 可能没有看到某个 Feature Flag；它仍然属于 State，但不属于该 Agent 的 Context。
+某个 Feature Flag 可能没有进入 Snapshot，也可能没有提供给 Agent；这都不表示它不存在。Snapshot 是有界记录，不是项目本体。
 
 ## Execution Baseline Manifest
 
@@ -608,17 +796,20 @@ Agent 可能没有看到某个 Feature Flag；它仍然属于 State，但不属�
 三者的关系可以表示为：
 
 ```text
-State Snapshot             project state
-Context Manifest           supplied information
-Intent / Decision / Policy normative references
-Assumptions                explicit unknowns
-        ↓
-Execution Baseline Manifest
-        ↓
+State Snapshot reference       bounded state observations
+Context Manifest reference     supplied information record
+Intent / Decision references   desired and normative basis
+Assumption references          explicit unknowns
+Evidence Baseline references   pre-existing evidence, if relevant
+            ↓ typed-reference assembly
+Execution Baseline Manifest    authorized dependency index
+            ↓ referenced by
 Execution Contract
 ```
 
-Execution Contract（执行契约：规定本次执行权限、边界和结束条件）在下一章处理：
+Execution Baseline Manifest 只装配 typed references，不复制全部 Context、Evidence、环境字节或运行记录。这里的 `Evidence Baseline` 只指执行前已经存在、并被本次任务引用的 Evidence；它不是对未来验证结果的预先裁决。
+
+Execution Contract 在下一章正式定义；本章只前向引用它如何服从现有 Authority Grant，并描述本次执行的允许动作、边界和结束条件：
 
 - Agent 可以做什么；
 - 不能做什么；
@@ -626,9 +817,158 @@ Execution Contract（执行契约：规定本次执行权限、边界和结束�
 - 需要产生什么 Evidence；
 - 什么条件允许结束执行。
 
+## State Boundary（Execution Baseline 中的状态边界字段）与 Dirty Worktree
+
+State Boundary 不是与 Execution Baseline 并列的新对象。它是 Baseline 中回答以下问题的一组字段或视图：
+
+> 当前任务被允许从哪个 Repository、Build、Runtime、Data 和 Configuration 状态开始？
+
+对代码任务，最低限度通常包括：
+
+```text
+baseline commit / branch
+worktree identity
+dirty changes
+task ownership or provenance
+protected or unrelated changes
+```
+
+Dirty Worktree（含有尚未提交变化的工作树）不能只被压成 `dirty = true`。Agent 至少要区分：
+
+```text
+current-task changes
+known user / other-agent changes
+temporary experiment
+unknown ownership
+```
+
+可选处置包括：
+
+- **Block**：变化与当前任务重叠，且继续执行可能覆盖或错误归因；
+- **Isolate**：为任务使用独立 Worktree、Branch 或临时环境；
+- **Snapshot**：记录当前差异、来源和 Baseline，再继续限定范围的工作；
+- **Declare unrelated**：明确无关变化并保护其文件范围，不把它们纳入当前完成声明。
+
+系统不应因为 Agent 想获得“干净状态”，就自动清理、覆盖或把未知变化归入自己。Dirty State 首先是 Provenance 与 Authority 问题，其次才是 Git 操作问题。
+
+Worktree 可以建立 Repository State Boundary，但它不会自动提供：
+
+- 正确 Intent；
+- Runtime/Data/Configuration 状态；
+- Decision Authority；
+- Evidence Coverage；
+- Review 独立性。
+
+因此，Worktree 是一种隔离机制，不是完整的 State Architecture。
+
+## Drift（基线与当前状态的偏移）必须按 Domain 解释
+
+同一份代码在不同 Build、配置、环境或数据上可能产生不同结果。State Snapshot 应保存可识别这些差异的引用，而不是假设 Repo 代表全部现实。
+
+| State Surface | 需要绑定的信号 | 忽略时的典型错误 |
+|---|---|---|
+| Repository | Commit、Branch、Dirty Changes | 在错误源基线上修改或归因 |
+| Build / Deployment | Artifact identity、source revision | 把尚未部署的代码当成用户行为 |
+| Configuration | Effective config、Feature Flags | 代码能力与实际启用状态混淆 |
+| Environment | OS、Engine/Dependency、Tool versions | 在不同执行条件间错误外推 |
+| Data | Schema/Data version、migration history | 用代码声明替代真实数据状态 |
+
+Data 任务往往具有更高不可逆性。涉及 Save、Database、Migration 或用户数据时，Snapshot 还可能需要：
+
+```text
+schema / data version
+representative samples
+backup identity
+migration history
+rollback capability
+```
+
+这些字段不是所有任务的固定清单。它们只在对应 Domain 会改变结论或错误成本时进入 Baseline。
+
+Saved Baseline 与 Current Observation 不一致也不自动等于失败。差异可能来自预期变更、并发任务、过期 Snapshot 或错误环境。系统应先确定 Scope 和 Provenance，再选择 revalidate、rebase、narrow、block 或请求裁决。
+
+## Risk-based State Readiness（按风险检查执行起点）
+
+当任务涉及相应 State Surface、不可逆动作或较高错误成本时，需要判断当前 Baseline 是否足以支撑即将执行的动作。这里不再创建独立的 `Truth Readiness Gate` 和 `State Readiness Gate`；下面只是一组按 Domain 与风险选择的候选问题，不是通用 Gate：
+
+```text
+Baseline identified?
+Dirty changes understood?
+Target build / runtime known?
+Relevant data and config known?
+Active decisions still effective?
+High-impact assumptions unresolved?
+Rollback or recovery available?
+Required observation path available?
+```
+
+检查失败后的动作取决于当前危险和已授权 Policy，而不是机械升级治理：
+
+- 基线未知且动作不可逆：Block；
+- 只缺少某个行为 Claim：缩小任务或先收集 Observation；
+- Assumption 可逆且低影响：记录后执行并验证；
+- Decision Authority 不清：进入已授权的 Block、Evidence Collection 或 Escalation 路径；
+- Snapshot 过期但差异可解释：重建 Baseline 或 revalidate。
+
+以 Save Migration 为说明性场景：如果代码中存在 v2→v3 migration，但生产 Save 分布、代表性样本和 rollback capability 未知，那么“migration path exists”可以是 Repository Claim，却不足以授权生产数据迁移。系统应保留未知、收集数据 Evidence，或阻断不可逆动作，而不是把代码存在改写为数据已经安全。
+
+这个例子用于解释对象关系，不声称对应一个已经完成的仓库任务。
+
+## State Compression 与 State Index 的类型边界
+
+State Snapshot 经常需要被压缩，但摘要可能删除决定结论是否仍然成立的条件。
+
+例如：
+
+```text
+State Claim:
+Migration compatibility path A is active for build v3
+until migration B reaches the declared completion condition.
+```
+
+不能被压缩成：
+
+```text
+Compatibility path A is active.
+```
+
+State Summary 至少要保留对当前判断有影响的：
+
+```text
+Scope
+Version / Time
+Condition / Expiry
+Source / applicable authority
+Known Conflict
+Reference to primary record
+```
+
+长期项目可以维护一个很小的 State Index（当前关键状态及其来源的导航索引）：
+
+```text
+active state snapshot
+repository / build / runtime / data / config identities
+high-impact state claims
+known conflicts and stale claims
+links to evidence and primary records
+```
+
+State Index 不是全文 Archive，也不是复制全部 Evidence 的 Truth Registry。它只帮助人或 Agent 定位当前高影响 Claim，再按需下钻。
+
+Active Decision 和 Open Assumption 仍由 Execution Baseline 引用，不能因为它们对执行重要，就被静默改写成 State Index 中的描述性状态。
+
+第五章负责决定哪些索引项进入当前 Context，以及如何压缩、检索和展开；第六章只规定压缩不能把 Decision、Assumption 或 Evidence 静默改写成 State Claim，并解释条目的 Authority、Freshness 和冲突。换句话说：
+
+```text
+State Index       where current state records can be found
+Context Manifest  which references were supplied in this run
+```
+
+低风险短任务通常不需要持久化 State Index。只有跨 Thread、长生命周期、多 Agent 或高状态重建成本的工作，才值得承担维护成本。
+
 ---
 
-# 6.10 可复现的目标是外部决策环境
+# 6.10 目标是外部决策环境的可追踪与有限重建
 
 Agent 执行具有概率性。
 
@@ -636,7 +976,7 @@ Agent 执行具有概率性。
 
 而隐藏推理既不是项目可以可靠读取的工程对象，也不应该成为审计依赖。
 
-更现实的目标是重建：
+更现实的目标是保存足够引用，使后来者能够追踪并在条件允许时有限重建：
 
 ```text
 Intent Version
@@ -648,25 +988,25 @@ Input State
 Evidence Requirements
 ```
 
-这可以称为：
+本书将这个目标称为：
 
-> **Decision Environment Reproducibility（外部决策环境的可重建性）。**
+> **Decision Environment Traceability（外部决策环境的可追踪性）与 Reconstructability Goal（有限重建目标）。**
 
 它不承诺：
 
 > 再跑一次一定产生同一输出。
 
-它承诺的是：
+它希望提高的是：
 
-> 后来的人或 Agent 能知道当时在什么目标、状态、信息和授权下执行，并能重新检查原结果是否仍然成立。
+> 后来的人或 Agent 能定位当时的目标、状态、信息和授权，识别缺失条件，并在可用材料范围内重新检查原结果是否仍然适用。
 
-现有实践支持这个较窄结论。SP122 保存了预执行 plan commit、修复 revision、lane authority、runtime identities、machine checks、Human review 和 artifact hashes；Anthropic 与 OpenAI 的长任务实践也强调显式 progress/state artifacts 与版本化 execution plans。但这些来源没有证明固定 Schema 能保证恢复成功。[ER-20260810-003](../Evidence/receipts/ER-20260810-003__CLM-C06-003.md)
+现有实践支持这个较窄结论。SP122 保存了预执行 plan commit、修复 revision、lane authority、runtime identities、machine checks、Human review 和 artifact hashes；Anthropic 与 OpenAI 的长任务实践也强调显式 progress/state artifacts 与版本化 execution plans。但这些来源没有证明固定 Schema 能保证恢复成功。[SP122 可追踪决策环境案例记录](../Evidence/receipts/ER-20260810-003__CLM-C06-003.md)
 
 因此本章采用：
 
-> Reconstruct the external decision environment, not hidden reasoning.
+> Preserve a traceable external decision environment, not hidden reasoning.
 
-即：重建可检查的外部决策环境，而不是试图保存或复现隐藏推理。
+即：保存可检查的外部决策依据，尽可能支持有限重建，而不是试图保存或复现隐藏推理，也不保证恢复一定成功。
 
 ---
 
@@ -684,20 +1024,22 @@ Scope:
 commit abc123 + test environment E1
 ```
 
-代码、数据或环境一旦变化，这条 Claim 不必变成 False，但应变成：
+当代码、数据或环境的变化触及这条 Claim 已声明的依赖、Scope 或观察条件时，它不必变成 False，但对当前 Baseline 的适用关系应变成：
 
 ```text
-stale for current state
+not established for current baseline
 ```
+
+这不抹除 Claim 对历史 Baseline 的有效性。需要区分 `historical validity` 与 `applicability to current baseline`。
 
 常见 Invalidation Trigger（失效触发条件）包括：
 
 - 依赖 Source 发生变化；
 - Scope 或 Version 不再匹配；
-- Decision 被 supersede；
-- Assumption 到期；
+- Claim 所依赖的 Decision 被 supersede；
+- Claim 所依赖的 Assumption 到期或被反驳；
 - 新 Evidence 与旧 Claim 冲突；
-- Runtime/Data/Configuration 发生状态迁移。
+- 与 Claim 适用范围相关的 Runtime/Data/Configuration 发生状态迁移。
 
 因此一个经过验证的 Agent Task 不只是：
 
@@ -712,7 +1054,8 @@ Input State Snapshot
 + Conflict / Assumption Update
         ↓
 Output State Claims
-+ Verification Disposition
++ Evaluation Result
++ Evidence Use Disposition
 ```
 
 Git Commit 是 Repository Domain 中很强的 State Transition，但它不自动记录：
@@ -729,7 +1072,7 @@ Git Commit 是 Repository Domain 中很强的 State Transition，但它不自动
 Claim A depends on Claim B + Evidence C
 ```
 
-B 失效后，A 进入 `needs revalidation`。
+B 的当前适用性失效后，只有在依赖关系明确时，A 才进入 `needs revalidation`。
 
 小型任务不需要先建图。直接检查当前文件、执行验证并记录结果通常足够。
 
@@ -765,7 +1108,7 @@ B 失效后，A 进入 `needs revalidation`。
 - 它不能证明所有项目需要 Truth Registry；
 - 它没有提供“使用对象模型前后”的成本对照。
 
-完整来源与反证见 [ER-20260810-001](../Evidence/receipts/ER-20260810-001__CLM-C06-001.md) 和 [ER-20260810-002](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)。
+完整来源与反证见 [SP122 authority-audit 案例记录](../Evidence/receipts/ER-20260810-001__CLM-C06-001.md) 和 [SP122 结果包案例记录](../Evidence/receipts/ER-20260810-002__CLM-C06-002.md)。
 
 ## 案例二：D-048 Verifier Self-mutation（验证器自我修改）
 
@@ -797,7 +1140,9 @@ observation_status = target-not-observed
 target_result = non-result
 ```
 
-exact-inventory check 本身并未失效；它检测到了真实变化。错误发生在把验证器失败、目标失败和目标未观察混成同一种结果时。
+exact-inventory check 本身并未失效；它检测到了真实变化。直接工程缺陷是 verifier self-mutation；在结果记录层面，还存在把验证器失败、目标失败和目标未观察混成同一种结果的风险。
+
+后一条是本书从事故中提取的对象边界，不是对直接故障原因的替代描述。
 
 ### 限制
 
@@ -806,17 +1151,19 @@ exact-inventory check 本身并未失效；它检测到了真实变化。错误�
 - 已声明并隔离的正常输出不自动构成 Integrity failure；
 - 当前取证没有重跑历史 harness，修正方案的运行效果不能从该 incident 单独推出。
 
-完整来源、反证与人工收窄边界见 [ER-20260818-002](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)。
+完整来源、反证与人工收窄边界见 [D-048 验证器自我修改案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)。
 
 ---
 
-# 6.13 适应性采用：不是每个项目都需要 Registry
+# 6.13 按风险裁剪持久化强度
 
 Truth and State Architecture 的目标不是最大化元数据。
 
 治理本身是成本。
 
-## 低风险、局部任务
+以下三组只用于说明可能的裁剪方式，不是新的治理等级，也不由任务时长或 Agent 数量单独决定。
+
+## 低风险、局部且易恢复的任务
 
 通常只需要：
 
@@ -826,7 +1173,7 @@ Clear scope
 Simple verification
 ```
 
-## 普通多文件任务
+## 存在跨文件依赖或状态分歧的任务
 
 可能需要：
 
@@ -838,9 +1185,9 @@ Open assumptions
 Tests / evidence
 ```
 
-## 高风险、长任务或多 Agent 任务
+## 高影响、难恢复或存在多方 Authority 的任务
 
-才需要考虑：
+更可能需要考虑：
 
 ```text
 State Snapshot
@@ -853,7 +1200,7 @@ Independent Review
 Rollback
 ```
 
-成熟度不是：
+工程适配度不是：
 
 > Registry 越多、Graph 越大、Gate 越重。
 
@@ -881,7 +1228,7 @@ Truth and State Architecture 解决：
 
 ```text
 Intent                  desired state
-Decision / Policy       normative authority
+Decision / Policy       normative content under authority
 State Claim             described current state
 Assumption              explicit unknown
 Evidence / Provenance   observed basis and generation boundary
@@ -893,22 +1240,22 @@ Execution Baseline      authorized starting bundle
 
 > **Agent 不需要一个看起来没有矛盾的世界；它需要一个知道哪些是状态、哪些是决定、哪些是假设、验证器实际观察了什么、哪些证据只支持有限范围、哪些冲突仍未解决的工程环境。**
 
-有了这层区分，下一章才能进一步讨论 Agent 如何在明确 Intent、Context、State 与 Authority 下打开 Execution Contract、执行、观察风险并形成经过验证的 State Transition。
+有了这层区分，第7章才能讨论 Agent 如何在明确 Intent、Context、State 与 Authority 下打开 Execution Contract，形成有身份的 Attempt 与可观察动作／状态；第8章再分类 Attempt Outcome、Target Result 与 Evaluation Result，第9章判断这些记录怎样成为 Evidence 并进入有权处置。State Transition 不能由执行动作或 Test PASS 直接推出。
 
 ---
 
 # 本章原则
 
 1. **Store Claims, not “Truth objects”。** 系统管理可修订 Claim 及其依据。
-2. **Source of Truth 必须绑定问题。** Authority 由 Domain、Scope、Version 和 Time 决定。
-3. **Intent、Decision、State Claim、Assumption、Evidence 必须分开。**
-4. **先确认 Evidence 实际观察了什么。** 验证器结果与目标结果必须分开。
+2. **Source of Truth 需要授权来源与适用边界。** Authority Grant 由被组织承认的 Owner / Role / Grantor 在制度或 Delegation 基础上签发，并可引用 Policy；Policy 是规范性约束，不自动等于 Grant。Question、Domain、Scope、Version 和 Time 限定其 Applicability。
+3. **Intent、Decision、State Claim、Assumption、Evidence 的语义必须可区分。** 是否物理拆分由风险、生命周期和复用需要决定。
+4. **先确认 Evidence 实际观察了什么。** 观察边界、目标观察状态与目标结果必须分开。
 5. **Evidence supports Claims。** 范围内验证与用途资格、采用、发布不是同一状态。
 6. **Provenance before confidence。** 来源和验证边界优先于语言确信感。
-7. **State Snapshot 不包含全部工作语义。** Decision 与 Assumption 通过 Execution Baseline 引用。
+7. **State Snapshot 不包含全部工作语义。** Decision 与 Assumption 通过 Execution Baseline 引用；Dirty State 与 Drift 必须显式记录。
 8. **Preserve Unknown and Conflict。** 不确定性不是必须被模型补全的空白。
-9. **Reconstruct the external decision environment。** 不依赖隐藏推理完成审计。
-10. **Agent may assert; authority disposes。** 断言权、状态修改权和裁决权需要分开。
+9. **Preserve a traceable external decision environment。** 保存可检查依据并支持有限重建，不依赖隐藏推理完成审计。
+10. **Agent may assert; authorized decisions dispose named uses。** 断言权、状态修改权和对具名 Decision Target 的用途裁决权需要分开。
 11. **Governance should fit risk。** Registry、Graph 和 Gate 都是可选机制。
 
 ---
@@ -949,7 +1296,7 @@ Snapshot 保存状态与引用；聊天记录只是一种过程证据。
 
 ## 反模式九：验证器失败等于目标失败
 
-如果失败发生在目标观察之前，应分别记录 Evidence generator 的失败和目标的 `non-result`，不能虚构目标 FAIL。
+如果失败发生在目标观察之前并且目标没有形成观察，应分别记录 Evidence generator 的失败和目标的 `non-result`，不能虚构目标 FAIL。若目标在改变后的输入上被观察，则记录实际观察对象和适用范围。
 
 ---
 
@@ -957,7 +1304,7 @@ Snapshot 保存状态与引用；聊天记录只是一种过程证据。
 
 - 当前问题是什么，而不是“整个项目什么是真的”？
 - 它属于哪个 State Domain？
-- Primary Authority 对这个问题是否适用？
+- Authority Grant 由哪个 Owner、Role 或 Grantor 在什么制度、Policy 或 Delegation 基础上签发？它对当前问题是否适用？
 - Claim 绑定哪个 Scope、Version、Time 和环境？
 - 这是 Intent、Decision、State Claim、Assumption 还是 Evidence？
 - Evidence 如何产生，生成过程是否改变了观察边界或 authority-bearing surface？
@@ -968,14 +1315,17 @@ Snapshot 保存状态与引用；聊天记录只是一种过程证据。
 - 是否存在 Counterevidence 或替代解释？
 - Observed、Derived、Verified、Approved、Stale 是否被错误塞进同一状态轴？
 - 当前 Repository State 是否包含 Dirty Worktree？
+- Dirty Changes 的来源、所有者、重叠范围和处置是否明确？
 - Runtime、Data、Configuration 是否可能与 Repo 不同？
+- 高风险或不可逆动作是否具备可识别 Baseline、恢复路径和实际 Observation 路径？
 - Decision 是否已经 Superseded 或过期？
 - Assumption 是否拥有风险、Owner、验证路线和 Expiry？
 - 冲突能否自动解决，还是必须保留或升级？
 - Agent 有权修改 State、提交 Claim，还是裁决 Claim？
-- Context Manifest 是否记录 Agent 实际获得的信息？
-- State Snapshot 是否独立于 Agent 当时看到的 Context？
+- Context Manifest 是否记录本次装配、传输或开放访问的信息，而没有声称模型必然注意了它？
+- State Snapshot 是否明确声明 Domain、Scope、Time 和采集边界，并与 Context Manifest 分开？
 - Execution Baseline 是否分别引用 State、Intent、Decision 和 Assumption？
+- State Summary / Index 是否保留 Scope、Version、Condition、Expiry、Source 和已知冲突？
 - 任务结束后，哪些旧 Claim 应失效或重新验证？
 - 是否能从 Input State、Change、Evidence 重建 Output State？
 - 当前任务真的需要 Registry/Graph，还是简单验证已经足够？

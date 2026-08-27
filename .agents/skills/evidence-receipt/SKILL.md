@@ -1,6 +1,6 @@
 ---
 name: evidence-receipt
-description: Create or audit structured Evidence Receipts for claims in Beyond Code or related AI Game Dev OS case studies. Use when Codex must collect cross-repository evidence, bind a book claim to Git commits and artifacts, separate observations from inference, record counterevidence, assess evidence coverage, or update Evidence/receipts and the Claim Ledger.
+description: Create or audit formal Evidence Receipts for repository-bound facts, cross-project generalizations, high-risk claims, or conclusions intended to change AI Game Dev OS. Do not use as a default gate for conceptual models, chapter structure, ordinary prose, or author experience.
 ---
 
 # Evidence Receipt
@@ -8,11 +8,40 @@ description: Create or audit structured Evidence Receipts for claims in Beyond C
 Turn one bounded claim into a traceable record that another task or human can
 inspect without trusting the writer's confidence.
 
+## Route Before Capture
+
+Use a formal Receipt when at least one condition applies:
+
+- the Claim depends on precise Git history, runtime behavior, an artifact, or a
+  contemporaneous decision;
+- one project case is being generalized beyond its observed scope;
+- the Claim states a concrete security, privacy, legal, IP, financial, or other
+  high-risk fact;
+- the conclusion will directly change AI Game Dev OS Workflow, Authority, or
+  Runtime behavior;
+- the Claim asserts an effect such as improved quality, speed, cost,
+  reliability, or safety;
+- material sources conflict, or the user requests formal evidence collection.
+
+Do not create a Receipt by default for terminology, a candidate conceptual
+model, chapter structure, explanatory analogy, ordinary prose, lived
+experience, aesthetics, or a recommendation explicitly presented as a
+proposal. Route those to the main writer for conceptual review using
+definitions, counterexamples, alternatives, scope, and Human judgment.
+
+If no formal trigger applies, do not allocate an ID, write a draft Receipt, or
+label the proposal `unsupported`. Return the routing conclusion and stop the
+formal workflow.
+
+Receipt status constrains the exact Claim. It is not a publication gate and
+does not determine whether a clearly labeled conceptual proposal may be
+discussed in the book.
+
 ## Workflow
 
-1. Require a claim ID, exact claim text, target chapter, and claim type. If an ID
-   is missing, use `PENDING` in a draft; only the main writer allocates permanent
-   IDs.
+1. After routing confirms a formal Receipt is appropriate, require a Claim ID,
+   exact Claim text, target chapter, and Claim type. If an ID is missing, use
+   `PENDING` in a draft; only the main writer allocates permanent IDs.
 2. Read `references/evidence-grading.md` before assessing coverage.
 3. Resolve source identity before interpretation:
    - repository and project;
@@ -56,6 +85,10 @@ Never reuse an existing identifier.
 - Do not convert one case study into a universal conclusion. Mark it `partial`
   unless the claim itself is explicitly case-scoped or corroborated.
 - Leave `human_status` as `unreviewed` until the human author decides.
+- Do not expose Claim IDs, Coverage Status, Human Status, or Receipt audit
+  details in reader-facing prose unless the chapter itself teaches that
+  evidence concept. Give the main writer a natural-language source and scope
+  boundary instead.
 
 ## Final Check
 
@@ -67,4 +100,3 @@ Confirm that:
 - contrary evidence and limitations are visible;
 - the coverage status follows the definitions in the grading reference;
 - the human decision has not been invented or inferred.
-

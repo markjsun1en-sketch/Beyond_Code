@@ -41,7 +41,8 @@ from one project without either corroborating cases or a clearly stated scope.
 
 ## 4. Evidence Rules
 
-- Register important claims in `Evidence/claim-ledger.md`.
+- Register important formal claims that meet the routing conditions below in
+  `Evidence/claim-ledger.md`.
 - Use `$evidence-receipt` for a formal Evidence Receipt.
 - Bind repository evidence to project, path, branch, commit, and worktree
   status. If a file is uncommitted, say so explicitly.
@@ -56,6 +57,57 @@ from one project without either corroborating cases or a clearly stated scope.
   stronger primary artifacts exist.
 - Reference large external artifacts in place. Do not duplicate them into this
   repository unless the user asks for an archival copy.
+
+### Evidence Intensity Routing
+
+An Evidence Receipt is an audit tool, not permission for a theory to enter the
+book. A chapter may have zero to three formal Claims; do not create them merely
+to satisfy a chapter workflow.
+
+Use a formal Receipt when at least one of these conditions applies:
+
+- the Claim depends on precise repository history, runtime behavior, an
+  artifact, or a contemporaneous decision;
+- one project case is being generalized across projects, organizations, or an
+  industry;
+- the Claim states a concrete security, privacy, legal, IP, financial, or other
+  high-risk fact;
+- the conclusion will directly change AI Game Dev OS Workflow, Authority, or
+  Runtime behavior;
+- the Claim asserts an effect such as improved quality, speed, cost,
+  reliability, or safety;
+- material sources conflict, or the user explicitly requests formal evidence
+  collection or audit.
+
+Do not create a Receipt by default for terminology, a candidate conceptual
+model, chapter structure, explanatory analogy, ordinary prose, lived
+experience, aesthetics, or a recommendation explicitly presented as a
+proposal. Evaluate those through definition quality, internal consistency,
+counterexamples, alternatives, scope, and Human review.
+
+Absence of empirical validation limits an effect or generalization Claim; it
+does not by itself make a conceptual model ineligible for discussion.
+
+### Reader-facing Boundary
+
+Keep Claim IDs, Receipt IDs, Git metadata, Coverage Status, Human Status, and
+disposition history in `Evidence/`, `RevisedResult/`, or editorial indexes.
+Reader-facing chapter prose should instead state the source, observable case,
+inference, proposal, scope, and material limitation in natural language.
+
+Do not remove factual, legal, security, or case-study limitations merely to
+make prose smoother.
+
+For current `OptimizedDocs/` working drafts, use at most three header lines:
+
+1. work-draft status and original-material boundary;
+2. one primary `RevisedResult/` link;
+3. one natural-language scope or non-claim boundary.
+
+These lines are editorial scaffolding, not final-book front matter. In a final
+manuscript, remove the work-draft status and revision link, and integrate any
+reader-relevant scope boundary into the chapter's opening argument or the
+specific passage it constrains.
 
 ## 5. Agent Roles and Activation
 
@@ -86,16 +138,23 @@ external repository while gathering evidence.
 
 ## 6. Formal Chapter Revision Workflow
 
-1. Select no more than three core claims from an original chapter.
-2. Allocate Claim IDs and register them in the Claim Ledger.
-3. Explicitly invoke `evidence_curator` when evidence collection is requested.
-4. Persist accepted source findings as Evidence Receipts.
-5. Explicitly invoke `critical_reviewer` for formal falsification review.
-6. Keep, narrow, split, or withdraw each claim.
-7. Write the resulting draft only under `OptimizedDocs/`.
-8. Record the user's human disposition in both the receipt and Claim Ledger.
-9. If a conclusion affects AI Game Dev OS, prepare a separate feedback proposal;
-   do not directly edit the external OS repository without a new request.
+1. Route the chapter material as exploratory writing, source note, conceptual
+   review, or formal evidence work.
+2. If no formal trigger applies, state the model as a proposal, test its
+   definitions and counterexamples, and write without allocating a Claim ID or
+   Receipt.
+3. If a formal trigger applies, select no more than three core Claims, allocate
+   Claim IDs, and register them in the Claim Ledger.
+4. Explicitly invoke `evidence_curator` when evidence collection is requested.
+5. Persist accepted source findings as Evidence Receipts.
+6. Explicitly invoke `critical_reviewer` for formal falsification review.
+7. Keep, narrow, split, or withdraw each formal Claim.
+8. Write the resulting draft only under `OptimizedDocs/`, using natural-language
+   evidence boundaries rather than internal status labels.
+9. Record the user's Human disposition in both the Receipt and Claim Ledger.
+10. If a conclusion affects AI Game Dev OS, prepare a separate feedback
+    proposal; do not directly edit the external OS repository without a new
+    request.
 
 ## 7. Human Authority
 
