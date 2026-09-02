@@ -3,7 +3,7 @@
 
 > 工作稿状态：首轮逻辑修订稿，不替代 [全书大纲](../OringinalDocs/beyond_code_ai_native_software_engineering_outline_zh.md) 或 [Cognitive Control、Trust 与 Human Control Plane v0.1](../OringinalDocs/ai_native_cognitive_control_trust_human_control_plane_v0.1.md)。
 > 回接说明：[RR-027](../RevisedResult/RR-027_第16章Self_Evolution_Engineering首轮回接说明.md)。
-> 适用边界：AI Game Dev OS v4.94 只支持在该案例中分开 Candidate、Scoped Accepted Baseline、Evaluation Evidence 与 Adoption，并记录受限 Pilot 和 Forward Correction；现有材料不能证明其改善长期效率、质量、Human Attention 或缺陷率。
+> 适用边界：AI Game Dev OS v4.94 只支持在该案例中将 Candidate、Scoped Accepted Baseline、Evaluation Result、Evidence Use 与 Adoption 分开，并记录受限 Pilot 和 Forward Correction；现有材料不能证明其改善长期效率、质量、Human Attention 或缺陷率。
 
 第15章把执行经验保留为有来源、有范围的 Memory Candidate。
 
@@ -43,25 +43,25 @@ experience
 
 ---
 
-# 16.1 先区分 Change、Calibration、Adoption 与 Improvement
+## 16.1 先区分 Change、Calibration、Adoption 与 Improvement
 
 这些术语不能互换。
 
-## Change（变化）
+### Change（变化）
 
 配置、Artifact、Procedure、Workflow、Contract 或组织关系发生不同。
 
 Change 是可观察状态，不包含价值判断。
 
-## Calibration（校准：根据当前目标、环境、阶段和 Guardrail 调整系统配置，使其更适合具名用途的过程）
+### Calibration（校准：根据当前目标、环境、阶段和 Guardrail 调整系统配置，使其更适合具名用途的过程）
 
 Calibration 承认不存在脱离场景的全局最优。
 
-## Adoption（采用：有权主体决定将某个 Candidate 作为具名范围内的当前使用配置）
+### Adoption（采用：有权主体决定将某个 Candidate 作为具名范围内的当前使用配置）
 
 Adoption 是 Decision，不是事实发现。
 
-## Improvement Claim（改进主张：声称某个 Candidate 在具名目标、Guardrail、Scope、环境和观察窗口内优于或更适合某个 Baseline 的可检验主张）
+### Improvement Claim（改进主张：声称某个 Candidate 在具名目标、Guardrail、Scope、环境和观察窗口内优于或更适合某个 Baseline 的可检验主张）
 
 Improvement 需要比较边界。
 
@@ -83,9 +83,9 @@ metric moved
 
 ---
 
-# 16.2 必要、有用与可选
+## 16.2 必要、有用与可选
 
-## 必要
+### 必要
 
 当系统变更会影响 Authority、Safety Boundary、共享 Workflow、重要 Skill、Agent Contract 或长期组织行为时，项目需要：
 
@@ -98,11 +98,11 @@ metric moved
 - Adoption / Rejection 记录；
 - Post-adoption Observation。
 
-## 有用
+### 有用
 
 对重要、可版本化、重复且可比较的 Workflow，Baseline、Hypothesis、Objective、Guardrail、Controlled Evaluation 和 Staged Rollout 通常有用。
 
-## 可选
+### 可选
 
 自动 Pattern Mining、A/B Testing、Shadow Execution、Multi-armed Bandit、Evolution Dashboard 和自动降级建议都是可选机制。
 
@@ -110,18 +110,20 @@ metric moved
 
 ---
 
-# 16.3 九个对象不能压成“系统学会了”
+## 16.3 九种语义角色不能压成“系统学会了”
 
 本章区分：
 
-| 对象 | 回答的问题 | 不自动等于 |
+这里的九项是需要保持可区分的语义角色，不要求实现为九个独立持久对象；实现可以合并载体，但不能静默合并 Claim、Result、Evidence 与 Decision 的语义。
+
+| 语义角色或关系 | 回答的问题 | 不自动等于 |
 |---|---|---|
 | Change Signal | 哪个 Observation、Failure、Review 或 Human Request 提示可能需要变化 | 根因已知 |
 | Learning Candidate | 从经验中提出了什么 Pattern、Lesson 或改进方向 | 通用规律 |
 | Change Candidate | 准备改变哪个具名系统表面 | 已经改进 |
 | Baseline | 当前比较或恢复参照是什么 | 永久 Known-Good |
 | Evaluation Contract | 用什么 Claim、Objective、Guardrail、样本和停止条件检查 Candidate | 评估必然有效 |
-| Evaluation Evidence | 实际观察了什么 | Adoption Decision |
+| Evaluation Result → Evidence Use | 具名评价产生了什么 Result，这些 Result 与来源记录可用于支持或限制哪个 Claim | Adoption Decision |
 | Adoption Decision | 是否在具名范围采用 Candidate | 已全量激活或发布 |
 | Activation / Rollout Record | Candidate 在哪里、何时、以何种比例或阶段运行 | 目标收益已实现 |
 | Post-adoption Disposition | 采用后保留、收窄、撤回、前向修正还是扩大 | 永久 Improvement |
@@ -133,6 +135,8 @@ metric moved
 **Change Candidate（变更候选：对具名 Configuration、Skill、Workflow、Agent Contract、Policy 或 Organization Surface 提出的版本化改变）** 是待评估对象。
 
 **Evaluation Contract（评估契约：声明 Candidate 的比较问题、Baseline、Objective、Guardrail、Evidence、样本、完整性、停止与恢复条件的约束）** 决定评估语义。
+
+本章不新增 `Evaluation Evidence` 类型。Evaluation Result 由第8章定义；Result 与来源记录是否成为具名用途的 Evidence，由第9章的 Evidence Use 关系处理。
 
 **Activation / Rollout Record（激活与逐步启用记录：说明已采用 Candidate 实际在哪些环境、角色、流量或阶段生效的记录）** 将 Adoption Decision 与真实运行状态分开。
 
@@ -146,7 +150,9 @@ Observation / Failure / Human Request
 → Learning Candidate
 → Change Candidate
 → Evaluation Contract
-→ Evaluation Evidence
+→ Evaluation Result + source-bound records
+→ Evidence for a named use
+→ authorized Evidence Disposition
 → Adoption Decision
 → bounded Activation / Rollout
 → Post-adoption Observation
@@ -159,7 +165,7 @@ Observation / Failure / Human Request
 
 ---
 
-# 16.4 Self-modification 是机制，Evolution 是待验证的结果关系
+## 16.4 Self-modification 是机制，Evolution 是待验证的结果关系
 
 **Self-modification（自我修改：系统中的某个执行路径改变该系统自身的配置、规则、Procedure、Workflow、Contract 或组织记录的机制）** 只描述谁改了什么。
 
@@ -183,7 +189,7 @@ Self-Evolution Engineering 关注的是 Candidate 如何被约束、比较、裁
 
 ---
 
-# 16.5 Evolution Surface 不是成熟度层级
+## 16.5 Evolution Surface 不是成熟度层级
 
 原大纲把变化分为四层。本章将它们改为可组合的 **Evolution Surface（演化表面：一次候选变更实际准备影响的系统对象范围）**。
 
@@ -203,7 +209,7 @@ Self-Evolution Engineering 关注的是 Candidate 如何被约束、比较、裁
 
 ---
 
-# 16.6 从经验到候选必须保留 Epistemic Type
+## 16.6 从经验到候选必须保留 Epistemic Type
 
 原大纲给出：
 
@@ -248,7 +254,7 @@ Pattern Extraction 也不能用同一 Source 的多个 Summary 制造样本数�
 
 ---
 
-# 16.7 Learning from Failure 先分结果，再分原因候选
+## 16.7 Learning from Failure 先分结果，再分原因候选
 
 原大纲列出偶发、环境、工具、推理、设计、流程、权限和 Context Failure。
 
@@ -300,7 +306,7 @@ observed failure or non-result
 
 ---
 
-# 16.8 Change Candidate Contract
+## 16.8 Change Candidate Contract
 
 候选 **Change Candidate Contract（变更候选契约：把问题、假设、目标表面、范围、预期收益、Guardrail、Baseline、Authority、Evaluation 与 Recovery 绑定起来的版本化记录）** 可以是：
 
@@ -350,7 +356,7 @@ expires_at: 2026-09-30
 
 ---
 
-# 16.9 Baseline 是有范围的参照，不是永久 Known-Good
+## 16.9 Baseline 是有范围的参照，不是永久 Known-Good
 
 **Scoped Accepted Baseline（有范围的已接受基线：在声明 Scope、Environment、Time 与 Intended Use 下，由有权主体接受为当前比较、运行或恢复参照的具名版本）** 可以承担：
 
@@ -378,7 +384,7 @@ expires_at: 2026-09-30
 
 ---
 
-# 16.10 Comparability 必须在评估前声明
+## 16.10 Comparability 必须在评估前声明
 
 **Comparability（可比性：Baseline 与 Candidate 在足以回答当前 Improvement Claim 的任务、输入、环境、版本、角色和观察条件上是否可进行有意义比较）** 不是“都有运行结果”。
 
@@ -414,7 +420,7 @@ expires_at: 2026-09-30
 
 ---
 
-# 16.11 Evaluation Contract 先定义 Claim，再选择指标
+## 16.11 Evaluation Contract 先定义 Claim，再选择指标
 
 Evaluation 不是“跑更多测试”。
 
@@ -428,7 +434,8 @@ Evaluation 不是“跑更多测试”。
 - 哪些 Evidence 能回答这些 Claim；
 - 哪些结果是 PASS、FAIL、Partial、Unknown 或 `non-result`；
 - 谁产生 Evidence；
-- 谁拥有 Evaluation Integrity Review；
+- 谁检查 Evaluation Integrity；
+- 谁分别拥有 Result Disposition 与 Evidence Disposition Authority；
 - 谁拥有 Adoption Authority；
 - 何时停止；
 - Candidate 失败后怎样恢复。
@@ -475,7 +482,7 @@ decision_targets:
 
 ---
 
-# 16.12 Objective 与 Guardrail 必须分别声明
+## 16.12 Objective 与 Guardrail 必须分别声明
 
 单一目标容易产生 Goodhart 式替代。
 
@@ -521,7 +528,7 @@ Guardrail 不是越多越好。
 
 ---
 
-# 16.13 创意与体验目标不能由机器指标替代
+## 16.13 创意与体验目标不能由机器指标替代
 
 游戏与创意软件的 Candidate 可能影响：
 
@@ -553,33 +560,35 @@ Guardrail 不是越多越好。
 
 ---
 
-# 16.14 Evolution Gate 应拆成多个 Decision Target
+## 16.14 Evolution Gate 应拆成检查与多个 Decision Target
 
 原大纲要求“有来源、有对比基线、有评估、有审批、可回滚、有范围、有重新验证”。
 
-这个方向成立，但一个统一 Evolution Gate 会把多种 Authority 合并。
+这个方向成立，但一个统一 Evolution Gate 会把描述性检查与多种 Authority 合并。
 
 更适合拆成：
 
-| Gate / Decision | 回答的问题 |
-|---|---|
-| Candidate Admission | 这个问题是否值得形成正式 Candidate |
-| Evaluation Authorization | 是否允许在声明环境和风险边界内评估 |
-| Evaluation Integrity | Evidence 是否按 Contract 产生 |
-| Result Disposition | 当前 Evidence 支持什么，不支持什么 |
-| Adoption | 是否把 Candidate 设为具名范围的当前配置 |
-| Activation / Rollout | 是否允许在目标环境逐步启用 |
-| Release | 是否允许进入生产或外部使用 |
-| Expansion | 是否扩大 Scope、角色或环境 |
-| Revocation / Recovery | 是否撤回、回退或前向修正 |
+| 环节 | 回答的问题 | 主要输出 |
+|---|---|---|
+| Candidate Admission | 这个问题是否值得形成正式 Candidate | Decision Record / Disposition |
+| Evaluation Authorization | 是否允许在声明环境和风险边界内评估 | Decision Record / Authorization |
+| Evaluation Integrity Check | Evaluation 是否按 Contract 运行并形成可解释结果 | Evaluation Result / scoped Integrity Claim |
+| Evidence Disposition | 当前 Result 与来源记录是否可以作为 Evidence、用于哪个具名 Claim 或下游 Decision | Decision Record / Disposition |
+| Adoption | 是否把 Candidate 设为具名范围的当前配置 | Adoption Decision |
+| Activation / Rollout | 是否允许在目标环境逐步启用 | Activation / Rollout Decision |
+| Release | 是否允许进入生产或外部使用 | Release Authorization |
+| Expansion | 是否扩大 Scope、角色或环境 | Expansion Decision |
+| Revocation / Recovery | 是否撤回、回退或前向修正 | Revocation / Recovery Decision |
 
-这些 Decision 可以由不同 Human 或 Delegated Gate 拥有。
+这些环节可以由不同 Human、Verifier 或 Delegated Gate 承担。同一 Gate 可以同时执行 Evaluation Integrity Check 与窄 Evidence Disposition，但必须分别记录 Evaluation Result 和具有 Authority 的 Decision Record。
 
-Test PASS 可能满足 Evaluation Integrity 的一部分，不自动完成 Adoption、Activation 或 Release。
+如何处置该 Result，以及该 Result 与来源记录是否、以及可如何作为 Evidence 使用，是两个不同的 Decision Target。相应的 Result Disposition 与 Evidence Disposition 可以由同一份 Decision Record 分别记录，但不能因共享载体而合并语义。
+
+Test PASS 可能支持一个有范围的 Integrity Claim；只有具名 Disposition 才能决定该 Result 或 Evidence 可用于什么，且不自动完成 Adoption、Activation 或 Release。
 
 ---
 
-# 16.15 AI Review 不能成为唯一自证路径
+## 16.15 AI Review 不能成为唯一自证路径
 
 同一个 Agent 可以：
 
@@ -611,7 +620,7 @@ Independent Review 也不自动正确；它需要 Source Access、Scope、Author
 
 ---
 
-# 16.16 Self-Evolution 不能扩大自己的 Authority
+## 16.16 Self-Evolution 不能扩大自己的 Authority
 
 Candidate 可能触及：
 
@@ -643,27 +652,27 @@ audit authority use
 
 ---
 
-# 16.17 Candidate 应与当前运行路径隔离
+## 16.17 Candidate 应与当前运行路径隔离
 
 候选评估可以使用：
 
-## Offline Replay
+### Offline Replay
 
 对保存的 Input、Event 或 Artifact 重放。优点是可重复；局限是不能覆盖新的交互和环境变化。
 
-## Shadow Mode
+### Shadow Mode
 
 Candidate 观察真实输入但不拥有真实 Mutation Authority。局限是无法完全模拟闭环行为。
 
-## Sandbox / Isolated Worktree
+### Sandbox / Isolated Worktree
 
 允许真实变更但限制 Resource、Credential 和外部副作用。
 
-## Canary / Staged Rollout
+### Canary / Staged Rollout
 
 在小 Scope、特定角色或有限流量中激活。需要清楚的 Exposure、Stop 与恢复条件。
 
-## Parallel Path
+### Parallel Path
 
 Baseline 和 Candidate 同时运行。成本较高，也可能引入 Coordination 与数据一致性问题。
 
@@ -673,12 +682,12 @@ Baseline 和 Candidate 同时运行。成本较高，也可能引入 Coordinatio
 
 ---
 
-# 16.18 Adoption、Activation、Release 与 Improvement 分开
+## 16.18 Adoption、Activation、Release 与 Improvement 分开
 
 可以出现：
 
 ~~~text
-Evaluation Evidence accepted
+Evaluation result accepted as evidence for a named use
 Adoption approved for pilot
 Activation limited to one environment
 Release blocked
@@ -710,7 +719,7 @@ forward correction becomes new candidate
 
 ---
 
-# 16.19 Recovery 不应默认等于 Rollback
+## 16.19 Recovery 不应默认等于 Rollback
 
 Candidate 变化可能：
 
@@ -742,7 +751,7 @@ Rollback Command 成功不表示所有状态已经恢复。
 
 ---
 
-# 16.20 Adoption 之后仍需要 Post-adoption Observation
+## 16.20 Adoption 之后仍需要 Post-adoption Observation
 
 采用只表示一个有权 Decision 在当时成立。
 
@@ -778,7 +787,7 @@ Drift 可以来自：
 
 ---
 
-# 16.21 Production 与 Exploration 应分开，但比例不固定
+## 16.21 Production 与 Exploration 应分开，但比例不固定
 
 历史 Evidence 容易奖励：
 
@@ -816,7 +825,7 @@ Production / Reliability Path
 
 ---
 
-# 16.22 治理成本必须进入 Candidate 评价
+## 16.22 治理成本必须进入 Candidate 评价
 
 一个 Workflow 可能减少 Execution Time，却增加：
 
@@ -855,29 +864,29 @@ opportunity cost
 
 ---
 
-# 16.23 不同 Evolution Surface 需要不同评估
+## 16.23 不同 Evolution Surface 需要不同评估
 
-## Configuration Candidate
+### Configuration Candidate
 
 关注参数范围、默认值、阶段、回退、Sensitivity 和 Silent Drift。
 
-## Context / Routing Candidate
+### Context / Routing Candidate
 
 关注 Retrieval Miss、Stale Context、Authority Injection、Privacy、Token / Attention Cost 和任务结果。
 
-## Skill / Workflow Candidate
+### Skill / Workflow Candidate
 
 关注 Procedure、Tool Compatibility、Evidence、Stop、Recovery、Human Handoff 和重复使用。
 
-## Agent Contract Candidate
+### Agent Contract Candidate
 
 关注 Role、Responsibility、Decision Target、Prohibited Action、Escalation、Authority 和与其他 Agent 的冲突。
 
-## Governance / Policy Candidate
+### Governance / Policy Candidate
 
 关注被保护风险、False Positive、False Negative、Livelock、Bypass、Override Authority 和治理成本。
 
-## Organization Candidate
+### Organization Candidate
 
 关注 Coordination、Decision Latency、Handoff Loss、Responsibility Gap、Output Flood 与 Human Cognitive Load。
 
@@ -885,7 +894,7 @@ opportunity cost
 
 ---
 
-# 16.24 案例只保留 Candidate、Evaluation 与 Adoption 边界
+## 16.24 案例只保留 Candidate、Evaluation 与 Adoption 边界
 
 [v4.94 演化候选案例记录](../Evidence/receipts/ER-20260824-003__CLM-C16-001.md)与[治理活锁和 Function-first 历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)保存来源与限制；完整失败序列见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
 
@@ -901,7 +910,7 @@ opportunity cost
 
 ---
 
-# 16.25 最小实现从一个重复 Workflow 开始
+## 16.25 最小实现从一个重复 Workflow 开始
 
 选择一个：
 
@@ -935,7 +944,7 @@ opportunity cost
 
 ---
 
-# 16.26 与相邻章节的所有权边界
+## 16.26 与相邻章节的所有权边界
 
 | 对象 | 所属章节 | 第16章如何使用 |
 |---|---|---|
@@ -956,7 +965,7 @@ opportunity cost
 
 ---
 
-# 16.27 本章原则
+## 16.27 本章原则
 
 1. **Self-Evolution 不等于 Self-authorization。** 系统可以提案和取证，不能自行扩大 Grant。
 2. **Change 不等于 Improvement。** Improvement Claim 绑定 Objective、Guardrail、Scope、Environment 与观察窗口。
@@ -967,7 +976,7 @@ opportunity cost
 
 ---
 
-# 16.28 常见反模式
+## 16.28 常见反模式
 
 - 把 Candidate 产生、Merge、Test / Review PASS 或 Adoption 写成 Improvement；
 - 把一次 Failure 变成永久 Rule、把 `non-result` 写成 Target FAIL，或把多因素压成单一 Root Cause；
@@ -977,51 +986,51 @@ opportunity cost
 
 ---
 
-# 16.29 本章检查清单
+## 16.29 本章检查清单
 
-## Signal 与 Candidate
+### Signal 与 Candidate
 
 - Change Signal 来自什么 Observation、Failure、Review 或 Human Request？
 - Observable Fact、Contemporaneous Judgment、Inference 与 Recommendation 是否分开？
 - Learning Candidate 的 Source、Counterexample 和 Scope 是否明确？
 - Change Candidate 影响哪个 Evolution Surface？
 
-## Baseline 与 Comparability
+### Baseline 与 Comparability
 
 - Baseline 是否仍安全、适用、可访问和可比较？
 - Candidate 与 Baseline 的 Task、Input、Environment、Model、Tool、Context 与 Authority 是否一致？
 - 不可比性是否显式保留？
 - Recovery 是 Rollback 还是 Forward Correction？
 
-## Objective、Guardrail 与 Evaluation
+### Objective、Guardrail 与 Evaluation
 
 - Improvement Claim 是否绑定 Objective、Scope、Environment 和 Window？
 - Guardrail 是否指出具体被保护风险和 Observation Method？
 - Evaluation Result 是否区分 PASS、FAIL、Partial、Unknown 与 `non-result`？
 - Candidate Producer 是否控制全部 Source、Test 和 Review？
 
-## Authority 与 Gate
+### Authority 与 Gate
 
 - Candidate Admission、Evaluation、Result、Adoption、Activation、Release 和 Expansion Authority 是否分开？
 - Candidate 是否试图改变自己的 Permission、Authority、Detector 或 Policy Floor？
 - 自动 Gate 的 Decision Target 和最大 Scope 是否固定？
 - Override、Appeal 与 Revocation 路径是否存在？
 
-## Activation 与 Recovery
+### Activation 与 Recovery
 
 - Candidate 在 Offline、Shadow、Sandbox、Canary 或 Parallel Path 中怎样隔离？
 - 采用是否与实际激活分开记录？
 - In-flight、Data、External Side Effect、Memory、Skill 与 Credential 是否进入 Recovery？
 - 干预和恢复效果是否重新观察？
 
-## Post-adoption
+### Post-adoption
 
 - Objective、Guardrail、Drift、Rework、Human Attention 与 Creative Diversity 是否继续观察？
 - 何时 Keep、Narrow、Expand、Revoke 或 Forward-correct？
 - Baseline 是否需要 Rebaseline？
 - 是否有 Evidence 支持 Improvement，而不只是 Adoption？
 
-## Cost 与 Scope
+### Cost 与 Scope
 
 - 评估与双路径维护是否值得？
 - Governance Artifact 是否超过被保护风险和候选收益？
@@ -1030,7 +1039,7 @@ opportunity cost
 
 ---
 
-# 16.30 本章结论
+## 16.30 本章结论
 
 Self-Evolution Engineering 不把系统变化包装成必然进步。
 

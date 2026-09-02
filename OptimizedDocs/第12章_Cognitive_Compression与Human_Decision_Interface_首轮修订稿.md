@@ -22,13 +22,15 @@
 - **Cognitive Compression（认知压缩：把机器级工程状态转换为与当前决定相匹配、可追溯且可下钻的信息投影）**；
 - **Human Decision Interface（人类决策接口：让有权角色定位待决问题、检查依据、理解限制并发起允许动作的交互表面）**。
 
+这两项设计与后文 HCP 的关系是：Cognitive Compression 是转换机制，Human Decision Interface 是承载投影与动作入口的交互表面；第12.2节定义的 HCP 是组织这些 Interface 与 Projection 的一种可选方式。
+
 两者共同解决的不是“怎样让人看到更少”，而是：
 
 > **怎样让人只在第一层看到当前判断所需的信息，同时保留发现遗漏、质疑摘要和回到来源的能力？**
 
 ---
 
-# 12.1 压缩的目标不是隐藏，而是形成决策层级
+## 12.1 压缩的目标不是隐藏，而是形成决策层级
 
 面向人的 Cognitive Compression 通常不会在第一层展示全部细节，因此始终存在信息损失、遗漏或误读风险。
 
@@ -84,9 +86,9 @@ Transparency
 
 ---
 
-# 12.2 不是所有项目都需要 Human Control Plane
+## 12.2 不是所有项目都需要 Human Control Plane
 
-**Human Control Plane（HCP，面向人的控制接口：Control and Evidence Plane 在具名决策上的非权威人机投影）** 是一种可选的接口组织方式，不是 AI-native 项目的定义门槛。
+**Human Control Plane（HCP，面向人的控制接口：Control and Evidence Plane 在具名决策上的非权威人机投影）** 是组织一个或多个 Human Decision Interface 及其 Projection 的可选方式，不是 AI-native 项目的定义门槛。
 
 它更可能有用的条件包括：
 
@@ -112,7 +114,7 @@ Transparency
 
 ---
 
-# 12.3 Human Control Plane 只拥有投影，不拥有源对象
+## 12.3 Human Control Plane 只拥有投影，不拥有源对象
 
 本书已经把 Product System、Production Intelligence System 与横切的 Control and Evidence Plane 分开。
 
@@ -149,7 +151,7 @@ Projection 可以有自己的 Identity、Generation Time 和 Expiry，但这些�
 
 ---
 
-# 12.4 Projection Contract 必须说明“它展示了什么”
+## 12.4 Projection Contract 必须说明“它展示了什么”
 
 **Projection（投影：从权威来源选择并转换出的、面向特定决定的非权威视图）** 需要一个最小 Contract。
 
@@ -229,7 +231,7 @@ drill_down:
 
 ---
 
-# 12.5 Progressive Disclosure 必须保持语义不变
+## 12.5 Progressive Disclosure 必须保持语义不变
 
 **Progressive Disclosure（渐进披露：先展示当前判断所需的最小信息，再按需要逐层开放依据和原始细节）** 可以降低默认认知负担。
 
@@ -267,7 +269,7 @@ Candidate approved
 
 Progressive Disclosure 可以隐藏细节，不能隐藏处置边界。
 
-## 每一层都应保留的最小信息
+### 每一层都应保留的最小信息
 
 - Subject Identity；
 - Decision Target；
@@ -281,9 +283,9 @@ Progressive Disclosure 可以隐藏细节，不能隐藏处置边界。
 
 ---
 
-# 12.6 Change Narrative 必须区分事实、推导与建议
+## 12.6 Change Narrative 必须区分事实、推导与建议
 
-**Change Narrative（变更叙事：把变化及其理由、影响、证据和待决问题组织成可追踪因果结构）**，不是让 AI 把 Diff 写成更流畅的故事。
+**Change Narrative（变更叙事：把变化及其理由、影响、证据和待决问题组织成可追踪的论证与关系结构）**，不是让 AI 把 Diff 写成更流畅的故事。
 
 推荐结构是：
 
@@ -301,27 +303,27 @@ Observed problem
 
 其中至少要区分：
 
-## 可观察事实
+### 可观察事实
 
 - 哪些文件、配置、运行状态实际变化；
 - 哪些测试或观察实际执行；
 - 哪些对象没有被观察；
 - 当前 Candidate 与 Baseline 身份。
 
-## 同期判断
+### 同期判断
 
 - 当时为什么选择某个方向；
 - 哪些替代方案被排除；
 - 哪个风险被认为最重要；
 - 谁作出了什么范围裁决。
 
-## 事后推导
+### 事后推导
 
 - 为什么问题可能发生；
 - 变化可能通过哪些依赖产生影响；
 - 哪些成功或失败可能与本次修改有关。
 
-## 当前建议
+### 当前建议
 
 - 接受、拒绝、收窄、补 Evidence、延后或恢复；
 - 建议针对哪个 Decision Target；
@@ -329,11 +331,11 @@ Observed problem
 
 自然语言连贯性容易把这四类内容融合成一个确定叙事。
 
-所以，Change Narrative 的质量不由“读起来像完整故事”决定，而由来源绑定、类别边界和反证可见性决定。
+所以，Change Narrative 的质量不由“读起来像完整故事”决定，而由来源绑定、类别边界和反证可见性决定。其中任何因果关系仍需独立 Evidence；Narrative 的顺序和连贯性本身不能证明因果。
 
 ---
 
-# 12.7 Architecture Impact View 不能把“没看到”写成“没影响”
+## 12.7 Architecture Impact View 不能把“没看到”写成“没影响”
 
 **Architecture Impact View（架构影响视图：展示 Candidate 对模块、Contract、依赖、数据流与运行边界的已知影响及未知区域）** 可以帮助 Reviewer 定位下钻范围。
 
@@ -364,7 +366,7 @@ Architecture Impact View 必须允许显示 `unknown`，否则它会把 Coverage
 
 ---
 
-# 12.8 Risk Map 是 Risk Claim 的投影
+## 12.8 Risk Map 是 Risk Claim 的投影
 
 **Risk Map（风险图：按当前决定组织影响、暴露、可逆性和检测条件的风险主张视图）** 不是对未来的客观测量。
 
@@ -416,7 +418,7 @@ Risk Map 可以帮助比较：
 
 ---
 
-# 12.9 Decision Surface 只展示真正待决的问题
+## 12.9 Decision Surface 只展示真正待决的问题
 
 **Decision Surface（决策面：当前需要具名角色作出处置的问题、选项、依据、期限与后果的集合）** 应与一般通知分开。
 
@@ -468,25 +470,25 @@ Decision Surface 应优先路由：
 
 ---
 
-# 12.10 Brief 是一种 View，不是新的 State Store
+## 12.10 Brief 是一种 View，不是新的 State Store
 
 **Brief（简报：面向特定时间窗和决策角色生成的短期 Projection）** 可以成为 Human Decision Interface 的主要呈现形式。
 
 一个项目可能使用三类 Brief。
 
-## Project / Production Brief
+### Project / Production Brief
 
 回答：
 
 > Product 或 Project 当前发生了什么，哪些结果与风险需要关注？
 
-## Control Brief
+### Control Brief
 
 回答：
 
 > 生产 Product 的 Agent、Workflow、Gate、Memory 和验证系统出现了什么具名异常或 Authority 变化？
 
-## Learning / Evolution Brief
+### Learning / Evolution Brief
 
 回答：
 
@@ -496,7 +498,7 @@ Decision Surface 应优先路由：
 
 Brief 应通过引用连接到原对象；当 Source 改变或过期时，Brief 应重新生成、标记 stale 或失效，而不是继续作为当前状态被手工维护。
 
-## 一个最小 Control Brief
+### 一个最小 Control Brief
 
 ~~~text
 CONTROL BRIEF
@@ -536,7 +538,7 @@ source index: SRC-IDX-WF-042
 
 ---
 
-# 12.11 Exception-driven 不等于 Silence-driven
+## 12.11 Exception-driven 不等于 Silence-driven
 
 **Attention Routing（注意力路由：依据风险、Authority、时效和异常条件，把有限的 Human Attention 分配给具名对象）** 可以让日常接口以 Exception 为中心。
 
@@ -576,9 +578,9 @@ GLOBAL HEALTH: NOT ASSERTED
 
 ---
 
-# 12.12 HJL 与 TTE 只能先作为试验性探针
+## 12.12 HJL 与 TTE 只能先作为试验性探针
 
-## HJL — Human Judgment Load
+### HJL — Human Judgment Load
 
 **Human Judgment Load（HJL，人类判断负载：在特定时间窗内需要人类作出处置的判断集合及其成本）** 可以观察需要人类处置的决定数量，但单纯计数会漏掉：
 
@@ -614,7 +616,7 @@ unowned high-risk decision
 
 任何“降低 HJL”的试验都要同时观察质量、安全和漏报。
 
-## TTE — Time To Explain
+### TTE — Time To Explain
 
 **Time To Explain（解释时间：某个具名角色在给定准确性与完整性标准下理解一类决定所需的时间）** 可以测试界面可用性。
 
@@ -634,57 +636,57 @@ maximum acceptable delay
 
 ---
 
-# 12.13 怎样验证压缩没有破坏判断
+## 12.13 怎样验证压缩没有破坏判断
 
 Cognitive Compression 本身也需要 Verification。
 
 可以从以下八个方面检查。
 
-## 1. Source Binding
+### 1. Source Binding
 
 - 每个关键状态和数字能否定位 Source；
 - Source Identity、Version 和时间是否明确；
 - Projection 是否可能引用已被 supersede 的对象。
 
-## 2. Scope Preservation
+### 2. Scope Preservation
 
 - 摘要是否保留 Claim Scope；
 - 局部 PASS 是否被写成端到端成功；
 - Evidence Acceptance 是否被写成 Adoption 或 Release。
 
-## 3. Epistemic Separation
+### 3. Epistemic Separation
 
 - Fact、Contemporaneous Judgment、Inference 和 Recommendation 是否分开；
 - Risk 与 Impact 是否被标为 Claim；
 - Assumption 是否仍可见。
 
-## 4. Counterevidence and Unknowns
+### 4. Counterevidence and Unknowns
 
 - 反证是否被压掉；
 - `unknown` 是否被默认值替代；
 - 未覆盖区域是否被误写为 unaffected。
 
-## 5. Coverage and Freshness
+### 5. Coverage and Freshness
 
 - 数据截至何时；
 - Observation Coverage 是否声明；
 - Detector Health 是否可见；
 - Projection 是否设置 Expiry。
 
-## 6. Drill-down Fidelity
+### 6. Drill-down Fidelity
 
 - 从摘要能否到 Evidence；
 - 从 Evidence 能否到 Artifact、Diff、Log 或 Runtime Record；
 - 下钻后是否仍指向同一 Subject 与 Version。
 
-## 7. Action Correctness
+### 7. Action Correctness
 
 - 按钮是否绑定真实 Authority；
 - Preconditions 是否满足；
 - 动作后果、范围和 Recovery 是否可见；
 - UI 是否错误地允许一个角色作出无权决定。
 
-## 8. Omission Testing
+### 8. Omission Testing
 
 - 抽样比较 Projection 与 Source；
 - 主动寻找摘要遗漏的限制；
@@ -695,7 +697,7 @@ Cognitive Compression 本身也需要 Verification。
 
 ---
 
-# 12.14 AI Summary 不能自动为 AI Execution 背书
+## 12.14 AI Summary 不能自动为 AI Execution 背书
 
 AI 可以生成 Change Narrative、Risk Map 和 Brief。
 
@@ -728,7 +730,7 @@ AI builds
 
 ---
 
-# 12.15 Human Decision Interface 不创造 Human Authority
+## 12.15 Human Decision Interface 不创造 Human Authority
 
 原大纲将以下能力放入 Human Cognitive Authority：
 
@@ -741,7 +743,7 @@ AI builds
 
 这些能力需要分成两类。
 
-## Interface Capability
+### Interface Capability
 
 界面应让合适角色能够：
 
@@ -751,7 +753,7 @@ AI builds
 - 下钻到 Source；
 - 看见可用动作和后果。
 
-## Authority-bearing Action
+### Authority-bearing Action
 
 接受、拒绝、暂停、撤销 Delegation、发布或接管，是 Authority-bearing Action。
 
@@ -774,11 +776,11 @@ Authority 怎样授予、限制、撤销和降级，由第13章定义。
 
 ---
 
-# 12.16 AI Game Dev OS 与 lessismore 支持什么
+## 12.16 AI Game Dev OS 与 lessismore 支持什么
 
 本节依据 [控制接口案例记录](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md) 汇集的 AI Game Dev OS v4.94 与 lessismore SP122 材料，说明现有实现能够支持什么，以及尚未支持什么。
 
-## 可观察事实
+### 可观察事实
 
 - AI Game Dev OS v4.94 已实现 task-level non-authoritative read model，能够汇总 task、attempt、blocker、handoff 和部分 context。
 - v4.94 暴露了 checkpoint、cancel、authorized claim withdrawal 与 review rejection back to rework 等局部控制路径。
@@ -786,14 +788,14 @@ Authority 怎样授予、限制、撤销和降级，由第13章定义。
 - lessismore SP122 的 Human disposition 将 `qualifying evidence accepted`、`adoption blocked` 与 `production not approved` 保持为不同状态。
 - 没有被检查的 Artifact 实现完整 HCP、全局 takeover、delegation revocation、Observation Coverage health 或 Detector Health interface。
 
-## 可支持的推导
+### 可支持的推导
 
 - 面向人的状态摘要可以作为 non-authoritative projection；
 - Evidence 与 Authority disposition 必须在摘要中保持分离；
 - `no normal result` 或 `no alert` 不能被解释为健康；
 - 控制动作需要显式回到已有 Authority 和状态对象。
 
-## 不能支持的结论
+### 不能支持的结论
 
 - HCP 已经降低 Human Judgment Load；
 - HCP 已经减少事故、返工或 Review 时间；
@@ -807,7 +809,7 @@ Authority 怎样授予、限制、撤销和降级，由第13章定义。
 
 ---
 
-# 12.17 最小实现应从一个 Decision Path 开始
+## 12.17 最小实现应从一个 Decision Path 开始
 
 项目不需要一次建设 Constitution Dashboard、Trust Engine、Telemetry Platform、Workflow Optimizer 和 Learning Center。
 
@@ -846,7 +848,7 @@ production incident takeover
 
 ---
 
-# 12.18 与第13、14章的所有权边界
+## 12.18 与第13、14章的所有权边界
 
 第12章拥有：
 
@@ -868,11 +870,11 @@ production incident takeover
 | Memory Promotion、Retrieval、Conflict 与 Expiry | 第15章 Memory Engineering |
 | Self-Evolution Candidate、Evaluation Contract、Activation / Rollout Record | 第16章 Self-Evolution Engineering；基础 Recovery 与 Decision 分别引用第8、9章 |
 
-HCP 可以把这些对象投影到同一个 Decision Interface，但不会因为同屏显示而改变它们的类型或 Owner。
+HCP 可以把这些对象投影到一个或多个 Human Decision Interface，但不会因为同屏显示而改变它们的类型或 Owner。
 
 ---
 
-# 12.19 本章原则
+## 12.19 本章原则
 
 1. **压缩面向 Decision Target。** 不为“看起来完整”汇总所有信息。
 2. **Projection 非权威。** 它不产生 Truth、Evidence、Reliance Disposition 或 Authority。
@@ -889,7 +891,7 @@ HCP 可以把这些对象投影到同一个 Decision Interface，但不会因为
 
 ---
 
-# 12.20 常见反模式
+## 12.20 常见反模式
 
 - 把 Dashboard 数量等同于可观测性；
 - 把摘要写得更短等同于 Cognitive Compression；
@@ -911,37 +913,37 @@ HCP 可以把这些对象投影到同一个 Decision Interface，但不会因为
 
 ---
 
-# 12.21 本章检查清单
+## 12.21 本章检查清单
 
-## Projection Identity
+### Projection Identity
 
 - Projection 为哪个 Decision Target 生成？
 - Subject、Candidate 与 Baseline 是否明确？
 - Source、Version、Generated At 与 Expiry 是否存在？
 - Projection 是否被误当成新的 Truth Source？
 
-## Information Boundary
+### Information Boundary
 
 - Fact、Judgment、Inference 与 Recommendation 是否分开？
 - Scope、Counterevidence、Unknown 与 Non-effect 是否可见？
 - Observation Coverage、Freshness 与 Detector Health 是否显示？
 - 每一层 Progressive Disclosure 是否保持同一语义？
 
-## Decision Surface
+### Decision Surface
 
 - 当前真的需要 Human Decision，还是只需通知？
 - Decision Authority 与 Deadline 是否明确？
 - Acceptance、Adoption、Release 是否分开？
 - 每个 Action 是否有 Authority Ref、Preconditions、后果与 Recovery？
 
-## Drill-down
+### Drill-down
 
 - 能否从 Brief 到 Evidence？
 - 能否从 Evidence 到 Source、Diff、Log 或 Artifact？
 - 下钻后是否仍指向同一 Subject 和 Version？
 - 高风险对象是否保留直接 Review 路径？
 
-## Compression Validation
+### Compression Validation
 
 - 是否抽样比较 Projection 与 Source？
 - 是否测试 stale data、Detector failure、冲突 Evidence 和 Target `non-result`？
@@ -951,7 +953,7 @@ HCP 可以把这些对象投影到同一个 Decision Interface，但不会因为
 
 ---
 
-# 12.22 本章结论
+## 12.22 本章结论
 
 Cognitive Compression 不是把一个复杂系统改写成一句确定的状态。
 
@@ -980,6 +982,6 @@ HOW do I drill down, stop or recover?
 
 本章最重要的边界是：
 
-> **Human Control Plane 可以压缩和路由已有控制信息，但不能成为新的 Truth、Trust、Authority、Memory 或 Telemetry Owner。**
+> **作为可选的接口组织方式，Human Control Plane 可以压缩和路由已有控制信息，但不能成为新的 Truth、Trust、Authority、Memory 或 Telemetry Owner。**
 
 下一章将进入被本章刻意保留在界面之外的问题：Authority 怎样授予，Autonomy 怎样配置，Human 怎样暂停、撤销委托与接管。

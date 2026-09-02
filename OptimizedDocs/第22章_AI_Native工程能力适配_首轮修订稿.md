@@ -58,7 +58,7 @@ identify a bounded need
 
 ---
 
-# 22.1 继承最低控制边界，只新增 Capability Fit 问题
+## 22.1 继承最低控制边界，只新增 Capability Fit 问题
 
 第21章已经区分必要、条件性与可选控制。本章继承其中的最低语义：Work / Attempt Identity、Scope / Allowed Effect、具名 Authority、Result / Failure / Unknown / `non-result` 可见性，以及 Stop / Recovery / 可安全丢弃边界。现有 Issue、VCS、Sandbox、CI 与 Human Workflow 可以共同承担这些功能，不要求建立独立 Registry 或成熟度平台。
 
@@ -70,7 +70,7 @@ Engineering Capability Profile、Capability Fit Review 和更完整的 Baseline�
 
 ---
 
-# 22.2 成熟度阶梯先要说明“什么在被排序”
+## 22.2 成熟度阶梯先要说明“什么在被排序”
 
 一个有序 Level 模型如果要承担路线图，至少需要说明：
 
@@ -93,7 +93,7 @@ Engineering Capability Profile、Capability Fit Review 和更完整的 Baseline�
 
 ---
 
-# 22.3 原 Level 0–5 在相邻层之间更换评价轴
+## 22.3 原 Level 0–5 在相邻层之间更换评价轴
 
 原大纲的六个 Level 可以拆解为：
 
@@ -120,7 +120,7 @@ Level 4 到 Level 5 改变 Memory、Adoption 与 Evolution。
 
 ---
 
-# 22.4 六种描述可以在同一项目中同时成立
+## 22.4 六种描述可以在同一项目中同时成立
 
 考虑一个项目的四类 Work：
 
@@ -146,7 +146,7 @@ Capability 是按 Workload、Action、Environment 和 Decision Target 被使用�
 
 ---
 
-# 22.5 原六级模型保留为拆解材料，不保留排名
+## 22.5 原六级模型保留为拆解材料，不保留排名
 
 原六种描述仍有诊断价值。
 
@@ -169,7 +169,7 @@ Capability 是按 Workload、Action、Environment 和 Decision Target 被使用�
 
 ---
 
-# 22.6 “成熟”如果保留，只能描述有范围的校准能力
+## 22.6 “成熟”如果保留，只能描述有范围的校准能力
 
 本章不再问：
 
@@ -207,7 +207,7 @@ retire
 
 ---
 
-# 22.7 适配判断必须先固定 Scope、Workload 与 Intended Use
+## 22.7 适配判断必须先固定 Scope、Workload 与 Intended Use
 
 “系统有没有 Evidence？”
 
@@ -240,7 +240,7 @@ Capability 名称相同，不表示用途相同。
 
 ---
 
-# 22.8 第22章只新增两个候选整合概念
+## 22.8 第22章只新增两个候选整合概念
 
 本章新增：
 
@@ -255,6 +255,7 @@ Capability 名称相同，不表示用途相同。
 - 第8章的 Attempt Outcome、Target Result、Evaluation Result、Failure、`non-result` 与 Recovery；
 - 第9章的 Evidence Use、Decision Target、Acceptance、Adoption 与 Release Authorization；
 - 第10章的 Review、Review Target、Finding、Review Budget、Review Independence 与 Review Disposition；
+- 第11–12章的 Cognitive Load、Review Bandwidth、Cognitive Compression、Human Decision Interface 与 HCP Projection；
 - 第13–14章的 Authority、Autonomy、Observation 与 Intervention；
 - 第15–16章的 Memory / Evolution Candidate、Promotion 与 Adoption；
 - 第17章的 Role、Assignment、Handoff 与 Integration；
@@ -270,7 +271,7 @@ Capability Fit Review 只比较当前配置与具名用途需要，并连接有�
 
 ---
 
-# 22.9 Engineering Capability Profile 描述当前可观察配置
+## 22.9 Engineering Capability Profile 描述当前可观察配置
 
 **Engineering Capability Profile（工程能力配置：对具名 Scope 和时间点，描述当前
 实际可用的工程机制、边界、Evidence 与已知缺口的投影）** 回答：
@@ -323,7 +324,7 @@ Profile 可以是一段文字、一张表、一份配置、一次查询投影或
 
 ---
 
-# 22.10 Profile 记录实际状态，不记录愿望清单
+## 22.10 Profile 记录实际状态，不记录愿望清单
 
 以下句子不能直接进入 Current Profile：
 
@@ -333,7 +334,7 @@ Profile 可以是一段文字、一张表、一份配置、一次查询投影或
 - “Agent 可以自主优化 Workflow”；
 - “团队遵循风险治理”。
 
-它们可能是 Proposal、Desired State 或 Policy Intent。
+它们可能表达 Proposal、Desired Outcome 或 Policy Intent，但不是对当前能力的描述。
 
 Current Profile 需要区分：
 
@@ -357,7 +358,7 @@ Current Profile 需要区分：
 
 ---
 
-# 22.11 Profile 必须有时间和版本边界
+## 22.11 Profile 必须有时间和版本边界
 
 Capability Profile 不是永久标签。
 
@@ -388,7 +389,7 @@ Profile 过期不表示过去记录错误。
 
 ---
 
-# 22.12 Required Capability Boundary 是审查输入，不是最高配置
+## 22.12 Required Capability Boundary 是审查输入，不是最高配置
 
 Capability Fit Review 需要一个比较对象。
 
@@ -419,7 +420,7 @@ Required Boundary 可以包含：
 
 ---
 
-# 22.13 Capability Fit Review 比较需要与当前配置
+## 22.13 Capability Fit Review 比较需要与当前配置
 
 **Capability Fit Review（能力适配审查：针对具名 Workload、Intended Use、风险与成本，
 比较所需边界和当前 Profile，并为有权处置提供 Finding 的有范围审查）** 使用以下关系：
@@ -463,7 +464,7 @@ Review 不回答“整个组织有多先进”。
 
 ---
 
-# 22.14 Finding 与 Disposition 必须分开
+## 22.14 Finding 与 Disposition 必须分开
 
 **Fitness Finding（适配发现：基于当前 Scope、Profile、Evidence 与已知未知形成的审查
 判断）** 是第10章 Finding 的 Target-specific subtype，可能指出：
@@ -493,7 +494,7 @@ Finding 本身不授予动作。
 
 ---
 
-# 22.15 Presence、Use、Boundary、Evidence 与 Sustained Fitness 是五种判断
+## 22.15 Presence、Use、Boundary、Evidence 与 Sustained Fitness 是五种判断
 
 | 判断 | 核心问题 | 不能自动推出 |
 |---|---|---|
@@ -529,7 +530,7 @@ self_evolution_pipeline_runs
 
 ---
 
-# 22.16 Adoption State 与 Fitness 是两条轴
+## 22.16 Adoption State 与 Fitness 是两条轴
 
 Experiment、Pilot、Active、Sustained、Restricted 和 Deprecated 可以描述某项机制的
 采用状态。
@@ -555,7 +556,7 @@ Active 不等于 Fit，Sustained 不等于永远有效，Deprecated 也不等于
 
 ---
 
-# 22.17 Capability Fitness 不压成统一总分
+## 22.17 Capability Fitness 不压成统一总分
 
 将多维能力改成矩阵后，再计算一个总分，看起来比 Level 更精细。
 
@@ -583,7 +584,7 @@ Active 不等于 Fit，Sustained 不等于永远有效，Deprecated 也不等于
 
 ---
 
-# 22.18 Finding 与 Disposition 使用候选语汇，不建立全书 Enum
+## 22.18 Finding 与 Disposition 使用候选语汇，不建立全书 Enum
 
 Capability Fit Review 可以使用下列候选 Finding：
 
@@ -632,7 +633,7 @@ disposition:
 
 ---
 
-# 22.19 八个 Capability Surface 是审查投影
+## 22.19 八个 Capability Surface 是审查投影
 
 **Capability Surface（能力面：为了审查方便，把相关工程关系投影到同一问题域的候选
 分组）** 不是新的对象层级，也不声称穷尽所有项目。
@@ -659,7 +660,7 @@ disposition:
 
 ---
 
-# 22.20 Work and Intent Surface 先检查问题是否值得被执行
+## 22.20 Work and Intent Surface 先检查问题是否值得被执行
 
 这个 Surface 关注：
 
@@ -696,7 +697,7 @@ disposition:
 
 ---
 
-# 22.21 Context and State Surface 检查当前依据，不承诺完整世界
+## 22.21 Context and State Surface 检查当前依据，不承诺完整世界
 
 这个 Surface 关注：
 
@@ -733,7 +734,7 @@ disposition:
 
 ---
 
-# 22.22 Execution and Authority Surface 检查可行动边界
+## 22.22 Execution and Authority Surface 检查可行动边界
 
 这个 Surface 关注：
 
@@ -770,7 +771,7 @@ disposition:
 
 ---
 
-# 22.23 Evaluation and Decision Surface 检查证据用途
+## 22.23 Evaluation and Decision Surface 检查证据用途
 
 这个 Surface 关注：
 
@@ -808,7 +809,7 @@ disposition:
 
 ---
 
-# 22.24 Human Control and Cognition Surface 检查可判断性
+## 22.24 Human Control and Cognition Surface 检查可判断性
 
 这个 Surface 关注：
 
@@ -846,7 +847,7 @@ disposition:
 
 ---
 
-# 22.25 Organization and Handoff Surface 检查协作关系，不数 Agent
+## 22.25 Organization and Handoff Surface 检查协作关系，不数 Agent
 
 这个 Surface 关注：
 
@@ -884,7 +885,7 @@ disposition:
 
 ---
 
-# 22.26 Memory, Learning and Evolution Surface 检查行为变化边界
+## 22.26 Memory, Learning and Evolution Surface 检查行为变化边界
 
 这个 Surface 关注：
 
@@ -923,7 +924,7 @@ disposition:
 
 ---
 
-# 22.27 Operations, Trace, Security and Economics Surface 检查持续适用性
+## 22.27 Operations, Trace, Security and Economics Surface 检查持续适用性
 
 这个 Surface 关注：
 
@@ -962,7 +963,7 @@ disposition:
 
 ---
 
-# 22.28 Capability Surface 不是正交分区
+## 22.28 Capability Surface 不是正交分区
 
 八个 Surface 会相互影响。
 
@@ -999,7 +1000,7 @@ Memory Promotion 同时涉及：
 
 ---
 
-# 22.29 每个能力面使用同一组检查问题
+## 22.29 每个能力面使用同一组检查问题
 
 无论审查哪个 Surface，都可以先问：
 
@@ -1024,7 +1025,7 @@ Memory Promotion 同时涉及：
 
 ---
 
-# 22.30 Protected Control Floor 不能被平均分抵消
+## 22.30 Protected Control Floor 不能被平均分抵消
 
 不同 Workload 可以选择不同 Capability Profile。
 
@@ -1049,13 +1050,13 @@ Memory Promotion 同时涉及：
 
 ---
 
-# 22.31 Capability Gap 与 Capability Excess 需要对称检查
+## 22.31 Capability Gap 与 Capability Excess 需要对称检查
 
 传统成熟度模型通常只问“还缺少什么”。
 
 AI-native 工程还需要问“什么已经过度”。
 
-## Capability Gap
+### Capability Gap
 
 可能包括：
 
@@ -1068,7 +1069,7 @@ AI-native 工程还需要问“什么已经过度”。
 - Trace 无法重建 Material Decision；
 - Drift 后没有 Re-evaluation。
 
-## Capability Excess
+### Capability Excess
 
 可能包括：
 
@@ -1092,7 +1093,7 @@ Excess 也不自动要求删除控制。
 
 ---
 
-# 22.32 Governance Economics 比较增量价值和总生产成本
+## 22.32 Governance Economics 比较增量价值和总生产成本
 
 Capability Fit 不能只比较功能。
 
@@ -1131,7 +1132,7 @@ incremental total production cost
 
 ---
 
-# 22.33 固定迁移顺序把依赖关系误写成组织阶段
+## 22.33 固定迁移顺序把依赖关系误写成组织阶段
 
 原大纲建议：
 
@@ -1163,11 +1164,11 @@ Truth
 
 ---
 
-# 22.34 Need-driven Dependency 说明“没有什么就不能安全做什么”
+## 22.34 Need-driven Dependency 说明“没有什么就不能安全做什么”
 
 条件依赖比 Level 更接近工程决定：
 
-## Delegated Side Effect
+### Delegated Side Effect
 
 Delegated Side Effect 的最低依赖不等于完整对象栈：
 
@@ -1182,7 +1183,7 @@ Work / Attempt Identity
 Baseline 深度、正式 Context / Assumption / Conflict Record、Evidence Plan / Decision Target、Exception Authority、
 独立 Intervention 与 Re-evaluation Case，由持续时间、并发、影响、不确定性、Policy / 合同 / Rights、下游处置和恢复要求等因素条件触发。
 
-## Persistent Memory
+### Persistent Memory
 
 只要信息可能跨会话影响未来行为，就依赖：
 
@@ -1195,7 +1196,7 @@ Provenance
 + Revocation or Retirement
 ~~~
 
-## Self-Evolution
+### Self-Evolution
 
 只要系统可能修改 Skill、Policy、Workflow 或组织结构，就依赖：
 
@@ -1209,7 +1210,7 @@ Bounded Change Candidate
 + Recovery and Exit
 ~~~
 
-## Multi-Agent
+### Multi-Agent
 
 多 Agent 只有在至少一个条件成立时才有明确理由：
 
@@ -1219,7 +1220,7 @@ Bounded Change Candidate
 - Review Independence 需要不同角色或信息面；
 - Tool、Data 或 Authority 必须隔离。
 
-## Human Decision Interface
+### Human Decision Interface
 
 它由 Decision Complexity、Information Volume、Review Bandwidth、Risk、Intervention 与
 Takeover 需要触发，而不是由“进入 Level 4”触发。
@@ -1228,7 +1229,7 @@ Takeover 需要触发，而不是由“进入 Level 4”触发。
 
 ---
 
-# 22.35 能力变化沿 Candidate、Evaluation、Disposition 与运行观察循环
+## 22.35 能力变化沿 Candidate、Evaluation、Disposition 与运行观察循环
 
 发现 Gap 或 Excess 后，不应直接修改生产配置。
 
@@ -1268,7 +1269,7 @@ Capability Calibration 不是只向“更多”移动。
 
 ---
 
-# 22.36 局部、可逆、易观察的代码修改
+## 22.36 局部、可逆、易观察的代码修改
 
 假设 Work 是开发 Worktree 中的局部 Refactor：
 
@@ -1308,7 +1309,7 @@ short Intent / Scope / Acceptance Target
 
 ---
 
-# 22.37 跨会话、跨仓库的迁移
+## 22.37 跨会话、跨仓库的迁移
 
 假设 Work 跨多个仓库、持续数周，并由不同角色接续。
 
@@ -1337,7 +1338,7 @@ Execution Epoch 也只是可选 Correlation Boundary。
 
 ---
 
-# 22.38 高影响、难恢复或受保护数据相关的变更
+## 22.38 高影响、难恢复或受保护数据相关的变更
 
 假设 Work 会改变生产数据、处理受保护信息，或产生难以撤回的外部影响。
 
@@ -1366,7 +1367,7 @@ affected-party and Intended Use boundary
 
 ---
 
-# 22.39 案例只保留反单轴约束
+## 22.39 案例只保留反单轴约束
 
 完整 Case Spine 见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)；本章只保留 Capability Fit 的三条反例。
 
@@ -1380,7 +1381,7 @@ affected-party and Intended Use boundary
 
 ---
 
-# 22.40 不给 AI Game Dev OS 打分
+## 22.40 不给 AI Game Dev OS 打分
 
 第23章可以使用 Engineering Capability Profile，但应绑定具名历史切片或未来
 Decision Target。
@@ -1412,7 +1413,7 @@ Decision Target。
 
 ---
 
-# 22.41 最小实现从一个真实决定开始
+## 22.41 最小实现从一个真实决定开始
 
 不要先建立组织级 Capability Platform。
 
@@ -1469,7 +1470,7 @@ expires_or_re_evaluate_on:
 
 ---
 
-# 22.42 与相邻章节的接口
+## 22.42 与相邻章节的接口
 
 第22.8节已经列出完整对象所有权；这里仅保留递进关系。第3–21章提供 AI-native 触发条件，以及 Intent、Context / State、Execution / Result、Evidence / Review、Authority / Observation、Memory / Evolution、Organization / Trace、Security / IP、Operations 与 Lifecycle 的现有配置。
 
@@ -1479,7 +1480,7 @@ expires_or_re_evaluate_on:
 
 ---
 
-# 22.43 本章原则
+## 22.43 本章原则
 
 1. **Fit for named use, not rank for the whole organization.** 为具名用途判断适配，不给整个组织排名。
 2. **Profile describes; it does not authorize.** Profile 描述当前配置，不产生 Authority。
@@ -1496,93 +1497,93 @@ expires_or_re_evaluate_on:
 
 ---
 
-# 22.44 常见 Anti-pattern
+## 22.44 常见 Anti-pattern
 
-## Feature-count Maturity
+### Feature-count Maturity
 
 按 Agent、Registry、Gate、Memory、Trace 和 Automation 数量排名。
 
-## Whole-project Level
+### Whole-project Level
 
 忽略不同 Workload、Action 和 Environment，把整个项目压成一个等级。
 
-## Score Washing
+### Score Washing
 
 把 Authority、Security、Cost、Human Judgment 与 Recovery 加权成没有自然依据的总分。
 
-## Adoption Equals Fit
+### Adoption Equals Fit
 
 把 Active、Sustained 或广泛使用当成有效性证明。
 
-## Tool Presence Equals Capability
+### Tool Presence Equals Capability
 
 因为安装了 Tool、模型或插件，就声明工程能力已经形成。
 
-## Documentation Equals Operation
+### Documentation Equals Operation
 
 因为存在 Policy、Workflow 或 Runbook，就声明真实路径遵循。
 
-## Higher Autonomy Bias
+### Higher Autonomy Bias
 
 把更少 Human 介入当成默认进步。
 
-## Multi-Agent Prestige
+### Multi-Agent Prestige
 
 为了看起来先进，把不可分解 Work 拆成多个 Agent。
 
-## Memory Accumulation
+### Memory Accumulation
 
 把保存更多历史当成学习，把自动注入当成适用。
 
-## Evolution as Destination
+### Evolution as Destination
 
 把能够修改 Skill、Policy 或 Workflow 当成组织最高阶段。
 
-## Governance Monotonicity
+### Governance Monotonicity
 
 认为治理只能增加，删除 Gate 或收窄 Trace 一定是退步。
 
-## Efficiency-only Simplification
+### Efficiency-only Simplification
 
 为了降低等待或成本，删除 Protected Floor、Rights Boundary 或明确保留给 Human 的 Decision Type。
 
-## Case-to-Rank Generalization
+### Case-to-Rank Generalization
 
 用一个项目的一段历史给整个组织或行业打等级。
 
 ---
 
-# 22.45 检查清单
+## 22.45 检查清单
 
-## Decision 与 Scope
+### Decision 与 Scope
 
 - [ ] 当前 Review 是否服务于具名 Decision Target？
 - [ ] Workload、Intended Use、Action、Data、Environment 与 Population 是否明确？
 - [ ] Profile 是否绑定时间、版本、Baseline 和已知失效条件？
 - [ ] 是否避免给整个项目或组织打一个总 Level？
 
-## Required Boundary
+### Required Boundary
 
 - [ ] 当前用途真正需要哪些控制功能？
 - [ ] 哪些机制不需要或应被禁止？
 - [ ] Protected Control Floor 来自谁、适用于什么 Scope？
 - [ ] Residual Risk、Unknown 与 Human 保留裁决权是否保留，并映射到具名 Authority Grant 或制度边界？
 
-## Current Profile
+### Current Profile
 
 - [ ] Observable Presence、Operational Use 与 Desired Capability 是否分开？
 - [ ] Policy 声明与 Observed Behavior 是否分开？
 - [ ] Source、Revision、Environment 与 Dirty State 是否可定位？
 - [ ] Profile 是否只是投影，而非新的 Truth、Authority 或 Acceptance Source？
 
-## Fit Review
+### Fit Review
 
 - [ ] Presence、Use、Boundary、Evidence 与 Sustained Fitness 是否分别判断？
 - [ ] Finding 是否绑定 Evidence、Coverage、Counterevidence 与 Unknown？
 - [ ] Finding 与 Authorized Disposition 是否分开？
 - [ ] Disposition 是否包含 Constraint、Owner、Expiry、Recovery 与 Re-evaluation？
 
-## Capability Surface
+### Capability Surface
 
 - [ ] Work / Intent 是否可被评价？
 - [ ] Context / State 是否保存 Conflict、Gap 与 Freshness？
@@ -1593,7 +1594,7 @@ expires_or_re_evaluate_on:
 - [ ] Memory / Evolution 是否只从 Candidate 进入独立 Promotion / Adoption？
 - [ ] Operations / Trace / Security / Economics 是否包含 Drift、Rights 与总生产成本？
 
-## Gap、Excess 与成本
+### Gap、Excess 与成本
 
 - [ ] 是否同时检查缺失能力和过度机制？
 - [ ] 新机制增加了什么 Failure、Coordination 与 Maintenance Surface？
@@ -1601,7 +1602,7 @@ expires_or_re_evaluate_on:
 - [ ] Token、Human、Review、Waiting、Governance、Failure 与 Exit Cost 是否进入比较？
 - [ ] 不可货币化 Guardrail 是否没有被强行换算成分数？
 
-## 路线与案例
+### 路线与案例
 
 - [ ] 路线是否按条件依赖，而非固定 Level 顺序？
 - [ ] Multi-Agent、Memory、HCP、Epoch 与 Self-Evolution 是否保持可选？
@@ -1612,7 +1613,7 @@ expires_or_re_evaluate_on:
 
 ---
 
-# 22.46 结论
+## 22.46 结论
 
 AI-native 工程能力不能由功能数量、Agent 数量、自治强度或组织复杂度排序。
 

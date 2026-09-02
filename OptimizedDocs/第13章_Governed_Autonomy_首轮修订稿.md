@@ -35,7 +35,7 @@
 
 ---
 
-# 13.1 自动化不是二元选择，也不是单轴阶梯
+## 13.1 自动化不是二元选择，也不是单轴阶梯
 
 一个系统可以：
 
@@ -79,11 +79,11 @@ policy modification      prohibited
 
 ---
 
-# 13.2 本章区分六个对象
+## 13.2 本章区分六个对象
 
 本章的候选 Governed Autonomy 模型区分六个经常被混用的对象。
 
-## Capability（能力：系统在技术上可能完成的动作）
+### Capability（能力：系统在技术上可能完成的动作）
 
 回答：
 
@@ -93,7 +93,7 @@ policy modification      prohibited
 
 Capability 不产生 Permission 或 Authority。
 
-## Permission（权限：技术执行环境实际开放的操作面）
+### Permission（权限：技术执行环境实际开放的操作面）
 
 回答：
 
@@ -101,7 +101,7 @@ Capability 不产生 Permission 或 Authority。
 
 Permission 是执行层约束。一个动作被平台允许，不表示组织授权它用于当前目标。
 
-## Authority Grant（授权授予：有权来源允许具名主体对指定目标采取或裁决某类动作的记录）
+### Authority Grant（授权授予：有权来源允许具名主体对指定目标采取或裁决某类动作的记录）
 
 回答：
 
@@ -111,7 +111,7 @@ Authority 是规范性边界，不等于技术可达性。
 
 Authority Grant 是授权来源。Decision / Policy Record 是在有效 Grant 下形成的规范性内容；Disposition 是其中针对具名 Decision Target 的结果关系。三者不能互换：成功历史、技术 Permission、Autonomy Profile 或一条 Decision Record 都不能自行创造或扩大 Authority Grant。
 
-## Reliance Disposition（依赖处置：Decision Record 针对具名依赖用途形成的处置结果）
+### Reliance Disposition（依赖处置：Decision Record 针对具名依赖用途形成的处置结果）
 
 回答：
 
@@ -119,7 +119,7 @@ Authority Grant 是授权来源。Decision / Policy Record 是在有效 Grant �
 
 Reliance 的 Decision Target 必须绑定 Capability、Configuration、环境、时间与 Intended Use。Disposition 可以是 provisional、restricted 或 accepted-for-scope，但不会自行授予行动权限。
 
-## Autonomy Profile（自治配置：把已有 Authority 转换成运行时监督、审批、升级、审计与恢复条件的版本化配置）
+### Autonomy Profile（自治配置：把已有 Authority 转换成运行时监督、审批、升级、审计与恢复条件的版本化配置）
 
 回答：
 
@@ -127,7 +127,7 @@ Reliance 的 Decision Target 必须绑定 Capability、Configuration、环境、
 
 Autonomy Profile 实现 Delegation，不创造 Delegation。
 
-## Responsibility（职责：被分配去执行、维护、响应或恢复某项工作的义务）
+### Responsibility（职责：被分配去执行、维护、响应或恢复某项工作的义务）
 
 回答：
 
@@ -165,7 +165,7 @@ Execution 产生的 Evidence 只能支持或挑战具名 Reliance Claim，并可
 
 ---
 
-# 13.3 Autonomy Profile 是多维配置
+## 13.3 Autonomy Profile 是多维配置
 
 一个 Autonomy Profile 不应只保存 `level: 4`。
 
@@ -256,7 +256,7 @@ Profile 至少要绑定：
 
 ---
 
-# 13.4 新 Capability 不应静默继承旧边界
+## 13.4 新 Capability 不应静默继承旧边界
 
 一个 Agent 在 gameplay implementation 上表现稳定，不表示它可以修改：
 
@@ -294,7 +294,7 @@ authority source
 
 ---
 
-# 13.5 Automation Default Off 需要绑定风险表面
+## 13.5 Automation Default Off 需要绑定风险表面
 
 原大纲提出：
 
@@ -331,7 +331,7 @@ existing organizational policy
 
 ---
 
-# 13.6 Permission Model 必须与 Authority Model 对齐
+## 13.6 Permission Model 必须与 Authority Model 对齐
 
 常见 Permission 可以拆成：
 
@@ -385,7 +385,7 @@ Permission Enforcement 保护技术边界；Authority Record 解释为什么某�
 
 ---
 
-# 13.7 Risk-based Autonomy 不等于 Risk Score
+## 13.7 Risk-based Autonomy 不等于 Risk Score
 
 自治范围应与风险条件相关，但不需要把所有因素相乘成单一分数。
 
@@ -428,13 +428,13 @@ escalate
 
 ---
 
-# 13.8 Structural Assurance 与 Operational Evidence 不产生 Authority
+## 13.8 Structural Assurance 与 Operational Evidence 不产生 Authority
 
 原材料将 Trust 拆成 `Assured Trust` 与 `Earned Trust`。
 
 这个区分包含有用直觉，但更清楚的对象是：
 
-## Structural Assurance（结构保障：由边界、隔离、验证和恢复设计提供的先验控制条件）
+### Structural Assurance（结构保障：由边界、隔离、验证和恢复设计提供的先验控制条件）
 
 例如：
 
@@ -448,7 +448,7 @@ escalate
 
 新 Capability 即使没有运行历史，也可以拥有部分 Structural Assurance。
 
-## Operational Evidence（运行证据：具名配置在具体环境和任务中产生的可检查观察）
+### Operational Evidence（运行证据：具名配置在具体环境和任务中产生的可检查观察）
 
 例如：
 
@@ -487,7 +487,7 @@ Authority 来自有权 Grantor 与 Policy，不是由成功次数自动生成。
 
 ---
 
-# 13.9 不建立全局 Trust Score
+## 13.9 不建立全局 Trust Score
 
 `Trust Score = 87.3` 把多个问题压成一个数字：
 
@@ -526,7 +526,7 @@ decision_authority_ref: AUTH-REL-003
 
 ---
 
-# 13.10 Authority Grant 与 Delegation Contract
+## 13.10 Authority Grant 与 Delegation Contract
 
 **Delegation（委托：有权角色把具名动作或决定在限定条件下交给另一 Subject 执行的关系）** 需要可检查记录。
 
@@ -585,7 +585,7 @@ Grantor 也必须拥有授予这些动作的 Authority。
 
 ---
 
-# 13.11 Supervision Mode 是动作配置，不是身份等级
+## 13.11 Supervision Mode 是动作配置，不是身份等级
 
 常见 Supervision Mode 可以包括：
 
@@ -607,7 +607,7 @@ Exception-routed 只有在 Observation Coverage、Detector Health 和 Recovery �
 
 ---
 
-# 13.12 Governance 有成本，不能默认单调增加
+## 13.12 Governance 有成本，不能默认单调增加
 
 治理机制本身会消耗：
 
@@ -648,7 +648,7 @@ What happens on failure?
 
 ---
 
-# 13.13 Protected Control Floor 不是 G0–G4 阶梯
+## 13.13 Protected Control Floor 不是 G0–G4 阶梯
 
 **Protected Control Floor（受保护控制下限：某类 Action 在当前 Policy 下不可由执行主体自行绕过的最低控制集合）** 可以包括：
 
@@ -684,7 +684,7 @@ bounded_auto
 
 ---
 
-# 13.14 Stop-the-line 必须区分 Hard Stop 与 Process Warning
+## 13.14 Stop-the-line 必须区分 Hard Stop 与 Process Warning
 
 **Hard Stop（硬停止：为阻止当前可达的高影响危险、越权动作或错误语义升级而立即终止或隔离执行）** 可以由以下条件触发：
 
@@ -721,7 +721,7 @@ freeze new successors
 
 ---
 
-# 13.15 Human-in-the-loop 的目的不是每一步点击
+## 13.15 Human-in-the-loop 的目的不是每一步点击
 
 Human-in-the-loop 可以承担不同职责：
 
@@ -754,27 +754,27 @@ Human Cognitive Authority（人类对需要 Human Judgment 之事项保留的最
 
 ---
 
-# 13.16 Pause、Restrict、Revoke 与 Takeover 是不同动作
+## 13.16 Pause、Restrict、Revoke 与 Takeover 是不同动作
 
 自治边界发生问题时，系统不只有 `on / off`。
 
-## Pause（暂停）
+### Pause（暂停）
 
 暂时阻止新动作，保留当前 Profile 与 Grant，等待 Evidence 或处置。
 
-## Restrict（收窄）
+### Restrict（收窄）
 
 缩小 Action、Scope、Environment 或 Supervision Mode。
 
-## Revoke（撤销）
+### Revoke（撤销）
 
 由有权角色终止某项 Grant，使后续动作失去 Authority。
 
-## Expire（过期）
+### Expire（过期）
 
 Grant 或 Profile 达到预定时间、版本或条件后自动失效。
 
-## Takeover（接管：由新的有权主体取得当前任务和控制状态，并决定继续、恢复或终止）
+### Takeover（接管：由新的有权主体取得当前任务和控制状态，并决定继续、恢复或终止）
 
 接管前需要知道：
 
@@ -793,7 +793,7 @@ Grant 或 Profile 达到预定时间、版本或条件后自动失效。
 
 ---
 
-# 13.17 Revocation 必须处理在途与下游委托
+## 13.17 Revocation 必须处理在途与下游委托
 
 撤销一个 Grant 不会自动撤回已经发生的物理动作。
 
@@ -826,7 +826,7 @@ resume criteria
 
 ---
 
-# 13.18 Automated Gate 可以有 Authority，但不能扩大自己的用途
+## 13.18 Automated Gate 可以有 Authority，但不能扩大自己的用途
 
 第9章已经区分：
 
@@ -865,7 +865,7 @@ Gate 是 Authority-bearing mechanism，不是 Truth Machine。
 
 ---
 
-# 13.19 案例只保留 Authority 投影
+## 13.19 案例只保留 Authority 投影
 
 完整事件与失败路径见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)；本章不重复时间线，只保留每个 Episode 对 Governed Autonomy 的约束。
 
@@ -879,7 +879,7 @@ Gate 是 Authority-bearing mechanism，不是 Truth Machine。
 
 ---
 
-# 13.20 最小落地从一个 Capability 开始
+## 13.20 最小落地从一个 Capability 开始
 
 项目可以选择一个重复、高成本但边界清楚的 Capability，例如：
 
@@ -911,7 +911,7 @@ generate release candidate evidence
 
 ---
 
-# 13.21 与第14–16章的所有权边界
+## 13.21 与第14–16章的所有权边界
 
 第13章拥有：
 
@@ -936,7 +936,7 @@ generate release candidate evidence
 
 ---
 
-# 13.22 本章原则
+## 13.22 本章原则
 
 1. **自治是配置，不是人格。** 它绑定 Subject、Capability、Scope、Environment 和 Version。
 2. **Capability、Permission 与 Authority 分开。** 技术可达不等于组织授权。
@@ -953,7 +953,7 @@ generate release candidate evidence
 
 ---
 
-# 13.23 常见反模式
+## 13.23 常见反模式
 
 - 把 L0–L5 写成所有项目的成熟路径；
 - 认为模型越强就应获得越多 Authority；
@@ -976,37 +976,37 @@ generate release candidate evidence
 
 ---
 
-# 13.24 本章检查清单
+## 13.24 本章检查清单
 
-## Subject 与动作
+### Subject 与动作
 
 - 当前 Subject 包含哪些 Agent、Model、Contract、Workflow 和 Tool Version？
 - Capability 与 Action Class 是什么？
 - Environment、Resource、Data 和 Path Scope 是否明确？
 - 新 Capability 是否静默继承旧 Authority？
 
-## Permission 与 Authority
+### Permission 与 Authority
 
 - 技术 Permission 是否大于当前 Grant？
 - Grantor 是否有权授予这些动作？
 - Decision Target、Preconditions、Expiry 和 Prohibited Action 是否存在？
 - 是否允许 Downstream Delegation，怎样级联撤销？
 
-## Autonomy Profile
+### Autonomy Profile
 
 - 每项 Action 的 Supervision Mode 是否独立配置？
 - Profile 是否绑定 Evidence Requirement、Escalation 和 Protected Stop？
 - Observation Coverage 与 Detector Health 是否足以支持 exception_routed？
 - Profile 是否可暂停、收窄、撤销和过期？
 
-## Reliance
+### Reliance
 
 - Structural Assurance 与 Operational Evidence 是否分开？
 - Reliance 是否绑定 Capability、Configuration、Environment 和 Intended Use？
 - 是否错误地让 Reliance 或 Test PASS 产生 Authority？
 - 运行历史是否包含 Failure、Rework、Rollback 和 Human Intervention，而不只记录成功？
 
-## Stop 与 Recovery
+### Stop 与 Recovery
 
 - Hard Stop 是否指向当前危险、越权或 false promotion？
 - Process Warning 是否会反向制造 Governance Overload？
@@ -1015,7 +1015,7 @@ generate release candidate evidence
 - Takeover 是否提供 Baseline、Evidence、Unknown 和 Recovery？
 - 不可逆外部副作用是否有 Forward Recovery Owner？
 
-## Human 与 Gate
+### Human 与 Gate
 
 - 哪些决定需要 Human，哪些可以由 Delegated Gate 完成？
 - Human Decision Interface 是否显示真实 Authority，而不是只显示按钮？
@@ -1024,7 +1024,7 @@ generate release candidate evidence
 
 ---
 
-# 13.25 本章结论
+## 13.25 本章结论
 
 Governed Autonomy 不是让 Agent 沿着等级不断获得自由。
 

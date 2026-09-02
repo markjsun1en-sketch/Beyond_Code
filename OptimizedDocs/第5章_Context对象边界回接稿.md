@@ -13,7 +13,7 @@
 
 ---
 
-# 5.A Context 是受控的信息表面
+## 5.A Context 是受控的信息表面
 
 Context 不是 Prompt 的附件，也不是项目知识的完整副本。
 
@@ -39,11 +39,11 @@ Context Engineering 能直接控制的是中间两层，并通过 Harness 影响
 
 ---
 
-# 5.B Context Contract 与 Context Manifest
+## 5.B Context Contract 与 Context Manifest
 
 原稿中的 Context Pack 同时承担了规范和记录职责，需要拆开。
 
-## Context Contract
+### Context Contract
 
 回答：
 
@@ -66,7 +66,7 @@ missing_context_action: escalate_or_retrieve
 
 Context Contract 是规范性对象。它可以是独立文件，也可以成为[第7章](第7章_Agent_Execution_Engineering_首轮修订稿.md)所定义 Execution Contract 的一个字段。
 
-## Context Manifest
+### Context Manifest
 
 回答：
 
@@ -91,7 +91,7 @@ freshness_checks:
 
 Context Manifest 是描述性记录。它不证明来源中的内容正确，也不证明模型注意或采用了它；它记录本次装配选择、传输或开放访问了什么。该记录本身是否可信，还取决于生成机制和 Provenance。
 
-## Context Pack
+### Context Pack
 
 `Context Pack` 可以保留为工程便利词，表示实际传输的文件、片段、索引和摘要集合。但它不是新的治理层：
 
@@ -103,7 +103,7 @@ Context Manifest   provenance record of the payload
 
 ---
 
-# 5.C Context 引用 Truth，不定义 Truth
+## 5.C Context 引用 Truth，不定义 Truth
 
 第五章不再建立自己的 Truth 类型或 Confidence 等级。
 
@@ -158,7 +158,7 @@ summarized != verified
 
 ---
 
-# 5.D Minimum Initial Context + Progressive Retrieval
+## 5.D Minimum Initial Context + Progressive Retrieval
 
 “Minimum Sufficient Context”适合作为优化目标，但不应被解释为执行前总能准确求出的固定最小集合。
 
@@ -195,7 +195,7 @@ repository map
 
 ---
 
-# 5.E Context Quality 使用不可压缩为单分数的检查项
+## 5.E Context Quality 使用不可压缩为单分数的检查项
 
 不再使用统一的 High / Medium / Low Context Confidence。
 
@@ -226,11 +226,11 @@ repository map
 
 ---
 
-# 5.F 可组合的设计维度
+## 5.F 可组合的设计维度
 
 Static、Layered、Retrieval、Lifecycle、Snapshot 和 Projection 不是一条 Level 0–5 的线性道路。它们属于不同设计维度。
 
-## Source Organization
+### Source Organization
 
 决定信息如何被组织和发现：
 
@@ -241,7 +241,7 @@ repository map
 typed index
 ```
 
-## Retrieval
+### Retrieval
 
 决定何时、按什么依据取得更多信息：
 
@@ -253,7 +253,7 @@ dependency traversal
 progressive retrieval
 ```
 
-## Storage / Access Tier 与 Validity Lifecycle
+### Storage / Access Tier 与 Validity Lifecycle
 
 这两个维度不能放进同一状态序列。
 
@@ -277,7 +277,7 @@ invalidated
 
 一个 invalidated Record 可能因为正在调查而保持 hot；一个 cold archive 也可能仍然是有效历史来源。Hot / Warm / Cold 只有在存在明确的更新、归档和恢复机制时，才是有用的运维比喻。
 
-## Continuity
+### Continuity
 
 决定长任务和跨 Agent 工作如何恢复：
 
@@ -289,7 +289,7 @@ execution snapshot
 progress record
 ```
 
-## Projection and Governance
+### Projection and Governance
 
 决定哪些角色可以访问、被授权依赖或执行哪些内容：
 
@@ -306,7 +306,7 @@ adaptive assembly
 ```text
 Layered Sources
 + Progressive Retrieval
-+ Hot/Warm/Cold Lifecycle
++ Storage / Access Tier (hot / warm / cold)
 + Checkpoint projection when needed
 + Role Projection
 ```
@@ -315,7 +315,7 @@ Layered Sources
 
 ---
 
-# 5.G Snapshot、Manifest 与 Handoff
+## 5.G Snapshot、Manifest 与 Handoff
 
 原稿中的 `State Snapshot`、`Context Snapshot` 和 Handoff Summary 需要区分。
 
@@ -350,7 +350,7 @@ Next safe action
 
 ---
 
-# 5.H Context Projection 与 Intent Execution View
+## 5.H Context Projection 与 Intent Execution View
 
 第四章的 Execution View 选择“这个角色需要理解 Intent 的哪一部分”。
 
@@ -378,7 +378,7 @@ Worker 不一定需要 Controller 的全部协调记录；Reviewer 也不应只�
 
 ---
 
-# 5.I Security 与指令权
+## 5.I Security 与指令权
 
 进入 Context 的内容默认是信息，不自动拥有指令权。
 
@@ -407,7 +407,7 @@ Least Context 不是简单减少 Token，而是减少不必要的信息暴露、
 
 ---
 
-# 5.J Memory 与 Skill 进入 Context 的边界
+## 5.J Memory 与 Skill 进入 Context 的边界
 
 “Memory 是长期存储，Context 是当前工作集”只能作为对 Project Memory 的简化说明，不是对所有 Memory 类型的完整定义。
 
@@ -444,7 +444,7 @@ Tool or mutation authority
 
 ---
 
-# 5.K Context Capability Profile，不使用单一成熟度等级
+## 5.K Context Capability Profile，不使用单一成熟度等级
 
 **Context Capability Profile（上下文能力配置：描述 Context System 在选择、来源、时效、检索、连续性、投影、安全与评价等维度的当前配置）** 可以记录为：
 
@@ -469,7 +469,7 @@ AI Game Dev OS 当前可以作为候选案例，用于观察 Hotspace、Archive�
 
 ---
 
-# 5.L Evaluation 与成本
+## 5.L Evaluation 与成本
 
 Context Evaluation 应把任务结果和装配过程同时纳入观察。
 
@@ -499,7 +499,7 @@ Context Ablation 可以比较删除或替换某类信息后的结果，但结论
 
 ---
 
-# 5.M 跨章接口
+## 5.M 跨章接口
 
 第四、第五和第六章应形成一组稳定接口，但实际执行不是严格单向流水线：
 
@@ -539,7 +539,7 @@ Execution Epoch 不进入这条基础链。需要长时固定引用区间时，�
 
 ---
 
-# 第五章边界结论
+## 第五章边界结论
 
 第五章的中心应当是：
 

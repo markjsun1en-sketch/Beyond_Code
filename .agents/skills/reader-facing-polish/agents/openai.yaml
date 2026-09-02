@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reader-facing Polish"
+  short_description: "将已接受逻辑稿转为保真、可读且保留作者判断的成书候选稿"
+  default_prompt: "使用 $reader-facing-polish 将已接受的章节逻辑稿派生为保真且面向读者的成书候选稿。"

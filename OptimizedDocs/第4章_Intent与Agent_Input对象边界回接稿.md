@@ -13,7 +13,7 @@
 
 ---
 
-# 4.A Requirement、Intent、Task 与 Agent Input
+## 4.A Requirement、Intent、Task 与 Agent Input
 
 这四个对象可能包含相似文字，但承担不同职责。
 
@@ -51,9 +51,9 @@ Agent Input != Intent alone
 
 ---
 
-# 4.B Intent Artifact 的最小职责
+## 4.B Intent Artifact 的最小职责
 
-Intent Artifact 描述 Desired State，并保存这项期望的身份、来源和边界。
+Intent Artifact 描述 Desired Outcome，并保存这项期望的身份、来源和边界。
 
 一个标准对象可以包含：
 
@@ -102,7 +102,7 @@ decision_refs:
 
 ---
 
-# 4.C Intent 的身份、版本与生命周期
+## 4.C Intent 的身份、版本与生命周期
 
 Intent 的增量价值不在于拥有一组比 Prompt 更新的内容字段，而在于它是可引用、可版本化、可继承和可裁决的工程对象。
 
@@ -148,7 +148,7 @@ Intent v3
 
 ---
 
-# 4.D Owner、Authority 与 Agent Delegation
+## 4.D Owner、Authority 与 Agent Delegation
 
 “AI 可以帮助生成 Intent，但不能拥有 Intent”需要收窄。
 
@@ -172,7 +172,7 @@ Agent 是否可以修改局部 Intent，不由模型能力决定，而由 Delega
 
 ---
 
-# 4.E Hierarchy 与 Inheritance
+## 4.E Hierarchy 与 Inheritance
 
 Child Intent 应继承 Parent Intent 中仍然适用的约束和验收关系，但继承不是全文复制。
 
@@ -204,7 +204,7 @@ superseded
 
 ---
 
-# 4.F Execution View：从长期对象到角色输入
+## 4.F Execution View：从长期对象到角色输入
 
 本章只保留一个投影概念：`Execution View`。
 
@@ -255,7 +255,7 @@ Agent Input
 
 ---
 
-# 4.G Intent、Context、State 与 Contract 的边界
+## 4.G Intent、Context、State 与 Contract 的边界
 
 四个章节对象应保持稳定分工。
 
@@ -285,7 +285,7 @@ Agent Input
 
 ---
 
-# 4.H Acceptance 与 Evidence Trace
+## 4.H Acceptance 与 Evidence Trace
 
 Acceptance Criteria 描述“什么结果可被接受”。Required Evidence 描述“用什么材料判断”。二者应该建立映射，而不是在执行结束后临时寻找证明。
 
@@ -338,11 +338,11 @@ Requirement
 
 ---
 
-# 4.I Risk-based Clarification 与治理强度
+## 4.I Risk-based Clarification 与治理强度
 
 Intent 精度不等于篇幅。是否需要确认、Registry 或完整 Trace，应由错误成本和授权风险决定。
 
-## 低风险局部任务
+### 低风险局部任务
 
 通常只需要：
 
@@ -350,7 +350,7 @@ Intent 精度不等于篇幅。是否需要确认、Registry 或完整 Trace，�
 - Scope / Non-goal；
 - 一项可运行验证。
 
-## 普通多文件任务
+### 普通多文件任务
 
 通常需要：
 
@@ -359,7 +359,7 @@ Intent 精度不等于篇幅。是否需要确认、Registry 或完整 Trace，�
 - Acceptance-to-Evidence Mapping；
 - 明确允许写入范围。
 
-## 高影响、跨执行或多方 Authority 任务
+### 高影响、跨执行或多方 Authority 任务
 
 可能需要：
 
@@ -374,7 +374,7 @@ Clarification 同样按风险决定。可逆、局部并能验证的未知可以
 
 ---
 
-# 4.J 多方 Intent 冲突
+## 4.J 多方 Intent 冲突
 
 Parent/Child Drift 不是 Intent 冲突的唯一形式。产品、技术、安全、体验、成本和合规可能同时提出合法但不兼容的目标。
 
@@ -402,7 +402,7 @@ current disposition
 
 ---
 
-# 第四章边界结论
+## 第四章边界结论
 
 第四章的中心应当是：
 

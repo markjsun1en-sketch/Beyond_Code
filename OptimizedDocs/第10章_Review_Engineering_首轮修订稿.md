@@ -25,7 +25,7 @@ Review Engineering（审阅工程：为具名对象配置审阅目标、范围�
 
 ---
 
-# 10.1 Review 不等于阅读、Validation 或 Decision
+## 10.1 Review 不等于阅读、Validation 或 Decision
 
 **Review（审阅：针对具名 Review Target、版本、Scope 与 Criteria，检查其与 Intent、Contract、Evidence、风险和已知未知之间关系的有边界活动）** 可以包含阅读，但不以“读了多少”定义。
 
@@ -42,7 +42,7 @@ Review Engineering（审阅工程：为具名对象配置审阅目标、范围�
 
 ---
 
-# 10.2 Review 的最小对象链
+## 10.2 Review 的最小对象链
 
 本章采用：
 
@@ -66,7 +66,7 @@ Review Target + bounded Review Contract
 
 ---
 
-# 10.3 Review Target 与 Decision Target 不同
+## 10.3 Review Target 与 Decision Target 不同
 
 **Review Target（审阅对象：被当前 Review 检查的具名对象、版本、Baseline 与 Scope）** 回答：
 
@@ -94,7 +94,7 @@ Decision Target 回答的是“有权主体准备裁决什么”。两者可能�
 
 ---
 
-# 10.4 Review Contract 连接 Target、方法与边界
+## 10.4 Review Contract 连接 Target、方法与边界
 
 Review 需要一个可引用的边界接口。本章把它称为 **Review Contract（审阅契约：声明当前 Review Target、Criteria、Scope、Non-goal、Evidence、Budget、独立性要求、允许输出与 Authority 边界的约定）**。
 
@@ -117,9 +117,9 @@ Review Contract 不创造 Authority。它只能引用或服从有效 Grant。
 
 ---
 
-# 10.5 Finding 是有范围的审阅判断
+## 10.5 Finding 是有范围的审阅判断
 
-**Finding（审阅发现：Reviewer 根据具名 Criteria、Evidence、Counterevidence 与 Unknown，对 Review Target 在当前 Scope 内形成的可检查判断）** 不是 Evidence，也不是 Decision。
+**Finding（审阅发现：Reviewer 根据具名 Criteria、Evidence、Counterevidence 与 Unknown，对 Review Target 在当前 Scope 内形成的可检查判断）** 不能与它引用的底层 Evidence 互换，也不是 Decision。
 
 Finding 可以指出：
 
@@ -150,7 +150,7 @@ Finding 可以被挑战、更新或撤回。Reviewer 的资历、Agent 数量或
 
 ---
 
-# 10.6 Finding、Evaluation Result 与 Evidence 不能互换
+## 10.6 Finding、Evaluation Result 与 Evidence 不能互换
 
 一个 Test FAIL 是 Evaluation Result。
 
@@ -170,11 +170,11 @@ Evaluation Result
 → records Target-specific Disposition
 ~~~
 
-Finding 本身不授予动作，也不自动证明 Root Cause。它必须保留观察、推断和建议之间的边界。
+Finding 本身不授予动作，也不自动证明 Root Cause。它必须保留观察、推断和建议之间的边界；只有在绑定具名 Claim、Scope 与 Intended Use 时，才可以作为新的 Evidence 被考虑。
 
 ---
 
-# 10.7 Pre-execution Review 检查投入前的方向与边界
+## 10.7 Pre-execution Review 检查投入前的方向与边界
 
 Pre-execution Review 可以检查：
 
@@ -194,7 +194,7 @@ Plan Review PASS 也不产生 Tool Permission 或 Execution Authority。
 
 ---
 
-# 10.8 In-process Review 检查变化是否越过原边界
+## 10.8 In-process Review 检查变化是否越过原边界
 
 In-process Review 可以在 Checkpoint、Handoff 或风险触发时检查：
 
@@ -212,7 +212,7 @@ In-process Review 可以在 Checkpoint、Handoff 或风险触发时检查：
 
 ---
 
-# 10.9 Post-execution Review 检查结果、范围与下游用途
+## 10.9 Post-execution Review 检查结果、范围与下游用途
 
 Post-execution Review 可以检查：
 
@@ -230,7 +230,7 @@ Post-execution Review 不只回答“代码对不对”。它还要说明当前�
 
 ---
 
-# 10.10 Review Budget 分配有限的合格审阅能力
+## 10.10 Review Budget 分配有限的合格审阅能力
 
 **Review Budget（审阅预算：为具名 Review Target 分配的有限时间、注意力、检查深度、方法、抽样、独立性和循环上限）** 不是单纯的小时数。
 
@@ -260,7 +260,7 @@ Review Budget 不应被解释为“风险越高，文档和 Reviewer 数量必�
 
 ---
 
-# 10.11 Review Independence 是多维控制性质
+## 10.11 Review Independence 是多维控制性质
 
 **Review Independence（审阅独立性：Review 在产出者、Contract、Context、Source、Method、Decision 与 Authority 上保持适当分离的程度）** 不是布尔字段，也不等于“换一个 Agent 名称”。
 
@@ -282,7 +282,7 @@ Review Budget 不应被解释为“风险越高，文档和 Reviewer 数量必�
 
 ---
 
-# 10.12 Reviewer 默认提交 Finding，不自动拥有处置权
+## 10.12 Reviewer 默认提交 Finding，不自动拥有处置权
 
 Reviewer 可以：
 
@@ -305,7 +305,7 @@ Reviewer 不会因为名称中包含 Review 就自动拥有：
 
 ---
 
-# 10.13 Review Disposition 必须绑定 Target 与 Authority
+## 10.13 Review Disposition 必须绑定 Target 与 Authority
 
 **Review Disposition（审阅处置：具名 Authority 通过 Decision Record，对“如何关闭、限制或继续使用某个 Review Target”这一具名 Decision Target 作出的允许、拒绝、收窄、返工、延期、阻断或升级结果）** 是第9章 Disposition 上位关系的 Target-specific subtype。Review Target 是被检查的对象；Decision Target 是当前有权裁决的问题，二者必须分别保留。
 
@@ -337,7 +337,7 @@ Decision Record:
 
 ---
 
-# 10.14 Review 不应通过无限递归证明自己
+## 10.14 Review 不应通过无限递归证明自己
 
 Review 也可能失败：
 
@@ -364,7 +364,7 @@ Governance Livelock（治理活锁）可以作为过程诊断，但不能从“R
 
 ---
 
-# 10.15 Review Agent 与 Cognition 功能可以分开，不必固定成两个 Agent
+## 10.15 Review Agent 与 Cognition 功能可以分开，不必固定成两个 Agent
 
 Review 功能回答：
 
@@ -382,9 +382,9 @@ Cognition / Compression 功能回答：
 
 ---
 
-# 10.16 最小实现按 Review Target 裁剪
+## 10.16 最小实现按 Review Target 裁剪
 
-## 低风险局部 Change
+### 低风险局部 Change
 
 可以使用：
 
@@ -397,7 +397,7 @@ named target + bounded diff
 
 不必强制独立 Reviewer 或三阶段 Review。
 
-## 普通多文件 Work
+### 普通多文件 Work
 
 通常需要：
 
@@ -408,7 +408,7 @@ named target + bounded diff
 - Rework / Re-review 条件；
 - 明确的下游非权限。
 
-## 高影响或不可逆 Decision
+### 高影响或不可逆 Decision
 
 可能进一步需要：
 
@@ -423,7 +423,7 @@ named target + bounded diff
 
 ---
 
-# 10.17 常见反模式
+## 10.17 常见反模式
 
 1. **Review Target 不明。** “Review the change”没有版本、Scope 或 Criteria。
 2. **Finding = Evidence。** Reviewer 判断被当作原始观察。
@@ -438,7 +438,7 @@ named target + bounded diff
 
 ---
 
-# 10.18 与相邻章节的接口
+## 10.18 与相邻章节的接口
 
 | 章节 | 第10章复用 | 第10章不重新定义 |
 |---|---|---|
@@ -456,29 +456,29 @@ named target + bounded diff
 
 ---
 
-# 10.19 检查清单
+## 10.19 检查清单
 
-## 定义 Review
+### 定义 Review
 
 - Review Target、Version、Baseline 与 Scope 是否清楚？
 - Criteria、Non-goal 与 Intended Decision Use 是否明确？
 - Review Contract 是否说明允许输出和 Authority Boundary？
 
-## 形成 Finding
+### 形成 Finding
 
 - Observation、Evidence、Inference 与 Recommendation 是否分开？
 - Counterevidence、Alternative Explanation 与 Unknown 是否可见？
 - Finding 在哪个阶段首次 Material？
 - 当前是否有 Unsafe Action，还是只有未来风险？
 
-## 分配 Budget 与 Independence
+### 分配 Budget 与 Independence
 
 - Review 深度是否与影响、可逆性和 Coverage 相称？
 - 哪些独立性维度真正不同？
 - Reviewer 是否能访问 Primary Source？
 - 循环上限、Stop 与 Escalation 是否存在？
 
-## 记录处置
+### 记录处置
 
 - Reviewer 是否拥有相应 Authority Grant？
 - Finding、Recommendation 与 Review Disposition 是否分开？
@@ -487,7 +487,7 @@ named target + bounded diff
 
 ---
 
-# 10.20 本章结论
+## 10.20 本章结论
 
 Review Engineering 的中心不是最大化阅读和检查，而是让有限审阅能够改变具名决定，同时暴露它没有覆盖的部分。
 

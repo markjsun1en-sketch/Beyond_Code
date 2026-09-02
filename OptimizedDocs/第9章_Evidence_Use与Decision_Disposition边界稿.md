@@ -22,7 +22,7 @@
 
 ---
 
-# 9.1 从 Result 到 Evidence Use
+## 9.1 从 Result 到 Evidence Use
 
 Result 是执行或评价产生的记录；Evidence 是能够支持、挑战或限制某个 Claim 的可检查材料。二者可以引用同一个 Artifact，但承担不同关系。
 
@@ -54,7 +54,7 @@ Attempt Outcome / Target Result / Evaluation Result
 
 ---
 
-# 9.2 Completion 不采用单轴等级
+## 9.2 Completion 不采用单轴等级
 
 “任务完成”可能同时指：
 
@@ -108,15 +108,15 @@ accepted_for = release decision
 
 这些短语不一定是项目的固定枚举。它们强调的是：记录 Accepted 时必须保留 `decision_target`。
 
-完整案例和限制见 [Completion 与 Decision Disposition 记录](../Evidence/receipts/ER-20260818-004__CLM-C09-002.md)。本稿把四类状态分轴作为候选结构，不声称现有案例已经验证其普遍优越性。
+完整案例和限制见 [Completion 与 Decision Disposition 记录](../Evidence/receipts/ER-20260818-004__CLM-C09-002.md)。本章把四类状态分轴作为候选结构，不声称现有案例已经验证其普遍优越性。
 
 ---
 
-# 9.3 Evidence 的三个不同问题
+## 9.3 Evidence 的三个不同问题
 
 Evidence Engineering 不只问“证据强不强”，而要分开三个问题。
 
-## 9.3.1 Evidence Coverage（证据对目标 Claim 的覆盖）
+### 9.3.1 Evidence Coverage（证据对目标 Claim 的覆盖）
 
 回答：
 
@@ -134,7 +134,7 @@ unresolved
 
 Coverage 是 Claim-dependent（随目标主张而变化的），不是证据文件自身携带的永久分数。
 
-## 9.3.2 Evidence Use Context（证据准备服务的决策语境）
+### 9.3.2 Evidence Use Context（证据准备服务的决策语境）
 
 回答：
 
@@ -153,7 +153,7 @@ release decision
 
 这些用途不是全书通用成熟度阶梯。项目可以定义自己的 Profile；同一份 Evidence 也可能只适合其中一部分用途。
 
-## 9.3.3 Decision Target、Decision Record 与 Disposition
+### 9.3.3 Decision Target、Decision Record 与 Disposition
 
 Decision Target（裁决对象）说明规范性判断针对哪个对象和用途。Decision Record（决策记录）保存具名 Authority 在有效 Grant 下对该 Target 作出的判断、Scope、理由、限制与复核条件。
 
@@ -187,7 +187,7 @@ Evidence
 
 ---
 
-# 9.4 从 Evidence Stack 到 Evidence Portfolio
+## 9.4 从 Evidence Stack 到 Evidence Portfolio
 
 一种常见的 Evidence Stack 图把下列材料排列在一起：
 
@@ -225,11 +225,11 @@ Portfolio 不表示 Evidence 越多越好。它要求每一项材料回答一个
 
 例如，D-048 的 exact-inventory Evidence 足以支持“验证器改变了自身 authority-bearing surface”，却不能产生目标 compile 的 PASS/FAIL。D-079 的 42 项 focused tests 支持所选行为检查，却不能单独裁决额外实现范围是否适合 E1。
 
-完整案例和反例见 [Evidence Portfolio 记录](../Evidence/receipts/ER-20260818-005__CLM-C09-003.md)。“Portfolio 替代通用 Stack”在本稿中是候选结构，不是已被证明普遍更优的方案。
+完整案例和反例见 [Evidence Portfolio 记录](../Evidence/receipts/ER-20260818-005__CLM-C09-003.md)。“Portfolio 替代通用 Stack”在本章中是候选结构，不是已被证明普遍更优的方案。
 
 ---
 
-# 9.5 Provenance、Currency 与 Generator Integrity
+## 9.5 Provenance、Currency 与 Generator Integrity
 
 Evidence Provenance 回答：
 
@@ -264,7 +264,7 @@ Provenance 的目标是让 Evidence 可定位、可挑战、可重新解释，�
 
 ---
 
-# 9.6 Acceptance-to-Evidence Mapping 必须声明裁决目标
+## 9.6 Acceptance-to-Evidence Mapping 必须声明裁决目标
 
 第四章已经把 Acceptance Criterion 与 Required Evidence 关联起来。第9章不再创建另一套映射，而是补足“这份证据允许谁作出什么决定”。
 
@@ -303,7 +303,7 @@ Mapping 至少要防止三种错配：
 
 ---
 
-# 9.7 自动 Gate 可以裁决，但 Authority 必须先被委托
+## 9.7 自动 Gate 可以裁决，但 Authority 必须先被委托
 
 本章不采用“只有 Human 才能 Acceptance”的绝对规则。
 
@@ -339,7 +339,7 @@ downstream_non_authorities:
 
 ---
 
-# 9.8 Acceptance、Adoption 与 Release Authorization 是不同裁决面
+## 9.8 Acceptance、Adoption 与 Release Authorization 是不同裁决面
 
 本书在第9章中采用以下工作定义：
 
@@ -369,7 +369,7 @@ evidence accepted for bounded claim
 
 ---
 
-# 9.9 三个有来源的分离案例
+## 9.9 三个有来源的分离案例
 
 | 案例 | Evidence 结果 | 实际裁决 | 明确保留的非 Claim |
 |---|---|---|---|
@@ -392,7 +392,7 @@ evidence accepted for bounded claim
 
 ---
 
-# 9.10 Evidence-Driven DoD 应输出边界，而不是一个 Done
+## 9.10 Evidence-Driven DoD 应输出边界，而不是一个 Done
 
 Definition of Done 可以继续要求实现、测试、运行、视觉、性能、回归与风险 Evidence，但最终输出不应只剩：
 
@@ -426,7 +426,7 @@ downstream_status:
 
 ---
 
-# 9.11 Evidence Gap（证据缺口）是决策输入，不自动等于更多治理
+## 9.11 Evidence Gap（证据缺口）是决策输入，不自动等于更多治理
 
 Evidence Coverage 不足时，可以：
 
@@ -448,11 +448,11 @@ Evidence Coverage 不足时，可以：
 
 ---
 
-# 9.12 Review Agent 的权限边界
+## 9.12 Review Agent 的权限边界
 
 Review Agent 可以：
 
-- 检查 Evidence 是否绑定正确 Claim、Commit、环境与 Scope；
+- 检查 Evidence 是否绑定正确 Claim、对象身份、时间或版本、环境与 Scope；Repository-bound Evidence 是否另行绑定 Commit 或 Revision；
 - 发现缺失、过期、冲突或 `non-result`；
 - 检查 Acceptance-to-Evidence Mapping；
 - 在被授权时执行自动 Gate；
@@ -471,7 +471,7 @@ Review Agent 不会因为名称中包含 Review 就自动拥有：
 
 ---
 
-# 9.13 与相邻章节的接口
+## 9.13 与相邻章节的接口
 
 ```text
 Chapter 4
@@ -499,31 +499,31 @@ Risk-appropriate governance and decision rights
 
 ---
 
-# 9.14 本章结论
+## 9.14 本章结论
 
-本章保留的既有主题：
+本章沿用的核心区分包括：
 
 - Completion Claim、Observation、Verification 与 Acceptance 的区分；
 - Evidence-Driven DoD；
 - Evidence Coverage、Provenance 和 Counterevidence；
 - Acceptance-to-Evidence Mapping；
 - Review Agent 检查证据链的职责；
-- Evidence 必须绑定 Commit、环境、版本和 Scope。
+- Evidence 必须绑定适合其类型的对象身份、时间或版本、环境与 Scope；Repository-bound Evidence 还应绑定 Commit 或 Revision。
 
-已有案例支持的适用边界：
+现有案例给出的适用边界是：
 
 - Test PASS 不自动证明实现范围必要；
 - 局部 Evidence Acceptance 不自动形成 Adoption 或 Release；
 - 未获委托的 Agent 或 Gate 不能自行扩大裁决权限；
 - 自动 Gate 的有效映射必须绑定 Decision Target、Scope 与 Authority。
 
-本稿提出的候选结构：
+在这些边界内，本章采用三项候选结构：
 
 - 不把 Claimed、Observed、Verified、Accepted 当成同质单轴等级；
 - 不把 Evidence Stack 当成跨 Claim 类型的通用强弱阶梯；
 - 不用一个 `done = true` 隐藏未形成的下游 Decision。
 
-本稿不把下列判断升级为既定结论：
+这些候选结构不支持把下列判断当作既定结论：
 
 - E0–E3 作为全书通用 Evidence 等级；
 - “证据越多越成熟”；

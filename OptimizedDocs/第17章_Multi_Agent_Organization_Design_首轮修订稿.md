@@ -1,9 +1,9 @@
 # 第17章 Multi-Agent Organization Design
-## Agent 数量不是组织证据；可治理安排需要显式角色、Authority、接口与责任闭环
+## Agent 数量不是组织证据；本书用显式角色、Authority、接口与责任闭环检查协作安排
 
 > 工作稿状态：首轮逻辑修订稿，不替代 [全书大纲](../OringinalDocs/beyond_code_ai_native_software_engineering_outline_zh.md) 或 [Cognitive Control、Trust 与 Human Control Plane v0.1](../OringinalDocs/ai_native_cognitive_control_trust_human_control_plane_v0.1.md)。
 > 回接说明：[RR-028](../RevisedResult/RR-028_第17章Multi_Agent_Organization_Design首轮回接说明.md)。
-> 适用边界：本章提出一个候选组织模型，用于区分 Work、Role、Assignment、Authority、Handoff、Conflict 与 Integration；它不声称多 Agent 必然提高质量、速度或成本表现。
+> 适用边界：本章提出一个候选组织模型，用于检查 Work、Role、Assignment、Authority、Responsibility、Handoff、Conflict 与 Integration；它不声称这些检查面完备、最小或跨项目必要，也不声称多 Agent 必然提高质量、速度或成本表现。
 
 多个 Agent 可以同时：
 
@@ -42,11 +42,11 @@
 
 ---
 
-# 17.1 先区分必要、有用与可选
+## 17.1 先区分核心检查、有用与可选
 
-## 必要
+### 核心检查
 
-只要多个 Human、Agent 或 Gate 共同影响同一结果，项目就需要最小的：
+当多个 Human、Agent 或 Gate 共同影响同一结果时，本书首先检查以下关系是否可见：
 
 - Work Ownership；
 - Authority Boundary；
@@ -55,13 +55,13 @@
 - Conflict / Escalation；
 - Final Disposition。
 
-这些规则也适用于 Human-only 团队。
+同样的关系也可以用于检查 Human-only 团队，但本章不主张它们是所有团队的普遍最小模型。
 
-## 有用
+### 有用
 
 当工作可分离、需要不同 Domain Expertise、需要风险相称的独立审阅，或单一 Context 已难以承载全部表面时，多个 Role / Subject 可能有用。
 
-## 可选
+### 可选
 
 Controller、Planner、Specialist、Reviewer、QA、Researcher、Knowledge Miner、Security Agent 与 Release Agent 都是可选 Role Profile，不是 AI-native 项目的必备岗位。
 
@@ -69,7 +69,7 @@ Controller、Planner、Specialist、Reviewer、QA、Researcher、Knowledge Miner
 
 ---
 
-# 17.2 Agent、Subject、Role、Persona 与 Skill 需要分开
+## 17.2 Agent、Subject、Role、Persona 与 Skill 需要分开
 
 **Agent Instance（Agent 实例：在具名时间运行、具有可识别模型、Contract、Context、Tool 与状态边界的执行实例）** 是运行主体的一种。
 
@@ -100,7 +100,7 @@ Agent Instance / Human / Gate
 
 ---
 
-# 17.3 九个候选对象展开组织关系
+## 17.3 九个候选对象展开组织关系
 
 本章区分：
 
@@ -143,7 +143,7 @@ Responsibility 与 Accountability 横切整条链。
 
 ---
 
-# 17.4 Role Contract 不是职位名称
+## 17.4 Role Contract 不是职位名称
 
 本章的候选 Role Contract 关注：
 
@@ -206,7 +206,7 @@ escalation:
 
 ---
 
-# 17.5 Role Library 是组合工具，不是固定组织图
+## 17.5 Role Library 是组合工具，不是固定组织图
 
 常见 Role 可以包括：
 
@@ -233,7 +233,7 @@ Role 数量应由真实分工触发，不由“组织看起来完整”触发。
 
 ---
 
-# 17.6 Responsibility、Authority、Permission 与 Accountability 分开
+## 17.6 Responsibility、Authority、Permission 与 Accountability 分开
 
 **Responsibility（职责：某个 Role 被要求执行、维护、响应、升级或恢复某项工作的义务）** 不表示它拥有所有相关决策权。
 
@@ -266,7 +266,7 @@ not authorized to bypass security policy alone
 
 ---
 
-# 17.7 Assignment 需要身份、容量和接受状态
+## 17.7 Assignment 需要身份、容量和接受状态
 
 一个 Assignment 不只是：
 
@@ -303,7 +303,7 @@ Subject 可以：
 
 ---
 
-# 17.8 Work Decomposition 先按接口和风险，而不是按 Agent 数量
+## 17.8 Work Decomposition 先按接口和风险，而不是按 Agent 数量
 
 适合并行的 Work 通常具有：
 
@@ -332,7 +332,7 @@ Subject 可以：
 
 ---
 
-# 17.9 Coordination Topology 没有通用最优
+## 17.9 Coordination Topology 没有通用最优
 
 **Coordination Topology（协作拓扑：Role / Subject 之间分配工作、交换状态、提交决定和升级冲突的关系结构）** 可以包括：
 
@@ -351,7 +351,7 @@ Topology 是 Profile，不是成熟度等级。
 
 ---
 
-# 17.10 Controller 首先是协调 Role，不是超级 Authority
+## 17.10 Controller 首先是协调 Role，不是超级 Authority
 
 原大纲为 Controller 分配：
 
@@ -392,7 +392,7 @@ Controller 可以持有其中部分 Responsibility。
 
 ---
 
-# 17.11 Worker 交付的是 Candidate，不是自动成立的结果
+## 17.11 Worker 交付的是 Candidate，不是自动成立的结果
 
 Worker 的主要职责可以是：
 
@@ -417,7 +417,7 @@ Worker 返回 `non-result` 不是逃避责任。当必要输入、Authority、To
 
 ---
 
-# 17.12 Controller / Worker 不是普适的上下级关系
+## 17.12 Controller / Worker 不是普适的上下级关系
 
 Controller 可以分配 Work，但不表示它对 Worker 所在 Domain 拥有更高的判断能力或 Decision Authority。
 
@@ -447,7 +447,7 @@ Human、Policy Gate 或 Domain Owner 可以在 Controller / Worker 关系之外�
 
 ---
 
-# 17.13 Planner 产生 Plan Candidate，不产生默认执行权
+## 17.13 Planner 产生 Plan Candidate，不产生默认执行权
 
 Planner 可以负责：
 
@@ -467,7 +467,7 @@ Plan Accepted、Assignment Created 与 Execution Authorized 是不同状态。
 
 ---
 
-# 17.14 Reviewer、Validator 与 Challenger 不是同一种决定
+## 17.14 Reviewer、Validator 与 Challenger 不是同一种决定
 
 **Reviewer（审阅角色：根据第10章定义的具名 Review Contract，检查 Candidate 与目标、范围、风险或完整性关系的角色）** 通常输出 Finding 和 Disposition Recommendation。
 
@@ -487,7 +487,7 @@ Plan Accepted、Assignment Created 与 Execution Authorized 是不同状态。
 
 ---
 
-# 17.15 组织拓扑如何实现 Review Independence
+## 17.15 组织拓扑如何实现 Review Independence
 
 第10章拥有 Review Independence 的正式定义。本章只说明 Role、Subject Configuration 与协作拓扑如何实现或削弱它；不同 Role 名称本身不构成独立性。
 
@@ -501,7 +501,7 @@ Plan Accepted、Assignment Created 与 Execution Authorized 是不同状态。
 
 ---
 
-# 17.16 Structured Handoff 交付最小的可继续性
+## 17.16 Structured Handoff 交付最小的可继续性
 
 **Handoff Package（交接包：交出方为下一个 Role 组织的有来源状态、产物、决定、Evidence、Unknown 与风险集合）** 的目标不是转存全部 Context，而是使接收方能识别：
 
@@ -574,7 +574,7 @@ expires_at: named-condition-or-time
 
 ---
 
-# 17.17 Handoff Submitted 不等于 Handoff Accepted
+## 17.17 Handoff Submitted 不等于 Handoff Accepted
 
 **Handoff Receipt（交接回执：接收方对交接包的可读性、范围、缺失与接管状态作出的记录）** 可以是：
 
@@ -606,9 +606,9 @@ Receipt 应说明：
 
 ---
 
-# 17.18 共享状态应少而有来源，Context 应按 Role 投影
+## 17.18 共享状态应少而有来源，Context 应按 Role 投影
 
-多 Agent 组织需要某些 **Shared Organizational State（共享组织状态：为协作公开的 Work、Assignment、Dependency、Decision、Authority 和 Handoff 索引）**。
+在本章的候选模型中，多 Agent 安排需要某些 **Shared Organizational State（共享组织状态：为协作公开的 Work、Assignment、Dependency、Decision、Authority 和 Handoff 索引）**。
 
 但这不意味着建立一个无边界的全员 Prompt。
 
@@ -636,7 +636,7 @@ Role-specific Context 只传递完成当前 Contract 所需的信息，并允许
 
 ---
 
-# 17.19 Conflict 不只是两个 Agent 给出不同答案
+## 17.19 Conflict 不只是两个 Agent 给出不同答案
 
 **Conflict Record（冲突记录：保留不相容 Claim、Decision、Authority、Policy、Dependency、资源或创意方向及其未决状态的对象）** 首先需要给冲突分型：
 
@@ -655,7 +655,7 @@ Role-specific Context 只传递完成当前 Contract 所需的信息，并允许
 
 ---
 
-# 17.20 Conflict Resolution 先解析冲突，再选择处置方式
+## 17.20 Conflict Resolution 先解析冲突，再选择处置方式
 
 原大纲中的“事实优先级、角色权限、证据强度、风险升级、人类裁决”保留为问题清单，不保留为一条机械排序。
 
@@ -677,7 +677,7 @@ Human 裁决也不是默认最后一格。只有当 Human 对该价值、风险�
 
 ---
 
-# 17.21 Deadlock 与 Livelock 是组织失败，不只是调度失败
+## 17.21 Deadlock 与 Livelock 是组织失败，不只是调度失败
 
 **Deadlock（死锁：多个 Work、Subject 或 Authority 互相等待，无一方能在现有条件下继续）** 可能来自：
 
@@ -705,7 +705,7 @@ Human 裁决也不是默认最后一格。只有当 Human 对该价值、风险�
 
 ---
 
-# 17.22 Parallel Execution 需要 Isolation 和 Integration Disposition
+## 17.22 Parallel Execution 需要 Isolation 和 Integration Disposition
 
 并行放大的不只是吞吐，还包括：
 
@@ -743,7 +743,7 @@ Integration Owner 负责形成该处置，但只在 Grant 允许时才能执行 
 
 ---
 
-# 17.23 下游委托不会自动携带上游 Authority
+## 17.23 下游委托不会自动携带上游 Authority
 
 当 Controller 或 Worker 创建下游 Agent 时，需要区分：
 
@@ -772,7 +772,7 @@ Integration Owner 负责形成该处置，但只在 Grant 允许时才能执行 
 
 ---
 
-# 17.24 输出洪水需要流量控制，不是只需要更强 Summary
+## 17.24 输出洪水需要流量控制，不是只需要更强 Summary
 
 多 Agent 可能同时生成：
 
@@ -804,7 +804,7 @@ Controller 压缩了信息，不表示判断负担已经下降。
 
 ---
 
-# 17.25 Human-Agent Organization 不应把 Human 写成每一步的默认 Gate
+## 17.25 Human-Agent Organization 不应把 Human 写成每一步的默认 Gate
 
 Human 可能承担：
 
@@ -835,7 +835,7 @@ Human 可能承担：
 
 ---
 
-# 17.26 Human Role Migration 不是线性成熟度阶梯
+## 17.26 Human Role Migration 不是线性成熟度阶梯
 
 原大纲提出 Human 从实现者转向意图定义者、规则制定者、风险承担者、最终决策者、组织设计者和价值判断者。
 
@@ -856,7 +856,7 @@ Human 可能承担：
 
 ---
 
-# 17.27 Organization Observability 观察可见行为，不推测隐藏思维
+## 17.27 Organization Observability 观察可见行为，不推测隐藏思维
 
 **Organization Observability（组织可观测性：从可见记录中检查 Work、Assignment、Dependency、Authority、Handoff、Decision 和失败状态的能力）** 可以优先支持查询：
 
@@ -877,7 +877,7 @@ Human 可能承担：
 
 ---
 
-# 17.28 组织成本应进入是否拆成多 Agent 的决定
+## 17.28 组织成本应进入是否拆成多 Agent 的决定
 
 多 Agent 方案的总成本不只是 Token 或运行时间，还包括：
 
@@ -910,7 +910,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 
 ---
 
-# 17.29 案例只保留组织关系投影
+## 17.29 案例只保留组织关系投影
 
 现有材料没有单 Agent / 多 Agent 匹配对照，也没有控制任务难度、Model、Context 与 Human Attention；完整 Case Spine 见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
 
@@ -924,7 +924,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 
 ---
 
-# 17.30 最小实现从一个真实协作边界开始
+## 17.30 候选起步实现从一个真实协作边界开始
 
 不需要一次建立十个 Role。
 
@@ -936,7 +936,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 - 可以安全并行；
 - 当前责任或 Authority 经常混淆的工作。
 
-建立最小关系：
+建立起步关系：
 
 1. 一个有边界的 Work Reference；
 2. 一个 Role Contract；
@@ -972,20 +972,20 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 
 ---
 
-# 17.31 与相邻章节的所有权边界
+## 17.31 与相邻章节的所有权边界
 
 | 对象 | 所属章节 | 第17章如何使用 |
 |---|---|---|
 | Intent Artifact、Conflict、Acceptance Target | 第4章 | 作为 Work 与 Role Contract 的方向输入 |
 | Context Contract、Pack、Manifest、Access | 第5章 | 为不同 Role 建立有来源投影 |
-| State Claim、Authority Grant、Applicability | 第6章 | 约束 Shared State 与冲突判断 |
+| State Claim、Evidence、Applicability | 第6章 | 约束 Shared State、依据与冲突判断 |
 | Work、Execution Contract、Attempt、Checkpoint、Bounded Execution | 第7章 | 将 Role 与 Assignment 绑定到既有执行边界，不重新定义 Work |
 | Attempt Outcome、Target Result、Evaluation Result、Failure、`non-result`、Recovery | 第8章 | 组织 Handoff、Conflict 与 Integration 时保留结果分类 |
 | Evidence Coverage、Acceptance、Adoption、Release Authorization | 第9章 | 避免 Review PASS 扩张决定或发布授权范围 |
 | Review、Review Target、Finding、Review Budget、Review Independence、Review Disposition | 第10章 | 说明组织拓扑如何承载审阅，不重新定义 Review 对象 |
 | HCP Projection、Brief、Compression Validation | 第12章 | 向 Human 投影组织状态，不产生新 Authority |
-| Authority、Delegation、Revocation、Intervention | 第13章 | 约束 Assignment、Decision 与下游委托 |
-| Observation、Detector、Exception | 第14章 | 提供组织运行的可见信号 |
+| Capability、Permission、Authority Grant、Delegation、Revocation、Autonomy Profile | 第13章 | 约束 Assignment、Decision 与下游委托 |
+| Observation、Detector、Exception、Intervention | 第14章 | 提供组织运行的可见信号，以及干预后的再观察关系 |
 | Organization Change Candidate | 第16章 | 将 Role、Topology 或 Handoff 改动作受治理候选 |
 | Role、Assignment、Handoff、Conflict、Integration | 第17章 | 本章核心对象 |
 | Release Execution、Release Outcome、Durable Decision Trace、Attribution、Audit 与 Accountability Evidence | 第18章 | 记录已授权发布的执行与结果，并保留组织行为的长期责任链 |
@@ -994,9 +994,9 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 
 ---
 
-# 17.32 本章原则
+## 17.32 本章原则
 
-1. **Agent 数量不是组织成熟度。** 组织需要 Work、Role、Authority、Responsibility、Handoff、Conflict 和 Integration。
+1. **Agent 数量不是组织成熟度。** 本书用 Work、Role、Assignment、Authority、Responsibility、Handoff、Conflict 和 Integration 检查协作关系。
 2. **Role 不是 Persona。** Role Contract 声明决定视角、义务、输入、输出和禁区。
 3. **Skill 不是 Role。** Method 可以被多个 Role 使用。
 4. **Assignment 需要接受。** 不完整输入不应被隐藏成执行失败。
@@ -1013,7 +1013,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 
 ---
 
-# 17.33 常见反模式
+## 17.33 常见反模式
 
 - 通过增加 Agent 数量宣称组织成熟；
 - 把 Agent Name 或 Persona 当作 Role Contract；
@@ -1042,9 +1042,9 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 
 ---
 
-# 17.34 本章检查清单
+## 17.34 本章检查清单
 
-## Work 与 Role
+### Work 与 Role
 
 - Work Reference 是否指向具有 Goal、Scope、Input、Output、Dependency 和 Close Condition 的 Work？
 - Role Contract 是否声明 Responsibility、Decision Lens、Allowed / Prohibited Decision？
@@ -1052,7 +1052,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 - Assignment 是否被显式接受？
 - Subject 是否可以返回 Out-of-scope、Missing Input 或 `non-result`？
 
-## Authority 与 Responsibility
+### Authority 与 Responsibility
 
 - Responsibility、Authority、Permission 和 Accountability 是否分开？
 - Controller 实际拥有哪些 Authority？
@@ -1060,7 +1060,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 - 下游委托可以转授哪些 Grant？
 - Revocation 如何处置 In-flight Work、Credential、Memory 和 Side Effect？
 
-## Review
+### Review
 
 - Reviewer 检查的具名 Claim 和 Scope 是什么？
 - Reviewer 输出的是 Finding / Recommendation，还是在明确 Grant 下形成的 Review Disposition？
@@ -1068,7 +1068,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 - Reviewer 是否可见 Primary Source 与 Counterevidence？
 - PASS 是否被错误扩张到 Adoption 或 Release？
 
-## Handoff 与 Context
+### Handoff 与 Context
 
 - Handoff 是否保留 Goal、State、Actual Change、Decision、Evidence、Unknown、Risk 和 Next Action？
 - 是否有 Handoff Receipt？
@@ -1077,7 +1077,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 - Shared State 是否有 Identity、Version、Freshness 和 Source Link？
 - Role-specific Context 是否允许下钻原始记录？
 
-## Conflict 与 Integration
+### Conflict 与 Integration
 
 - Conflict 属于事实、Evidence、Design、Authority、Policy、Resource、Value 还是 Responsibility？
 - Decision Target 和 Decision Owner 是否存在？
@@ -1085,7 +1085,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 - 并行 Work 是否有隔离写面、Baseline 和 Integration Order？
 - Integration Disposition 是否与 Merge、Adoption 和 Release 分开？
 
-## Flow 与 Cost
+### Flow 与 Cost
 
 - 是否存在循环 Dependency、无限 Review Loop 或 Automatic Successor？
 - WIP、Capacity、Timeout、Stop 和 Escalation 是否可观察？
@@ -1096,7 +1096,7 @@ Agent 数量、总输出量或并发任务数不能单独作为组织效能指�
 
 ---
 
-# 17.35 本章结论
+## 17.35 本章结论
 
 Multi-Agent Organization Design 不把并发 Agent 列表包装成组织。
 
@@ -1122,12 +1122,12 @@ bounded Work Reference
 - Handoff 转移工作与记录，不自动转移 Truth、Authority 或全部 Accountability；
 - Conflict 按对象与 Decision Target 处理，不靠一条虚构强弱表消除。
 
-> **Agent count is not evidence of organization. In this book, a governable multi-agent arrangement makes work, authority, responsibility, interfaces, conflict and integration explicit.**
+> **Agent count is not evidence of organization. In this book, we inspect work, role, assignment, authority, responsibility, handoff, conflict and integration as candidate coordination relations.**
 
 中文语义是：
 
-> **Agent 数量本身不是组织已经形成的证据；本书把工作、Authority、Responsibility、协作接口、冲突和集成处置的显式关系，作为可治理多 Agent 安排的工作定义。**
+> **Agent 数量本身不是组织已经形成的证据；本书把 Work、Role、Assignment、Authority、Responsibility、Handoff、Conflict 与 Integration 作为候选协作检查关系。**
 
-当这条链不存在时，多 Agent 只是多个并行运行实例。
+当这些关系不可见时，本书只能确认存在多个并行运行实例，不能据此判断已经形成可治理组织。
 
 下一章将讨论：如何把 Assignment、Handoff、Review、Authority、Decision 和 Integration 保留为可追溯的责任链，使系统不只知道“改了什么”，还能回答“为什么、根据什么、由谁决定、哪些假设仍未验证”。

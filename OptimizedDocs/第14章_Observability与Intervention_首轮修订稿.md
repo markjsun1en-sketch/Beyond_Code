@@ -32,13 +32,13 @@ Observability 只提供可检查信息。
 
 ---
 
-# 14.1 先区分必要、有效与可选
+## 14.1 先区分必要、有效与可选
 
 “Agent 需要 Observability”仍然过于宽泛。
 
 需要分三层判断。
 
-## 必要条件
+### 必要条件
 
 只要系统允许 Agent 对持久状态、外部系统或后续决策产生影响，项目就需要某种方式确认：
 
@@ -50,11 +50,11 @@ Observability 只提供可检查信息。
 
 这可以是很小的记录，不要求中央 Telemetry Platform。
 
-## 有用能力
+### 有用能力
 
 当任务长期运行、并发、多 Agent、异步或跨工具时，结构化 Event、Coverage、Detector 和 Exception Record 通常更有用，因为直接观察已经难以维持。
 
-## 可选实现
+### 可选实现
 
 统一 Dashboard、完整 Activity Timeline、集中式指标平台、异常预测和自动干预都是实现选择，不是 AI-native 工程的定义门槛。
 
@@ -66,9 +66,11 @@ Observability 只提供可检查信息。
 
 ---
 
-# 14.2 八个对象不能合并
+## 14.2 八种语义角色不能静默互换
 
-本章区分八个经常被压成“日志”或“告警”的对象。
+本章区分八种经常被压成“日志”或“告警”的语义角色。
+
+这里的八项是需要保持可区分的语义角色，不要求实现为八个独立持久对象；项目可以用 Record、字段、View 或 Event 表达，只要这些角色不会静默互换。
 
 | 对象 | 回答的问题 | 不自动等于 |
 |---|---|---|
@@ -123,7 +125,7 @@ Exception Disposition
 
 ---
 
-# 14.3 Observation Contract 先声明观察问题
+## 14.3 Observation Contract 先声明观察问题
 
 收集更多数据不是起点。
 
@@ -194,7 +196,7 @@ privacy:
 
 ---
 
-# 14.4 观察声明、动作与结果，不声称读取隐藏认知
+## 14.4 观察声明、动作与结果，不声称读取隐藏认知
 
 原大纲建议观察当前目标、计划、已完成步骤、阻塞、工具调用、风险、成本、Context、Permission 与 Checkpoint。
 
@@ -219,7 +221,7 @@ Plan 与 Explanation 可以记录为 Agent 的显式表达，不能被称为隐�
 
 ---
 
-# 14.5 Activity Timeline 是投影，不是完整因果历史
+## 14.5 Activity Timeline 是投影，不是完整因果历史
 
 **Activity Timeline（活动时间线：把有来源的执行事件与已记录关系组织成可下钻时间视图的投影）** 可以帮助 Human 理解任务进展。
 
@@ -238,11 +240,11 @@ Goal Received
 
 适合作为 Human-facing View，但需要三个限制。
 
-## 时间顺序不等于因果关系
+### 时间顺序不等于因果关系
 
 `Test Failed` 出现在 `Files Modified` 之后，不证明该修改导致失败。环境、Baseline、并发变化或测试缺陷都可能解释结果。
 
-## 并发执行不是单线故事
+### 并发执行不是单线故事
 
 多个 Agent、Tool、Queue 和 Human Decision 形成部分顺序。Timeline 需要保留：
 
@@ -256,7 +258,7 @@ Goal Received
 - Scope；
 - Uncertainty。
 
-## View 不拥有原始记录
+### View 不拥有原始记录
 
 Timeline 可以压缩事件，但必须能下钻到 Source。否则它会成为一套容易过期的竞争状态。
 
@@ -266,7 +268,7 @@ Timeline 可以压缩事件，但必须能下钻到 Source。否则它会成为�
 
 ---
 
-# 14.6 Observation Coverage 是范围声明，不是装饰性百分比
+## 14.6 Observation Coverage 是范围声明，不是装饰性百分比
 
 **Observation Coverage（观察覆盖：当前采集和检查机制声明能够观察哪些 Subject、Action、State、Failure Mode、Environment 与时间窗口，以及明确不能观察什么）** 必须绑定问题。
 
@@ -300,7 +302,7 @@ Coverage 不是“观察了很多”，而是“对这个问题，哪些部分�
 
 ---
 
-# 14.7 Unknown 需要按来源拆开
+## 14.7 Unknown 需要按来源拆开
 
 `unknown` 不是一个统一故障。
 
@@ -325,7 +327,7 @@ Coverage 不是“观察了很多”，而是“对这个问题，哪些部分�
 
 ---
 
-# 14.8 Freshness 需要多个时间
+## 14.8 Freshness 需要多个时间
 
 **Freshness（时效适用性：某条 Observation 对当前 Decision Target 是否仍足够新鲜）** 不是文件最后修改时间的同义词。
 
@@ -354,7 +356,7 @@ Freshness 需要绑定：
 
 ---
 
-# 14.9 Observer Integrity 与 Target Result 必须分开
+## 14.9 Observer Integrity 与 Target Result 必须分开
 
 **Observer Integrity（观察器完整性：采集或验证机制是否在声明边界内运行，并保持被观察对象、输入和解释边界可识别）** 是 Observation 的前提之一。
 
@@ -393,7 +395,7 @@ target_compile = failed
 
 ---
 
-# 14.10 Detector Health 不是一个绿色圆点
+## 14.10 Detector Health 不是一个绿色圆点
 
 **Detector Health（检测器健康：现有 Evidence 对具名数据路径、Detector 配置、评估执行和信号路由是否按声明工作所支持的当前判断）** 至少包含多个维度：
 
@@ -433,7 +435,7 @@ Heartbeat 只能支持进程仍在响应，不能证明：
 
 ---
 
-# 14.11 Silence 只能表示有边界的 Non-detection
+## 14.11 Silence 只能表示有边界的 Non-detection
 
 本章所说的 **Non-detection（未检测到：具名 Detector 在绑定输入和有效评估边界内没有匹配目标条件）** 不是“系统没有问题”的同义词。
 
@@ -472,7 +474,7 @@ Known blind spots: 2
 
 ---
 
-# 14.12 Detector 输出不是根因，也不是 Decision
+## 14.12 Detector 输出不是根因，也不是 Decision
 
 一个 Detector 可能发现：
 
@@ -522,19 +524,19 @@ limitations:
 
 ---
 
-# 14.13 Signal、Exception 与 Incident 是不同处置层
+## 14.13 Signal、Exception 与 Incident 是不同处置层
 
 可以采用以下语义。
 
-## Signal
+### Signal
 
 Detector 或 Human 提交的候选异常输入。
 
-## Exception
+### Exception
 
 Signal 经 Policy 或 Triage 进入具名处置流程，或 Human 直接建立需要处置的偏离记录。
 
-## Incident（事故事件：已经造成或可能造成具名损害、需要独立调查与恢复处置的事件记录）
+### Incident（事故事件：已经造成或可能造成具名损害、需要独立调查与恢复处置的事件记录）
 
 它可以处于已确认或仍在调查状态，需要独立的影响、时间线、处置与恢复记录。
 
@@ -552,7 +554,7 @@ Signal 经 Policy 或 Triage 进入具名处置流程，或 Human 直接建立�
 
 ---
 
-# 14.14 Exception Lifecycle 必须保留未知与责任
+## 14.14 Exception Lifecycle 必须保留未知与责任
 
 候选 Lifecycle 可以是：
 
@@ -602,7 +604,7 @@ Disposition 必须说明是哪一种。
 
 ---
 
-# 14.15 Severity、Urgency 与 Authority 不应压成单一分数
+## 14.15 Severity、Urgency 与 Authority 不应压成单一分数
 
 异常路由至少涉及：
 
@@ -631,7 +633,7 @@ Detector 可以把 Exception 路由给有权主体；除非已有明确 Grant �
 
 ---
 
-# 14.16 State Dashboard 是 Decision View，不是全量状态仓库
+## 14.16 State Dashboard 是 Decision View，不是全量状态仓库
 
 原大纲希望人类快速知道：
 
@@ -666,7 +668,7 @@ Dashboard 生成失败或陈旧时，应显示 Projection Failure，而不是继
 
 ---
 
-# 14.17 Exception Routing 的目标不是 Alert 数量最少
+## 14.17 Exception Routing 的目标不是 Alert 数量最少
 
 **Exception Routing（异常路由：把第12章 Attention Routing 应用于运行时 Exception，根据 Decision Target、风险、时效、Authority 和当前认知负担，将异常送达适合处置者的过程）** 不是新的 Attention 上位对象，也不是简单去重。
 
@@ -711,7 +713,7 @@ Queue 状态不是 Exception 本身的 Truth，只是路由状态。
 
 ---
 
-# 14.18 Intervention Point 是有权动作路径
+## 14.18 Intervention Point 是有权动作路径
 
 **Intervention Point（干预点：在具名执行或状态边界上，允许有权主体暂停、收窄、改变、接管或恢复的可执行控制路径）** 需要与第13章的 Authority Grant 对齐。
 
@@ -734,7 +736,7 @@ Intervention Point 存在，不等于动作已经可用。
 
 ---
 
-# 14.19 Intervention Contract 把请求、执行与效果拆开
+## 14.19 Intervention Contract 把请求、执行与效果拆开
 
 候选 **Intervention Contract（干预契约：声明触发依据、有权主体、目标动作、预期效果、风险、验证与恢复条件的记录）** 可以是：
 
@@ -795,7 +797,7 @@ unresolved
 
 ---
 
-# 14.20 自动干预需要显式 Mapping
+## 14.20 自动干预需要显式 Mapping
 
 自动 Detector 可以触发自动控制，但需要预先绑定：
 
@@ -838,7 +840,7 @@ named detector result
 
 ---
 
-# 14.21 干预后必须重新观察目标效果
+## 14.21 干预后必须重新观察目标效果
 
 Intervention 成功至少有三种不同含义：
 
@@ -873,7 +875,7 @@ Intervention Effect Observation 也可能失败。
 
 ---
 
-# 14.22 Telemetry 应尽量自动产生，但人工判断不能被伪造
+## 14.22 Telemetry 应尽量自动产生，但人工判断不能被伪造
 
 运行系统可以自动记录：
 
@@ -908,7 +910,7 @@ exception and route
 
 ---
 
-# 14.23 观察也有成本、权限和风险
+## 14.23 观察也有成本、权限和风险
 
 Telemetry 可能引入：
 
@@ -944,7 +946,7 @@ Observability 是控制机制，也可能成为新的攻击面和认知负担。
 
 ---
 
-# 14.24 案例只保留 Observation 与 Intervention 投影
+## 14.24 案例只保留 Observation 与 Intervention 投影
 
 完整事件序列由[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)承担；第12章保留 Task Projection 的实现与缺口清单。本章只增加三条观察关系：
 
@@ -956,7 +958,7 @@ D-048 与投影缺口见[Target `non-result` 案例记录](../Evidence/receipts/
 
 ---
 
-# 14.25 最小实现从一个 Decision Path 开始
+## 14.25 最小实现从一个 Decision Path 开始
 
 不要先建设完整 Telemetry Platform。
 
@@ -997,7 +999,7 @@ D-048 与投影缺口见[Target `non-result` 案例记录](../Evidence/receipts/
 
 ---
 
-# 14.26 与相邻章节的所有权边界
+## 14.26 与相邻章节的所有权边界
 
 | 对象 | 所属章节 | 第14章如何使用 |
 |---|---|---|
@@ -1014,7 +1016,7 @@ D-048 与投影缺口见[Target `non-result` 案例记录](../Evidence/receipts/
 
 ---
 
-# 14.27 本章原则
+## 14.27 本章原则
 
 1. **先声明观察问题。** Telemetry Volume 不是 Observability。
 2. **Event、Observation、Claim、Evidence、Signal、Exception 和 Intervention 分开。** 它们不会自动互相升级。
@@ -1031,7 +1033,7 @@ D-048 与投影缺口见[Target `non-result` 案例记录](../Evidence/receipts/
 
 ---
 
-# 14.28 常见反模式
+## 14.28 常见反模式
 
 - 收集所有日志，再寻找用途；
 - 用 Event 数量表示 Coverage；
@@ -1058,44 +1060,44 @@ D-048 与投影缺口见[Target `non-result` 案例记录](../Evidence/receipts/
 
 ---
 
-# 14.29 本章检查清单
+## 14.29 本章检查清单
 
-## Observation Question
+### Observation Question
 
 - 当前要支持哪个 Decision Target？
 - Subject、Action、Environment 与 Failure Mode 是否具名？
 - 当前需要的是 Event、State Claim、Evidence 还是 Decision？
 - 是否声称观察了无法访问的内部认知？
 
-## Source 与 Coverage
+### Source 与 Coverage
 
 - Source Identity、Version 与 Collection Method 是否记录？
 - Included、Excluded、Partial 与 Unknown Surface 是否显示？
 - Source Stale、Unavailable、Delayed 与 Sampled Out 是否分开？
 - Observation 是否可能改变 Target 或 Authority Surface？
 
-## Time 与 Integrity
+### Time 与 Integrity
 
 - Event、Ingestion、Evaluation、Projection 与 Decision Time 是否区分？
 - Freshness 是否绑定当前 Decision，而不是统一 TTL？
 - Observer Integrity Failure 是否与 Target Result 分开？
 - Partial Observation 是否被错误提升为完整结果？
 
-## Detector
+### Detector
 
 - Detector、Configuration、Input 与 Coverage 是否版本化？
 - Evaluation 是否明确记录 completed、unknown 或 error？
 - Source、Transport、Schema、Route 与 Effectiveness Health 是否分开？
 - 是否有 Synthetic Event、Replay、Independent Watchdog 或 Human Audit 中至少一种合适检查？
 
-## Exception 与 Routing
+### Exception 与 Routing
 
 - Signal、Exception 与 Incident 是否分开？
 - Observable Fact、Inference、Alternative Explanation 与 Recommendation 是否分栏？
 - Owner 是否拥有所需 Domain Knowledge 与 Authority？
 - Route Failure、Queue Age、Duplicate 与 Expiry 是否处理？
 
-## Intervention
+### Intervention
 
 - 动作是否绑定 Authority Grant 和最大 Scope？
 - Request、Dispatch、Apply 与 Effect Observation 是否分开？
@@ -1103,7 +1105,7 @@ D-048 与投影缺口见[Target `non-result` 案例记录](../Evidence/receipts/
 - Recovery 是 Rollback、Forward Recovery 还是暂时未知？
 - 干预失败或 Partial 时，谁负责下一步？
 
-## Cost 与 Human
+### Cost 与 Human
 
 - Telemetry 是否收集了不必要的 Secret、Payload 或 Personal Data？
 - Retention、Redaction、Access 与 Deletion 是否明确？
@@ -1112,7 +1114,7 @@ D-048 与投影缺口见[Target `non-result` 案例记录](../Evidence/receipts/
 
 ---
 
-# 14.30 本章结论
+## 14.30 本章结论
 
 Observability 不是把所有内部数据展示给人。
 

@@ -16,6 +16,10 @@ reasoning, traceable evidence, and explicit uncertainty over polished certainty.
   unless the user explicitly asks to edit an original document.
 - `OptimizedDocs/` contains revised or reconstructed working drafts. Do not
   silently replace the author's original voice or overwrite an original file.
+- `PolishedDocs/` contains reader-facing manuscript candidates derived from an
+  accepted `OptimizedDocs/` baseline. It may change narrative structure,
+  rhythm, and presentation, but it is not a second source of truth for claims,
+  evidence, object boundaries, or case facts.
 - `Evidence/` contains the Claim Ledger, Evidence Receipts, counterevidence,
   and human dispositions.
 - `.agents/skills/` contains repository-scoped writing workflows.
@@ -109,11 +113,18 @@ manuscript, remove the work-draft status and revision link, and integrate any
 reader-relevant scope boundary into the chapter's opening argument or the
 specific passage it constrains.
 
+Reader-facing chapter candidates under `PolishedDocs/` must not carry the
+work-draft header or revision link. Directory README files and implementation
+plans remain editorial documents and may link to `RevisedResult/`. If polishing
+reveals a substantive claim, definition, evidence, or case-boundary change,
+route that change back through `OptimizedDocs/`, `Evidence/`, or
+`RevisedResult/` before reflecting it in the reader-facing manuscript.
+
 ## 5. Agent Roles and Activation
 
 The main task is the sole writer and integrator. It owns claim selection,
 conflict resolution, Evidence Receipt persistence, and changes to
-`OptimizedDocs/`.
+`OptimizedDocs/` and `PolishedDocs/`.
 
 Two read-only project agents are available:
 
@@ -149,12 +160,16 @@ external repository while gathering evidence.
 5. Persist accepted source findings as Evidence Receipts.
 6. Explicitly invoke `critical_reviewer` for formal falsification review.
 7. Keep, narrow, split, or withdraw each formal Claim.
-8. Write the resulting draft only under `OptimizedDocs/`, using natural-language
-   evidence boundaries rather than internal status labels.
-9. Record the user's Human disposition in both the Receipt and Claim Ledger.
-10. If a conclusion affects AI Game Dev OS, prepare a separate feedback
-    proposal; do not directly edit the external OS repository without a new
-    request.
+8. Write the accepted logic and evidence-bearing working draft under
+   `OptimizedDocs/`, using natural-language evidence boundaries rather than
+   internal status labels.
+9. After explicit Human authorization for the polishing stage, derive the
+   reader-facing chapter under `PolishedDocs/`. Change voice and structure
+   there; do not silently change the accepted claim scope or object model.
+10. Record the user's Human disposition in both the Receipt and Claim Ledger.
+11. If a conclusion affects AI Game Dev OS, prepare a separate feedback
+   proposal; do not directly edit the external OS repository without a new
+   request.
 
 ## 7. Human Authority
 

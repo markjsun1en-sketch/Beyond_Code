@@ -45,7 +45,7 @@ Memory Engineering 的目标不是让系统“记住一切”。
 
 ---
 
-# 15.1 单次能力、项目连续性与组织智能不是同一件事
+## 15.1 单次能力、项目连续性与组织智能不是同一件事
 
 强模型可以在一次任务中生成高质量结果。
 
@@ -92,9 +92,9 @@ traceable records
 
 ---
 
-# 15.2 先区分必要、有用与可选
+## 15.2 先区分必要、有用与可选
 
-## 必要
+### 必要
 
 高影响、长期或跨角色任务至少需要保留足够的外部记录，使后来者能够定位：
 
@@ -107,11 +107,11 @@ traceable records
 
 这不要求构建向量数据库。
 
-## 有用
+### 有用
 
 当项目跨 Thread、跨 Agent、跨版本，或重复发生相似决策时，结构化 Memory Record、Index、Expiry 与 Conflict Link 通常有用。
 
-## 可选
+### 可选
 
 Embedding Retrieval、Graph Memory、自动摘要、跨项目知识库、个性化 Preference Model 和自动 Pattern Extraction 都是可选实现。
 
@@ -119,7 +119,7 @@ Embedding Retrieval、Graph Memory、自动摘要、跨项目知识库、个性�
 
 ---
 
-# 15.3 Memory 不等于 Truth、Archive、Context 或模型参数
+## 15.3 Memory 不等于 Truth、Archive、Context 或模型参数
 
 这些对象需要分开：
 
@@ -140,35 +140,37 @@ Embedding Retrieval、Graph Memory、自动摘要、跨项目知识库、个性�
 
 ---
 
-# 15.4 七个工程对象构成最小 Memory 链
+## 15.4 七种语义角色组成 Memory 教学链
 
 本章区分：
 
-## Source Record（来源记录：作为 Memory Candidate 依据的原始或更接近原始的外部记录）
+这里的七项是本章最小教学链中的语义角色，不要求实现为七个独立存储实体；项目可以按风险将其表达为独立 Record、字段、View 或 Event。
+
+### Source Record（来源记录：作为 Memory Candidate 依据的原始或更接近原始的外部记录）
 
 原始或更接近原始的 Artifact、Observation、Decision、Incident、Commit、Test、Review 或 Human Note。
 
-## Memory Candidate（记忆候选：被提议为未来用途保留、但尚未完成准入裁决的记录或派生总结）
+### Memory Candidate（记忆候选：被提议为未来用途保留、但尚未完成准入裁决的记录或派生总结）
 
 Candidate 可以由 Human、Agent、Workflow 或 Rule 提出。
 
-## Promotion Decision（记忆准入裁决：有权主体决定某个 Candidate 是否以何种用途、Scope、状态和期限进入 Project Memory）
+### Promotion Decision（记忆准入裁决：有权主体决定某个 Candidate 是否以何种用途、Scope、状态和期限进入 Project Memory）
 
 Promotion Authority 只决定能否进入 Memory Surface，不因此拥有底层事实的 Truth Authority。
 
-## Memory Record（记忆记录：经过具名准入处置、保留 Source、Scope、状态、失效与冲突信息的可长期检索记录）
+### Memory Record（记忆记录：经过具名准入处置、保留 Source、Scope、状态、失效与冲突信息的可长期检索记录）
 
 Record 可以是对 Primary Source 的引用，也可以包含有边界的 Derived Summary。
 
-## Memory Index（记忆索引：用于发现 Memory Record 的导航、检索与过滤结构）
+### Memory Index（记忆索引：用于发现 Memory Record 的导航、检索与过滤结构）
 
 Index 不是另一份 Truth Store。
 
-## Retrieval Candidate（检索候选：根据当前 Query 命中、但尚未完成适用性与 Context 选择检查的 Memory Record）
+### Retrieval Candidate（检索候选：根据当前 Query 命中、但尚未完成适用性与 Context 选择检查的 Memory Record）
 
 命中只表示相似或满足过滤条件。
 
-## Use Record（使用记录：说明某条 Memory 是否被选择进入 Context、是否可观察地被访问，以及它用于哪个 Decision 的过程记录）
+### Use Record（使用记录：说明某条 Memory 是否被选择进入 Context、是否可观察地被访问，以及它用于哪个 Decision 的过程记录）
 
 Use Record 不能证明模型理解或采纳了该 Memory。
 
@@ -192,7 +194,7 @@ Source Record
 
 ---
 
-# 15.5 记忆类型应视为 Record Role，不是互斥分类
+## 15.5 记忆类型应视为 Record Role，不是互斥分类
 
 原大纲列出 Fact、Decision、Experience、Skill、Preference、Failure 和 Constraint Memory。
 
@@ -218,7 +220,7 @@ Source Record
 
 ---
 
-# 15.6 Promotion Contract 决定什么能进入长期工作面
+## 15.6 Promotion Contract 决定什么能进入长期工作面
 
 一个 **Memory Promotion Contract（记忆准入契约：规定 Candidate 的未来用途、来源要求、适用边界、审查方式和失效条件的记录）** 可以是：
 
@@ -281,7 +283,7 @@ Promotion 至少要检查：
 
 ---
 
-# 15.7 Memory Provenance 必须记录转换链
+## 15.7 Memory Provenance 必须记录转换链
 
 **Memory Provenance（记忆来源链：从 Primary Source、Producing Activity 和 Responsible Subject 到当前 Memory Record 的生成、派生、修订与准入关系）** 至少应回答：
 
@@ -323,7 +325,7 @@ retention_policy
 
 ---
 
-# 15.8 事实、决定、推导与建议进入 Memory 后仍需分开
+## 15.8 事实、决定、推导与建议进入 Memory 后仍需分开
 
 进入长期记录不会改变 Epistemic Type。
 
@@ -361,7 +363,7 @@ The candidate was wrong despite passing tests.
 
 ---
 
-# 15.9 Derived Summary 是新记录，不是 Source 的透明副本
+## 15.9 Derived Summary 是新记录，不是 Source 的透明副本
 
 **Derived Memory Summary（派生记忆摘要：从一个或多个 Source 经过选择、压缩和解释形成的二级记录）** 本身需要：
 
@@ -392,7 +394,7 @@ The candidate was wrong despite passing tests.
 
 ---
 
-# 15.10 Memory Pollution 不只是“记住了错误事实”
+## 15.10 Memory Pollution 不只是“记住了错误事实”
 
 **Memory Pollution（记忆污染：错误、失去范围、失去时效、失去来源或获得错误 Authority 的记录进入长期复用链，并影响后续判断）** 可以来自：
 
@@ -426,7 +428,7 @@ weak or mis-scoped conclusion
 
 ---
 
-# 15.11 Memory Amplification 需要看传播条件
+## 15.11 Memory Amplification 需要看传播条件
 
 **Memory Amplification（记忆放大：一条记录因长期保留、频繁检索、广泛注入或高指令权而持续扩大影响的现象）** 不必是坏事。
 
@@ -467,7 +469,7 @@ recovery cost
 
 ---
 
-# 15.12 Lifecycle 不是一条单轴状态机
+## 15.12 Lifecycle 不是一条单轴状态机
 
 原大纲给出：
 
@@ -489,7 +491,7 @@ Capture
 
 更准确的模型至少有四个独立轴。
 
-## Admission Status
+### Admission Status
 
 ~~~text
 captured
@@ -499,7 +501,7 @@ rejected
 quarantined
 ~~~
 
-## Epistemic / Applicability Status
+### Epistemic / Applicability Status
 
 ~~~text
 unreviewed
@@ -510,7 +512,7 @@ stale
 not_established_for_current_baseline
 ~~~
 
-## Supersession Status
+### Supersession Status
 
 ~~~text
 current
@@ -519,7 +521,7 @@ deprecated
 historical_only
 ~~~
 
-## Storage / Retention Status
+### Storage / Retention Status
 
 ~~~text
 hot
@@ -543,7 +545,7 @@ promoted
 
 ---
 
-# 15.13 Expiry 与 Invalidation 不等于内容变成 False
+## 15.13 Expiry 与 Invalidation 不等于内容变成 False
 
 **Memory Invalidation（记忆失效：某条 Memory 对具名当前用途的适用关系因依赖、版本、环境、Authority 或新 Evidence 变化而不再成立）** 应与历史有效性分开。
 
@@ -578,7 +580,7 @@ delete
 
 ---
 
-# 15.14 Conflict Detection 不能只靠语义相似度
+## 15.14 Conflict Detection 不能只靠语义相似度
 
 Memory Conflict 至少有多种类型：
 
@@ -609,25 +611,25 @@ Conflict 处置不应让模型静默合成一条“折中真相”。
 
 ---
 
-# 15.15 Supersede、Deprecate、Quarantine 与 Delete 是不同动作
+## 15.15 Supersede、Deprecate、Quarantine 与 Delete 是不同动作
 
-## Supersede（取代）
+### Supersede（取代）
 
 新记录成为当前使用入口，旧记录保留历史与 Provenance。
 
-## Deprecate（弃用）
+### Deprecate（弃用）
 
 不再建议用于新任务，但可能仍对历史重建或旧环境适用。
 
-## Quarantine（隔离）
+### Quarantine（隔离）
 
 记录因污染、来源不明、恶意内容、冲突或高风险而暂时不能进入普通 Retrieval / Context。
 
-## Delete（删除）
+### Delete（删除）
 
 根据 Retention、Privacy、Security 或治理要求移除内容。
 
-## Tombstone（删除标记：在不保留被删除敏感内容的前提下，记录某个 Identity 已被删除、禁止重新导入或需要特殊处置的最小标记）
+### Tombstone（删除标记：在不保留被删除敏感内容的前提下，记录某个 Identity 已被删除、禁止重新导入或需要特殊处置的最小标记）
 
 删除与审计、隐私和历史连续性可能冲突。
 
@@ -643,7 +645,7 @@ Conflict 处置不应让模型静默合成一条“折中真相”。
 
 ---
 
-# 15.16 Retrieval 是候选发现，不是知识调用成功
+## 15.16 Retrieval 是候选发现，不是知识调用成功
 
 **Memory Retrieval（记忆检索：根据当前 Query、Filter 和索引机制发现候选 Memory Record 的过程）** 至少包含：
 
@@ -681,7 +683,7 @@ current decision question
 
 ---
 
-# 15.17 Retrieved、Selected、Supplied、Accessed 与 Adopted 分开
+## 15.17 Retrieved、Selected、Supplied、Accessed 与 Adopted 分开
 
 第5章已经建立：
 
@@ -711,7 +713,7 @@ Use Record 只能记录可观察过程，不能声称隐藏认知状态。
 
 ---
 
-# 15.18 Skill 不是普通 Memory Record
+## 15.18 Skill 不是普通 Memory Record
 
 原大纲的 Skill Memory 容易混合：
 
@@ -749,7 +751,7 @@ Memory 可以保存 Skill Version、使用历史、失败经验和 Candidate Pro
 
 ---
 
-# 15.19 Preference 与 Project Identity 需要 Human Authority
+## 15.19 Preference 与 Project Identity 需要 Human Authority
 
 **Preference Memory（偏好记忆：记录具名 Human、团队或项目在声明产品面、时间和适用条件下表达或接受的选择倾向）** 不能只写：
 
@@ -785,7 +787,7 @@ Agent 从行为中推断的 Preference 只能成为 Candidate，不能静默升�
 
 ---
 
-# 15.20 项目记忆与跨项目知识必须分层
+## 15.20 项目记忆与跨项目知识必须分层
 
 一个可用 Namespace 可以区分：
 
@@ -826,7 +828,7 @@ Scope 变宽不是简单复制。
 
 ---
 
-# 15.21 Cross-project Transfer 应生成新 Candidate
+## 15.21 Cross-project Transfer 应生成新 Candidate
 
 **Memory Transfer（记忆迁移：把一个 Namespace 中的记录提议用于另一个项目、环境或组织边界的过程）** 至少需要：
 
@@ -859,7 +861,7 @@ source project memory
 
 ---
 
-# 15.22 自动 Capture 与自动 Promotion 必须分开
+## 15.22 自动 Capture 与自动 Promotion 必须分开
 
 运行系统可以自动 Capture：
 
@@ -906,7 +908,7 @@ source project memory
 
 ---
 
-# 15.23 Memory Review 不应退化为定期全文重读
+## 15.23 Memory Review 不应退化为定期全文重读
 
 **Memory Review（记忆审查：根据风险、变化和使用情况重新检查 Memory 的来源、适用性、冲突、权限与保留状态）** 是第10章 Review 的 Target-specific 应用，可以由事件触发。它默认产生 Finding、Unknown 与 Disposition Recommendation，不因名称获得保留、删除或授权变更权。
 
@@ -945,7 +947,7 @@ delete
 
 ---
 
-# 15.24 Security、Privacy 与 Memory Poisoning
+## 15.24 Security、Privacy 与 Memory Poisoning
 
 **Memory Poisoning（记忆投毒：恶意、不可信或被错误赋权的内容进入长期检索与 Context 链，从而持续影响后续判断或动作）** 会扩大一次输入攻击的持续时间和传播范围。
 
@@ -980,7 +982,7 @@ Security Label 也不等于内容真实。它只描述处理与访问边界。
 
 ---
 
-# 15.25 Memory 可观测性关注使用链，不关注“读心”
+## 15.25 Memory 可观测性关注使用链，不关注“读心”
 
 可以观察：
 
@@ -1023,7 +1025,7 @@ retrieval and review cost
 
 ---
 
-# 15.26 案例只保留 Memory 转换风险
+## 15.26 案例只保留 Memory 转换风险
 
 完整事件见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。本章只保存三条“不得写入长期记忆的结论”：
 
@@ -1037,7 +1039,7 @@ retrieval and review cost
 
 ---
 
-# 15.27 最小实现从一个高价值记忆问题开始
+## 15.27 最小实现从一个高价值记忆问题开始
 
 不要先构建全项目 Vector Store。
 
@@ -1071,7 +1073,7 @@ retrieval and review cost
 
 ---
 
-# 15.28 与相邻章节的所有权边界
+## 15.28 与相邻章节的所有权边界
 
 | 对象 | 所属章节 | 第15章如何使用 |
 |---|---|---|
@@ -1088,7 +1090,7 @@ retrieval and review cost
 
 ---
 
-# 15.29 本章原则
+## 15.29 本章原则
 
 1. **Memory 提供连续性，不产生 Truth。** 保存与重复不等于验证。
 2. **Capture 不等于 Promotion。** 自动归档不能静默进入默认长期工作面。
@@ -1107,7 +1109,7 @@ retrieval and review cost
 
 ---
 
-# 15.30 常见反模式
+## 15.30 常见反模式
 
 - 把所有 Log 和 Transcript 直接称为 Memory；
 - 把 Archive 中的内容默认注入 Context；
@@ -1135,9 +1137,9 @@ retrieval and review cost
 
 ---
 
-# 15.31 本章检查清单
+## 15.31 本章检查清单
 
-## Candidate 与 Promotion
+### Candidate 与 Promotion
 
 - 未来 Decision Use 是否明确？
 - Candidate 来自 Primary Source、Human Judgment 还是 Agent Summary？
@@ -1145,21 +1147,21 @@ retrieval and review cost
 - Promotion Authority 是否明确且没有被误写成 Truth Authority？
 - 是否真的值得承担长期维护成本？
 
-## Provenance 与 Scope
+### Provenance 与 Scope
 
 - Source、Revision、Producer、Time 与 Transformation 是否可追踪？
 - 是否声明 Project、Domain、Version、Environment 与 Intended Use？
 - Summary 删除了哪些条件或 Counterevidence？
 - 多条记录是否其实来自同一来源链？
 
-## Applicability 与 Conflict
+### Applicability 与 Conflict
 
 - Freshness、Expiry 与 Invalidation Trigger 是否存在？
 - Historical Validity 与 Current Applicability 是否分开？
 - Direct、Temporal、Scope、Authority、Preference 和 Instruction Conflict 是否处理？
 - 冲突是否被静默融合？
 
-## Retrieval 与 Context
+### Retrieval 与 Context
 
 - Query 是否绑定当前 Decision Target？
 - Namespace、Version、Environment、Authority 与 Security Filter 是否使用？
@@ -1167,14 +1169,14 @@ retrieval and review cost
 - Context Manifest 是否记录实际提供内容？
 - 是否声称知道模型隐藏使用状态？
 
-## Skill、Preference 与 Transfer
+### Skill、Preference 与 Transfer
 
 - Skill 的 Information、Procedure、Instruction、Tool 与 Authority 是否分开？
 - Preference 是 Explicit 还是 Inferred，Owner 与 Override 是什么？
 - Cross-project 使用是否生成目标侧 Candidate？
 - External Memory 是否处理 License、Confidentiality 与 Injection？
 
-## Lifecycle、Security 与 Cost
+### Lifecycle、Security 与 Cost
 
 - Supersede、Deprecate、Quarantine 与 Delete 是否分开？
 - Derived Summary、Index、Embedding、Cache 与 Backup 是否跟随处置？
@@ -1184,7 +1186,7 @@ retrieval and review cost
 
 ---
 
-# 15.32 本章结论
+## 15.32 本章结论
 
 Memory Engineering 不从“如何让 Agent 永远记住”开始。
 

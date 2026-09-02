@@ -8,6 +8,7 @@
 - `RevisedResult/` 保存“如何判断、为什么修改、哪些地方仍待验证”。
 - `Evidence/` 保存 Claim Ledger、Evidence Receipt、反向证据和人工裁决。
 - `OptimizedDocs/` 保存根据审阅结论和证据形成的工作稿。
+- `PolishedDocs/` 保存从已接受逻辑母版派生的 Reader-facing 成书候选稿；它不建立第二套事实、Claim 或对象模型。
 - 本目录中的首批文件是对既有对话审阅结论的结构化重建，不是对话逐字稿。
 - 未经作者裁决的建议默认状态为 `unreviewed`，不能视为已经接受的改稿指令。
 
@@ -52,6 +53,12 @@
 | RR-035 | 第22章 AI-Native 工程能力适配模型首轮调整与实施 | 候选 Capability Fitness 模型与现有限制已接受；不构成统一评分、项目排名或效果证明 | [RR-035](RR-035_第22章AI_Native工程能力适配模型首轮调整计划.md) |
 | RR-036 | 第23章 AI Game Dev OS 纵向案例首轮调整与实施 | 双仓库纵向案例方向、反向证据边界和 `CLM-C23-001` 精确事实已接受；效果、因果与跨行业推广不在接受范围 | [RR-036](RR-036_第23章AI_Game_Dev_OS纵向案例首轮调整计划.md) |
 | RR-037 | 全书对象模型冻结与 P1 修订规格 | 七项对象边界已接受，Phase A–E 已实施；第7–10章接口、共享案例去重与低风险篇幅压缩已形成，Phase E 独立复核发现已关闭，章节措辞待 Human 审阅 | [RR-037](RR-037_全书对象模型冻结与P1修订规格.md) |
+| RR-038 | 全书章节措辞 Human 决策包 | Phase A 已实施；D-038-10 结构方向已实施，第4／5章形态、第12章主轴及收窄后的第17章假设已在 W0 裁决；其余声音决策未最终关闭 | [RR-038](RR-038_全书章节措辞Human决策包.md) |
+| RR-039 | PolishedDocs 人类化成书实施计划 | 第1、6章为双声音基线；Phase 2 已接受，第23章完整 Pilot 已通过独立 Fidelity 复核并延期到跨章声音复核 | [RR-039](RR-039_PolishedDocs人类化成书实施计划.md) |
+| RR-040 | 公开案例组合与章节映射 | 已接受为编辑候选地图；不表示逐案采纳、正文自动集成或免除正式 Evidence 路由 | [RR-040](RR-040_公开案例组合与章节映射.md) |
+| RR-041 | reader-facing-polish v0.1 隔离前向测试 | 已接受为有边界的流程测试；W0 已打开第12、17章逻辑入口，但 P0、两章声音与全书适用性仍未验证 | [RR-041](RR-041_reader-facing-polish_v0.1隔离前向测试.md) |
+| RR-042 | 第23章 reader-facing-polish Phase 3 Pilot | 完整候选及增量清晰度修订已完成，独立复核为 P0 0 / P1 0 / P2 0；Human 判断当前没有大问题，状态为延期跨章复核而非出版冻结 | [RR-042](RR-042_第23章reader-facing-polish_Phase3_Pilot实施记录.md) |
+| RR-043 | 全书成书修订 W0 决策与基线 | W0 已实施：固定全书有限承诺、第4／5章形态、第12章主轴、第17章窄 Design Hypothesis 与八轴状态模型；P0 尚未启动 | [RR-043](RR-043_全书成书修订W0决策与基线.md) |
 
 ## 后续使用方式
 
@@ -59,8 +66,9 @@
 2. 将拟修改的核心判断区分为事实、同期判断、事后推导和当前建议。
 3. 若判断依赖外部工程事实，先在 `Evidence/` 建立或更新 Claim 与 Receipt。
 4. 仅将通过主笔裁决的结论写入 `OptimizedDocs/`。
-5. 作者审阅后，在记录末尾填写 Human Disposition：`accepted / narrowed / rejected / deferred`。
-6. 新事实推翻旧结论时，新增一条“结论变化记录”，说明改变结论的具体事实或定义，不静默覆盖历史判断。
+5. 逻辑母版稳定且作者授权成书阶段后，再从 `OptimizedDocs/` 派生 `PolishedDocs/`；表达层发现的实质变化必须先返回前述流程。
+6. 作者审阅后，在记录末尾填写 Human Disposition：`accepted / narrowed / rejected / deferred`。
+7. 新事实推翻旧结论时，新增一条“结论变化记录”，说明改变结论的具体事实或定义，不静默覆盖历史判断。
 
 ## 命名建议
 
@@ -74,3 +82,4 @@ RR-NNN_主题.md
 
 - 形式化证据保存在 [Evidence](../Evidence/)；本目录只记录审阅结论及其修改含义。
 - 已形成的正文候选保存在 [OptimizedDocs](../OptimizedDocs/)；不在本目录复制正文，以免产生两个待维护版本。
+- Reader-facing 成书候选保存在 [PolishedDocs](../PolishedDocs/)；其逻辑与 Evidence 边界仍由对应工作稿和审阅记录约束。

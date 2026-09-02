@@ -51,9 +51,9 @@ Accountability 决定哪些主体必须对哪些决定和控制作出解释。
 
 ---
 
-# 18.1 先区分必要、有用与可选
+## 18.1 先区分必要、有用与可选
 
-## 必要
+### 必要
 
 只要某个受托动作可能产生重要、外部、难恢复或多方影响，项目至少需要能够回答：
 
@@ -68,11 +68,11 @@ Accountability 决定哪些主体必须对哪些决定和控制作出解释。
 
 低风险、局部且易恢复的修改，可以通过 Task Reference、Commit、简单验证和具名接受记录满足这些问题。
 
-## 有用
+### 有用
 
 当任务跨 Thread、跨 Agent、跨系统、跨 Release，或者存在高风险、长期维护、复杂 Authority 与事故复盘需要时，Decision Graph、Audit Trail、签名、Correlation ID 和长期 Retention 可能有用。
 
-## 可选
+### 可选
 
 完整 Event Sourcing、全量 Prompt Archive、逐 Tool Token Trace、Cryptographic Ledger、Deterministic Replay Platform 和统一企业 Graph 都是可选机制。
 
@@ -80,7 +80,7 @@ Accountability 决定哪些主体必须对哪些决定和控制作出解释。
 
 ---
 
-# 18.2 Git History 是版本事实的重要来源，不是完整决策模型
+## 18.2 Git History 是版本事实的重要来源，不是完整决策模型
 
 Git 擅长回答：
 
@@ -115,7 +115,7 @@ Decision Graph 应引用 Commit Identity、Diff 与 Ancestry，不复制 Git 成
 
 ---
 
-# 18.3 八个概念不能压成“有日志”
+## 18.3 八个概念不能压成“有日志”
 
 | 概念 | 本章工作定义 | 不自动保证 |
 |---|---|---|
@@ -142,7 +142,7 @@ Decision Graph 应引用 Commit Identity、Diff 与 Ancestry，不复制 Git 成
 
 ---
 
-# 18.4 十一种 Record Role 展开一条责任链
+## 18.4 十一种 Record Role 展开一条责任链
 
 本章使用下列候选 Record Role：
 
@@ -174,7 +174,7 @@ Decision Graph 应引用 Commit Identity、Diff 与 Ancestry，不复制 Git 成
 
 ---
 
-# 18.5 Decision Graph 是有类型投影，不是新的 Truth Store
+## 18.5 Decision Graph 是有类型投影，不是新的 Truth Store
 
 **Decision Graph（决策关系图：把版本化工程记录按有语义的关系连接起来，用于查询决定的输入、Authority、处置和后续影响的派生投影）** 不应只有一条线：
 
@@ -241,7 +241,7 @@ Graph 可以从 Primary Record 生成；Graph 节点仍需要 Source Link、Vers
 
 ---
 
-# 18.6 Trace Contract 先定义审计问题和覆盖边界
+## 18.6 Trace Contract 先定义审计问题和覆盖边界
 
 **Trace Contract（追踪契约：为具名 Work、Decision Target 或风险声明必需记录、关系、完整性检查、访问与保留条件的版本化约束）** 可以包括：
 
@@ -297,7 +297,7 @@ unknown-tool-side-effect
 
 ---
 
-# 18.7 Identity、Authentication、Attribution 与 Accountability 分开
+## 18.7 Identity、Authentication、Attribution 与 Accountability 分开
 
 一条活动可能涉及：
 
@@ -336,7 +336,7 @@ Accountability 则来自组织制度、授权与责任分配，不由 Authentica
 
 ---
 
-# 18.8 Action Record 不自动证明 Intent、因果或决定
+## 18.8 Action Record 不自动证明 Intent、因果或决定
 
 **Action Record（行动记录：对 Subject 发起、尝试、完成、中断或撤销的具名 Tool / Runtime 动作及其输入输出引用的记录）** 可以说明：
 
@@ -363,7 +363,7 @@ Action Sequence 是时间线输入，不是 Root Cause。
 
 ---
 
-# 18.9 Context Trace 只记录外部供应和访问，不推断模型内部使用
+## 18.9 Context Trace 只记录外部供应和访问，不推断模型内部使用
 
 第5章已经区分 Context Contract、Pack、Manifest 与 Access。
 
@@ -395,7 +395,7 @@ Citation 可以证明输出显式引用了某个来源。
 
 ---
 
-# 18.10 Plan、Assignment 与 Replanning 都需要版本身份
+## 18.10 Plan、Assignment 与 Replanning 都需要版本身份
 
 Plan 是 Candidate，Assignment 是 Subject、Role、Work 与 Authority 的具名绑定。
 
@@ -439,7 +439,7 @@ accepted by
 
 ---
 
-# 18.11 Decision Record 保存外部理由、Authority 与生命周期
+## 18.11 Decision Record 保存外部理由、Authority 与生命周期
 
 **Decision Record（决策记录：有权主体对具名 Decision Target 作出的处置及其当时输入、外部理由、适用范围与生命周期记录）** 可以包含：
 
@@ -499,7 +499,7 @@ recorded_at: named-time
 
 ---
 
-# 18.12 Stated Rationale 不是 Hidden Reasoning
+## 18.12 Stated Rationale 不是 Hidden Reasoning
 
 **Stated Rationale（外部陈述理由：由具名主体为某个 Decision 提供、可被审查的目标、约束、Evidence、Trade-off 与选择说明）** 是工程记录。
 
@@ -538,7 +538,7 @@ Conversation Transcript 可以作为过程记录，但它需要 Retention、Acce
 
 ---
 
-# 18.13 Evidence Link 必须说明支持关系和用途
+## 18.13 Evidence Link 必须说明支持关系和用途
 
 Evidence 与 Decision 之间不是：
 
@@ -581,7 +581,7 @@ Evidence
 
 ---
 
-# 18.14 Review、Acknowledgment、Approval 与 Decision 分开
+## 18.14 Review、Acknowledgment、Approval 与 Decision 分开
 
 第10章拥有 Review、Review Target、Finding、Review Independence 与 Review Disposition 的定义；本节只追踪这些对象的提交、授权与下游关系，不重新定义审阅语义。
 
@@ -620,7 +620,7 @@ Trace 要保留这些差异，不负责把流程强制变长。
 
 ---
 
-# 18.15 Accountability Surface 按决定与控制分配
+## 18.15 Accountability Surface 按决定与控制分配
 
 **Accountability Surface（问责表面：项目中需要具名主体承担解释、维护、复核或后果责任的目标、控制与决定集合）** 可以包括：
 
@@ -648,7 +648,7 @@ Trace 要保留这些差异，不负责把流程强制变长。
 
 ---
 
-# 18.16 Agent 可以被 Operationally Attributed，但不能被一句话变成最终责任主体
+## 18.16 Agent 可以被 Operationally Attributed，但不能被一句话变成最终责任主体
 
 Agent 可以：
 
@@ -684,7 +684,7 @@ Agent 可以：
 
 ---
 
-# 18.17 Traceability 支持责任判断，但不等于 Blame Assignment
+## 18.17 Traceability 支持责任判断，但不等于 Blame Assignment
 
 事故后，Trace 可以帮助识别：
 
@@ -729,7 +729,7 @@ recovery response
 
 ---
 
-# 18.18 Audit Trail 需要可查询、可校正和可暴露缺口
+## 18.18 Audit Trail 需要可查询、可校正和可暴露缺口
 
 **Audit Trail（审计轨迹：为具名审计目的保存的、具有身份、顺序、来源、完整性边界、访问与保留规则的活动和决定记录集合）** 可能需要：
 
@@ -765,7 +765,7 @@ recovery response
 
 ---
 
-# 18.19 Tamper-evident 不等于 Tamper-proof
+## 18.19 Tamper-evident 不等于 Tamper-proof
 
 **Tamper-evident（篡改可察觉：记录被删除、替换、重排或无授权改写时，系统有机会通过完整性机制暴露异常）** 可以使用：
 
@@ -806,7 +806,7 @@ original record
 
 ---
 
-# 18.20 Time、Ordering 与 Cross-system Correlation 都可能失真
+## 18.20 Time、Ordering 与 Cross-system Correlation 都可能失真
 
 多个 Agent、Tool、CI、Cloud API、Repository 和 Human Interface 可能使用不同 Clock 和 Identity。
 
@@ -849,7 +849,7 @@ conflicting-time-record
 
 ---
 
-# 18.21 Retention、Access 与 Privacy 互相约束
+## 18.21 Retention、Access 与 Privacy 互相约束
 
 Trace 可能包含：
 
@@ -894,7 +894,7 @@ Trace Contract 因此需要声明：
 
 ---
 
-# 18.22 Reconstruction、Replay 与 Reproduction 不是同一目标
+## 18.22 Reconstruction、Replay 与 Reproduction 不是同一目标
 
 | 目标 | 当前问题 | 典型结果 |
 |---|---|---|
@@ -926,7 +926,7 @@ Trace Contract 因此需要声明：
 
 ---
 
-# 18.23 Decision Reconstruction 按“当时可知”与“后来发现”分层
+## 18.23 Decision Reconstruction 按“当时可知”与“后来发现”分层
 
 发生问题后，可以按下列顺序有限重建：
 
@@ -959,7 +959,7 @@ Decision Reconstruction 的目标不是证明过去的人或 Agent“应该知�
 
 ---
 
-# 18.24 Later Evidence 应建立 Invalidation Link，不应重写过去
+## 18.24 Later Evidence 应建立 Invalidation Link，不应重写过去
 
 一份 Evidence 后来可能被发现：
 
@@ -1003,7 +1003,7 @@ REL-031 remains historical but no longer active
 
 ---
 
-# 18.25 Trace Gap 与 `non-result` 必须分开
+## 18.25 Trace Gap 与 `non-result` 必须分开
 
 **Trace Gap（追踪缺口：Trace Contract 要求的事件、关系、身份、时间或 Source 无法被确认的具名缺失）** 可以包括：
 
@@ -1043,7 +1043,7 @@ Emergency / Break-glass 不应伪装成普通合规路径。它需要记录触�
 
 ---
 
-# 18.26 Random Audit 需要 Sampling Contract，不采用固定比例神话
+## 18.26 Random Audit 需要 Sampling Contract，不采用固定比例神话
 
 HCP 提案建议低风险任务由 Human 随机抽查 2–5%。
 
@@ -1087,7 +1087,7 @@ Audit History 可以成为后续 Autonomy 或 Reliance Decision 的 Evidence，�
 
 ---
 
-# 18.27 Human Control Plane 投影 Trace，不成为 Audit Truth
+## 18.27 Human Control Plane 投影 Trace，不成为 Audit Truth
 
 Human 不应通过浏览全部 Log 才知道发生了什么。
 
@@ -1123,7 +1123,7 @@ HCP 上的绿色状态不创造新的 Truth、Authority 或 Accountability。
 
 ---
 
-# 18.28 Traceability Cost 需要按风险裁剪
+## 18.28 Traceability Cost 需要按风险裁剪
 
 记录更多内容会增加：
 
@@ -1140,7 +1140,7 @@ HCP 上的绿色状态不创造新的 Truth、Authority 或 Accountability。
 
 可以按当前风险选择不同 Trace Profile，但不要把它们写成成熟度等级。
 
-## 低风险、局部、易恢复
+### 低风险、局部、易恢复
 
 可能只需要：
 
@@ -1152,7 +1152,7 @@ simple evidence
 named disposition
 ~~~
 
-## 跨 Thread、跨 Agent 或存在集成风险
+### 跨 Thread、跨 Agent 或存在集成风险
 
 可能增加：
 
@@ -1166,7 +1166,7 @@ integration disposition
 trace gap
 ~~~
 
-## 高影响、难恢复、多方 Authority 或强审计要求
+### 高影响、难恢复、多方 Authority 或强审计要求
 
 可能再增加：
 
@@ -1187,9 +1187,9 @@ incident reconstruction drill
 
 ---
 
-# 18.29 案例只保留可重建关系
+## 18.29 案例只保留可重建关系
 
-本节只使用已有项目记录，不把当前工作稿反向作为事实来源；完整事件见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
+以下三个片段均来自已保存的项目记录，只用于检查可重建关系；完整事件见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
 
 | Episode | 可从外部记录检查的关系 | 保留的反例或限制 |
 |---|---|---|
@@ -1201,7 +1201,7 @@ incident reconstruction drill
 
 ---
 
-# 18.30 最小实现从一个需要解释的 Decision Target 开始
+## 18.30 最小实现从一个需要解释的 Decision Target 开始
 
 不要先建立全项目 Graph。
 
@@ -1246,7 +1246,7 @@ incident reconstruction drill
 
 ---
 
-# 18.31 与相邻章节的所有权边界
+## 18.31 与相邻章节的所有权边界
 
 | 对象 | 所属章节 | 第18章如何使用 |
 |---|---|---|
@@ -1275,7 +1275,7 @@ incident reconstruction drill
 
 ---
 
-# 18.32 本章原则
+## 18.32 本章原则
 
 1. **Git History 与 Decision Trace 互补。** Git 管版本，Trace 连接 Intent、Authority、Evidence 与 Decision。
 2. **Traceability 不等于 Accountability。** 记录支持责任判断，不自动分配组织责任。
@@ -1296,7 +1296,7 @@ incident reconstruction drill
 
 ---
 
-# 18.33 常见反模式
+## 18.33 常见反模式
 
 - 把 Git 贬低成只能保存 Diff；
 - 把 Commit Author 当作唯一代码生产者、批准者和责任主体；
@@ -1333,30 +1333,30 @@ incident reconstruction drill
 
 ---
 
-# 18.34 本章检查清单
+## 18.34 本章检查清单
 
-## Target 与 Contract
+### Target 与 Contract
 
 - 当前 Trace 服务哪个 Work、Decision Target、Risk 或 Incident？
 - Trace Contract 要求哪些 Record、Relation、Integrity、Access 与 Retention？
 - Coverage 是 Complete-for-scope、Partial、Missing 还是 Unknown？
 - Hidden Reasoning 是否被明确排除？
 
-## Identity 与 Authority
+### Identity 与 Authority
 
 - Requester、Worker、Agent Instance、Tool、Reviewer、Authority、Committer 与 Deployer 是否可区分？
 - Subject Configuration 是否绑定模型／规则、Tool、Credential Scope 与运行边界？
 - Authentication、Attribution、Responsibility 与 Accountability 是否被混用？
 - Action 的 Authority Reference 是否在当时有效？
 
-## Baseline、Context 与 Plan
+### Baseline、Context 与 Plan
 
 - Intent、Execution Baseline、Context Manifest、Plan 和 Assignment 使用哪个 Version？
 - Context 是 Eligible、Selected、Supplied、Accessed 还是 Cited？
 - 是否错误推断模型内部使用？
 - Replanning 是否保留 Trigger、Scope 与 Authority Impact？
 
-## Action、Change 与 Outcome
+### Action、Change 与 Outcome
 
 - Action 是 Requested、Attempted、Completed、Interrupted 还是 Revoked？
 - Tool Success 是否有独立 Outcome Observation？
@@ -1364,7 +1364,7 @@ incident reconstruction drill
 - Action Sequence 是否被误写成 Causal Claim？
 - Side Effect 与 In-flight Work 是否进入 Trace？
 
-## Evidence、Review 与 Decision
+### Evidence、Review 与 Decision
 
 - Evidence 实际观察了什么，Coverage 与 Non-claim 是什么？
 - Evidence-to-Claim / Decision Edge 是否声明 Scope 与 Use？
@@ -1372,7 +1372,7 @@ incident reconstruction drill
 - Acknowledgment、Approval、Acceptance、Adoption、Release Authorization 与 Deployment 是否分开？
 - Decision Record 是否包含 Target、Authority、外部理由、Assumption、Unknown、Expiry 与 Supersession？
 
-## Audit 与 Integrity
+### Audit 与 Integrity
 
 - Audit Trail 是否可查询并能下钻 Primary Record？
 - Collector / Detector Health 是否可见？
@@ -1381,7 +1381,7 @@ incident reconstruction drill
 - Cross-system Correlation 和 Ordering Unknown 是否保留？
 - Correction 是否通过追加与 Supersession 完成？
 
-## Reconstruction 与 Accountability
+### Reconstruction 与 Accountability
 
 - 同期视图与事后视图是否分开？
 - Later Evidence 怎样 Narrow、Invalidate 或 Reopen 旧 Decision？
@@ -1390,7 +1390,7 @@ incident reconstruction drill
 - 是否把最后操作者错误当成全部责任？
 - 法律责任是否被对象模型未经依据地自动推出？
 
-## Cost、Privacy 与 Scope
+### Cost、Privacy 与 Scope
 
 - 是否记录了超过审计目的所需的 Prompt、Secret 或个人数据？
 - Access、Redaction、Retention、Deletion 与 Export 是否有 Owner？
@@ -1400,7 +1400,7 @@ incident reconstruction drill
 
 ---
 
-# 18.35 本章结论
+## 18.35 本章结论
 
 Traceability and Accountability 不要求保存 Agent 的隐藏思维，也不把所有活动压成一条线性日志。
 

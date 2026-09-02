@@ -4,11 +4,12 @@
 - 工作稿：[第17章 Multi-Agent Organization Design](../OptimizedDocs/第17章_Multi_Agent_Organization_Design_首轮修订稿.md)
 - 原始结构：[全书大纲第17章](../OringinalDocs/beyond_code_ai_native_software_engineering_outline_zh.md)
 - 新增材料：[Cognitive Control、Trust 与 Human Control Plane v0.1](../OringinalDocs/ai_native_cognitive_control_trust_human_control_plane_v0.1.md)
-- 核心 Claim：[`CLM-C17-001`](../Evidence/claim-ledger.md)，当前为 `unsupported / unreviewed / hold`
+- 核心 Claim：[`CLM-C17-001`](../Evidence/claim-ledger.md)，当前为 `unsupported / accepted / narrow`
 - 关联案例 Evidence：[CLM-C12-001](../Evidence/receipts/ER-20260824-002__CLM-C12-001.md)、[CLM-C16-001](../Evidence/receipts/ER-20260824-003__CLM-C16-001.md)、[CLM-C09-001](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)
 - 审阅依据：[RR-021](RR-021_Human_Control_Plane与认知控制架构审阅.md)、[RR-023](RR-023_第12章Cognitive_Compression首轮回接说明.md)、[RR-024](RR-024_第13章Governed_Autonomy首轮回接说明.md)、[RR-027](RR-027_第16章Self_Evolution_Engineering首轮回接说明.md)
 - 记录性质：章节回接说明，不是新的 Evidence Receipt
-- 章节对象模型与措辞状态：`unreviewed`
+- 章节核心假设状态：`LOGIC_HYPOTHESIS_CORE_ACCEPTED_DETAILS_OPEN`
+- 章节措辞状态：`VOICE_NOT_REVIEWED`
 
 ## 回接结果
 
@@ -36,19 +37,19 @@ bounded Work Unit
 → explicit next responsibility
 ~~~
 
-核心句为：
+2026-08-24 初始核心句为：
 
 > Agent count is not evidence of organization. A governable multi-agent arrangement must at least make work, authority, responsibility, interfaces, conflict and integration explicit.
 
-中文语义被收窄为“数量不是组织证据，可治理安排至少需要说明这些关系”，没有把作者定义写成自我证明，没有声称这些对象足以形成高效组织，也没有声称多 Agent 优于单 Agent。
+当时中文语义被收窄为“数量不是组织证据，可治理安排至少需要说明这些关系”，没有声称这些对象足以形成高效组织，也没有声称多 Agent 优于单 Agent。W0 后的当前表述见本记录末尾 Addendum；旧句保留在这里用于说明 Claim 为什么需要再次收窄。
 
-## 核心 Claim 的当前证据状态
+## 核心 Claim 的初始证据状态
 
 本轮分配了 `CLM-C17-001`：
 
 > Agent 数量本身不足以证明已经形成组织或获得组织效能；可治理的多 Agent 安排至少需要说明 Work、Role、Authority、Responsibility、Handoff、Conflict 与 Integration 的关系。
 
-该 Claim 当前登记为：
+该 Claim 在 2026-08-24 初次登记为：
 
 - Evidence Coverage：`unsupported`；
 - Human Status：`unreviewed`；
@@ -365,20 +366,20 @@ SP122 接受 Qualifying Evidence，同时保持 Adoption Blocked 与 Production 
 
 - 第4章拥有 Intent Artifact、Conflict 与 Acceptance Target；
 - 第5章拥有 Context Contract、Pack、Manifest 与 Access；
-- 第6章拥有 State Claim、Authority Grant 与 Applicability；
+- 第6章拥有 State Claim、Evidence 与 Applicability；
 - 第9章拥有 Evidence Coverage、Acceptance、Adoption 与 Release；
 - 第12章拥有 HCP Projection、Brief 与 Compression Validation；
-- 第13章拥有 Authority、Delegation、Revocation 与 Intervention；
-- 第14章拥有 Observation、Detector 与 Exception；
+- 第13章拥有 Capability、Permission、Authority Grant、Delegation、Revocation 与 Autonomy Profile；
+- 第14章拥有 Observation、Detector、Exception 与 Intervention；
 - 第16章拥有 Organization Change Candidate 的评估与采用；
 - 第17章拥有 Role、Assignment、Handoff、Conflict 与 Integration；
 - 第18章拥有 Durable Decision Trace、Attribution、Audit 与 Accountability Evidence。
 
 第17章处理当前组织关系，第18章处理这些关系怎样形成长期可追溯责任链。
 
-## 当前审阅点
+## 2026-08-24 初始审阅点
 
-核心 Claim、对象模型和章节措辞尚未由作者裁决。下一轮应重点检查：
+在初次回接时，核心 Claim、对象模型和章节措辞尚未由作者裁决，当时列出以下检查点。W0 已处置高层 Claim 与所有权标签，但详细九对象、篇幅和声音问题仍开放；当前状态以本记录末尾 Addendum 为准。
 
 1. 当前列出的关系是否足以描述“可治理”，是否还需要激励、资源、制度环境或其他对象；
 2. 九对象是否过细，Dependency 是否应只是 Work Unit 字段；
@@ -407,7 +408,7 @@ Coverage、Human Status 或 Ledger 历史。
 
 - `unsupported` 继续约束“多 Agent 比单 Agent 更快、更便宜、质量更高”及
   “九对象是完备或最小组织模型”等效果或一般化 Claim；
-- 它不表示 Work、Role、Assignment、Authority、Handoff、Conflict 与
+- 它不表示 Work、Role、Assignment、Authority、Responsibility、Handoff、Conflict 与
   Integration 的候选概念分解不能进入正文；
 - 本章对象集继续作为 `proposed conceptual model`，由定义一致性、解释力、
   反例、替代模型、Scope 和 Human Review 审查；
@@ -425,10 +426,30 @@ Reader-facing Chapter 已据此：
 结论变化来自 Evidence Workflow 适用范围的重新定义，不来自对历史案例的
 重新解释。
 
+## 2026-09-02 W0 Decision Reconciliation Addendum
+
+Human 以“授权W0”接受第17章的高层检查关系作为显式 Design Hypothesis（设计假设）。接受范围是：Agent 数量本身不足以证明已经形成组织或获得组织效能；本书可以用 Work、Role、Assignment、Authority、Responsibility、Handoff、Conflict 与 Integration 检查一个多 Agent 安排暴露了哪些协作关系。
+
+正文 17.3 展开的九个候选对象是这个高层假设的工作性 elaboration，不在 W0 中逐项冻结。Subject Configuration、Dependency / Coordination 以及 Responsibility 如何映射到详细对象，留给 P0 的反例与压缩测试；若要改变逻辑对象，仍须先修改 `OptimizedDocs/`，不能在 Polish 阶段静默决定。
+
+这项裁决改变了 `CLM-C17-001` 的措辞和 Human disposition，没有出现新的项目事实或外部 Evidence：
+
+- 旧措辞中的“至少需要”容易被读成跨项目必要条件；
+- 新措辞把这些关系限定为本书的候选检查面；
+- Coverage 继续为 `unsupported`，因为没有证明对象集完备、最小、跨项目必要，也没有证明多 Agent 改善质量、速度、成本或 Human Load；
+- Human 接受的是一个可供反例和迁移测试挑战的概念模型，不是经验定律。
+
+W0 同时修正了本章所有权表中的两个陈旧标签：Authority Grant 归第13章，Intervention 归第14章。这是与 RR-037 已接受对象所有权的对齐，不是重新打开对象模型。
+
 ## Human Disposition
 
-- 核心 Claim：unreviewed
-- 章节逻辑与措辞：unreviewed
-- Decision by：pending
-- Decision at：pending
-- Rationale：pending
+- Core Claim：`unsupported / accepted / narrow`
+- Logic：`LOGIC_HYPOTHESIS_CORE_ACCEPTED_DETAILS_OPEN`
+- Evidence Route：`EVIDENCE_BOUNDARY_ACCEPTED`；效果、完备性与跨项目必要性仍需新 Evidence
+- Polish：`POLISH_NOT_AUTHORIZED`；W0 没有启动第17章 Pilot
+- Six Fidelity：`NOT_RUN_FOR_POLISHED_CHAPTER`
+- Human Voice：`VOICE_NOT_REVIEWED`
+- Decision by：Human author
+- Decision at：2026-09-02
+- Authorization：`授权W0`
+- Not accepted：九个详细对象逐项冻结、固定 Topology、完备或最小对象集、跨项目必要性、多 Agent 效能，以及 Human Control Plane 已降低认知负担

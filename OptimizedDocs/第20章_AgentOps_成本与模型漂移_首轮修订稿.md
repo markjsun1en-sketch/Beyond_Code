@@ -45,9 +45,9 @@ bind an operational baseline
 
 ---
 
-# 20.1 先区分必要、有用与可选
+## 20.1 先区分必要、有用与可选
 
-## 必要
+### 必要
 
 只要一个 Agent 配置会长期、重复或以较高影响运行，项目至少需要能够回答：
 
@@ -59,7 +59,7 @@ bind an operational baseline
 - 谁可以继续、收窄、重路由、回滚、暂停或重新授权；
 - 失败、退出、未知外部结果和 `non-result` 怎样保留。
 
-## 有用
+### 有用
 
 当运行量、变化频率或失败成本增加时，下列能力通常有用：
 
@@ -73,7 +73,7 @@ bind an operational baseline
 - Budget、Alert、Canary、Fallback 与 Rollback；
 - Human Attention 和 Decision Queue 的有限观察。
 
-## 可选
+### 可选
 
 以下实现不应被当成 AgentOps 的定义条件：
 
@@ -92,7 +92,7 @@ bind an operational baseline
 
 ---
 
-# 20.2 AgentOps 与 DevOps、LLMOps 的关系是范围问题
+## 20.2 AgentOps 与 DevOps、LLMOps 的关系是范围问题
 
 **AgentOps（Agent 运行工程：持续识别 Agent 配置、Workload、Outcome、
 Control、Cost 与 Drift，并把运行观察连接到有 Authority 的处置）** 可以复用
@@ -128,7 +128,7 @@ Intent and Workload
 
 ---
 
-# 20.3 第20章只拥有运行评价与处置层
+## 20.3 第20章只拥有运行评价与处置层
 
 第20章不重新拥有所有运行事实。
 
@@ -161,7 +161,7 @@ Cost Attribution View 与 Routing Comparison View 只是投影，不成为新的
 
 ---
 
-# 20.4 Operational Baseline 绑定“什么正在被评价”
+## 20.4 Operational Baseline 绑定“什么正在被评价”
 
 **Operational Baseline（运行基线：在具名 Purpose、Workload 与时间范围内，
 用于解释运行结果的版本化配置、边界和评价引用集合）** 不是一份永久 Known-good 声明。
@@ -226,7 +226,7 @@ Identity、Contract、Change Notice、Observed Behavior Baseline 与不确定性
 
 ---
 
-# 20.5 Baseline 变化不能静默重写过去
+## 20.5 Baseline 变化不能静默重写过去
 
 当 Model Alias、Tool Version、Prompt、Policy 或 Evaluation Set 更新时，常见做法是
 直接把 Dashboard 的当前值当成新常态。
@@ -250,7 +250,7 @@ old baseline closes or remains active for its scope
 
 ---
 
-# 20.6 Evaluation Window 提供分母、范围和观察缺口
+## 20.6 Evaluation Window 提供分母、范围和观察缺口
 
 **Evaluation Window（评价窗口：为一组可比 Work、配置和时间范围绑定纳入规则、
 分母、Observation Coverage 与 Decision Use 的观察区间）** 不是随意选择的一段日期。
@@ -278,7 +278,7 @@ old baseline closes or remains active for its scope
 
 ---
 
-# 20.7 Outcome Unit 与 Accepted Outcome 必须先定义
+## 20.7 Outcome Unit 与 Accepted Outcome 必须先定义
 
 **Outcome Unit（结果单位：在具名 Work 与 Scope 下，可被独立观察和处置的一次
 目标结果）** 可能是：
@@ -313,7 +313,7 @@ Outcome Unit 是运行计量投影：它引用一个或多个第8章 Target Resu
 
 ---
 
-# 20.8 Metric Contract 说明数字能够支持什么
+## 20.8 Metric Contract 说明数字能够支持什么
 
 **Metric Contract（指标契约：为具名指标规定定义、来源、分母、窗口、分段、
 Coverage、限制和 Decision Use）** 可以写成：
@@ -358,7 +358,7 @@ not_supported:
 
 ---
 
-# 20.9 指标不能脱离 Population、分段与缺失值
+## 20.9 指标不能脱离 Population、分段与缺失值
 
 平均值可能把不同 Workload 混在一起。
 
@@ -389,7 +389,7 @@ not_supported:
 
 ---
 
-# 20.10 AgentOps 观察面不能压成一个分数
+## 20.10 AgentOps 观察面不能压成一个分数
 
 原大纲列出的 Agent 状态、Tool Call、成功率、延迟、成本、失败类型、人工介入、
 Permission 与 Context 使用都应保留，但要放入不同语义面。
@@ -411,7 +411,7 @@ Permission 与 Context 使用都应保留，但要放入不同语义面。
 
 ---
 
-# 20.11 Total Production Cost 不只是 Token
+## 20.11 Total Production Cost 不只是 Token
 
 **Cost Boundary（成本边界：为具名 Outcome、Decision Target、Owner 与时间窗规定
 纳入、排除、归属和未知成本的评价范围）** 先于任何总成本相加。
@@ -422,7 +422,7 @@ Permission 与 Context 使用都应保留，但要放入不同语义面。
 
 候选成本面包括：
 
-## Direct Execution Cost
+### Direct Execution Cost
 
 - Model / Token；
 - Tool / API；
@@ -430,7 +430,7 @@ Permission 与 Context 使用都应保留，但要放入不同语义面。
 - Storage、Network 与 Runtime；
 - Retry 与 Fallback。
 
-## Context Cost
+### Context Cost
 
 - Retrieval；
 - Assembly；
@@ -439,7 +439,7 @@ Permission 与 Context 使用都应保留，但要放入不同语义面。
 - Storage；
 - Freshness 与 Index Maintenance。
 
-## Verification and Review Cost
+### Verification and Review Cost
 
 - Test；
 - Evaluation；
@@ -448,7 +448,7 @@ Permission 与 Context 使用都应保留，但要放入不同语义面。
 - Evidence Collection；
 - Release Decision。
 
-## Human Attention Cost
+### Human Attention Cost
 
 - Context Reconstruction；
 - Decision Preparation；
@@ -457,7 +457,7 @@ Permission 与 Context 使用都应保留，但要放入不同语义面。
 - Takeover；
 - 重新建立对系统状态的理解。
 
-## Coordination Cost
+### Coordination Cost
 
 - Work Decomposition；
 - Assignment；
@@ -466,7 +466,7 @@ Permission 与 Context 使用都应保留，但要放入不同语义面。
 - Integration；
 - Output Triage。
 
-## Failure and Recovery Cost
+### Failure and Recovery Cost
 
 - Failed Attempt；
 - Rework；
@@ -475,7 +475,7 @@ Permission 与 Context 使用都应保留，但要放入不同语义面。
 - Data / External State Repair；
 - Customer、Player 或组织影响。
 
-## Governance and Maintenance Cost
+### Governance and Maintenance Cost
 
 - Policy、Gate、Trace、Detector 与 Audit；
 - Exception、Override 与 Escalation；
@@ -490,7 +490,7 @@ Governance 和 Cognitive Cost 后再相加。
 
 ---
 
-# 20.12 Cost Attribution View 是处置投影
+## 20.12 Cost Attribution View 是处置投影
 
 **Cost Attribution View（成本归属视图：把可获得的运行和人工记录按具名 Outcome、
 Workload、Baseline、Owner 与 Decision Target 组织的查询投影）** 可以回答：
@@ -514,7 +514,7 @@ Workload、Baseline、Owner 与 Decision Target 组织的查询投影）** 可�
 
 ---
 
-# 20.13 Human Attention 是有限资源，但不是完整可测对象
+## 20.13 Human Attention 是有限资源，但不是完整可测对象
 
 Agent 系统可能降低某些操作时间，同时增加：
 
@@ -551,7 +551,7 @@ Agent 系统可能降低某些操作时间，同时增加：
 
 ---
 
-# 20.14 Governance Economics 比较治理增量，不追求治理最少
+## 20.14 Governance Economics 比较治理增量，不追求治理最少
 
 **Agent Economics（Agent 经济性：评价具名 Agent 生产安排能否在 Outcome、Risk、
 Human Capacity 与时间边界内，以可持续的总生产成本运行）** 是本章的上位经济视角。
@@ -600,7 +600,7 @@ subject to:
 
 ---
 
-# 20.15 Governance 指标需要反事实与损失不对称边界
+## 20.15 Governance 指标需要反事实与损失不对称边界
 
 原跨章规划提出了若干有用候选指标：
 
@@ -615,20 +615,20 @@ subject to:
 
 它们不能机械进入一个总分。
 
-## Governance Overhead Ratio
+### Governance Overhead Ratio
 
 分子和分母必须明确。
 
 如果分母只包括 Model Runtime，Review 占比会很高；如果分母包括长期维护与 Incident，
 同一控制的比例可能不同。
 
-## False Escalation 与 Under-governance
+### False Escalation 与 Under-governance
 
 二者损失通常不对称。
 
 一次低风险误升级可能增加等待；一次漏升级可能导致不可逆外部影响。不能只比较次数。
 
-## Rework Avoided 与 Failure Cost Avoided
+### Rework Avoided 与 Failure Cost Avoided
 
 “避免”是反事实推导。
 
@@ -639,7 +639,7 @@ subject to:
 - 如果没有 Gate 会发生什么仍属于估计；
 - 估计依据和不确定性是什么。
 
-## Protected Control Floor
+### Protected Control Floor
 
 Secret、Production Authority、不可逆数据损失、法定义务和明确保留给 Human 的 Decision Type
 不能因为短期成本高就由执行 Agent 自动关闭。
@@ -648,7 +648,7 @@ Secret、Production Authority、不可逆数据损失、法定义务和明确保
 
 ---
 
-# 20.16 Model Routing 是有边界的运行处置
+## 20.16 Model Routing 是有边界的运行处置
 
 原大纲提出：
 
@@ -684,7 +684,7 @@ Local、Private 与 Cloud 的处理合同由第19章定义；第20章观察它�
 
 ---
 
-# 20.17 Routing Comparison 先保证可比性
+## 20.17 Routing Comparison 先保证可比性
 
 **Routing Comparison View（路由比较视图：在尽量一致的 Workload、Boundary、
 Evaluation 与处置规则下比较候选运行路径的查询投影）** 可以使用：
@@ -724,7 +724,7 @@ Evaluation 与处置规则下比较候选运行路径的查询投影）** 可以
 
 ---
 
-# 20.18 Drift 是相对 Baseline 的相关变化
+## 20.18 Drift 是相对 Baseline 的相关变化
 
 **Drift（漂移：相对于具名 Operational Baseline，可能改变 Outcome、Control、
 Cost、Evidence Coverage 或适用边界的持续或离散变化）** 不是任何数字波动的同义词。
@@ -753,7 +753,7 @@ Drift Finding 需要说明它对哪个 Claim 或 Decision Target 有意义。
 
 ---
 
-# 20.19 Model Drift 不只来自权重更新
+## 20.19 Model Drift 不只来自权重更新
 
 Model 相关变化可能来自：
 
@@ -783,7 +783,7 @@ Operational Safety Decision 与 Root Cause Completion 可以分开。
 
 ---
 
-# 20.20 Tool、Permission 与 Control 也会漂移
+## 20.20 Tool、Permission 与 Control 也会漂移
 
 Tool Drift 可能表现为：
 
@@ -819,7 +819,7 @@ Control Drift 则可能来自：
 
 ---
 
-# 20.21 Evaluation 与 Observer 也属于漂移面
+## 20.21 Evaluation 与 Observer 也属于漂移面
 
 Evaluation 变化可能使数字改善，但不代表系统改善。
 
@@ -852,7 +852,7 @@ Observer 也可能：
 
 ---
 
-# 20.22 Economic、Provider Contract 与 Rights Boundary 也会变化
+## 20.22 Economic、Provider Contract 与 Rights Boundary 也会变化
 
 Economic Drift 不只包括单价变化。
 
@@ -882,7 +882,7 @@ Provider 或 Rights Boundary 变化可能包括：
 
 ---
 
-# 20.23 Observation、Impact、Cause 与 Disposition 必须分开
+## 20.23 Observation、Impact、Cause 与 Disposition 必须分开
 
 一个 Drift Record 最容易出错的地方，是把整条推导写成一件事实。
 
@@ -943,7 +943,7 @@ disposition:
 
 ---
 
-# 20.24 Re-evaluation 由变化、到期和新用途触发
+## 20.24 Re-evaluation 由变化、到期和新用途触发
 
 **Re-evaluation（再评估：当运行依据、适用边界或用途发生相关变化时，对受影响
 Claim、Evaluation 与处置进行有范围重新检查）** 不等于定期重跑所有 Test。
@@ -965,7 +965,7 @@ Trigger 只说明需要判断，不自动说明系统已经失败。
 
 ---
 
-# 20.25 Re-evaluation 先做 Impact Mapping，再决定重测范围
+## 20.25 Re-evaluation 先做 Impact Mapping，再决定重测范围
 
 **Impact Mapping（影响映射：从一个具名 Change 或 Trigger 追踪其可能影响的
 Baseline、Claim、Workload、Boundary 与 Decision Target）** 用来限制后续评价范围。
@@ -1010,7 +1010,7 @@ Baseline、Claim、Workload、Boundary 与 Decision Target）** 用来限制后�
 
 ---
 
-# 20.26 Re-evaluation Case 保存触发、证据和 Authority
+## 20.26 Re-evaluation Case 保存触发、证据和 Authority
 
 **Re-evaluation Case（再评估案件：由具名 Trigger 打开的有范围评价工作，连接受影响
 Baseline、所需 Evidence、临时控制、Decision Authority 和最终处置）** 可以写成：
@@ -1064,7 +1064,7 @@ result:
 
 ---
 
-# 20.27 Operational Disposition 不是二元 PASS / FAIL
+## 20.27 Operational Disposition 不是二元 PASS / FAIL
 
 **Operational Disposition（运行处置：具名 Authority 通过 Decision Record，对某个
 Operational Use、Operational Baseline 或 Next-state Choice 这一具名 Decision Target
@@ -1099,7 +1099,7 @@ Disposition 需要绑定：
 
 ---
 
-# 20.28 自动处置只能执行预先授权的动作
+## 20.28 自动处置只能执行预先授权的动作
 
 Automated Gate 可以在明确 Grant 内：
 
@@ -1126,7 +1126,7 @@ Automated Gate 可以在明确 Grant 内：
 
 ---
 
-# 20.29 Alert 与 Escalation 也需要成本和容量边界
+## 20.29 Alert 与 Escalation 也需要成本和容量边界
 
 Alert 数量增加可能表示：
 
@@ -1165,7 +1165,7 @@ Owner、自动化和 Protected Floor 的信号。
 
 ---
 
-# 20.30 案例只约束指标与分母
+## 20.30 案例只约束指标与分母
 
 完整时间线见[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)；本章只把共享案例投影到 Metric Contract 与 Cost Boundary。
 
@@ -1173,13 +1173,13 @@ Owner、自动化和 Protected Floor 的信号。
 |---|---|---|
 | D-073 至 D-075 / F1–F4a | Governance Work、Delivery Outcome、Evidence Stage 与 Claim Use 分开计量；Review、Waiting、Proof Surface 与 Rework进入成本；`NON_QUALIFYING` 不得从完成量中消失 | 严格治理必然造成 Livelock、Function-first 单独导致恢复，或新路径已降低总成本 |
 | D-048 | Verifier Failure 与 Target `non-result` 使用不同分母；不能把未执行 Target 计成 PASS 或 FAIL | Exact Inventory 是唯一正确控制 |
-| D-079 | Selected Test PASS 可进入 Evaluation Evidence；未获接受的 Candidate 不能进入 Accepted Outcome 分母 | 较小实现长期缺陷或维护成本更低 |
+| D-079 | Selected Test PASS 是有范围的 Evaluation Result，可在具名用途下作为 Evidence；未获接受的 Candidate 不能进入 Accepted Outcome 分母 | 较小实现长期缺陷或维护成本更低 |
 
 这些关系复用[治理活锁与 Function-first 历史记录](../Evidence/receipts/ER-20260818-001__CLM-OUTLINE-002.md)、[D-048 记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)和[D-079 范围裁决记录](../Evidence/receipts/ER-20260818-003__CLM-C09-001.md)。它们没有提供 AgentOps 机制的前后对照、长期经济数据或效果量。
 
 ---
 
-# 20.31 最小实现从一个重复运行问题开始
+## 20.31 最小实现从一个重复运行问题开始
 
 不要先建立全局 AgentOps 平台。
 
@@ -1213,7 +1213,7 @@ Owner、自动化和 Protected Floor 的信号。
 
 ---
 
-# 20.32 与相邻章节的接口
+## 20.32 与相邻章节的接口
 
 第20章直接使用第5–19章提供的 Context / State、Result / Evidence、Human / Authority、Observation、Memory / Evolution、Organization / Trace 与 Security / IP 边界；第20.3节已经给出完整所有权表，这里不再复制。
 
@@ -1223,7 +1223,7 @@ Owner、自动化和 Protected Floor 的信号。
 
 ---
 
-# 20.33 本章原则
+## 20.33 本章原则
 
 1. **Baseline identity precedes comparison.** 比较之前先识别运行基线。
 2. **A denominator is part of a metric.** 分母、Population 和排除规则属于指标定义。
@@ -1244,7 +1244,7 @@ Owner、自动化和 Protected Floor 的信号。
 
 ---
 
-# 20.34 常见 Anti-pattern
+## 20.34 常见 Anti-pattern
 
 - Dashboard Everything；
 - 把 Token Cost 当成 Total Production Cost；
@@ -1272,16 +1272,16 @@ Owner、自动化和 Protected Floor 的信号。
 
 ---
 
-# 20.35 检查清单
+## 20.35 检查清单
 
-## Baseline 与 Window
+### Baseline 与 Window
 
 - [ ] Model、Tool、Skill、Prompt / Policy、Context、Permission 与 Evaluation Identity 是否可识别？
 - [ ] Operational Baseline 是否绑定 Purpose、Workload、Owner、有效期和已知缺口？
 - [ ] Evaluation Window 是否说明纳入、排除、Sampling、分母与 Observation Coverage？
 - [ ] Baseline 变化是否创建新 Identity，而不是覆盖历史？
 
-## Outcome 与 Metric
+### Outcome 与 Metric
 
 - [ ] Outcome Unit 是否区别于 Tool Call、File、Commit 或 Agent 声明？
 - [ ] Accepted Outcome 是否绑定 Scope 与 Acceptance Authority？
@@ -1289,7 +1289,7 @@ Owner、自动化和 Protected Floor 的信号。
 - [ ] 每个指标是否说明 Source、Population、Window、Segment、Coverage 与 Decision Use？
 - [ ] 数字不能支持的结论是否明确？
 
-## Cost 与 Human
+### Cost 与 Human
 
 - [ ] Cost Boundary 是否包括 Direct、Context、Verification、Human、Coordination、Failure、Governance 与 Maintenance？
 - [ ] 是否避免同一成本被重复归属？
@@ -1297,14 +1297,14 @@ Owner、自动化和 Protected Floor 的信号。
 - [ ] Human Decision Queue、Waiting、Review、Override 与 Takeover 是否只作有限观察？
 - [ ] 安全、隐私、不可逆损失和 Human 保留裁决权是否被保留为 Guardrail，并映射到具名 Authority Grant 或制度边界？
 
-## Routing
+### Routing
 
 - [ ] Routing 是否绑定 Purpose、Data、Tool、Authority、Evaluation、Fallback 与 Expiry？
 - [ ] 比较路径是否尽量保持 Workload、Context、Retry 与 Review Policy 可比？
 - [ ] Local、Private、Cloud、快速、强推理与专用 Model 是否被当作候选，而非固定等级？
 - [ ] Public Benchmark 或单价是否被错误当成最终处置？
 
-## Drift
+### Drift
 
 - [ ] Drift 是否相对于具名 Baseline？
 - [ ] Identity、Workload、Behavior、Tool、Permission、Control、Evaluation、Economic 与 Contract Drift 是否按实际问题选择？
@@ -1312,7 +1312,7 @@ Owner、自动化和 Protected Floor 的信号。
 - [ ] Evaluation 和 Observer 变化是否进入解释？
 - [ ] Coverage Gap 是否被显示，而不是填成零？
 
-## Re-evaluation 与 Authority
+### Re-evaluation 与 Authority
 
 - [ ] Trigger 是否绑定受影响 Baseline、Claim 与 Scope？
 - [ ] 是否先做 Impact Mapping，再选择重测范围？
@@ -1321,7 +1321,7 @@ Owner、自动化和 Protected Floor 的信号。
 - [ ] 自动化是否只执行已有 Grant 内的处置？
 - [ ] Disposition 是否有 Effective Time、Expiry、Recovery 和关闭条件？
 
-## Telemetry 与 Governance
+### Telemetry 与 Governance
 
 - [ ] 每项 Telemetry 是否服务于具体控制、调试、评价或问责问题？
 - [ ] Sampling、Retention、Redaction、Access 与删除边界是否明确？
@@ -1331,7 +1331,7 @@ Owner、自动化和 Protected Floor 的信号。
 
 ---
 
-# 20.36 结论
+## 20.36 结论
 
 AgentOps 的核心，不是让 Agent 产生更多 Telemetry。
 

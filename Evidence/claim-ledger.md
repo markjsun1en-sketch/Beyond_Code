@@ -18,7 +18,7 @@
 | `CLM-C11-001` | 当需人工判断的保留 AI 变更持续超过合格审阅容量时，逐项人工审阅不能单独维持控制；响应方式仍需在限流、扩容和风险委托之间裁决 | 第11章 | inference | `ER-20260824-001` | partial | accepted | split |
 | `CLM-C12-001` | Human Control Plane 只应作为现有 Control and Evidence Plane 面向人的有边界投影，并暴露观测覆盖、Detector Health、下钻和接管路径 | 第12–14章 | recommendation | `ER-20260824-002` | partial | accepted | narrow |
 | `CLM-C16-001` | 重要且可版本化、可恢复的 Workflow 变更应作为有范围的候选假设评估；产生、合并或 Test PASS 本身不等于 Improvement | 第16章 | recommendation | `ER-20260824-003` | partial | accepted | narrow |
-| `CLM-C17-001` | Agent 数量本身不足以证明已经形成组织或获得组织效能；可治理的多 Agent 安排至少需要说明 Work、Role、Authority、Responsibility、Handoff、Conflict 与 Integration 的关系 | 第17章 | recommendation | 无直接 Receipt；`CLM-C09-001`、`CLM-C12-001`、`CLM-C16-001` 仅提供相邻案例边界 | unsupported | unreviewed | hold |
+| `CLM-C17-001` | Agent 数量本身不足以证明已经形成组织或获得组织效能；本书把 Work、Role、Assignment、Authority、Responsibility、Handoff、Conflict 与 Integration 作为候选检查面，不声称它们完备、最小、跨项目必要或产生组织效能 | 第17章 | recommendation | 无直接 Receipt；`CLM-C09-001`、`CLM-C12-001`、`CLM-C16-001` 仅提供相邻案例边界 | unsupported | accepted | narrow |
 | `CLM-C18-001` | Trace 记录可以支持行动归因、有限重建和责任审查，但不能自行分配或解除 Accountability；项目应把责任绑定到具名 Decision Target、Authority 与 Human／组织角色，并将 Agent 视为可被行动归因的执行主体 | 第18章 | recommendation | `ER-20260810-003`、`ER-20260810-002`、`ER-20260818-003` 仅组合覆盖部分边界 | partial | unreviewed | narrow |
 | `CLM-C19-001` | 读取不可信内容且能产生副作用的 Agent 不能只依赖 Prompt 或模型自律；Data / Instruction、Context、Function、Permission、Credential 与 Action Sink 需要模型外边界，部署位置本身不证明安全 | 第19章 | recommendation | `ER-20260824-004` | partial | unreviewed | narrow |
 | `CLM-C19-002` | AI-native 供应链应覆盖所有能改变 Context、Decision、Tool、Build、Runtime 或 Output 的行为组件；Provenance 说明来源与产生过程，不自动证明行为安全或适用 | 第19章 | recommendation | `ER-20260824-005` | partial | unreviewed | narrow |

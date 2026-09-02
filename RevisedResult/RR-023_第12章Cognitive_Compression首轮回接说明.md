@@ -157,9 +157,31 @@ TTE 被绑定到具名角色、Decision Class、准确性和完整性标准。�
 6. v4.94 案例篇幅是否与 `partial` Coverage 相称；
 7. 第12章是否为第13、14章保留了足够清楚的对象所有权。
 
+## 2026-09-02 W0 Decision Reconciliation Addendum
+
+Human 以“授权W0”接受第12章进入后续成书 Pilot 所需的逻辑主轴：
+
+```text
+Cognitive Compression
+→ Human Decision Interface
+→ optional Human Control Plane organization
+```
+
+这个顺序把 Cognitive Compression 保留为机制，把 Human Decision Interface 保留为面向具名决定的接口，再把 Human Control Plane 限定为一种可选组织方式。它不把 HCP 升格为统一架构、独立 Authority、Truth Store 或已经验证的认知负担改进方案。
+
+本次裁决没有新增事实或 Receipt，也没有扩大 `CLM-C12-001`。HCP 是否降低返工、判断时间、事故或认知负担，仍需要另行 Evidence；当前工作稿的篇幅、节奏和作者声音仍须在单独授权的 Phase 3 Pilot 中检验。
+
+当前工作稿可以作为 P0 的具名 Source Baseline，但 W0 没有逐项冻结 Projection Contract 字段、Progressive Disclosure 示例、Brief 的正文／附录位置、HJL／TTE 归属或案例篇幅。第148–158行的审阅点继续开放；若 P0 发现它们涉及实质逻辑而不只是表达，必须先回到 `OptimizedDocs/` 处理，再派生 Reader-facing 稿。
+
 ## Human Disposition
 
-- 章节逻辑与措辞：`unreviewed`
-- Decision by：pending
-- Decision at：pending
-- Rationale：核心 Claim 已接受；本记录等待作者对第12章工作稿本身作出接受、收窄或继续修改的裁决。
+- Logic：`LOGIC_PILOT_BASELINE_ACCEPTED_WITH_OPEN_DETAILS`
+- Evidence Route：`EVIDENCE_BOUNDARY_ACCEPTED`；`CLM-C12-001` 保持 `partial / accepted / narrow`
+- Polish：`POLISH_NOT_AUTHORIZED`；W0 没有启动第12章 Pilot
+- Six Fidelity：`NOT_RUN_FOR_POLISHED_CHAPTER`
+- Human Voice：`VOICE_NOT_REVIEWED`
+- Decision by：Human author
+- Decision at：2026-09-02
+- Authorization：`授权W0`
+- Accepted scope：`Cognitive Compression → Human Decision Interface → optional Human Control Plane organization`
+- Not accepted：详细模块与字段全部冻结；HCP 的统一架构地位、独立 Authority、效果证明、完整实现或跨项目普遍必要性

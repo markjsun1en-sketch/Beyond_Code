@@ -58,9 +58,9 @@ external content
 
 ---
 
-# 19.1 先区分必要、有用与可选
+## 19.1 先区分必要、有用与可选
 
-## 必要
+### 必要
 
 只要 Agent 可能接触非公开信息或产生外部副作用，项目至少需要说明：
 
@@ -73,7 +73,7 @@ external content
 - 重要输出的输入权利、第三方义务、Human Contribution 与下游用途；
 - Incident 发生后谁负责 Containment、Revocation、Rotation、Evidence Preservation 与后续处置。
 
-## 有用
+### 有用
 
 对跨团队、跨项目、面向客户、处理个人数据或连接生产系统的 Agent，下列机制通常有用：
 
@@ -84,7 +84,7 @@ external content
 - IP Disposition Record；
 - 集中的 Secret Broker、Policy Enforcement、Access Review 与 Incident Playbook。
 
-## 可选
+### 可选
 
 下列机制取决于规模、风险和法定义务：
 
@@ -102,7 +102,7 @@ external content
 
 ---
 
-# 19.2 Security、Confidentiality、Privacy、IP 与 Authority 不是一条轴
+## 19.2 Security、Confidentiality、Privacy、IP 与 Authority 不是一条轴
 
 原大纲把公开、内部、商业机密、个人数据和受监管数据并列。
 
@@ -134,7 +134,7 @@ external content
 
 ---
 
-# 19.3 先定义 Threat Model，再选择控制
+## 19.3 先定义 Threat Model，再选择控制
 
 **Threat Model（威胁模型：在具名 Scope 内识别需要保护的 Asset、可能行动的 Subject、Trust Boundary、Entry Point、Action Sink、Failure Mode 与控制证据）** 是控制选择的输入，不是安全团队专用文档。
 
@@ -193,7 +193,7 @@ Threat Model 应与实际 Scope 一起版本化。
 
 ---
 
-# 19.4 Data Classification 需要多轴，而不是单一敏感度标签
+## 19.4 Data Classification 需要多轴，而不是单一敏感度标签
 
 **Data Classification（数据分类：针对 Access、Person Relation、Rights、Criticality、Regulatory Duty 与 Lifecycle Constraint 等不同维度给 Data 加上可执行标签）** 至少要避免把所有问题压成 `public / private`。
 
@@ -216,7 +216,7 @@ Threat Model 应与实际 Scope 一起版本化。
 
 ---
 
-# 19.5 Data Boundary 覆盖的不只是 Prompt
+## 19.5 Data Boundary 覆盖的不只是 Prompt
 
 Agent 系统中的 Data Surface 包括：
 
@@ -243,7 +243,7 @@ Derived Data 还可能产生新的风险。
 
 ---
 
-# 19.6 Data Handling Profile 把标签变成处理合同
+## 19.6 Data Handling Profile 把标签变成处理合同
 
 **Data Handling Profile（数据处理配置：为具名 Data、Purpose 与 Work 规定可进入的 Subject、处理方式、去向、保留、删除和 Evidence 边界）** 可以是轻量记录：
 
@@ -310,16 +310,18 @@ may_read
 
 ---
 
-# 19.7 Least Context 是数据控制，也是安全控制
+## 19.7 Least Context 是数据控制，也是安全控制
 
 [第5章](第5章_Context对象边界回接稿.md) 已将 **Least Context（最小充分上下文：只给当前 Work 完成和验证所需、仍有效且来源可见的信息）** 定义为 Context 选择原则。
 
-在本章，它同时承担四个作用：
+在本章，它被用来缩小四类风险表面：
 
-1. 减少敏感信息暴露面；
-2. 减少无关外部内容携带间接指令的机会；
-3. 降低过期、冲突和越界信息影响 Decision 的概率；
-4. 降低 Log、Memory、Cache 与 Provider Retention 的后续扩散面。
+1. 缩小可能暴露的敏感信息范围；
+2. 缩小无关外部内容携带间接指令的输入面；
+3. 限制已知过期、冲突和越界信息进入 Decision 的范围；
+4. 缩小 Log、Memory、Cache 与 Provider Retention 可能承载和传播的数据范围。
+
+这些是控制目标，不是已经验证的安全效果；实际效果取决于必要约束是否被保留、选择规则如何实现，以及具体运行条件。
 
 Least Context 不是把文件随意截短。
 
@@ -329,7 +331,7 @@ Least Context 不是把文件随意截短。
 
 ---
 
-# 19.8 External Content 默认是 Data，不是 Instruction Authority
+## 19.8 External Content 默认是 Data，不是 Instruction Authority
 
 **Instruction Authority（指令权威：某个来源被明确授权在具名 Scope 内约束或触发 Subject 行动的资格）** 不由内容的语气、位置或格式产生。
 
@@ -360,7 +362,7 @@ Data / Instruction 分隔符、内容过滤与 Prompt 约束仍然有用，但�
 
 ---
 
-# 19.9 Model Output 是 Proposal，不是安全后的命令
+## 19.9 Model Output 是 Proposal，不是安全后的命令
 
 模型可能生成：
 
@@ -393,7 +395,7 @@ Data / Instruction 分隔符、内容过滤与 Prompt 约束仍然有用，但�
 
 ---
 
-# 19.10 Model Boundary 是 Processing Contract，不是模型名称
+## 19.10 Model Boundary 是 Processing Contract，不是模型名称
 
 **Model Processing Contract（模型处理契约：约束某个 Provider、Model、Endpoint 或 Deployment 在具名 Purpose 下如何接收、使用、保留、记录、删除和传递 Data）** 至少需要识别：
 
@@ -445,7 +447,7 @@ change_control:
 
 ---
 
-# 19.11 Local、Private 与 Cloud 需要项目内定义
+## 19.11 Local、Private 与 Cloud 需要项目内定义
 
 本章使用以下工作定义：
 
@@ -471,7 +473,7 @@ change_control:
 
 ---
 
-# 19.12 Model Routing 是多约束处置，不是“敏感就本地”
+## 19.12 Model Routing 是多约束处置，不是“敏感就本地”
 
 候选 Routing 维度包括：
 
@@ -503,7 +505,7 @@ change_control:
 
 ---
 
-# 19.13 Capability、Permission 与 Authority 继续分开
+## 19.13 Capability、Permission 与 Authority 继续分开
 
 [第13章](第13章_Governed_Autonomy_首轮修订稿.md) 已区分：
 
@@ -535,7 +537,7 @@ Write Scope > Recovery Capability
 
 ---
 
-# 19.14 Tool Security Contract 约束副作用
+## 19.14 Tool Security Contract 约束副作用
 
 **Tool Security Contract（工具安全契约：为具名 Tool Function 规定 Subject、Resource、Argument、Credential、Environment、Side Effect、Approval、Evidence 与 Recovery 边界）** 可以写成：
 
@@ -583,7 +585,7 @@ Contract 必须由 Tool Adapter、Sandbox、Operating System、Database、API Ga
 
 ---
 
-# 19.15 Secret 不进入 Prompt，Credential 不长期附着 Agent
+## 19.15 Secret 不进入 Prompt，Credential 不长期附着 Agent
 
 **Secret（秘密材料：泄露后可直接或间接获得身份、访问、签名、解密或其他受保护能力的信息）** 包括但不限于：
 
@@ -611,7 +613,7 @@ Prompt 保密可以是防御纵深，但不能承担授权正确性。
 
 ---
 
-# 19.16 Sandbox 需要说明隔离了什么
+## 19.16 Sandbox 需要说明隔离了什么
 
 **Sandbox（受限执行环境：通过具名边界限制 Process、Filesystem、Network、Credential、Device、Resource 或 Time 的执行容器）** 不是单一布尔值。
 
@@ -638,7 +640,7 @@ Sandbox 可以限制损害面，但不证明：
 
 ---
 
-# 19.17 External Side Effect 需要事务与恢复语义
+## 19.17 External Side Effect 需要事务与恢复语义
 
 Tool Action 不只需要 Access Control，还需要 Effect Control。
 
@@ -660,7 +662,7 @@ Tool Action 不只需要 Access Control，还需要 Effect Control。
 
 ---
 
-# 19.18 Approval 只用于需要判断的风险点
+## 19.18 Approval 只用于需要判断的风险点
 
 Human Approval 有三种常见失败：
 
@@ -691,7 +693,7 @@ Approval 适合：
 
 ---
 
-# 19.19 Protected Control Floor 与 Revocation 必须独立于 Agent
+## 19.19 Protected Control Floor 与 Revocation 必须独立于 Agent
 
 安全关键控制不应由被控制的 Agent 自行关闭。
 
@@ -719,7 +721,7 @@ Break-glass 访问也需要 Scope、Expiry、Reason、Record 和事后 Review。
 
 ---
 
-# 19.20 Supply Chain 不止是 Package
+## 19.20 Supply Chain 不止是 Package
 
 **AI-native Supply Chain（AI 原生供应链：能够影响输入、上下文、决策、行动、构建、运行或输出的内部与外部组件及其来源、变更和依赖关系）** 可能包括：
 
@@ -742,7 +744,7 @@ Break-glass 访问也需要 Scope、Expiry、Reason、Record 和事后 Review。
 
 ---
 
-# 19.21 Component Record 同时保存静态身份与运行边界
+## 19.21 Component Record 同时保存静态身份与运行边界
 
 **Supply Chain Component Record（供应链组件记录：为行为相关组件保存身份、来源、版本、权利、权限、变更、验证、Owner 与恢复信息的风险裁剪记录）** 可以包括：
 
@@ -794,7 +796,7 @@ recovery:
 
 ---
 
-# 19.22 Provenance 说明来源，不证明行为安全
+## 19.22 Provenance 说明来源，不证明行为安全
 
 [SLSA v1.2](https://slsa.dev/spec/v1.2/provenance) 将 Provenance 定义为可验证的 Artifact 来源与产生信息，回答它在哪里、何时、怎样被生产。
 
@@ -823,7 +825,7 @@ Provenance 是来源与产生过程的证据，不是行为安全或用途适配
 
 ---
 
-# 19.23 第三方服务需要持续治理，不是一次采购
+## 19.23 第三方服务需要持续治理，不是一次采购
 
 [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1) 将第三方清单、Provider 列表、Supplier Risk Assessment、Contract、Monitoring、Incident Response 与 Fallback 分开处理。
 
@@ -855,7 +857,7 @@ Remote API 可能无法固定 Binary Digest。
 
 ---
 
-# 19.24 IP Boundary 先拆成九个问题
+## 19.24 IP Boundary 先拆成九个问题
 
 **IP Disposition（知识产权处置：具名 Authority 通过 Decision Record，对某个 Input、Process Artifact 或 Output 的使用、保留、修改、发布、许可或转让这一具名 Decision Target 作出的处置）** 是第9章 Disposition 的 Target-specific subtype；它需要保留权利、义务、未知与法域边界，不能从 `AI-generated` 一个标签推出结论。
 
@@ -877,7 +879,7 @@ Remote API 可能无法固定 Binary Digest。
 
 ---
 
-# 19.25 IP Disposition Record 保留未知，而不是生成法律确定性
+## 19.25 IP Disposition Record 保留未知，而不是生成法律确定性
 
 **IP Disposition Record（知识产权处置记录：第9章 Decision Record 在 IP Decision Target 上的特化，将具名 Artifact 的输入权限、合同、第三方义务、Human Contribution、来源、风险检查、用途、法域、Authority 与处置连接起来的版本化记录）** 可以写成：
 
@@ -923,7 +925,7 @@ disposition:
 
 ---
 
-# 19.26 Human Contribution 与著作权资格需要法域边界
+## 19.26 Human Contribution 与著作权资格需要法域边界
 
 [U.S. Copyright Office 2025 Part 2](https://www.copyright.gov/ai/Copyright-and-Artificial-Intelligence-Part-2-Copyrightability-Report.pdf) 是一个有用但必须收窄的例子。
 
@@ -946,7 +948,7 @@ Human Contribution Record 也不是权利证书。
 
 ---
 
-# 19.27 生成代码仍需要普通软件 License 与安全审查
+## 19.27 生成代码仍需要普通软件 License 与安全审查
 
 生成代码可能同时包含：
 
@@ -980,7 +982,7 @@ Similarity Scanner 可以提供 Signal，不提供不侵权证明。
 
 ---
 
-# 19.28 Skill、Memory 与过程数据同时涉及治理和资产边界
+## 19.28 Skill、Memory 与过程数据同时涉及治理和资产边界
 
 Skill、Memory、Prompt Template、Evaluation Set、Handoff、Incident Review 与 Workflow 记录可能具有：
 
@@ -1009,7 +1011,7 @@ Skill、Memory、Prompt Template、Evaluation Set、Handoff、Incident Review �
 
 ---
 
-# 19.29 Security、Privacy 与 IP 使用同一 Artifact，作出不同处置
+## 19.29 Security、Privacy 与 IP 使用同一 Artifact，作出不同处置
 
 | 问题 | Security Review | Privacy Review | IP / License Review | Authority Review |
 |---|---|---|---|---|
@@ -1027,7 +1029,7 @@ Skill、Memory、Prompt Template、Evaluation Set、Handoff、Incident Review �
 
 ---
 
-# 19.30 Incident Response 从止损开始，不从解释开始
+## 19.30 Incident Response 从止损开始，不从解释开始
 
 当出现 Secret 泄露、越权写入、Prompt Injection、恶意 Component、Provider Incident、数据误传或 IP 风险时，优先顺序通常是：
 
@@ -1060,7 +1062,7 @@ contain
 
 ---
 
-# 19.31 D-048 只保留 Tool Integrity 边界
+## 19.31 D-048 只保留 Tool Integrity 边界
 
 D-048 中，Launcher 在 Target Compile 前 Import 本地代码并改变 Authority-bearing Manifest Surface；Exact-inventory Check 捕获真实变化并 Fail Closed，Target 因未执行而是 `non-result`。对本章而言，这只说明 Trusted Tool 也可能产生未声明 Side Effect，Precondition / Postcondition 可以保护受控表面，而 Verifier Failure、Target Result 与后续有权修复必须分开。
 
@@ -1070,16 +1072,16 @@ D-048 中，Launcher 在 Target Compile 前 Import 本地代码并改变 Authori
 
 ---
 
-# 19.32 最小实现按风险递增
+## 19.32 最小实现按风险递增
 
-## Level A：只读、公开、可丢弃
+### Level A：只读、公开、可丢弃
 
 - 明确外部内容无 Instruction Authority；
 - 无 Credential、无写入、无外部 Side Effect；
 - 临时 Context，不 Promote 为长期 Memory；
 - 对 Output 做基本来源与事实检查。
 
-## Level B：内部开发工作
+### Level B：内部开发工作
 
 - Data Profile 与 Provider Allowlist；
 - Repository Path / Network Scope；
@@ -1088,7 +1090,7 @@ D-048 中，Launcher 在 Target Compile 前 Import 本地代码并改变 Authori
 - 具名 Adoption / Release Authority；
 - Component Identity 与 Version Reference。
 
-## Level C：机密、个人数据或生产影响
+### Level C：机密、个人数据或生产影响
 
 - 具名 Threat Model；
 - Model Processing Contract 与传输处置；
@@ -1099,7 +1101,7 @@ D-048 中，Launcher 在 Target Compile 前 Import 本地代码并改变 Authori
 - Supply Chain Monitoring 与 Fallback；
 - 必要的 Privacy / Legal / Security Authority。
 
-## Level D：安全关键、强监管或不可逆影响
+### Level D：安全关键、强监管或不可逆影响
 
 - 独立架构与风险审查；
 - 形式化 Policy / Safety Constraint；
@@ -1115,93 +1117,93 @@ D-048 中，Launcher 在 Target Compile 前 Import 本地代码并改变 Authori
 
 ---
 
-# 19.33 常见 Anti-pattern
+## 19.33 常见 Anti-pattern
 
-## Anti-pattern 1：Local Means Safe
+### Anti-pattern 1：Local Means Safe
 
 把没有外部 Provider 误写成没有 Security、Privacy 或 Supply Chain 风险。
 
-## Anti-pattern 2：Private Data 是唯一敏感度
+### Anti-pattern 2：Private Data 是唯一敏感度
 
 忽略 Confidentiality、Trade Secret、License、Integrity 与 Instruction Trust。
 
-## Anti-pattern 3：System Prompt as Firewall
+### Anti-pattern 3：System Prompt as Firewall
 
 用“不要泄露、不要越权”替代下游授权和 Secret 边界。
 
-## Anti-pattern 4：One Powerful Tool
+### Anti-pattern 4：One Powerful Tool
 
 为了方便给 Agent 一个能任意 Shell、任意 URL、任意文件和任意数据库操作的 Tool。
 
-## Anti-pattern 5：Human Approval Everywhere
+### Anti-pattern 5：Human Approval Everywhere
 
 把每个动作都交给无上下文、无 Scope、无恢复信息的人类点击。
 
-## Anti-pattern 6：SBOM Completes AI Supply Chain
+### Anti-pattern 6：SBOM Completes AI Supply Chain
 
 只记录 Package，遗漏 Model、Tool Server、Dataset、Prompt Template、API 与 Service Drift。
 
-## Anti-pattern 7：Signed Means Safe
+### Anti-pattern 7：Signed Means Safe
 
 把 Signature / Provenance 当作漏洞、行为、权限和用途适配证明。
 
-## Anti-pattern 8：AI-generated Means Owned
+### Anti-pattern 8：AI-generated Means Owned
 
 把 Provider Output Permission、著作权资格、不侵权和下游许可混成一个结论。
 
-## Anti-pattern 9：Log Everything for Audit
+### Anti-pattern 9：Log Everything for Audit
 
 在 Prompt、Trace、Screenshot 和 Memory 中复制 Secret、Personal Data 与受限材料，制造第二次泄露面。
 
-## Anti-pattern 10：Security Review Settles Privacy and IP
+### Anti-pattern 10：Security Review Settles Privacy and IP
 
 访问控制通过后，默认 Purpose、Retention、License、Human Contribution 与法域问题已经解决。
 
 ---
 
-# 19.34 与前后章节的接口
+## 19.34 与前后章节的接口
 
-## 第5章：Context Engineering
+### 第5章：Context Engineering
 
 第5章定义 Context 的 Selection、Packaging、Access、Validity 与 Data / Instruction 边界。
 
 本章定义 Data 能否进入 Context、由谁处理、怎样保留，以及外部内容怎样被隔离在 Instruction Authority 之外。
 
-## 第6章：Truth and State Architecture
+### 第6章：Truth and State Architecture
 
 第6章定义 Claim、Evidence、Authority 与 State。
 
 本章要求 Security、Privacy 与 IP Finding 仍然绑定 Claim Type、Scope、Source 与 Decision Authority，不把 Scanner PASS 写成全局安全或不侵权。
 
-## 第9章：Evidence Use
+### 第9章：Evidence Use
 
 本章的 Security Test、Access Log、SBOM、Provenance、License Scan 与 Human Contribution Record 都只是针对不同 Claim 的 Evidence。
 
 它们不形成统一强弱梯度，也不自动完成 Adoption / Release。
 
-## 第13章：Governed Autonomy
+### 第13章：Governed Autonomy
 
 第13章定义 Capability、Permission、Authority、Autonomy 与 Protected Control Floor。
 
 本章把它们落实到 Tool Function、Credential、Action Sink、Sandbox、Revocation 与 High-impact Approval。
 
-## 第14章：Observability and Intervention
+### 第14章：Observability and Intervention
 
 本章的 Detector、Secret Alert、Access Anomaly、Provider Incident 与 Component Drift 需要说明 Coverage 与 Detector Health；Signal 不自动等于 Incident Root Cause。
 
-## 第15章：Memory Engineering
+### 第15章：Memory Engineering
 
 第15章管理 Memory Candidate、Promotion、Retrieval、Use 与 Deletion。
 
 本章管理 Memory 的 Source Rights、Personal / Confidential Data、Cross-project Boundary、Poisoning 与 Cascade Delete。
 
-## 第18章：Traceability and Accountability
+### 第18章：Traceability and Accountability
 
 第18章保存外部决策环境与 Responsibility 关系。
 
 本章规定哪些 Security / Privacy / IP Record 可以被保存、谁可访问、保留多久，以及 Incident 与 Disposition 的 Authority。
 
-## 第20章：AgentOps、成本与模型漂移
+### 第20章：AgentOps、成本与模型漂移
 
 第20章接管：
 
@@ -1215,7 +1217,7 @@ D-048 中，Launcher 在 Target Compile 前 Import 本地代码并改变 Authori
 
 ---
 
-# 19.35 原则
+## 19.35 原则
 
 > **Readable does not imply transmittable.**
 
@@ -1255,9 +1257,9 @@ Provenance 支持来源主张，不支持自动推出用途适配。
 
 ---
 
-# 19.36 检查清单
+## 19.36 检查清单
 
-## Data
+### Data
 
 - [ ] Data 的 Source、Purpose、Access、Person Relation、Rights 与 Instruction Trust 是否分开？
 - [ ] `may_read`、`may_send_to_model`、`may_store`、`may_learn` 与 `may_publish` 是否分开？
@@ -1265,7 +1267,7 @@ Provenance 支持来源主张，不支持自动推出用途适配。
 - [ ] 是否应用 Least Context，同时保留必要 Constraint？
 - [ ] Retention、Deletion 与 Derived Data / Cascade Delete 是否明确？
 
-## Model
+### Model
 
 - [ ] Provider、Endpoint、Model、Version / Change Policy 与 Owner 是否可识别？
 - [ ] Region、Retention、Training、Subprocessor、Support Access 与 Incident 条款是否已核对？
@@ -1273,7 +1275,7 @@ Provenance 支持来源主张，不支持自动推出用途适配。
 - [ ] 是否存在 `model_context_denied` 的材料？
 - [ ] Model 变化时是否触发 Re-evaluation？
 
-## Tool and Agent
+### Tool and Agent
 
 - [ ] External Content 是否默认没有 Instruction Authority？
 - [ ] Functionality、Permission、Credential 与 Authority 是否分别约束？
@@ -1283,7 +1285,7 @@ Provenance 支持来源主张，不支持自动推出用途适配。
 - [ ] 高影响动作是否绑定 Scope、Effect、Expiry、Evidence 与 Recovery？
 - [ ] 是否可停止、撤权、轮换 Credential 并重新观察状态？
 
-## Supply Chain
+### Supply Chain
 
 - [ ] Inventory 是否覆盖 Script、Plugin、Skill、Tool Server、Model、Dataset、Template、API 与 Service？
 - [ ] Component 的 Identity、Version / Contract、Source、License、Permission、Owner 与 Update Policy 是否可追踪？
@@ -1291,7 +1293,7 @@ Provenance 支持来源主张，不支持自动推出用途适配。
 - [ ] 是否存在 Vulnerability、Behavior、Use-case Fit、Monitoring 与 Recovery 的独立检查？
 - [ ] Provider / Component 变化是否有 Disable、Fallback 与 Incident 路径？
 
-## Privacy and IP
+### Privacy and IP
 
 - [ ] Security、Confidentiality、Privacy、Processing Permission、IP、License 与 Authority 是否分开？
 - [ ] Input Access 与向 Model / Provider 传输的 Permission 是否分开？
@@ -1301,7 +1303,7 @@ Provenance 支持来源主张，不支持自动推出用途适配。
 - [ ] Jurisdiction 与具名 Legal / Business Authority 是否明确？
 - [ ] 是否避免把 `AI-generated`、`Provider allows use` 或 `scan passed` 写成最终权利结论？
 
-## Incident and Trace
+### Incident and Trace
 
 - [ ] Incident 是否先 Contain、Stop、Revoke / Rotate，再形成根因推导？
 - [ ] Confirmed、Possible、Prevented 与 Unknown Result 是否分开？
@@ -1310,7 +1312,7 @@ Provenance 支持来源主张，不支持自动推出用途适配。
 
 ---
 
-# 19.37 结论
+## 19.37 结论
 
 AI-native 软件工程的安全边界，不存在于某一句 System Prompt，也不存在于“模型在本地”这一个部署属性。
 

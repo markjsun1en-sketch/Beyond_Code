@@ -21,7 +21,7 @@
 
 ---
 
-# 3.1 一个可判别的工作定义
+## 3.1 一个可判别的工作定义
 
 本书采用以下工作定义。它是一项分析约定，不是从行业样本中发现的自然分类：
 
@@ -29,7 +29,7 @@
 
 这个定义包含一个问题起点和一组候选工程响应。前者说明本书何时开始关注 AI-native 问题；后者说明本书准备检验哪些工程方法。它们不能被用来循环推出“所有被称为 AI-native 的项目都必须实现本书全部对象”。
 
-## 问题起点：Delegated Execution（受托执行）
+### 问题起点：Delegated Execution（受托执行）
 
 Agent 不只是提供候选文字，而是在被授予的范围内完成部分真实执行路径，例如：
 
@@ -41,7 +41,7 @@ Agent 不只是提供候选文字，而是在被授予的范围内完成部分�
 
 这里的关键词是“被委托”。Agent 不天然拥有目标、路径、权限或裁决权；这些能力来自明确或隐含的 Delegation、Policy 和工具边界。
 
-## 候选响应：Engineering Adaptation（工程环境适配）
+### 候选响应：Engineering Adaptation（工程环境适配）
 
 当受托执行扩大影响面、延长时间、增加状态分叉或提高恢复成本时，项目可以针对这些风险建立可裁剪的机制，例如：
 
@@ -58,11 +58,11 @@ Agent 不只是提供候选文字，而是在被授予的范围内完成部分�
 
 ---
 
-# 3.2 AI-assisted、Agentic 与 AI-native 不是一条成熟度阶梯
+## 3.2 AI-assisted、Agentic 与 AI-native 不是一条成熟度阶梯
 
 三个词经常被放在同一条从低到高的路线中，但它们描述的并不是同一个维度。
 
-## AI-assisted Development
+### AI-assisted Development
 
 描述一种协作模式：
 
@@ -74,7 +74,7 @@ Human controls the task
 
 AI 可以显著影响结果，但真实执行路径主要仍由人类掌握。
 
-## Agentic Development
+### Agentic Development
 
 描述一种执行能力：
 
@@ -86,7 +86,7 @@ Human or system delegates a bounded task
 
 它回答“Agent 能否在限定环境中持续行动”，不自动回答该环境是否具有充分的状态、证据、恢复和治理能力。
 
-## AI-native Software Engineering
+### AI-native Software Engineering
 
 描述一种工程响应：
 
@@ -108,11 +108,11 @@ Axis B: Engineering Adaptation
 
 ---
 
-# 3.3 AI 原生软件工程管理两个被工程化的系统
+## 3.3 AI 原生软件工程管理两个被工程化的系统
 
 本书区分两个系统。
 
-## Product System（产品系统）
+### Product System（产品系统）
 
 最终被交付、运行和维护的软件系统，包括：
 
@@ -127,7 +127,7 @@ Configuration
 
 传统软件工程的架构、测试、部署、安全和运维原则继续直接作用于这一系统。
 
-## Production Intelligence System（生产智能系统）
+### Production Intelligence System（生产智能系统）
 
 参与生产 Product System 的智能执行环境，包括：
 
@@ -148,7 +148,7 @@ Evaluation mechanisms
 
 ---
 
-# 3.4 Control and Evidence Plane 是横切平面，不是第三个生产系统
+## 3.4 Control and Evidence Plane 是横切平面，不是第三个生产系统
 
 为了观察和约束前述两个系统，还需要一组横切能力：
 
@@ -181,7 +181,7 @@ Production Intelligence System → Product System
 
 ---
 
-# 3.5 与传统软件工程的关系：扩展作用面，不撤销基础
+## 3.5 与传统软件工程的关系：扩展作用面，不撤销基础
 
 AI 原生软件工程不替代传统软件工程。
 
@@ -203,7 +203,7 @@ AI 原生软件工程不替代传统软件工程。
 
 ---
 
-# 3.6 与 Harness Engineering 的关系
+## 3.6 与 Harness Engineering 的关系
 
 Harness Engineering 通常关注智能执行环境怎样获得：
 
@@ -229,7 +229,7 @@ AI 原生软件工程还讨论：
 
 ---
 
-# 3.7 从 Human Smoothing 到风险相称的显式工程
+## 3.7 从 Human Smoothing 到风险相称的显式工程
 
 人类团队经常依赖默契、经验和即时沟通补足不完整流程。本书把这种持续补齐称为 Human Smoothing Effect（人类平滑效应）。
 
@@ -254,7 +254,7 @@ Escalation or recovery path
 
 ---
 
-# 3.8 Tight Boundaries, Flexible Execution
+## 3.8 Tight Boundaries, Flexible Execution
 
 本书将这一设计取向称为：
 
@@ -281,7 +281,7 @@ Escalation or recovery path
 
 ---
 
-# 3.9 Contract over Hidden Reasoning
+## 3.9 Contract over Hidden Reasoning
 
 项目不应把不可读取的模型隐藏推理当作审计依赖。
 
@@ -304,7 +304,7 @@ Completion and handoff rules
 
 ---
 
-# 3.10 Encapsulate Execution, Expose Evidence
+## 3.10 Encapsulate Execution, Expose Evidence
 
 Agent 可以在限定范围内搜索、规划、试验、实现和调试，而不需要人类批准每个微步骤。
 
@@ -334,7 +334,7 @@ Authority-bound Decision Record
 
 ---
 
-# 3.11 Evidence over Unsupported Confidence
+## 3.11 Evidence over Unsupported Confidence
 
 “Evidence over Confidence”不表示所有 Evidence 可以排成统一强弱阶梯。
 
@@ -369,7 +369,7 @@ Authorized Role or Delegated Gate
 
 ---
 
-# 3.12 Human Cognitive Authority
+## 3.12 Human Cognitive Authority
 
 本书保留 Human Cognitive Authority（人类对需要 Human Judgment 之事项保留的最终认知裁决权）这一原则，但不把它理解为人类必须阅读全部过程或亲自执行所有决定。
 
@@ -385,7 +385,7 @@ Authorized Role or Delegated Gate
 
 ---
 
-# 3.13 Risk-based Autonomy
+## 3.13 Risk-based Autonomy
 
 Agent 的模型能力、工具能力和自治授权不是同一件事。
 
@@ -418,39 +418,39 @@ escalate
 
 ---
 
-# 3.14 AI 原生软件工程的问题空间
+## 3.14 AI 原生软件工程的问题空间
 
 后续章节把问题空间分成若干职责面。它们不是互斥学科，也不是成熟度等级。
 
-## Desired Outcome
+### Desired Outcome
 
 - Intent Engineering：目标、动机、范围和验收目标怎样跨执行保持身份。
 
-## Supplied Information and Typed Records
+### Supplied Information and Typed Records
 
 - Context Engineering：哪些信息被选择、装配、传输和记录。
 - Truth and State Architecture：State Claim、Decision、Assumption 与 Evidence 怎样保持类型和适用边界。
 
-## Execution and Trust
+### Execution and Trust
 
 - Agent Execution：执行权限、Contract、状态变化和恢复。
 - Reliability：允许行为、失败模式和可重复评估。
 - Verification and Evidence：观察、覆盖、反向证据与用途适配。
 - Review Engineering：人类和自动审查怎样分工。
 
-## Human Control
+### Human Control
 
 - Cognitive Engineering：人类如何理解高吞吐变化而不被摘要误导。
 - Governed Autonomy：委托、Policy、Gate、介入和接管。
 - Observability and Intervention：如何知道发生了什么并及时停止。
 
-## Learning and Organization
+### Learning and Organization
 
 - Memory Engineering：哪些记录值得保留、失效和检索。
 - Self-Evolution Engineering：Skill、Policy 与 Workflow 怎样受控变化。
 - Multi-Agent Organization：角色、写入面、Handoff 和共享状态怎样协调。
 
-## Cross-cutting Concerns
+### Cross-cutting Concerns
 
 - Traceability and Accountability；
 - Security、Privacy 与 IP；
@@ -460,7 +460,7 @@ escalate
 
 ---
 
-# 3.15 一个迭代的 AI-Native Software Development Lifecycle
+## 3.15 一个迭代的 AI-Native Software Development Lifecycle
 
 传统 SDLC 仍然存在。当受托执行触发状态、授权、观察或恢复风险时，项目可能需要在其周围增加相应的控制循环。
 
@@ -500,7 +500,7 @@ Memory and Controlled Evolution, when justified
 
 ---
 
-# 3.16 AI-native 不是更重的流程
+## 3.16 AI-native 不是更重的流程
 
 完整对象模型用于帮助思考，不要求所有项目持久化全部对象。
 
@@ -519,7 +519,7 @@ Memory and Controlled Evolution, when justified
 
 ---
 
-# 3.17 如何判断一个项目是否需要更强的 AI-native 机制
+## 3.17 如何判断一个项目是否需要更强的 AI-native 机制
 
 与其给项目打统一成熟度分数，不如检查触发条件：
 
@@ -538,7 +538,7 @@ Memory and Controlled Evolution, when justified
 
 ---
 
-# 3.18 AI 原生软件工程最终优化什么
+## 3.18 AI 原生软件工程最终优化什么
 
 Generation Throughput（生成吞吐）不等于 Engineering Productivity（工程生产率）。
 
@@ -556,7 +556,7 @@ Generation Throughput（生成吞吐）不等于 Engineering Productivity（工�
 
 ---
 
-# 3.19 本章结论
+## 3.19 本章结论
 
 AI Agent 的重要变化不只是生成更快，而是可以在真实项目中接受受托执行。
 
@@ -583,7 +583,7 @@ Product System
 
 ---
 
-# 本章原则
+## 本章原则
 
 1. **AI-native 由执行委托与工程适配共同定义。** 单纯使用 AI 或运行 Agent 不足以完成定义。
 2. **Agentic 是能力维度，AI-native 是工程响应。** 二者不构成单轴成熟度。
@@ -598,7 +598,7 @@ Product System
 
 ---
 
-# 常见反模式
+## 常见反模式
 
 - 有 Agent 就宣称已经 AI-native；
 - 把多 Agent、长 Context 或更大模型当作成熟度；
@@ -613,7 +613,7 @@ Product System
 
 ---
 
-# 本章检查清单
+## 本章检查清单
 
 - Agent 是提供候选，还是已经被委托真实执行路径？
 - 项目是否针对这种委托调整了 State、Authority、Evidence 和 Recovery？

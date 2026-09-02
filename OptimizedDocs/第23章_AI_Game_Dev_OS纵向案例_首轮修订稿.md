@@ -45,9 +45,9 @@ Authority Grant、Evidence、Decision Target 与仍未成立的结论。
 
 ---
 
-# 23.1 先区分必要、有用与可选
+## 23.1 先区分必要、有用与可选
 
-## 必要
+### 必要
 
 如果一个实践案例要承担书中论证，它至少需要保留：
 
@@ -61,7 +61,7 @@ Authority Grant、Evidence、Decision Target 与仍未成立的结论。
 
 没有这些边界，时间线越完整，越可能只是在制造更顺滑的事后故事。
 
-## 有用
+### 有用
 
 当事件跨多个版本、角色和仓库时，下列材料通常有用：
 
@@ -73,7 +73,7 @@ Authority Grant、Evidence、Decision Target 与仍未成立的结论。
 - 少量真正改变判断的截图、Diff 或状态图；
 - 读者可以带到其他项目中的 Transfer Questions。
 
-## 可选
+### 可选
 
 以下内容不是案例成立的必要条件：
 
@@ -90,7 +90,7 @@ Authority Grant、Evidence、Decision Target 与仍未成立的结论。
 
 ---
 
-# 23.2 本章是 Longitudinal Case，不是 Validation Claim
+## 23.2 本章是 Longitudinal Case，不是 Validation Claim
 
 本章使用 **Longitudinal Case（纵向案例：沿着具名版本和事件序列观察问题、修正与决定
 如何变化）**。
@@ -120,9 +120,9 @@ AI Game Dev OS 与 lessismore 具有三层关系：
 
 ---
 
-# 23.3 两个仓库承担不同的案例角色
+## 23.3 两个仓库承担不同的案例角色
 
-## AI Game Dev OS
+### AI Game Dev OS
 
 AI Game Dev OS 在本章中是方法与基础设施仓库。
 
@@ -137,7 +137,7 @@ AI Game Dev OS 在本章中是方法与基础设施仓库。
 
 不能用后来版本已经存在的能力，倒推早期事件当时已经拥有同样的语义、实现或约束。
 
-## lessismore
+### lessismore
 
 lessismore 在本章中是产品与运行时仓库。
 
@@ -153,7 +153,7 @@ lessismore 在本章中是产品与运行时仓库。
 
 后续 Sprint、后来视觉版本或当前仓库状态不能替代当时决定。
 
-## 两者之间
+### 两者之间
 
 AI Game Dev OS 不是 lessismore 的外部审计机构。
 
@@ -164,7 +164,7 @@ lessismore 也不是 AI Game Dev OS 理论的独立实验环境。
 
 ---
 
-# 23.4 案例对象不是“整个项目”
+## 23.4 案例对象不是“整个项目”
 
 “AI Game Dev OS 项目”和“lessismore 项目”都太大，不能直接成为一个可判断的案例对象。
 
@@ -190,11 +190,11 @@ lessismore 也不是 AI Game Dev OS 理论的独立实验环境。
 
 ---
 
-# 23.5 四层叙述不能压成 Lessons Learned
+## 23.5 四层叙述不能压成 Lessons Learned
 
 每个关键 Episode 使用四种不同陈述。
 
-## Observable Fact
+### Observable Fact
 
 **Observable Fact（可观察事实）** 是 Source、Artifact、Runtime、Test、Diff、Commit 路径或
 可见 Human Decision 直接保存的内容。
@@ -207,14 +207,14 @@ lessismore 也不是 AI Game Dev OS 理论的独立实验环境。
 - 某组提交只改变治理记录，没有改变 Package Source 或 Test；
 - 某次 Closure 明确保持 `NON_QUALIFYING`。
 
-## Contemporaneous Judgment
+### Contemporaneous Judgment
 
 **Contemporaneous Judgment（同期判断）** 是事件发生时，Human、Reviewer 或项目记录对
 结果的解释和处置。
 
 例如：接受当前视觉基线、拒绝过度范围、把后续项设为非阻塞，或把事件记录为 Incident。
 
-## Retrospective Inference
+### Retrospective Inference
 
 **Retrospective Inference（事后推导）** 是后来根据多个事件提出的解释。
 
@@ -222,7 +222,7 @@ lessismore 也不是 AI Game Dev OS 理论的独立实验环境。
 
 它不是当时直接观察到的因果事实。
 
-## Current Recommendation
+### Current Recommendation
 
 **Current Recommendation（当前建议）** 是本书根据事实、判断和替代解释提出的设计候选。
 
@@ -232,7 +232,7 @@ lessismore 也不是 AI Game Dev OS 理论的独立实验环境。
 
 ---
 
-# 23.6 Source Identity 先于故事完整性
+## 23.6 Source Identity 先于故事完整性
 
 同一个文件名在不同 Revision 中可能代表不同状态。
 
@@ -264,7 +264,7 @@ lessismore 也不是 AI Game Dev OS 理论的独立实验环境。
 
 ---
 
-# 23.7 为什么游戏开发对本书有解释价值
+## 23.7 为什么游戏开发对本书有解释价值
 
 游戏开发把多种工程表面压在同一个产品循环中：
 
@@ -293,7 +293,7 @@ lessismore 也不是 AI Game Dev OS 理论的独立实验环境。
 
 ---
 
-# 23.8 游戏案例不能覆盖什么
+## 23.8 游戏案例不能覆盖什么
 
 本章材料不能代表：
 
@@ -317,7 +317,7 @@ lessismore 也不是 AI Game Dev OS 理论的独立实验环境。
 
 ---
 
-# 23.9 为什么原“理论概念 → OS 功能”映射会循环支持
+## 23.9 为什么原“理论概念 → OS 功能”映射会循环支持
 
 原稿将本书概念与 AI Game Dev OS 功能逐项对应：
 
@@ -351,7 +351,7 @@ experience produces a concept
 
 ---
 
-# 23.10 同名机制不等于同一工程关系
+## 23.10 同名机制不等于同一工程关系
 
 原映射需要逐项收窄：
 
@@ -378,7 +378,7 @@ experience produces a concept
 
 ---
 
-# 23.11 新 Case Map 映射 Episode，不映射理论名称
+## 23.11 新 Case Map 映射 Episode，不映射理论名称
 
 | Case Episode | 可观察机制或结果 | 相关问题 | 可以支持 | 不能支持 |
 |---|---|---|---|---|
@@ -396,7 +396,7 @@ experience produces a concept
 
 ---
 
-# 23.12 SP122 的问题不是“让 AI 做一个 UI”
+## 23.12 SP122 的问题不是“让 AI 做一个 UI”
 
 PlayerStatus 是战斗界面中的状态表面。
 
@@ -421,7 +421,7 @@ SP122 更准确的问题是：
 
 ---
 
-# 23.13 原十三步 Workflow 只能作为重构说明
+## 23.13 原十三步 Workflow 只能作为重构说明
 
 原稿给出了一条很整齐的路径：
 
@@ -469,7 +469,7 @@ scoped visual work
 
 ---
 
-# 23.14 PlayerStatus v035：机器结果先于 Human 视觉决定
+## 23.14 PlayerStatus v035：机器结果先于 Human 视觉决定
 
 PlayerStatus v035 的当时记录包含：
 
@@ -495,7 +495,7 @@ PlayerStatus v035 的当时记录包含：
 
 ---
 
-# 23.15 `18/18 PASS` 只属于被选择的 Claim
+## 23.15 `18/18 PASS` 只属于被选择的 Claim
 
 数字具有压缩力。
 
@@ -522,7 +522,7 @@ PlayerStatus v035 的当时记录包含：
 
 ---
 
-# 23.16 Visual Capture 不是 Aesthetic Acceptance
+## 23.16 Visual Capture 不是 Aesthetic Acceptance
 
 截图和 Contact Sheet 可以支持：
 
@@ -546,7 +546,7 @@ Visual Capture 是 Human Decision Interface 的输入，不是 Human 决定的�
 
 ---
 
-# 23.17 SP122 Human Closure 接受的是当前阶段基线
+## 23.17 SP122 Human Closure 接受的是当前阶段基线
 
 后续 SP122 Human Closure 接受了当前 D2 Battle 的视觉与可读性基线，其中包括
 PlayerStatus v035 和 lifecycle-tag repair。
@@ -576,7 +576,7 @@ Closure 在这里不是“所有工作已经完成”。
 
 ---
 
-# 23.18 四个 Follow-up 不是 Closure 的反证
+## 23.18 四个 Follow-up 不是 Closure 的反证
 
 “关闭”与“存在后续项”常被误认为矛盾。
 
@@ -600,7 +600,7 @@ SP122 使用的是另一种关系：
 
 ---
 
-# 23.19 一个 `closed` 不能覆盖多种 Decision State
+## 23.19 一个 `closed` 不能覆盖多种 Decision State
 
 SP122 的记录把多个状态保留下来：
 
@@ -624,7 +624,7 @@ SP122 的记录把多个状态保留下来：
 
 ---
 
-# 23.20 lifecycle-tag 问题说明 Authority 也有历史
+## 23.20 lifecycle-tag 问题说明 Authority 也有历史
 
 后续 Authority Review 保存了一段不理想的历史：早期存在冲突来源，一条旧的实现影响
 进入了当前运行路径；项目后来选择 Human-approved Source Chain，完成 Repair，并把当前
@@ -650,7 +650,7 @@ Authority 不是文件是否存在。
 
 ---
 
-# 23.21 Repair 不能静默覆盖原 Evidence
+## 23.21 Repair 不能静默覆盖原 Evidence
 
 当 Authority-bearing Source 被修正时，有三种错误处理：
 
@@ -679,7 +679,7 @@ Authority 下的 qualifying result”。
 
 ---
 
-# 23.22 v4.93 R2 是另一个 Decision Target
+## 23.22 v4.93 R2 是另一个 Decision Target
 
 在 SP122 current-stage Closure 之后，项目进行了独立的 post-repair qualifying R2。
 
@@ -705,7 +705,7 @@ Human 接受了 R2 的 qualifying evidence chain。
 
 ---
 
-# 23.23 Qualifying Evidence Accepted 不等于 Supported Adoption
+## 23.23 Qualifying Evidence Accepted 不等于 Supported Adoption
 
 一个 Evidence Package 可以被接受为：
 
@@ -732,25 +732,25 @@ SP122 R2 保持 Supported Adoption blocked、Production not approved。
 
 ---
 
-# 23.24 SP122 的四层结论
+## 23.24 SP122 的四层结论
 
-## Observable Fact
+### Observable Fact
 
 PlayerStatus v035 有限定 Machine / Runtime / Visual Evidence；当时 Human Aesthetic Gate 仍
 打开。后续 Human 接受当前 D2 Battle 基线并保留四项 Follow-up；独立 R2 又接受修正后的
 qualifying evidence chain，而 Adoption 与 Production 继续分开。
 
-## Contemporaneous Judgment
+### Contemporaneous Judgment
 
 Human 判断当前阶段视觉与可读性范围可接受，也判断 R2 qualifying evidence chain 可接受；
 两个决定均明确限制了下游含义。
 
-## Retrospective Inference
+### Retrospective Inference
 
 这段历史可以说明 Machine PASS、Human Aesthetic Acceptance、Sprint Closure、Qualifying
 Evidence Acceptance、Supported Adoption 和 Production Release 是不同 Decision Target。
 
-## Current Recommendation
+### Current Recommendation
 
 对于同时包含机器检查与 Human Experience Judgment 的 Work，应为每个决定分别记录
 Scope、Authority、Evidence Use、Open Item 和下游 Non-claim。
@@ -759,7 +759,7 @@ Scope、Authority、Evidence Use、Open Item 和下游 Non-claim。
 
 ---
 
-# 23.25 SP122 明确不能支持什么
+## 23.25 SP122 明确不能支持什么
 
 SP122 不能支持以下结论：
 
@@ -780,7 +780,7 @@ SP122 不能支持以下结论：
 
 ---
 
-# 23.26 v4.94 的案例对象是 OS 自身开发过程
+## 23.26 v4.94 的案例对象是 OS 自身开发过程
 
 第二条案例不再讨论“AI Game Dev OS 有哪些功能”。
 
@@ -801,7 +801,7 @@ v4.94 的时间线必须同时保留：真实缺陷、meta-only successor、失�
 
 ---
 
-# 23.27 v4.94 时间线概览
+## 23.27 v4.94 时间线概览
 
 ~~~text
 D-048
@@ -835,7 +835,7 @@ development closure remains NON_QUALIFYING
 
 ---
 
-# 23.28 D-048：Verifier 先改变了自己要检查的表面
+## 23.28 D-048：Verifier 先改变了自己要检查的表面
 
 D-048 的目标原本是运行一个 Target Compile Harness。
 
@@ -858,7 +858,7 @@ Closed Inventory。
 
 ---
 
-# 23.29 D-048 的反证：严格检查在这里有真实价值
+## 23.29 D-048 的反证：严格检查在这里有真实价值
 
 后续治理停滞不能被用来推导“严格检查没有价值”。
 
@@ -883,7 +883,7 @@ D-048 恰好提供反向证据：Exact-inventory Check 检测到了真实 Self-m
 
 ---
 
-# 23.30 从局部缺陷到全局义务，范围可能扩张
+## 23.30 从局部缺陷到全局义务，范围可能扩张
 
 D-048 提出的是一个具体问题：Launcher / Verifier 在目标运行前改变了自己的受控清单。
 
@@ -905,7 +905,7 @@ D-048 提出的是一个具体问题：Launcher / Verifier 在目标运行前改
 
 ---
 
-# 23.31 D-073 至 D-075：Activity 增加，Delivery Evidence 没有出现
+## 23.31 D-073 至 D-075：Activity 增加，Delivery Evidence 没有出现
 
 v4.94 的 D-073、D-074 和 D-075 是连续 successor。
 
@@ -929,7 +929,7 @@ v4.94 的 D-073、D-074 和 D-075 是连续 successor。
 
 ---
 
-# 23.32 Meta-only 不等于没有价值
+## 23.32 Meta-only 不等于没有价值
 
 “没有 Source Delta”不等于“没有任何有用思考”。
 
@@ -957,7 +957,7 @@ D-073 至 D-075 可能产生：
 
 ---
 
-# 23.33 Governance Livelock 是解释，不是单因果事实
+## 23.33 Governance Livelock 是解释，不是单因果事实
 
 项目将这段历史解释为：E2 / E3 的完整 Proof Obligation 被过早施加给 E0 / E1 Development
 Work，Stage Coupling 参与形成停滞。
@@ -980,7 +980,7 @@ Work，Stage Coupling 参与形成停滞。
 
 ---
 
-# 23.34 D-076：恢复路线被定义为 Scoped and Retractable
+## 23.34 D-076：恢复路线被定义为 Scoped and Retractable
 
 后续 Function-first 计划把开发与资格化证据用途分层。
 
@@ -1007,7 +1007,7 @@ D-076 被当作一个 Scoped、Retractable 的 Architecture Candidate。
 
 ---
 
-# 23.35 D-077：架构拆分后仍然失败
+## 23.35 D-077：架构拆分后仍然失败
 
 如果只从 D-076 直接跳到最终 Closure，会形成一条顺滑成功链。
 
@@ -1031,7 +1031,7 @@ D-077 也限制了“Function-first 是恢复原因”的说法。
 
 ---
 
-# 23.36 D-079：42 个通过测试仍未获得 Source Scope Acceptance
+## 23.36 D-079：42 个通过测试仍未获得 Source Scope Acceptance
 
 D-079 的一个候选通过了 42 个 Focused Tests。
 
@@ -1057,7 +1057,7 @@ F1 Source Ancestor Chain。
 
 ---
 
-# 23.37 D-079 不证明较小实现长期更好
+## 23.37 D-079 不证明较小实现长期更好
 
 版本差异显示，Over-scoped Candidate 增加了较大实现和测试表面；Forward Correction 又删除
 了其中大量内容并保留较小回归集。
@@ -1083,7 +1083,7 @@ F1 Source Ancestor Chain。
 
 ---
 
-# 23.38 F1：先冻结 Development Source
+## 23.38 F1：先冻结 Development Source
 
 后续路线的 F1 先形成并接受一个具名 Source Freeze。
 
@@ -1108,7 +1108,7 @@ Source Freeze 是后续观察的前提之一，不是完成证明。
 
 ---
 
-# 23.39 F2：Read-only Replay 观察项目侧使用
+## 23.39 F2：Read-only Replay 观察项目侧使用
 
 F2 将 Source 放入只读项目 Replay 中观察。
 
@@ -1131,7 +1131,7 @@ Read-only 是观察边界，不是外部有效性证明。
 
 ---
 
-# 23.40 F3：Package Identity 连接 Source 与 Result
+## 23.40 F3：Package Identity 连接 Source 与 Result
 
 如果一个 Test Result 不能说明自己针对哪个 Package，它的复用价值会迅速下降。
 
@@ -1157,7 +1157,7 @@ Identity 是 Trace 的必要组成之一，不是完整 Supply-chain、Security 
 
 ---
 
-# 23.41 F4a：`48/48 PASS` 是 Bounded Evidence
+## 23.41 F4a：`48/48 PASS` 是 Bounded Evidence
 
 F4a 收集了 48 项限定测试，并记录 `48/48 PASS`。
 
@@ -1176,7 +1176,7 @@ F4a 的价值来自“有限但清楚”，不是来自数字足够大。
 
 ---
 
-# 23.42 `NON_QUALIFYING` 不是失败标签
+## 23.42 `NON_QUALIFYING` 不是失败标签
 
 最终 Development Closure 明确保留 `NON_QUALIFYING`。
 
@@ -1203,33 +1203,33 @@ production adoption = not approved
 
 ---
 
-# 23.43 v4.94 的四层结论
+## 23.43 v4.94 的四层结论
 
-## Observable Fact
+### Observable Fact
 
 D-048 的 Verifier 在 Target 前发生 Self-mutation，Target 没有被观察；D-073 至 D-075
 连续产生治理类 Artifact 而没有形成 Package Source / Test Delta；D-077 有两次受限失败；
 D-079 出现 Test PASS 与 Scope Rejection；F1–F4a 最终形成受限 Development Evidence 并
 保持 `NON_QUALIFYING`。
 
-## Contemporaneous Judgment
+### Contemporaneous Judgment
 
 项目确认 D-048 的完整性缺陷，后来把 D-073 至 D-075 记录为治理活锁，把 D-076 路线
 定义为 Scoped / Retractable，并由 Human 拒绝 D-079 的过度范围。
 
-## Retrospective Inference
+### Retrospective Inference
 
 不同 Lifecycle Stage 的 Proof Obligation 被耦合，可能参与形成 Delivery Evidence 停滞；
 后续恢复也可能同时受 Scope 收窄、知识累积与 Human Authorization 变化影响。
 
-## Current Recommendation
+### Current Recommendation
 
 Gate 与 Review 应声明当前保护的 Claim、Stage、Evidence Use 和 Decision Target；在保留
 Protected Floor 的同时，对失配的治理表面进行收窄、拆分、延后或重新设计。
 
 ---
 
-# 23.44 v4.94 的替代解释与反向证据
+## 23.44 v4.94 的替代解释与反向证据
 
 如果删掉反向证据，这段历史会被写成：
 
@@ -1252,7 +1252,7 @@ Protected Floor 的同时，对失配的治理表面进行收窄、拆分、延�
 
 ---
 
-# 23.45 两个案例共同出现的 Scope Separation
+## 23.45 两个案例共同出现的 Scope Separation
 
 在同一方法生态中，多种 Scope 被反复分开：
 
@@ -1273,7 +1273,7 @@ Protected Floor 的同时，对失配的治理表面进行收窄、拆分、延�
 
 ---
 
-# 23.46 Authority Separation：谁判断什么
+## 23.46 Authority Separation：谁判断什么
 
 两个案例中可以看到不同 Authority：
 
@@ -1296,7 +1296,7 @@ Adoption、Release 或 Product Judgment。
 
 ---
 
-# 23.47 Result Separation：失败属于谁，PASS 支持什么
+## 23.47 Result Separation：失败属于谁，PASS 支持什么
 
 这组共享来源的案例材料暴露了多种关系与记录；第23章只引用前章类型，不建立新的 `Result` 上位对象：
 
@@ -1321,7 +1321,7 @@ Adoption、Release 或 Product Judgment。
 
 ---
 
-# 23.48 Change Separation：变化不自动成为改进
+## 23.48 Change Separation：变化不自动成为改进
 
 案例中至少有七种 Change State：
 
@@ -1344,7 +1344,7 @@ Function-first 路线形成 Development Closure，不等于 Governance 改进已
 
 ---
 
-# 23.49 Human Role 不是每一步点击
+## 23.49 Human Role 不是每一步点击
 
 从这些案例不能推出“Human 必须手工批准所有动作”。
 
@@ -1367,7 +1367,7 @@ Mapping 中消失。
 
 ---
 
-# 23.50 Human Decision 必须留下 Explicit Boundary
+## 23.50 Human Decision 必须留下 Explicit Boundary
 
 一个 Human `approved` 如果没有对象和边界，仍然高度模糊。
 
@@ -1389,7 +1389,7 @@ SP122 的价值不只是“Human 参与了”。
 
 ---
 
-# 23.51 Multi-Agent Lane 不等于组织效果
+## 23.51 Multi-Agent Lane 不等于组织效果
 
 SP122 R2 保留了可见 Lane Identity、分工结果和 Result Manifest。
 
@@ -1414,7 +1414,7 @@ SP122 R2 保留了可见 Lane Identity、分工结果和 Result Manifest。
 
 ---
 
-# 23.52 Context、State 与 Trace 是有限外部决策环境
+## 23.52 Context、State 与 Trace 是有限外部决策环境
 
 两个仓库留下的 Plan、Manifest、Review、Transaction、Artifact Path 和 Decision Record 使
 部分历史可以重建。
@@ -1437,7 +1437,7 @@ Agent 的隐藏思维过程。
 
 ---
 
-# 23.53 Governance Economics：控制也消耗生产系统
+## 23.53 Governance Economics：控制也消耗生产系统
 
 Governance 不只是 Policy 正确性问题。
 
@@ -1470,7 +1470,7 @@ human, compute, waiting, coordination and maintenance cost
 
 ---
 
-# 23.54 控制应按当前 Evidence Use 裁剪
+## 23.54 控制应按当前 Evidence Use 裁剪
 
 一个控制机制至少应回答：
 
@@ -1493,7 +1493,7 @@ human, compute, waiting, coordination and maintenance cost
 
 ---
 
-# 23.55 Capability Fitness：案例不提供 Level
+## 23.55 Capability Fitness：案例不提供 Level
 
 如果使用旧 Level 0–5 模型，AI Game Dev OS 很容易因为拥有多 Agent、Gate、Trace、Memory
 和 Evolution 机制而被评成较高等级。
@@ -1513,7 +1513,7 @@ v4.94 历史说明这种评分会漏掉关键差异：
 
 ---
 
-# 23.56 两个案例没有形成效果比较
+## 23.56 两个案例没有形成效果比较
 
 要声称 AI-native Workflow 改善效率或质量，至少需要：
 
@@ -1541,7 +1541,7 @@ v4.94 也没有 Old / New Workflow 的受控效率比较。
 
 ---
 
-# 23.57 从 Case-specific Fact 转向 Transfer Question
+## 23.57 从 Case-specific Fact 转向 Transfer Question
 
 原稿把经验分成“游戏专属、软件通用、企业治理通用”。
 
@@ -1549,7 +1549,7 @@ v4.94 也没有 Old / New Workflow 的受控效率比较。
 
 本章改成三层：
 
-## Case-specific Fact
+### Case-specific Fact
 
 - PlayerStatus Geometry、Potion Dock 与 Battle Visual；
 - Godot Runtime 和 SP122 D2 Scope；
@@ -1557,7 +1557,7 @@ v4.94 也没有 Old / New Workflow 的受控效率比较。
 - v4.94 D-048、D-073 至 D-079、F1–F4a；
 - 两个仓库中的具名 Artifact 与 Human Decision。
 
-## Transfer Question
+### Transfer Question
 
 - Intent、Scope 与 Non-goal 是否明确；
 - Context、State 与 Authority 是否可定位；
@@ -1567,7 +1567,7 @@ v4.94 也没有 Old / New Workflow 的受控效率比较。
 - Acceptance、Adoption、Release 与 Qualification 是否分开；
 - Governance 与 Coordination Cost 是否相称。
 
-## Unvalidated Generalization
+### Unvalidated Generalization
 
 - 这些机制适用于所有企业；
 - Multi-Agent 提高组织效能；
@@ -1580,7 +1580,7 @@ v4.94 也没有 Old / New Workflow 的受控效率比较。
 
 ---
 
-# 23.58 Transfer Question 需要在目标环境重新回答
+## 23.58 Transfer Question 需要在目标环境重新回答
 
 一个项目如果要借用本章经验，不应先复制 Artifact 模板。
 
@@ -1601,7 +1601,7 @@ v4.94 也没有 Old / New Workflow 的受控效率比较。
 
 ---
 
-# 23.59 由本章产生的 OS 反馈只能是 Candidate
+## 23.59 由本章产生的 OS 反馈只能是 Candidate
 
 写作会反向整理 AI Game Dev OS 的问题。
 
@@ -1633,7 +1633,7 @@ observed case problem
 
 ---
 
-# 23.60 视觉材料应改变判断，而不是装饰案例
+## 23.60 视觉材料应改变判断，而不是装饰案例
 
 本章最终可以选用少量版本化视觉材料：
 
@@ -1654,75 +1654,75 @@ observed case problem
 
 如果一张图不能改变理解，只是在让系统显得完整，就不应进入正文。
 
-首轮工作稿不复制外部大型 Artifact。
+大型原始 Artifact 保留在其来源位置，正文只引用能够绑定历史版本并改变当前判断的材料。
 
 ---
 
-# 23.61 案例写作的常见 Anti-pattern
+## 23.61 案例写作的常见 Anti-pattern
 
-## Feature Mapping as Validation
+### Feature Mapping as Validation
 
 用同名功能证明理论，而不检查机制是否进入真实路径。
 
-## Planned Workflow as History
+### Planned Workflow as History
 
 把计划中的步骤写成实际发生顺序。
 
-## Success-only Timeline
+### Success-only Timeline
 
 删除失败 Attempt、Rejected Scope、Open Item 和 `NON_QUALIFYING`。
 
-## PASS Inflation
+### PASS Inflation
 
 把选定测试的 PASS 扩张为完整正确、Acceptance 或 Production Readiness。
 
-## Human Rubber Stamp
+### Human Rubber Stamp
 
 只写“Human approved”，不写决定对象、依据和未批准内容。
 
-## Artifact Prestige
+### Artifact Prestige
 
 用 Manifest、Registry、Dashboard 和文档数量替代运行结果。
 
-## Role-label Organization
+### Role-label Organization
 
 因为存在 Controller / Lead / Worker，就宣称多 Agent 组织已经成立。
 
-## Retrospective Causality
+### Retrospective Causality
 
 因为后续恢复成功，就把前期计划写成唯一原因。
 
-## Shared-provenance Replication
+### Shared-provenance Replication
 
 把同一作者与方法生态中的两个仓库当成独立重复验证。
 
-## Case-to-industry Generalization
+### Case-to-industry Generalization
 
 从一个游戏项目直接推出软件行业或企业治理结论。
 
-## Book-to-roadmap Escalation
+### Book-to-roadmap Escalation
 
 把书中建议直接变成 OS 修改授权。
 
 ---
 
-# 23.62 案例阅读检查清单
+## 23.62 案例阅读检查清单
 
-## Source 与 Scope
+### Source 与 Scope
 
 - [ ] Repository、Version、Work 和时间范围是否明确？
 - [ ] 后来状态是否没有覆盖早期 Unknown？
 - [ ] Artifact 是否绑定具名 Source 和 Decision Target？
 - [ ] 两个相关仓库是否没有被误写成独立样本？
 
-## 叙述层级
+### 叙述层级
 
 - [ ] Observable Fact、同期判断、事后推导和当前建议是否分开？
 - [ ] 项目自己的 Incident Label 是否没有被当成自然事实？
 - [ ] 计划路径是否没有被写成已发生历史？
 - [ ] 结论改变时是否指出了新事实或新定义？
 
-## Evidence 与 Result
+### Evidence 与 Result
 
 - [ ] Machine Check 的分母、版本与环境是否明确？
 - [ ] Verifier Failure 与 Target Result 是否分开？
@@ -1730,14 +1730,14 @@ observed case problem
 - [ ] Visual Capture 是否没有替代 Human Aesthetic Judgment？
 - [ ] Test PASS 是否没有自动扩张为 Scope Acceptance？
 
-## Decision 与 Authority
+### Decision 与 Authority
 
 - [ ] 谁拥有 Execution、Review、Acceptance、Adoption 与 Release Authority？
 - [ ] Human 决定是否写明接受什么和未接受什么？
 - [ ] Machine Gate 的自动处置是否限于明确委托范围？
 - [ ] Open Item、Exception、Expiry 和下一 Decision Owner 是否保留？
 
-## Counterevidence
+### Counterevidence
 
 - [ ] 真实严格检查的价值是否保留？
 - [ ] 架构调整后的失败 Attempt 是否保留？
@@ -1745,7 +1745,7 @@ observed case problem
 - [ ] `NON_QUALIFYING` 和未完成 Production 是否保留？
 - [ ] Alternative Explanation 是否与中心解释相邻？
 
-## Generalization 与反馈
+### Generalization 与反馈
 
 - [ ] Case-specific Fact、Transfer Question 与 Generalization 是否分开？
 - [ ] 是否避免效率、质量、安全和成本效果声明？
@@ -1755,7 +1755,7 @@ observed case problem
 
 ---
 
-# 23.63 本章原则
+## 23.63 本章原则
 
 1. **Preserved history constrains theory.** 被保存的历史必须能够限制理论，而不只装饰理论。
 2. **Shared provenance is not independent replication.** 共享来源不构成独立重复验证。
@@ -1776,7 +1776,7 @@ observed case problem
 
 ---
 
-# 23.64 结论：案例的任务是保留边界
+## 23.64 结论：案例的任务是保留边界
 
 AI Game Dev OS 与 lessismore 的历史没有证明本书理论正确。
 

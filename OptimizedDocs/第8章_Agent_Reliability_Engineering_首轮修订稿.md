@@ -26,7 +26,7 @@ Agent Reliability Engineering（Agent 可靠性工程：让不确定执行的后
 
 ---
 
-# 8.1 Reliability 不是一个布尔属性
+## 8.1 Reliability 不是一个布尔属性
 
 一个 Agent 在局部代码补全上表现稳定，不表示它在数据迁移、外部服务调用或生产发布上同样可靠。
 
@@ -45,7 +45,7 @@ Reliability 至少依赖：
 
 ---
 
-# 8.2 先把三种结果关系分开
+## 8.2 先把三种结果关系分开
 
 本章采用：
 
@@ -70,7 +70,7 @@ Attempt
 
 ---
 
-# 8.3 Attempt Outcome 记录执行后果
+## 8.3 Attempt Outcome 记录执行后果
 
 **Attempt Outcome（尝试后果：记录一次 Attempt 实际执行到哪里、发生了什么外部后果及其结束方式的结果关系）** 绑定 Attempt Identity。
 
@@ -98,7 +98,7 @@ Attempt Outcome 不等于 Work Completion。一次 Attempt 按 Contract 完成�
 
 ---
 
-# 8.4 Target Result 只属于实际被执行和观察的 Target
+## 8.4 Target Result 只属于实际被执行和观察的 Target
 
 **Target Result（目标结果：Target 获得足够执行与观察后，对其输出、状态变化或行为形成的有类型结果）** 必须绑定：
 
@@ -115,7 +115,7 @@ Target Result 可以是业务输出、构建产物、迁移结果、运行行为
 
 ---
 
-# 8.5 `non-result` 明确表示目标没有形成可评价结果
+## 8.5 `non-result` 明确表示目标没有形成可评价结果
 
 **`non-result`（未形成目标结果：现有 Trace 足以确认预期 Target 未被触达，或可归属的结果属于另一个实际 Target，因此当前运行没有形成该预期 Target 的评价结果）** 是显式缺席分类，不是“另一种失败分数”。
 
@@ -136,7 +136,7 @@ Target Result 可以是业务输出、构建产物、迁移结果、运行行为
 
 ---
 
-# 8.6 Evaluation Result 属于具名评价
+## 8.6 Evaluation Result 属于具名评价
 
 **Evaluation Result（评价结果：某个 Check、Test、Verifier、Review 或 Human Evaluation 对具名 Target、运行和评价条件形成的结果）** 需要保留：
 
@@ -161,11 +161,11 @@ Target Result 可以是业务输出、构建产物、迁移结果、运行行为
 - Release 已被授权；
 - 未覆盖场景同样通过。
 
-Human Evaluation 也应绑定 Target 与 Criteria。人的审美、体验和方向判断具有最终权威，不表示一句“看起来不错”可以替代其适用范围和 Decision Target。
+Human Evaluation 也应绑定 Target 与 Criteria。对于明确保留给 Human Judgment 的审美、体验和方向事项，最终裁决应由具名且拥有相应 Authority Grant 的人类角色作出；一句“看起来不错”不能替代适用范围和 Decision Target。
 
 ---
 
-# 8.7 Failure 是有范围的偏离分类，不是自动根因
+## 8.7 Failure 是有范围的偏离分类，不是自动根因
 
 **Failure（失败：相对于具名 Contract、Target、Criterion 或期望状态观察到的不可接受偏离）** 必须说明“什么相对什么失败”。
 
@@ -188,7 +188,7 @@ Failure Classification 是当前解释，可以被新 Evidence 收窄、拆分�
 
 ---
 
-# 8.8 Unknown、Partial 与 Conflict 必须能够留下来
+## 8.8 Unknown、Partial 与 Conflict 必须能够留下来
 
 可靠性记录不应强迫所有运行立即归入 PASS 或 FAIL。
 
@@ -206,7 +206,7 @@ Unknown 不是失败，但可能限制后续动作。Partial 不是“差一点 
 
 ---
 
-# 8.9 Retry 是新的 Attempt，不是删除失败
+## 8.9 Retry 是新的 Attempt，不是删除失败
 
 Retry 可能解决瞬时错误，也可能：
 
@@ -233,7 +233,7 @@ Retry 可能解决瞬时错误，也可能：
 
 ---
 
-# 8.10 Recovery 以恢复目标为中心
+## 8.10 Recovery 以恢复目标为中心
 
 **Recovery（恢复：在 Attempt、Target 或 Environment 进入失败、未知或不可接受状态后，通过有授权的 Rollback、Forward Correction、Fallback、Compensation、Resume 或 Human Takeover，使系统回到具名可接受或可继续判断状态的响应过程）** 不等于“回到旧版本”。
 
@@ -262,7 +262,7 @@ Recovery 不删除原始 Attempt。它创建新的动作与结果关系。
 
 ---
 
-# 8.11 Sandbox 和 Blast Radius 限制损害面，不证明正确
+## 8.11 Sandbox 和 Blast Radius 限制损害面，不证明正确
 
 Sandbox、只读模式、独立 Worktree、临时数据库、Mock Service 与最小 Credential 可以限制 Blast Radius（爆炸半径：一次错误能够直接影响的资产、用户、环境和后续系统范围）。
 
@@ -280,7 +280,7 @@ Sandbox、只读模式、独立 Worktree、临时数据库、Mock Service 与最
 
 ---
 
-# 8.12 Reliability Signal 是治理触发输入，不是结论
+## 8.12 Reliability Signal 是治理触发输入，不是结论
 
 以下信号可能需要暂停、收窄、重新观察或升级：
 
@@ -301,7 +301,7 @@ Signal 不自动证明 Root Cause，也不自动要求最高治理等级。
 
 ---
 
-# 8.13 可复现性首先是外部条件可定位
+## 8.13 可复现性首先是外部条件可定位
 
 非确定性 Agent 不一定能够在相同 Prompt 下产生相同输出。
 
@@ -320,7 +320,7 @@ Signal 不自动证明 Root Cause，也不自动要求最高治理等级。
 
 ---
 
-# 8.14 Reliability Metric 必须带分母和观察边界
+## 8.14 Reliability Metric 必须带分母和观察边界
 
 原始大纲列出了 Task Success、First-pass Success、Rework、Regression、Rollback、Human Intervention、Scope Violation 与 Evidence Failure 等指标。
 
@@ -341,7 +341,7 @@ Signal 不自动证明 Root Cause，也不自动要求最高治理等级。
 
 ---
 
-# 8.15 D-048 展示为什么必须分开 Verifier 与 Target
+## 8.15 验证器自我修改案例：不区分 Verifier 与 Target 会造成什么错误
 
 AI Game Dev OS v4.94 的 D-048 中，Launcher 在目标 Compile Harness 执行前，通过普通 Python import 改变了自身受保护的 inventory surface。后续 exact-inventory check 检测到变化并停止；目标 runtime directory 与 compile result 都没有产生。
 
@@ -360,6 +360,8 @@ Target Result:
 
 它不能被写成“目标 Compile FAIL”，也不能被写成“验证系统完全无效”。Detector 检测到了真实变化；直接工程缺陷是 Verifier Self-mutation。
 
+本例支持的最小边界是：当 Verifier 可以独立失败、改变观察对象，或 Target 未被触达时，Verifier 与 Target 的结果语义必须可区分；这不要求低风险任务分别持久化两份记录。
+
 该案例不证明所有 Verifier 必须绝对无副作用。已声明、被隔离且不改变观察对象身份和解释边界的正常输出，不自动构成 Integrity Failure。现有材料也没有重跑历史 Harness，因此不能从这次 Incident 单独推出修正方案的运行效果。
 
 完整来源、反证与人工收窄边界见 [D-048 验证器自我修改案例记录](../Evidence/receipts/ER-20260818-002__CLM-C06-004.md)。
@@ -367,9 +369,9 @@ Target Result:
 
 ---
 
-# 8.16 最小实现按影响裁剪
+## 8.16 最小实现按影响裁剪
 
-## 可丢弃的只读 Attempt
+### 可丢弃的只读 Attempt
 
 至少记录：
 
@@ -379,7 +381,7 @@ Target Result:
 - Output / Error / Unknown；
 - 是否可以安全丢弃。
 
-## 可逆修改
+### 可逆修改
 
 进一步记录：
 
@@ -389,7 +391,7 @@ Target Result:
 - 具名 Test / Check 的 Evaluation Result；
 - Retry 和 Rollback 边界。
 
-## 高影响或不可逆动作
+### 高影响或不可逆动作
 
 还可能需要：
 
@@ -404,7 +406,7 @@ Target Result:
 
 ---
 
-# 8.17 常见反模式
+## 8.17 常见反模式
 
 1. **One Result Field。** Attempt、Target 与 Evaluation 共用一个 `status`。
 2. **Verifier Failure = Target Failure。** 前置工具失败却填写目标 FAIL。
@@ -419,7 +421,7 @@ Target Result:
 
 ---
 
-# 8.18 与相邻章节的接口
+## 8.18 与相邻章节的接口
 
 | 章节 | 第8章复用 | 第8章不重新定义 |
 |---|---|---|
@@ -436,30 +438,30 @@ Target Result:
 
 ---
 
-# 8.19 检查清单
+## 8.19 检查清单
 
-## 记录结果
+### 记录结果
 
 - Attempt Outcome、Target Result 与 Evaluation Result 是否分开？
 - Target 是否真的被执行和观察？
 - `non-result`、Unknown、Partial 与 Conflict 是否可表达？
 - PASS 是否绑定具名评价、运行和 Coverage？
 
-## 记录失败
+### 记录失败
 
 - Failure 相对哪个 Contract、Target 或 Criterion？
 - 当前分类是 Observation、同期判断还是事后因果假设？
 - Verifier、Target 与 Reporting Failure 是否被混合？
 - 替代解释和 Counterevidence 是否可见？
 
-## Retry 与 Recovery
+### Retry 与 Recovery
 
 - Retry 是否创建新 Attempt Identity？
 - 副作用、幂等性和次数上限是否明确？
 - Recovery Target、Authority 与 Outcome 是否分开？
 - Rollback / Forward Correction 后是否重新观察目标状态？
 
-## 指标
+### 指标
 
 - 分母、Workload、版本和时间窗是否清楚？
 - Silent Failure 与 Observation Gap 是否被承认？
@@ -467,7 +469,7 @@ Target Result:
 
 ---
 
-# 8.20 本章结论
+## 8.20 本章结论
 
 Agent Reliability Engineering 的最低目标不是消除不确定性，而是防止不确定性被错误命名。
 

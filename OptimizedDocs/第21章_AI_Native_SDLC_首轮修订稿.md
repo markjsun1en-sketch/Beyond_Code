@@ -52,9 +52,9 @@ Lifecycle 不是每项任务必须访问的阶段清单，而是 Work 可以在�
 
 ---
 
-# 21.1 先区分必要、有用与可选
+## 21.1 先区分必要、有用与可选
 
-## 必要的最低控制功能
+### 必要的最低控制功能
 
 只要 Agent 被委托修改持久工程状态或产生外部影响，Lifecycle 在语义上至少需要保留：
 
@@ -66,7 +66,7 @@ Lifecycle 不是每项任务必须访问的阶段清单，而是 Work 可以在�
 
 “必要”指最低控制功能，不要求每项 Work 分别持久化全书对象。Issue、VCS、Sandbox、CI 或 Human Workflow 可以共同承担这些功能。
 
-## 条件性／有用
+### 条件性／有用
 
 当持续时间、并发、影响、不确定性、Policy / 合同 / Rights、下游处置、恢复要求等具名风险或 Decision Use 触发时，下列能力通常有用：
 
@@ -78,7 +78,7 @@ Lifecycle 不是每项任务必须访问的阶段清单，而是 Work 可以在�
 - 长期 Memory / Evolution Candidate 的独立 Promotion / Adoption；
 - 在需要并行、专业隔离或 Review Independence 时引入的独立 Multi-Agent Role。
 
-## 可选
+### 可选
 
 以下实现不应成为 AI-native SDLC 的定义条件：
 
@@ -101,7 +101,7 @@ Lifecycle 不是每项任务必须访问的阶段清单，而是 Work 可以在�
 
 ---
 
-# 21.2 传统 SDLC 仍然存在
+## 21.2 传统 SDLC 仍然存在
 
 传统 SDLC 的阶段通常围绕 Product / Software Artifact 展开：
 
@@ -130,7 +130,7 @@ AI-native 控制循环可以出现在每个阶段：
 
 ---
 
-# 21.3 Lifecycle 是关系模型，不是新平台
+## 21.3 Lifecycle 是关系模型，不是新平台
 
 本章使用 **Lifecycle（生命周期：具名 Work 从 Trigger 和 Intent 形成，到执行、评价、
 处置、集成、运行以及可能学习的允许状态转换与关闭关系）** 作为整合视图。
@@ -161,7 +161,7 @@ Lifecycle 不拥有：
 
 ---
 
-# 21.4 主干是状态迁移网络
+## 21.4 主干是状态迁移网络
 
 候选主干可以表示为：
 
@@ -217,33 +217,33 @@ Future Baseline
 
 ---
 
-# 21.5 Work、Attempt、Outcome、Change 与 Release 关系分开
+## 21.5 Work、Attempt、Outcome、Change 与 Release 关系分开
 
 Lifecycle 最常见的语义压缩，是把“一个任务”当成所有对象。
 
 本节只建立 Lifecycle 的整合 Bridge，不取得这些基础对象的定义所有权。第7章拥有 Work、Execution Contract、Attempt、Checkpoint 与 Bounded Execution；第8章拥有 Attempt Outcome、Target Result、Evaluation Result、Failure、`non-result` 与 Recovery。本章按这些已冻结关系引用它们。
 
-## Work Reference
+### Work Reference
 
 Lifecycle 引用由第7章定义的 **Work**，以定位其具名目标、Scope、Owner、约束和关闭语义。一个 Work 可以跨多个 Attempt、Agent、Commit、Review 和 Release；一次 Attempt 结束不自动关闭 Work。
 
-## Attempt Reference
+### Attempt Reference
 
 Lifecycle 引用由第7章定义的 **Attempt**，以区分同一 Work 下具名 Execution Contract、Baseline、输入快照、Context、配置和时间边界不同的执行实例。Attempt 可能完成、部分执行、取消、超时、崩溃或没有到达 Target。
 
-## Attempt Outcome、Target Result 与 Evaluation Result References
+### Attempt Outcome、Target Result 与 Evaluation Result References
 
 Lifecycle 引用第8章拥有的三类结果关系：**Attempt Outcome** 记录该 Attempt 实际发生了什么；**Target Result** 只在 Target 获得足够执行时记录其输出或行为；若前置 Verifier 已经阻断 Target，应显式记录 `non-result`，而不是填写 Target FAIL；**Evaluation Result** 记录 Test、Verifier、Review 或 Human Evaluation 对具名 Target 与运行形成的结果。
 
 三者都不自动形成 Work Acceptance、Adoption 或 Release Authorization。
 
-## Change Reference
+### Change Reference
 
 Change 是对 Code、Data、Configuration、Artifact 或 External State 的具体变化。
 
 一个 Attempt 可以产生多个 Change；一个 Change 也可能尚未被接受。
 
-## Release Authorization、Release Execution 与 Release Outcome References
+### Release Authorization、Release Execution 与 Release Outcome References
 
 Lifecycle 引用第9章拥有的 **Release Authorization**，以及第18章拥有的 **Release Execution / Release Outcome**：前者是允许具名 Artifact 或 Change 进入指定发布面的规范性 Decision；Execution 是实际分发、部署或推进的一次或多次 Attempt；Outcome 是 Environment、User 或 Downstream Consumer 实际观察到的后果。
 
@@ -272,7 +272,7 @@ Work
 
 ---
 
-# 21.6 Lifecycle Profile 选择路径，不定义成熟度
+## 21.6 Lifecycle Profile 选择路径，不定义成熟度
 
 **Lifecycle Profile（生命周期配置：针对具名 Work、风险面和恢复条件，选择必要
 Transition、Gate、Observation、Review 与 Recovery 的有范围配置）** 可以说明：
@@ -336,7 +336,7 @@ closure:
 
 ---
 
-# 21.7 Profile 依据风险面组合
+## 21.7 Profile 依据风险面组合
 
 流程裁剪不应只问“任务是低、中还是高风险”。
 
@@ -369,7 +369,7 @@ Profile 是具体控制选择，不是项目成熟度排名。
 
 ---
 
-# 21.8 Lifecycle Transition 绑定转换条件与 Authority
+## 21.8 Lifecycle Transition 绑定转换条件与 Authority
 
 **Lifecycle Transition（生命周期转换：把具名 Work、Attempt、Change 或 Release 从一个
 有边界状态迁移到另一个状态的授权关系）** 至少需要回答：
@@ -424,7 +424,7 @@ on_unknown:
 
 ---
 
-# 21.9 Phase、State Claim、Lifecycle Status 与 Transition 不是同一个概念
+## 21.9 Phase、State Claim、Lifecycle Status 与 Transition 不是同一个概念
 
 **Phase（阶段：为了组织活动而形成的工作分组）** 可以叫 Design、Implementation、
 Evaluation 或 Operations。
@@ -447,7 +447,7 @@ Phase 用来组织工作，State Claim 描述发生了什么，Lifecycle Status 
 
 ---
 
-# 21.10 Need 与 Trigger 只打开 Work Candidate
+## 21.10 Need 与 Trigger 只打开 Work Candidate
 
 Need 或 Trigger 可能来自：
 
@@ -484,7 +484,7 @@ Need / Trigger
 
 ---
 
-# 21.11 Intent Formation 定义方向，不授予全部执行权
+## 21.11 Intent Formation 定义方向，不授予全部执行权
 
 Intent Formation 使用：
 
@@ -519,7 +519,7 @@ Intent 发生冲突时，不应让执行 Agent根据语气、顺序或 Prompt �
 
 ---
 
-# 21.12 Grounding 建立当前可依赖边界，不“解决 Truth”
+## 21.12 Grounding 建立当前可依赖边界，不“解决 Truth”
 
 **Grounding（执行落地准备：为当前 Decision Target 组合有来源的 State、Decision、
 Assumption、Conflict、Context、Authority 与已知缺口，使下一动作具有可检查依据）**
@@ -563,7 +563,7 @@ Grounding 不足时，允许：
 
 Grounding 是 Lifecycle 中的活动投影，不是新的独立 Record 或 Truth Store。
 
-## Lifecycle 面的输入、输出与非主张
+### Lifecycle 面的输入、输出与非主张
 
 | Lifecycle 面 | 主要输入 | 候选输出 | 不自动产生 |
 |---|---|---|---|
@@ -589,7 +589,7 @@ Verification Scope 与 Authorized Disposition。
 
 ---
 
-# 21.13 Planning 形成候选路径，Execution Contract 形成受权边界
+## 21.13 Planning 形成候选路径，Execution Contract 形成受权边界
 
 Plan 可以描述：
 
@@ -631,7 +631,7 @@ Execution Contract
 
 ---
 
-# 21.14 Plan Review 不应成为所有任务的独立等待点
+## 21.14 Plan Review 不应成为所有任务的独立等待点
 
 Plan Review 有价值的场景包括：
 
@@ -661,7 +661,7 @@ Reviewer 可以认为 Plan 合理，但 Tool、Credential 或目标 Environment 
 
 ---
 
-# 21.15 Execution Attempt 必须有边界
+## 21.15 Execution Attempt 必须有边界
 
 本章不新增 `Bounded Execution Attempt` 对象。按照已冻结的章节所有权，第7章正式定义 Attempt；本节只列 Lifecycle Transition 需要从 Attempt Record 读取的关系，不构成第21章的 Attempt Schema：
 
@@ -694,36 +694,36 @@ Attempt 只关联执行时可观察的动作、边界与上游引用；完整外
 
 ---
 
-# 21.16 Execution 中允许 Retrieve、Pause、Rebase 与 Recover
+## 21.16 Execution 中允许 Retrieve、Pause、Rebase 与 Recover
 
 执行不是从 Plan 到 Output 的封闭直线。
 
 允许的中途转换包括：
 
-## Retrieve
+### Retrieve
 
 发现 Context 缺口，按 Contract 获取额外信息。Retrieval 不自动扩大 Instruction Authority。
 
-## Pause
+### Pause
 
 临时停止新 Side Effect，保存当前 Attempt、在途动作、未知和恢复条件。
 
-## Rebase
+### Rebase
 
 外部 State、Intent、Decision 或 Baseline 改变后，由具名 Authority 决定是否形成新
 Baseline、调整 Contract 或创建新 Attempt。
 
 Rebase 不重写过去的执行依据。
 
-## Restrict
+### Restrict
 
 收窄 Tool、Permission、Data、Path、Workload 或 Output Use。
 
-## Escalate
+### Escalate
 
 把超出当前 Authority、Risk 或 Evidence Boundary 的 Decision 交给更合适主体。
 
-## Recover
+### Recover
 
 使用 Rollback、Forward Correction、Fallback、Compensation 或人工接管恢复可接受状态。
 
@@ -731,7 +731,7 @@ Rebase 不重写过去的执行依据。
 
 ---
 
-# 21.17 Checkpoint Reference 保存决策边界，不是固定进度百分比
+## 21.17 Checkpoint Reference 保存决策边界，不是固定进度百分比
 
 第7章拥有 **Checkpoint** 的正式定义。第21章只引用它在 Work 或 Attempt 中保存的 Baseline、State Observation、Open Risk、Evidence、Authority 与下一允许动作，用于判断 Lifecycle 从哪里继续；Checkpoint Reference 不等于 `50% complete`。
 
@@ -765,7 +765,7 @@ Checkpoint 本身是否可恢复，需要由实际 State、Artifact、Credential
 
 ---
 
-# 21.18 Observation 与 Evidence 在 Lifecycle 中承担不同作用
+## 21.18 Observation 与 Evidence 在 Lifecycle 中承担不同作用
 
 Observation 记录：
 
@@ -809,7 +809,7 @@ Lifecycle 需要保存 Evidence Intended Use：
 
 ---
 
-# 21.19 Evaluation Result 以 Coverage 与 `non-result` 进入 Lifecycle
+## 21.19 Evaluation Result 以 Coverage 与 `non-result` 进入 Lifecycle
 
 第8章拥有 Evaluation Result、Target Result 与 `non-result` 的正式定义。本章只说明这些结果怎样进入 Evidence Use 与下一 Decision Target。Evaluation 可能产生：
 
@@ -843,7 +843,7 @@ Evidence Set
 
 ---
 
-# 21.20 Authorized Disposition 选择下一条 Lifecycle 路径
+## 21.20 Authorized Disposition 选择下一条 Lifecycle 路径
 
 第9章拥有 Decision Target、Decision Record 与 Disposition 的上位定义。本节只说明有权处置如何选择 Lifecycle Transition，不建立新的 `Authorized Disposition` 类型或通用枚举。
 
@@ -868,7 +868,7 @@ Policy 或 Automated Gate 可以在明确 Grant 内作出处置。
 
 ---
 
-# 21.21 Completion 是多种关系，不是一列 `done`
+## 21.21 Completion 是多种关系，不是一列 `done`
 
 需要区分：
 
@@ -903,7 +903,7 @@ Work Acceptance 不自动关闭 Work；是否关闭仍取决于具名 Work 的�
 
 ---
 
-# 21.22 Integration 是目标 Baseline 的处置
+## 21.22 Integration 是目标 Baseline 的处置
 
 Integration 需要回答：
 
@@ -928,7 +928,7 @@ Integration 后需要针对组合状态重新观察必要 Claim，而不是把�
 
 ---
 
-# 21.23 Release Authorization、Execution 与 Outcome 分开
+## 21.23 Release Authorization、Execution 与 Outcome 分开
 
 Release 相关 Target 可以包括：
 
@@ -964,7 +964,7 @@ Release Execution 与相应 Lifecycle Transition 需要绑定：
 
 ---
 
-# 21.24 Operations 会重新打开 Lifecycle
+## 21.24 Operations 会重新打开 Lifecycle
 
 Deployment 不是 Lifecycle 终点。
 
@@ -995,7 +995,7 @@ Lifecycle 因此是持续适用性管理，不是 Release 前的一次审批链�
 
 ---
 
-# 21.25 Learning 只产生 Candidate，不自动修改未来行为
+## 21.25 Learning 只产生 Candidate，不自动修改未来行为
 
 成功、失败、Incident、Override 和 Human Correction 都可能产生 Learning Candidate。
 
@@ -1031,7 +1031,7 @@ Change 不自动等于 Improvement，保留记录也不自动等于未来应检�
 
 ---
 
-# 21.26 Gate、Validation、Review、Decision 与 Acceptance 分开
+## 21.26 Gate、Validation、Review、Decision 与 Acceptance 分开
 
 Lifecycle 中的控制词很容易被混用。
 
@@ -1061,7 +1061,7 @@ Gate 不能仅因存在就证明输入正确、Reviewer 理解充分或 Target O
 
 ---
 
-# 21.27 原来的十个 Gate 是候选 Decision Target
+## 21.27 原来的十个 Gate 是候选 Decision Target
 
 原大纲列出的 Gate 可以按以下方式保留：
 
@@ -1085,7 +1085,7 @@ Evidence 和 Disposition 仍然可区分。
 
 ---
 
-# 21.28 Gate 的存在需要下游 Decision Use
+## 21.28 Gate 的存在需要下游 Decision Use
 
 每个 Gate 至少要回答：
 
@@ -1108,7 +1108,7 @@ Evidence 和 Disposition 仍然可区分。
 
 ---
 
-# 21.29 Human Approval 只放在需要 Human Judgment 的转换上
+## 21.29 Human Approval 只放在需要 Human Judgment 的转换上
 
 Human 适合处理：
 
@@ -1141,7 +1141,7 @@ Human 不需要逐项点击：
 
 ---
 
-# 21.30 Adaptive Governance 不是自动增加流程
+## 21.30 Adaptive Governance 不是自动增加流程
 
 **Adaptive Governance（适应性治理：依据当前 Work 的实际行动面、不确定性、影响、
 恢复能力和 Evidence，在 Protected Floor 之上调整控制强度与路径的有权机制）** 允许：
@@ -1167,7 +1167,7 @@ Human 不需要逐项点击：
 
 ---
 
-# 21.31 Protected Control Floor 跨路径保持
+## 21.31 Protected Control Floor 跨路径保持
 
 不同 Lifecycle Profile 可以具有不同步骤，但某些控制在特定 Scope 内不能被普通执行者取消。
 
@@ -1190,7 +1190,7 @@ Profile 可以增加控制，也可以在 Authority 和 Evidence 支持下调整
 
 ---
 
-# 21.32 Execution Epoch 是可选受控运行区间
+## 21.32 Execution Epoch 是可选受控运行区间
 
 **Execution Epoch（执行区间：从某个 Execution Contract 被打开，到关闭、重启或显式
 Rebase 之间，由固定引用的 Intent、Baseline、Authority、Tool 与 Governance 配置约束的
@@ -1217,7 +1217,7 @@ Epoch 是 Contract 的生命周期区间，不复制 Intent、Context、State、
 
 ---
 
-# 21.33 Sprint、Task、Run、Attempt、Transaction 与 Epoch 不是同义词
+## 21.33 Sprint、Task、Run、Attempt、Transaction 与 Epoch 不是同义词
 
 | 概念 | 主要边界 |
 |---|---|
@@ -1237,7 +1237,7 @@ AI-native SDLC 的唯一实现。
 
 ---
 
-# 21.34 Failure、Unknown 与 Recovery 是正式分支
+## 21.34 Failure、Unknown 与 Recovery 是正式分支
 
 第8章拥有 Failure、`non-result`、Unknown 与 Recovery 的结果分类；本节只说明它们如何触发 Lifecycle Transition，不重新定义失败或恢复对象。
 
@@ -1273,7 +1273,7 @@ Lifecycle 需要允许：
 
 ---
 
-# 21.35 Multi-Agent 只改变 Assignment 与 Handoff，不改变完成语义
+## 21.35 Multi-Agent 只改变 Assignment 与 Handoff，不改变完成语义
 
 多 Agent Lifecycle 需要额外处理：
 
@@ -1302,11 +1302,11 @@ Lifecycle 需要允许：
 
 ---
 
-# 21.36 三类候选 Profile 只用于说明裁剪
+## 21.36 三类候选 Profile 只用于说明裁剪
 
 以下不是成熟度等级，也不要求项目沿序列升级。
 
-## 局部、可逆、易观察
+### 局部、可逆、易观察
 
 ~~~text
 Need / brief
@@ -1320,7 +1320,7 @@ Need / brief
 
 通常不需要独立 Epoch、多 Agent 或十个 Gate。
 
-## 跨会话、跨角色或存在集成风险
+### 跨会话、跨角色或存在集成风险
 
 ~~~text
 versioned Work + Baseline + Context Manifest
@@ -1333,7 +1333,7 @@ versioned Work + Baseline + Context Manifest
 
 必要时使用 Execution Epoch，但不是默认。
 
-## 高影响、难恢复或多方 Authority
+### 高影响、难恢复或多方 Authority
 
 ~~~text
 Intent and affected-party decision
@@ -1350,7 +1350,7 @@ Intent and affected-party decision
 
 ---
 
-# 21.37 案例只保留 Lifecycle Transition 投影
+## 21.37 案例只保留 Lifecycle Transition 投影
 
 完整时间序列由[第23章](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)承担；本章只映射四组 Transition。
 
@@ -1365,7 +1365,7 @@ Intent and affected-party decision
 
 ---
 
-# 21.38 最小实现从一类重复 Work 开始
+## 21.38 最小实现从一类重复 Work 开始
 
 选择一类：
 
@@ -1397,39 +1397,39 @@ Intent and affected-party decision
 
 ---
 
-# 21.39 与相邻章节的接口
+## 21.39 与相邻章节的接口
 
-## 第4–6章：Intent、Context、Truth 与 State
+### 第4–6章：Intent、Context、Truth 与 State
 
 第4章拥有 Intent 和 Acceptance Target；第5章拥有 Context Contract / Manifest；第6章
 拥有 State Claim、Decision、Assumption、Conflict 与 Baseline。
 
 第21章只说明它们何时进入 Transition，不创建统一 Truth Container。
 
-## 第7–10章：Execution、Reliability、Evidence Use 与 Review
+### 第7–10章：Execution、Reliability、Evidence Use 与 Review
 
 第7章拥有 Work、Execution Contract、Attempt、Checkpoint 与 Bounded Execution；第8章拥有 Attempt Outcome、Target Result、Evaluation Result、Failure、`non-result` 与 Recovery；第9章拥有 Evidence Use、Decision Target、Acceptance、Adoption 与 Release Authorization；第10章拥有 Review、Review Target、Finding、Review Budget、Review Independence 与 Review Disposition。
 
 第21章只组织这些对象进入 Lifecycle Transition 的路径，不重新定义它们。
 
-## 第11–14章：Human、Authority、Observation 与 Intervention
+### 第11–14章：Human、Authority、Observation 与 Intervention
 
 Human Decision Interface、Protected Floor、Detector、Pause、Takeover 与 Recovery 约束
 Lifecycle Transition；第21章不复制其内部对象。
 
-## 第15–17章：Memory、Evolution 与 Organization
+### 第15–17章：Memory、Evolution 与 Organization
 
 Lifecycle 只产生 Learning Candidate；Promotion、Adoption、Role、Handoff 和 Integration
 继续由对应章节拥有。
 
-## 第18–20章：Trace、Boundary 与 Operations
+### 第18–20章：Trace、Boundary 与 Operations
 
 Trace 提供外部决策环境；Security / IP 约束 Data、Tool 和 Release；AgentOps 处理采用后
 Baseline、Drift、Cost 与 Re-evaluation。
 
 Lifecycle 引用这些关系，但不成为全书新的 Truth Store。
 
-## 第22–23章：能力适配与案例
+### 第22–23章：能力适配与案例
 
 第22章应讨论项目怎样选择足够的 AI-native 能力，而不是按更多 Agent、Gate 和 Registry
 形成成熟度阶梯。
@@ -1438,7 +1438,7 @@ Lifecycle 引用这些关系，但不成为全书新的 Truth Store。
 
 ---
 
-# 21.40 本章原则
+## 21.40 本章原则
 
 1. **Traditional SDLC remains.** AI-native 增加受托执行控制关系，不删除软件活动。
 2. **Lifecycle is a transition network, not a mandatory pipeline.** 路径允许循环、停止、恢复和重开。
@@ -1450,7 +1450,7 @@ Lifecycle 引用这些关系，但不成为全书新的 Truth Store。
 
 ---
 
-# 21.41 常见 Anti-pattern
+## 21.41 常见 Anti-pattern
 
 - 用更长 Pipeline、固定十个 Gate或 Human Approval Everywhere 替代按风险裁剪的传统 SDLC；
 - 把 Truth Resolution、Context Pack、Plan Review、Gate / Test PASS 直接写成最终事实、执行授权、Acceptance、Release 或 Improvement；
@@ -1461,25 +1461,25 @@ Lifecycle 引用这些关系，但不成为全书新的 Truth Store。
 
 ---
 
-# 21.42 检查清单
+## 21.42 检查清单
 
 本清单按当前 Lifecycle Profile 检查适用项；不适用项可以标为 `N/A`，不能为了勾选而新增对象。
 
-## Work 与 Identity
+### Work 与 Identity
 
 - [ ] Need / Trigger 是否只打开 Candidate，而不是自动执行？
 - [ ] Work、Attempt、Attempt Outcome、Target Result、Evaluation Result 与 Change 是否分别可识别？
 - [ ] Intent、Scope、Non-goal 与 Acceptance Target 是否明确？
 - [ ] Parent / Child Work 与 Handoff 是否保留责任和 Open Item？
 
-## Grounding 与 Contract
+### Grounding 与 Contract
 
 - [ ] State Claim、Lifecycle Status、Decision、Assumption、Conflict 与 Context 是否保持类型边界？
 - [ ] Baseline、Source、Revision、Environment 与 Dirty State 是否可定位？
 - [ ] Execution Contract 是否绑定 Tool、Permission、Authority、Evidence、Stop 与 Recovery？
 - [ ] Grounding 不足时是否允许 Retrieve、Narrow、Hold 或 Cancel？
 
-## Profile 与 Governance
+### Profile 与 Governance
 
 - [ ] Lifecycle Profile 是否依据实际风险面，而非固定等级？
 - [ ] Protected Control Floor 与可调整步骤是否分开？
@@ -1487,21 +1487,21 @@ Lifecycle 引用这些关系，但不成为全书新的 Truth Store。
 - [ ] Gate 是否有 Decision Target、Owner、Evidence、Disposition、Expiry 与成本边界？
 - [ ] 没有 Decision Use 的 Gate 是否可以合并或删除？
 
-## Execution 与 Checkpoint
+### Execution 与 Checkpoint
 
 - [ ] 每个 Attempt 是否绑定 Contract、Baseline 和配置 Identity？
 - [ ] Retrieve、Pause、Rebase、Restrict、Escalate 与 Recover 是否为显式 Transition？
 - [ ] Checkpoint 是否保存实际可恢复边界，而非只有摘要？
 - [ ] Baseline 变化是否创建新引用或 Attempt，而非覆盖过去？
 
-## Evidence 与 Decision
+### Evidence 与 Decision
 
 - [ ] Observation、Evidence、Coverage、Review、Decision 与 Acceptance 是否分开？
 - [ ] PASS、FAIL、Partial、Unknown、Verifier Failure 与 Target `non-result` 是否可表达？
 - [ ] Evidence Intended Use 是否绑定 Acceptance、Adoption、Release Authorization 等具体 Decision？
 - [ ] Automated Gate 是否只在明确 Grant 内作出处置？
 
-## Closure、Integration 与 Release
+### Closure、Integration 与 Release
 
 - [ ] Attempt Closure 与 Work Closure 是否分开？
 - [ ] Accepted Target 是否不自动产生 Integration 或 Release Authorization？
@@ -1509,14 +1509,14 @@ Lifecycle 引用这些关系，但不成为全书新的 Truth Store。
 - [ ] Release Authorization、Release Execution 与 Release Outcome 是否分别绑定 Target、Environment、Authority、Attempt、Rollback 与 External Effect Observation？
 - [ ] Unknown External Result 是否有停止、观察与 Incident Path？
 
-## Operations 与 Learning
+### Operations 与 Learning
 
 - [ ] Operational Baseline、Drift 与 Re-evaluation 是否可以重新打开 Lifecycle？
 - [ ] Memory / Evolution 是否只接收 Candidate？
 - [ ] Promotion、Adoption、Activation、Rollback 与 Revocation Authority 是否具名？
 - [ ] 第23章案例叙事是否没有被 Lifecycle 抽象取代？
 
-## Cost 与裁剪
+### Cost 与裁剪
 
 - [ ] 当前 Profile 的 Gate、Review、Trace 和 Handoff 成本是否进入比较？
 - [ ] 局部可逆 Work 是否能压缩流程？
@@ -1525,7 +1525,7 @@ Lifecycle 引用这些关系，但不成为全书新的 Truth Store。
 
 ---
 
-# 21.43 结论
+## 21.43 结论
 
 AI-Native Software Development Lifecycle 不是在传统 SDLC 后面再增加一串 Agent 方框。
 

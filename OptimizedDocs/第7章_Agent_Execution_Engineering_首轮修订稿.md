@@ -25,7 +25,7 @@ Agent Execution Engineering（Agent 执行工程：把有适应性的工具调�
 
 ---
 
-# 7.1 Agent 与传统自动化不是非黑即白的二分
+## 7.1 Agent 与传统自动化不是非黑即白的二分
 
 传统自动化常被概括为：
 
@@ -53,7 +53,7 @@ goal
 
 ---
 
-# 7.2 执行链先分开四个对象
+## 7.2 执行链先分开四个对象
 
 本章采用以下最小关系：
 
@@ -80,7 +80,7 @@ Intent Artifact
 
 ---
 
-# 7.3 Work 是跨 Attempt 持续存在的工作单元
+## 7.3 Work 是跨 Attempt 持续存在的工作单元
 
 **Work（工作单元：具有具名目标、Scope、Owner、约束和关闭语义的可引用工程工作）** 回答：
 
@@ -112,7 +112,7 @@ Attempt A 的失败不会自动关闭 Work；Attempt C 的 Test PASS 也不会�
 
 ---
 
-# 7.4 Execution Contract 约束执行，但不创造 Authority
+## 7.4 Execution Contract 约束执行，但不创造 Authority
 
 **Execution Contract（执行契约：描述某次或某类 Attempt 的 Target、允许动作、输入边界、Context、资源、停止条件、Evidence 要求与恢复边界的规范性执行接口）** 回答：
 
@@ -141,7 +141,7 @@ Contract 也不是复制所有上游对象的大型 Manifest。它应优先保�
 
 ---
 
-# 7.5 Plan 是路径提案，不等于 Execution Contract
+## 7.5 Plan 是路径提案，不等于 Execution Contract
 
 Plan 回答“准备怎样做”；Execution Contract 回答“允许在什么边界内做”。
 
@@ -166,7 +166,7 @@ Plan 可以在执行中调整：
 
 ---
 
-# 7.6 Bounded Execution 是控制性质，不是第二个 Attempt 对象
+## 7.6 Bounded Execution 是控制性质，不是第二个 Attempt 对象
 
 **Bounded Execution（有边界执行：能够识别当前执行身份、允许影响面、具名 Authority、结果可见性以及停止／恢复或安全丢弃条件的执行性质）** 不需要成为一份独立记录。
 
@@ -186,7 +186,7 @@ Plan 可以在执行中调整：
 
 ---
 
-# 7.7 Attempt 是一次有身份的实际执行
+## 7.7 Attempt 是一次有身份的实际执行
 
 **Attempt（执行尝试：在具名 Work 与 Execution Contract 或等价边界下，由可识别主体从具体起点发起的一次有身份执行）** 回答：
 
@@ -220,7 +220,7 @@ Attempt 不是隐藏 Chain-of-thought 的容器。
 
 ---
 
-# 7.8 Agent Loop 在 Contract 内自适应
+## 7.8 Agent Loop 在 Contract 内自适应
 
 一个常见执行循环是：
 
@@ -251,7 +251,7 @@ understand current target
 
 ---
 
-# 7.9 Tool Use 必须区分能力、权限与当前授权
+## 7.9 Tool Use 必须区分能力、权限与当前授权
 
 一个 Tool 出现在 Agent 的工具列表中，只说明技术能力可能存在。
 
@@ -278,7 +278,7 @@ understand current target
 
 ---
 
-# 7.10 Stop、Pause 与 Escalation 是有效执行结果
+## 7.10 Stop、Pause 与 Escalation 是有效执行结果
 
 Agent 不是只有“继续”和“完成”两种动作。
 
@@ -304,11 +304,11 @@ Stop 不等于 Work Failure。
 - 下一次 Attempt 从新的 Baseline 开始；
 - 当前 Work 不值得继续，应被有权主体取消。
 
-把 Stop 设计为显式路径，比要求 Agent 在缺失条件下继续制造输出更可靠；但本章不据此声称 Stop 机制已经改善任何项目效果。
+把 Stop 设计为显式路径，可以让停止条件与执行后果保持可见、可检查；本章不据此声称该机制已经改善任何项目效果。
 
 ---
 
-# 7.11 Checkpoint 保存恢复所需边界，不表示完成比例
+## 7.11 Checkpoint 保存恢复所需边界，不表示完成比例
 
 **Checkpoint（检查点：在 Work 或 Attempt 过程中保存当前 Baseline、可观察状态、开放风险、Evidence 引用、Authority 边界和下一允许动作的恢复参照）** 回答：
 
@@ -336,7 +336,7 @@ Checkpoint 不等于：
 
 ---
 
-# 7.12 Resume、Retry、Rebase 与 Restart 不能互相替代
+## 7.12 Resume、Retry、Rebase 与 Restart 不能互相替代
 
 这些动作描述不同变化：
 
@@ -353,7 +353,7 @@ Rebase 不能重写过去的执行依据。Retry 不能把前一次失败变成�
 
 ---
 
-# 7.13 与可选 Execution Epoch 的接口
+## 7.13 与可选 Execution Epoch 的接口
 
 第21章把 **Execution Epoch** 定义为可选的 Lifecycle 组织区间：在一段较长执行中，使 Execution Contract Version 与关键 Intent、Baseline、Context 和 Policy 引用保持明确，直到关闭、重启或显式 Rebase。本章只说明它与 Attempt 的接口，不取得该对象的定义所有权。
 
@@ -380,7 +380,7 @@ Epoch 不是新的超级 Manifest。它引用 Contract 与 Baseline，不复制 
 
 ---
 
-# 7.14 Controller / Worker 是可选拓扑，不是执行前提
+## 7.14 Controller / Worker 是可选拓扑，不是执行前提
 
 原始大纲使用 Controller / Worker 解释目标保持与局部执行分离：
 
@@ -401,15 +401,15 @@ Epoch 不是新的超级 Manifest。它引用 Contract 与 Baseline，不复制 
 
 ---
 
-# 7.15 最小实现按风险裁剪
+## 7.15 最小实现按风险裁剪
 
-## 局部、只读、可丢弃
+### 局部、只读、可丢弃
 
 可以是一句话：
 
 > 检查当前 parser 错误路径，只读；以当前 Commit 为 Baseline；输出 Finding 和未知，不修改文件，缺少复现条件时停止。
 
-## 可逆的普通修改
+### 可逆的普通修改
 
 通常还需要：
 
@@ -420,7 +420,7 @@ Epoch 不是新的超级 Manifest。它引用 Contract 与 Baseline，不复制 
 - 回滚或安全丢弃方式；
 - 超范围时的 Owner。
 
-## 高影响、长时或跨边界执行
+### 高影响、长时或跨边界执行
 
 可能进一步需要：
 
@@ -435,7 +435,7 @@ Epoch 不是新的超级 Manifest。它引用 Contract 与 Baseline，不复制 
 
 ---
 
-# 7.16 常见反模式
+## 7.16 常见反模式
 
 1. **把 Work 与 Attempt 合并。** 一次运行结束就把长期目标写成完成。
 2. **把 Permission 当 Authority。** 工具能写，不表示当前任务允许写。
@@ -450,7 +450,7 @@ Epoch 不是新的超级 Manifest。它引用 Contract 与 Baseline，不复制 
 
 ---
 
-# 7.17 与相邻章节的接口
+## 7.17 与相邻章节的接口
 
 | 章节 | 第7章复用 | 第7章不重新定义 |
 |---|---|---|
@@ -469,29 +469,29 @@ Epoch 不是新的超级 Manifest。它引用 Contract 与 Baseline，不复制 
 
 ---
 
-# 7.18 检查清单
+## 7.18 检查清单
 
-## 打开 Work
+### 打开 Work
 
 - Work 是否有具名目标、Scope、Owner 与关闭语义？
 - Intent、Acceptance Target 与 Non-goal 是否可引用？
 - 一个 Attempt 结束是否会被误写成 Work 自动关闭？
 
-## 打开 Attempt
+### 打开 Attempt
 
 - Contract、Baseline、Context 与 Subject 是否有明确身份？
 - Allowed Effects、Permission 与 Authority 是否分开？
 - Stop、Escalation 与 Recovery / Safe Discard 是否存在？
 - Attempt 是否有独立 Identity？
 
-## 执行中
+### 执行中
 
 - Plan 变化是否仍在 Contract 内？
 - 新风险、外部变化和 Scope 扩张是否可见？
 - Tool Action 的实际 Sink 与结果是否被观察？
 - 需要暂停、Checkpoint、Handoff 或 Rebase 吗？
 
-## 关闭 Attempt
+### 关闭 Attempt
 
 - 实际发生了什么，而不是 Agent 声称什么？
 - Target 是否真的被执行和观察？
@@ -500,7 +500,7 @@ Epoch 不是新的超级 Manifest。它引用 Contract 与 Baseline，不复制 
 
 ---
 
-# 7.19 本章结论
+## 7.19 本章结论
 
 Agent Execution Engineering 的中心不是让 Agent 按固定脚本行动，而是让自由度存在于清楚边界内。
 
