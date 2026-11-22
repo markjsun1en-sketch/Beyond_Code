@@ -99,7 +99,7 @@ Before integration, ask:
 
 External case selection, a Source Map, and a comparison label are not Evidence Receipts. This Skill does not perform research or formal Evidence work. Pause and return to the main task when the proposed prose depends on precise history or runtime behavior, asserts an effect, generalizes across projects, states a high-risk fact, reports conflicting material, or would directly change AI Game Dev OS behavior. Resume only after the separate workflow updates the accepted baseline.
 
-An editorial candidate map such as RR-040 may identify a future comparison, but it does not by itself authorize the case facts to enter prose. Use the case only after Human adoption and the required logic／Evidence routing are visible in the accepted baseline.
+An editorial candidate map such as [W0 RR-040](../../../../RevisedResult/RR-040_公开案例组合与章节映射.md) may identify a future comparison, but it does not by itself authorize the case facts to enter prose. Use the case only after Human adoption and the required logic／Evidence routing are visible in the accepted baseline.
 
 ### Textbook facility
 

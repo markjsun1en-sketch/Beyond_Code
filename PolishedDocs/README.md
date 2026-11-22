@@ -30,3 +30,7 @@ Human 已接受 Phase 2 创建的 [`reader-facing-polish` v0.1](../.agents/skill
 ```text
 第N章_主题_成书候选稿.md
 ```
+
+## W0 与图文分支合并后的使用边界
+
+2026-11-22 合并保留本目录三份候选及其原有 Human Voice 状态。对应 `OptimizedDocs/` 后来新增了机制图、案例和术语修正，本目录仍保留具名历史派生结果，不能据此认定与当前母版完全一致。下次派生前须重新比对来源；当前 Showcase 继续发布完整23章工作稿，未自动采用这些候选。见 [RR-044](../RevisedResult/RR-044_W0与图文Showcase分支合并记录.md)。

@@ -2,7 +2,7 @@
 ## 从六级成熟度阶梯到 Capability Fitness
 
 > 工作稿状态：首轮逻辑修订稿，不替代 [全书大纲](../OringinalDocs/beyond_code_ai_native_software_engineering_outline_zh.md)。
-> 回接说明：[RR-035](../RevisedResult/RR-035_第22章AI_Native工程能力适配模型首轮调整计划.md)。
+> 回接说明：[RR-039 实施记录](../RevisedResult/RR-039_三项目近期进展与书稿更新评估.md)。
 > 适用边界：本章提出 Engineering Capability Profile 与 Capability Fit Review 的候选整合模型；它不声称能力面分类已经完备或最优，不建立组织总分或通用成熟度排名，也不把 Multi-Agent、Persistent Memory、Human Control Plane、Execution Epoch 或 Self-Evolution 设为所有项目的升级目标。AI Game Dev OS v4.94 只提供能力存在、治理活动、验证结果与有权处置需要分离的案例，不证明本模型提高效率、质量、安全或成本表现。
 
 “我们现在处于哪个阶段？”
@@ -528,6 +528,8 @@ self_evolution_pipeline_runs
 
 每个箭头都需要额外 Evidence、Scope 与 Decision。
 
+[DevOS 与 RandomHeroes 的采用材料](../Evidence/receipts/ER-20261122-005__CLM-C22-001.md)给出一个可以落到文件的区别：Art Kit 的目录存在、打包、注册、进入真实生产和获得人工审美接受，需要不同来源。清单能证明列出了什么；真实调用及产物说明被用了什么；体验决定说明谁为哪个用途接受什么。没有后两种材料时应保留未知，不能让“安装成功”代替它们。
+
 ---
 
 ## 22.16 Adoption State 与 Fitness 是两条轴
@@ -553,6 +555,10 @@ Fitness 回答“它是否适合当前具名用途”。
 未采用某项能力，也可能只是当前 Scope 不需要。
 
 Active 不等于 Fit，Sustained 不等于永远有效，Deprecated 也不等于从未有价值。
+
+2026年11月的本地材料还同时存在两类不同状态。一个独立发布工作树保存了 DevOS v4.98 Beta 候选包、构建收据与封存记录，范围限于 macOS 上新建 Godot 项目；部分观察与能力项仍受阻，完整正式资格未成立。RandomHeroes 本机则有 v4.98 绑定及标记为 `APPLIED` 的采用结果，即该次本机应用记录；其正式备份恢复字段仍为否。
+
+因此，分发切片、本机接入、工作流实际使用、局部接受和完整资格应各自带范围。这里核对的是本地保存材料，没有确认线上下载状态，也没有把候选包解释成所有旧项目迁移的支持承诺。
 
 ---
 
@@ -1335,6 +1341,8 @@ short Intent / Scope / Acceptance Target
 Execution Epoch 也只是可选 Correlation Boundary。
 
 长任务并不自动要求多 Agent，跨会话也不自动要求 Self-Evolution。
+
+RandomHeroes 的恢复说明还区分入口重建与活跃任务恢复：能重新找到文档、配置或绑定，不表示正在运行的旧任务、数据库和本机快照已恢复。若这些材料只存在本机或被忽略，另一处检出仓库后应先列实际可取得项，再选择入口重建、另开任务或具名状态恢复。第8章8.10给出动作前置条件，第18章说明相应保留集合；本章只据这些结果判断当前迁移用途是否适配。
 
 ---
 

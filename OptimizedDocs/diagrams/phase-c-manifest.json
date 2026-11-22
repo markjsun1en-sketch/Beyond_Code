@@ -1,0 +1,43 @@
+{
+  "renderer": "Mermaid 11.12.1; Playwright with local Chrome",
+  "mermaid_js_sha256": "198b19442f86f0b46a17e56d3abf744c3a28a3427e66fa8dada3b589a77babcc",
+  "source_policy": "Edit Mermaid in the owning chapter, then regenerate. No manual edits to derived files.",
+  "figures": [
+    {
+      "id": "fig-9-1",
+      "number": "9-1",
+      "title": "旧证据能否用于这次决定",
+      "chapter": "OptimizedDocs/第9章_Evidence_Use与Decision_Disposition边界稿.md",
+      "source_sha256": "6a8f4c3f72c943453264b74763d85ac452914cc19f6e5f340fd60fffeb64856a",
+      "svg_sha256": "6077fbbfd3474197cc67e18366d81cdd0ae6bf3c3a37031537c2c5c560a78a9a",
+      "png_sha256": "abf826f7babfe6b4aa680eb22098673d8b4c0ce2a1a5f71cf00d7b49f15b3627",
+      "width": 691,
+      "height": 776.59375,
+      "caption": "建议机制：实线表示材料如何进入用途判断，虚线表示可评价的新结果回来后重新核对，包括有效检查发现的目标失败。这类负面结果可以支持否决或整改，本身不是证据缺口；未形成可评价结果时才保留相应未知，不能把两者合成一种“失败”。新结果不覆盖旧失败或旧接受。“有权处置”可以是既有委托下的窄Gate或具名角色决定，材料进入这一步不等于已经接受。补查无新线索、预算到达或权限不足时，保留缺口并停止受影响的补查或决定，独立工作可继续。"
+    },
+    {
+      "id": "fig-10-1",
+      "number": "10-1",
+      "title": "有依据地继续，有边界地停止",
+      "chapter": "OptimizedDocs/第10章_Review_Engineering_首轮修订稿.md",
+      "source_sha256": "645edc382b685f816991cded50d7f950b6b5b1c654c8e6801e03feeda6b12962",
+      "svg_sha256": "243b07b9c48b3fc5debccedeb28ed688597a88a62cf4b22a4c59960ba7bb1397",
+      "png_sha256": "75689a07823380153da495ee77d1a516e12e967ff0f08c4b43d87e002582f66b",
+      "width": 733,
+      "height": 1303,
+      "caption": "建议机制：实线表示本轮审阅的选择，虚线表示新材料触发复核或把用途交给有权角色。结束审阅不等于接受候选，预算耗尽不等于问题消失；图中的后续动作必须处于已有授权内，当前危险动作按适用停止规则处理，不等待审阅循环结束。"
+    },
+    {
+      "id": "fig-21-1",
+      "number": "21-1",
+      "title": "同一任务的记录与验证路径怎样裁剪",
+      "chapter": "OptimizedDocs/第21章_AI_Native_SDLC_首轮修订稿.md",
+      "source_sha256": "a96028ae49699e08194768a731eb386002ab2e4b8e66687ced15456d26ace750",
+      "svg_sha256": "a0300a4c8b6aa9e9912d5cdc271879b19edad0c39a5f49bb8a9dbefa29e5c477",
+      "png_sha256": "ed40704f2e26057b5d58d5792fd1d73ed1a91f8bba3c56e96d3986770bebc2b0",
+      "width": 1020,
+      "height": 524.5,
+      "caption": "教学对照与建议机制：上框是重复流程的示意，不是两个项目历史步骤的逐项复原，也不表示已经测得提效；下框的箭头表示条件触发，虚线表示停止后的重新进入。定向验证若失败，应保留失败并回到相应问题处理；风险和授权边界在整个执行中持续适用。结果记录不自动关闭接受、采用或发布决定。"
+    }
+  ]
+}

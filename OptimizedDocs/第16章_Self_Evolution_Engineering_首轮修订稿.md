@@ -2,7 +2,7 @@
 ## 变化先成为候选，只有在具名目标和边界内才可能被称为改进
 
 > 工作稿状态：首轮逻辑修订稿，不替代 [全书大纲](../OringinalDocs/beyond_code_ai_native_software_engineering_outline_zh.md) 或 [Cognitive Control、Trust 与 Human Control Plane v0.1](../OringinalDocs/ai_native_cognitive_control_trust_human_control_plane_v0.1.md)。
-> 回接说明：[RR-027](../RevisedResult/RR-027_第16章Self_Evolution_Engineering首轮回接说明.md)。
+> 回接说明：[RR-041 实施记录](../RevisedResult/RR-041_RR-040实施后书稿与配图复查.md)。
 > 适用边界：AI Game Dev OS v4.94 只支持在该案例中将 Candidate、Scoped Accepted Baseline、Evaluation Result、Evidence Use 与 Adoption 分开，并记录受限 Pilot 和 Forward Correction；现有材料不能证明其改善长期效率、质量、Human Attention 或缺陷率。
 
 第15章把执行经验保留为有来源、有范围的 Memory Candidate。
@@ -165,7 +165,7 @@ Observation / Failure / Human Request
 
 ---
 
-## 16.4 Self-modification 是机制，Evolution 是待验证的结果关系
+## 16.4 Self-modification 是机制，Improvement 是待验证的结果关系
 
 **Self-modification（自我修改：系统中的某个执行路径改变该系统自身的配置、规则、Procedure、Workflow、Contract 或组织记录的机制）** 只描述谁改了什么。
 
@@ -179,13 +179,13 @@ Observation / Failure / Human Request
 - 安全事件；
 - 无实质效果。
 
-Human 手工修改 Workflow 也可能形成有效演化；Agent 自动修改参数也可能只是 Mutation。
+Human手工修改Workflow也可能带来有证据支持的改进；Agent自动修改参数则可能只形成一次变更，尚无改进依据。
 
 所以：
 
 > 变化由谁产生，与变化是否值得采用，是两个不同问题。
 
-Self-Evolution Engineering 关注的是 Candidate 如何被约束、比较、裁决和观察，而不是为自动修改赋予更高地位。
+Self-Evolution Engineering关注Candidate如何被约束、比较、裁决和观察。一次比较得出无优势或拒绝候选，仍属于这个管理过程；Improvement则需要针对所声称的改进另有评价依据，不能由过程已经运行推出。
 
 ---
 
@@ -418,6 +418,8 @@ expires_at: 2026-09-30
 
 不能用伪精确数字替代不可比性。
 
+对一项小方法改动，可先固定一道任务、同一组输入和同一模型配置，分别生成并封存旧、新方法首稿，再按事先约定的问题比较。这里“独立生成”至少要说明是否使用新会话、是否能看到对方产物、是否共享文件系统。新会话约定互不读取，不等于操作系统已强制隔离；匿名评审也不等于独立人类验证。
+
 ---
 
 ## 16.11 Evaluation Contract 先定义 Claim，再选择指标
@@ -617,6 +619,8 @@ Test PASS 可能支持一个有范围的 Integrity Claim；只有具名 Disposit
 高影响、可扩权或改变验证机制本身的 Candidate，不应只依赖 Candidate Producer 的 Summary 和自选测试。
 
 Independent Review 也不自动正确；它需要 Source Access、Scope、Authority 和 Conflict Route。
+
+[11月的有限方法对照](../Evidence/receipts/ER-20261122-001__CLM-C16-002.md)留下一个具体反例：内容、数据和QA三题未观察到预定质量优势；QA两份稿还共同误称输入日志不存在，而该日志在两稿产生前已封存。换一份角色说明、换一个评审标签，都不能自动补上未被正确核对的来源事实。处理方式是回到同题面原件检查事实错误，再决定修正取材要求还是暂不增加规则，而不是把共同错误平均成可信结论。
 
 ---
 
@@ -907,6 +911,63 @@ opportunity cost
 | F1–F4a | Source、Read-only Replay、Package Identity 与 `48/48 PASS` 形成分阶段 Evidence | 结果仍是 `NON_QUALIFYING`，PC-0、Gate 与 Production 未成立 |
 
 这条压缩路径不能证明 Function-first 是恢复的唯一原因，也不能证明该 Workflow 已完成长期 Improvement Evaluation。
+
+### 单项角色要求对照中观察到什么
+
+2026年11月的一次奖励页对照把问题收窄到“首次进入、鼠标尚未操作时，三张奖励卡是否保持中性初始状态”。旧、新两份方法使用固定题面、输入及相同 Astra high 配置，分别从新会话生成首稿；改动只涉及一项角色必需输出要求。首稿封存后，评审匿名比较预先列出的五项判据，再查看原生 Godot 组件表现。共享文件系统通过约定避免互读，没有被当作强制隔离。[保存的方法补丁与对照记录](../Evidence/receipts/ER-20261122-001__CLM-C16-002.md)可以把干预写得更具体：
+
+| 要求与检查 | 旧方法／旧稿 | 新方法／新稿 |
+|---|---|---|
+| 角色必需输出 | 提供UIUX交接路线表及接受条件 | 保留原要求；存在已批准交互参考时，还须写出适用转换的起始状态、自动变化及时间、玩家使用的既有控件、每次变化后可见状态 |
+| 首次打开，指针在卡外时保持中性 | 未通过：首牌带焦点，放大至1.16倍 | 通过：焦点落标题，三牌均为1倍 |
+| Back返回后重开保持中性 | 未通过：再次沿用首牌焦点 | 通过：恢复中性入口 |
+| 主动导航可读牌但不提交 | 通过 | 通过 |
+| Back保留当前组 | 通过 | 通过 |
+| 明确激活只发送一次请求 | 通过 | 通过 |
+
+前两项失败来自同一个初始焦点遗漏，不是两个独立错误。两稿初始选中索引都为−1、详情都未展开、请求都为0；这些状态仍不足以保证没有视觉暗示。新稿把“起始状态”写进交接要求后，本次实现选择了标题焦点，但标题不是唯一合格做法。新增要求也没有写成奖励页特例，更没有改变工具或权限。
+
+| 观察对象 | 保存结果 | 结论边界 |
+|---|---|---|
+| 预定判据汇总 | 旧稿3/5，新稿5/5 | 前两项关联同一遗漏；五项不是跨任务通用质量分数 |
+| 该问题的文档返工 | 旧稿1轮，新稿0轮 | 不是全部开发工时或成本对照 |
+| 结构验证 | 旧稿、新稿、修订稿均通过 | 格式检查无法区分这项交互问题 |
+| 原生演示范围 | 注入单次奖励的组件发出选择请求 | 没有覆盖完整游戏结算；匿名AI评审不代替人类体验判断 |
+| 另三道任务 | 内容、数据和QA未观察到预定优势 | 不能将单题正面结果推广为方法普遍有效 |
+
+单对首稿仍不能排除生成波动，匿名AI评审也不等于独立人类复核；这些条件限制了因果归因和推广。
+
+本章据此更新的是“现在有一组有限的方法比较可讲”，而非变化自动成为改进。对读者更有用的动作是：从一个真实遗漏提出最小改动，用固定输入保留首稿，让检查指向原问题，并把无优势和共同错误一起留下。单题有用时可以提出窄范围采用候选；没有优势时先保留原方法或再查适用条件，不必为了表示“进化”增加常驻规则。
+
+### 图16-1 方法比较保留正面结果与无优势结果
+
+```mermaid
+flowchart TD
+  observedGap["具名遗漏与单项方法改动"] --> fixConditions["固定题面与输入
+预先声明比较判据"]
+  fixConditions --> sealDrafts["分别生成并封存首稿"]
+  sealDrafts --> reviewResults["匿名评审与必要原生检查"]
+  reviewResults --> evaluationFit{"评价有效且足以回答
+比较问题"}
+  evaluationFit -->|"缺测或无效"| repairEvaluation["有界补查或修正评价
+保留未决结论"]
+  evaluationFit -->|"是"| inspectOutcome{"比较目标与不可退化约束"}
+  inspectOutcome -->|"改善且约束满足"| boundedAdoption["提出窄范围采用候选"]
+  inspectOutcome -->|"无优势且约束满足"| keepBaseline["保留基线或调整假设"]
+  inspectOutcome -->|"退化或越界"| rejectCandidate["不采用该候选
+整改或撤回"]
+  reviewResults -.->|"发现候选事实错误"| repairCandidate["纠正候选
+保留原稿比较结果
+修订稿另行评价"]
+  boundedAdoption --> preserveLimits["保留范围与反例
+继续有界观察"]
+  keepBaseline --> preserveLimits
+  rejectCandidate --> preserveLimits
+  repairCandidate --> preserveLimits
+  repairEvaluation --> preserveLimits
+```
+
+图16-1是以保存对照为参照的建议机制。先判断评价是否足以回答问题，再判断候选是否改善且满足不可退化约束；缺测不能直接判成无优势。虚线表示可同时出现的整改事项：有效评审发现两稿都有事实错误，仍可保留两稿无优势的结论，并纠正候选；这本身不说明评价失效。主要目标改善但约束失败时，也不能进入采用候选。有限正面结果本身不产生 Adoption、Release 或整体效率结论。
 
 ---
 

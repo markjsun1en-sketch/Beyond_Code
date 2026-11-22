@@ -1,0 +1,43 @@
+{
+  "renderer": "Mermaid 11.12.1; Playwright with local Chrome",
+  "mermaid_js_sha256": "198b19442f86f0b46a17e56d3abf744c3a28a3427e66fa8dada3b589a77babcc",
+  "source_policy": "Edit Mermaid in the owning chapter, then regenerate. No manual edits to derived files.",
+  "figures": [
+    {
+      "id": "fig-8-1",
+      "number": "8-1",
+      "title": "恢复先命名目标，再判断能否继续",
+      "chapter": "OptimizedDocs/第8章_Agent_Reliability_Engineering_首轮修订稿.md",
+      "source_sha256": "8eff21d055cc1f964ed62bf0f6fe83beebdff1cf8a45a04f83cad226ad86ca50",
+      "svg_sha256": "95b49c14bbd09695b809dd5b4e0e20992c9b7ed544ac3a66f7d70c59f75dc772",
+      "png_sha256": "3ed22c88023cce689aec66fbf919b9f8d3fe468649003f15968af9b802f239b9",
+      "width": 809,
+      "height": 1501,
+      "caption": "图8-1是恢复决策的教学示意。未知写入先走回读分支；暂停的是依赖未知状态的新副作用，允许的只读调查可以继续。入口、状态与新执行三种目标可以并存，但结果分别记录；补偿可能只达到具名可继续状态，不等于回到历史原状态。只恢复入口或另开一次成功运行，都不能补写成旧状态已恢复。"
+    },
+    {
+      "id": "fig-18-1",
+      "number": "18-1",
+      "title": "退役材料之前，先检查保留能力",
+      "chapter": "OptimizedDocs/第18章_Traceability_and_Accountability_首轮修订稿.md",
+      "source_sha256": "be28a1501e5f2c26ba7063947cd3e5ccfa7ccccbb700496e7efd183aea87bbba",
+      "svg_sha256": "a22dc68cdbf928be3a0ddb6fcf25e6fa7343b5f1de7969733690c2b4b044f580",
+      "png_sha256": "f787ab8b60bc87e3eba1d25a0e5d26b02f263586763545fd55129ddcab1eb563",
+      "width": 587.078125,
+      "height": 1197.34375,
+      "caption": "图18-1是依赖驱动的材料退役示意。必须保留集合用于核对未来能力，待退役候选才是删除判断的对象；只有保留能力检查和候选逐项检查都满足，相关候选才可退役。移出阅读入口、转入可取得归档和删除原件是不同动作；部分回收不会自动解除父资源或失败材料的保留约束。只保留历史解释用途时核对可读性、来源与必要关系；声明恢复能力时，才需要相应的恢复检查。"
+    },
+    {
+      "id": "fig-20-1",
+      "number": "20-1",
+      "title": "从测量合同走到有限结论",
+      "chapter": "OptimizedDocs/第20章_AgentOps_成本与模型漂移_首轮修订稿.md",
+      "source_sha256": "7bbe0fca878aa436d6070da82c3be23c0d4520145066ea1b5dd254acfa27755d",
+      "svg_sha256": "1831981a4c42e23d64208350ad07744a3057fae1f67e599a2446b8265199fbd3",
+      "png_sha256": "4a79c3965d8bc57c9a5066473ee9df7d860118c67951a51da7a253fc7995a85d",
+      "width": 915.75,
+      "height": 1072,
+      "caption": "图20-1是测量处置示意。探针是否测到原定对象尚未确认时，先核对起止事件、覆盖及合同要求；取得新依据才重新判断，无新依据或预算耗尽则保留未决，暂停该指标结论。已确认失真需要修正探针，并以新观测重新核对，追加同类样本不能自行修复失真。收窄用途后仍可报告已有数值，但必须带上缺口；点估计通过不能代替全合同完成。"
+    }
+  ]
+}

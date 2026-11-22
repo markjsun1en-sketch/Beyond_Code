@@ -1,0 +1,31 @@
+{
+  "renderer": "Mermaid 11.12.1; Playwright with local Chrome",
+  "mermaid_js_sha256": "198b19442f86f0b46a17e56d3abf744c3a28a3427e66fa8dada3b589a77babcc",
+  "source_policy": "Edit Mermaid in the owning chapter, then regenerate. No manual edits to derived files.",
+  "figures": [
+    {
+      "id": "fig-16-1",
+      "number": "16-1",
+      "title": "方法比较保留正面结果与无优势结果",
+      "chapter": "OptimizedDocs/第16章_Self_Evolution_Engineering_首轮修订稿.md",
+      "source_sha256": "6744c5c1e9b54aa3894d8b392465e148b4171302cfb758849f1f1b84041662c7",
+      "svg_sha256": "30a29e5e2c708a50e578b8d71500a7406414402b8f31db3f91499fae9eaecb49",
+      "png_sha256": "ea7c8f001ea17334f888035beecfc798e11fd3129cb10466304233dc3c2453b0",
+      "width": 1194,
+      "height": 1335,
+      "caption": "图16-1是以保存对照为参照的建议机制。先判断评价是否足以回答问题，再判断候选是否改善且满足不可退化约束；缺测不能直接判成无优势。虚线表示可同时出现的整改事项：有效评审发现两稿都有事实错误，仍可保留两稿无优势的结论，并纠正候选；这本身不说明评价失效。主要目标改善但约束失败时，也不能进入采用候选。有限正面结果本身不产生 Adoption、Release 或整体效率结论。"
+    },
+    {
+      "id": "fig-23-2",
+      "number": "23-2",
+      "title": "FU05 的路线结果与冷恢复",
+      "chapter": "OptimizedDocs/第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md",
+      "source_sha256": "93953e2b4c3dea76e689f14ba6c92be99d9bdc5df2e7ff6fab0ecb1aa9a73324",
+      "svg_sha256": "ebe2848de9c802903d7d463643d111e8f7321270ef30db2b45b22e4eeffb2b0b",
+      "png_sha256": "61f73e9515894eaeb5dbdf6bc81cfa3dd848e3d50cbc79686723710fc2d5b5c0",
+      "width": 493.140625,
+      "height": 508,
+      "caption": "图23-2只概括保存的隔离机器路径，不能代表所有异常分支、全部经济平衡或主项目采用。人工体验决定和交付范围仍见正文，图中的运行成功不会自动产生它们。"
+    }
+  ]
+}

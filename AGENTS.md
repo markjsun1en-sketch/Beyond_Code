@@ -195,3 +195,44 @@ analysis and evidence support, not a substitute for that decision.
 - Apply the same chosen Chinese explanation across chapters. If the meaning
   changes, state the scoped difference explicitly instead of silently changing
   the translation.
+
+## 9. Showcase Publication After Reader-Facing Changes
+
+The author has requested ongoing synchronization to the existing Showcase.
+When a task changes reader-facing chapters in `OptimizedDocs/`, their mechanism
+figures/captions/exports, or the reader in `Showcase/`, include synchronization,
+integrity checks, publication and production readback in that same task's
+completion criteria. Do not wait for another request to publish. An explicit
+local-only, draft-only, or no-publish request overrides this default; record
+the pending publication and its reason. Editorial-only changes to Evidence,
+revision notes or workflow documentation do not themselves require publishing.
+
+Use [.agents/skills/showcase-publish/SKILL.md](.agents/skills/showcase-publish/SKILL.md)
+and the maintained [Showcase runbook](Showcase/README.md). Use the existing Site
+identity and audience from `Showcase/publication.json` and native Sites tools;
+do not create a replacement Site or broaden access. Do not ask again for routine
+publication already authorized here; runtime access checks still apply.
+
+`tools/showcase_workflow.py prepare` is the normal preparation entry point.
+It must validate chapter inventory, figure source/title/caption/export freshness,
+synchronize, build, and verify against the current book. After source push,
+check the frozen preparation before saving/deploying its exact commit/archive.
+Use `finish` only with actual Sites tool results and an observed browser review;
+it performs production readback and records `verified` only after success.
+`deployed_unverified` or `needs_publication` is unfinished publication, not a
+completed online update. Resolve failures within the authorized scope; if an
+external blocker remains, report the actual local/online state and reason.
+
+At the end of relevant changes, run `status --online`. The public source
+fingerprint and verified release must match current inputs. Preserve original
+materials, prior failed evidence, and unrelated working-tree changes. Never
+fabricate passing checks, rewrite old release receipts as current, or store
+credentials in this repository. This is a completion workflow, not a background
+watcher, scheduled automation or authorization to publish unrelated private files.
+
+The current Showcase publishes the complete `OptimizedDocs/` working manuscript.
+`PolishedDocs/` candidates remain a separate editorial surface until the author
+selects a new publication baseline; retaining or merging a candidate does not
+automatically replace the corresponding online chapter or close Human Voice
+review. Historical RR-038–041 exist in both the W0 and figure-revision series;
+use the series plus full title or file link to identify them unambiguously.

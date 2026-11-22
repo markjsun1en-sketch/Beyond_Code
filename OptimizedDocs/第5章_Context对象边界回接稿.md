@@ -1,570 +1,194 @@
 # 第5章 Context Engineering
-## 从 Context 原则集合到可组合的信息系统
+## 为当前任务选择、核对和补充信息
 
-> 工作稿状态：对象边界回接稿，不替代 [第5章原稿](../OringinalDocs/第5章.md)，也不是完整章节重写。
-> 回接说明：[RR-020](../RevisedResult/RR-020_前六章首轮分别调整说明.md)。
-> 适用边界：本稿把 Context Contract、Context Pack 与 Context Manifest 作为可组合的信息接口，不在本章重新定义 Truth，也不把 Context Pattern 排成统一成熟度等级。
+> 工作稿状态：阶段 B 连续正文候选，沿用历史文件名，不替代 [第5章原稿](../OringinalDocs/第5章.md)。
+> 回接说明：[RR-040 实施记录](../RevisedResult/RR-040_更新后书稿与机制简图整体审阅.md)。
+> 适用边界：本章给出任务信息供给的方法与教学示例，不把选中材料当作验证，不声称某种装配方式普遍更优。
 
-这份回接稿解决三个接口问题：
+上一章把一个模糊请求整理成了有范围的工作：让指定旧存档在目标构建继续使用，并保持现有格式。目标明确以后，Agent 仍可能拿到一份旧格式文档、一个已删除的 API 示例、一条不再适用的历史总结，以及来自另一版本的测试结果。
 
-1. Context 是“应提供的信息”还是“实际提供的信息”？
-2. Context 如何引用 State Claim，而不在第五章重复定义 Truth？
-3. Context Pattern 是线性成熟度，还是可以组合的设计维度？
+如果依据这些材料修改加载器，问题就不只是“目标是否清楚”，而是“行动依据是否与当前对象相符”。我们可以检查输入、代码和外显动作之间的关系，却不能仅凭一个错误结果断言模型内部如何推理。
 
----
+原稿把 Context 比喻成 Agent 的“工作世界”。这个比喻提醒我们重视输入，但需要保留边界：Agent 能看到的材料并不是项目现实的完整副本。**Context Engineering（上下文工程：围绕本次任务选择、组织、取得、压缩、更新并记录可访问信息的工作）**，就在这个有限条件下展开。
 
-## 5.A Context 是受控的信息表面
+## 5.1 Context 是经过选择的信息表面
 
-Context 不是 Prompt 的附件，也不是项目知识的完整副本。
+本书把 **Context（上下文）** 定义为一次 Agent 推理或执行时可访问的、经过选择的信息表面。它影响 Agent 对任务的工作表示，但不等于项目状态，也不等于模型内部的完整世界模型。
 
-本章采用以下定义：
+项目有一份决定记录，不表示检索系统已经收录它；系统可以检索到它，不表示本次选中了它；材料进入输入，也不证明模型理解或采用了它。这几个位置要分别检查：
 
-> **Context 是一次 Agent 推理或执行时可访问的、经过选择的信息表面。它影响 Agent 对项目世界的工作表示，但不等于项目现实，也不等于模型内部的完整世界模型。**
-
-这个定义刻意区分：
-
-```text
-Project State                 项目实际处于什么状态
-Available Information        系统能够检索到什么
-Selected Context             本次决定提供什么
-Agent Input                  Harness 向本次运行边界提交什么
-Agent Interpretation         Agent 如何理解这些输入
-```
-
-Context Engineering 能直接控制的是中间两层，并通过 Harness 影响 Agent Input。它不能保证模型一定正确理解，也不能把未观察到的现实自动变成事实。
-
-因此，“为 Agent 构建正确的工作世界”更适合作为教学比喻；正式表述应是：
-
-> 为 Agent 构建与当前 Intent、风险和授权相匹配的 Controlled Information Surface。
-
----
-
-## 5.B Context Contract 与 Context Manifest
-
-原稿中的 Context Pack 同时承担了规范和记录职责，需要拆开。
-
-### Context Contract
-
-回答：
-
-> 本次执行需要、允许或禁止提供哪些信息？
-
-```yaml
-required:
-  - active_intent
-  - target_module_instructions
-  - repository_state
-optional:
-  - relevant_history
-forbidden:
-  - unrelated_private_data
-freshness_rules:
-  repository_state: current_worktree
-  runtime_capture: within_24h
-missing_context_action: escalate_or_retrieve
-```
-
-Context Contract 是规范性对象。它可以是独立文件，也可以成为[第7章](第7章_Agent_Execution_Engineering_首轮修订稿.md)所定义 Execution Contract 的一个字段。
-
-### Context Manifest
-
-回答：
-
-> 本次运行装配、传输或开放访问了哪些来源和版本？
-
-```yaml
-manifest_id: CTX-2026-0810-07
-attempt_ref: A-018
-run_ref: RUN-018  # 仅在 Runtime 另有 Run Identity 时使用
-sources:
-  - path: AGENTS.md
-    revision: commit-hash
-    selection_reason: repository-policy
-  - path: src/save/migration.gd
-    revision: dirty-worktree
-    selection_reason: target-implementation
-omissions:
-  - production_runtime_logs
-freshness_checks:
-  - repository_status_checked_at: timestamp
-```
-
-Context Manifest 是描述性记录。它不证明来源中的内容正确，也不证明模型注意或采用了它；它记录本次装配选择、传输或开放访问了什么。该记录本身是否可信，还取决于生成机制和 Provenance。
-
-### Context Pack
-
-`Context Pack` 可以保留为工程便利词，表示实际传输的文件、片段、索引和摘要集合。但它不是新的治理层：
-
-```text
-Context Contract   required / optional / forbidden rules
-Context Pack       actual payload
-Context Manifest   provenance record of the payload
-```
-
----
-
-## 5.C Context 引用 Truth，不定义 Truth
-
-第五章不再建立自己的 Truth 类型或 Confidence 等级。
-
-Context Item 只需要携带足够的引用信息：
-
-```text
-Source
-Version / Hash
-Scope
-Authority for the current question
-Validation Status
-Freshness
-Known Conflict
-```
-
-这些字段的含义由第六章的 State Claim、Evidence、Decision 与 Assumption 模型解释。
-
-例如：
-
-```text
-Design document says migration must preserve v2 saves
-```
-
-进入 Context 后，它仍可能是：
-
-- Approved Decision；
-- 未批准 Proposal；
-- 已 supersede 的历史记录；
-- 仅描述作者当时判断的文档。
-
-Selection 不产生 Authority。Retrieval 命中也不产生 Validation。
-
-因此：
-
-```text
-retrieved != true
-included != authoritative
-summarized != verified
-```
-
-当 Context 来源互相冲突时，第五章负责：
-
-- 暴露冲突；
-- 保留来源和版本；
-- 按 Contract 触发补充检索或升级。
-
-第六章负责：
-
-- 判断它们分别属于哪种对象；
-- 为当前问题确定 Authority；
-- 保存验证、处置和未解决状态。
-
----
-
-## 5.D Minimum Initial Context + Progressive Retrieval
-
-“Minimum Sufficient Context”适合作为优化目标，但不应被解释为执行前总能准确求出的固定最小集合。
-
-更可执行的模型是：
-
-```text
-Minimum Initial Context
-        ↓ task begins
-Progressive Retrieval
-        ↓ unresolved dependency
-Missing-context Escalation
-```
-
-初始 Context 应足以让 Agent：
-
-- 理解当前 Intent 与范围；
-- 识别 Authority 与禁止事项；
-- 定位第一批相关对象；
-- 知道如何继续检索；
-- 知道什么时候必须停止和升级。
-
-渐进检索则根据执行中出现的依赖下钻：
-
-```text
-repository map
-→ module instructions
-→ target file
-→ dependency
-→ historical decision
-→ runtime evidence
-```
-
-如果 Context Pack 被定义成不可越界的完整世界，缺失信息会被模型用推断补齐。真正的 Tight Boundary 应同时限制无关输入和允许有依据的下钻。
-
----
-
-## 5.E Context Quality 使用不可压缩为单分数的检查项
-
-不再使用统一的 High / Medium / Low Context Confidence。
-
-一个来源是否值得使用，至少需要分别检查：
-
-| 维度 | 问题 |
+| 位置 | 可以观察的问题 |
 |---|---|
-| Relevance | 它是否与当前 Intent 和任务有关？ |
-| Provenance | 它来自哪里，能否定位原始来源？ |
-| Authority | 它有权回答当前问题吗？ |
-| Validation | 它经过了什么检查？ |
-| Freshness | 它对当前版本和时间仍适用吗？ |
-| Scope | 它能支持多大范围的判断？ |
-| Security | 它能否携带指令，还是只能作为数据？ |
-| Cost | 获取、加载和维护它的成本是多少？ |
+| 项目状态与记录 | 实际对象是什么，哪些情况已有记录？ |
+| 可取得的信息 | 当前工具、索引和访问边界能提供什么？ |
+| 选定的 Context | 为本次问题选择了哪些来源，排除了什么？ |
+| Agent Input | 实际传输了哪些内容或开放了哪些访问入口？ |
+| 外显使用 | 后续输出、引用或动作显示了什么使用关系？ |
 
-模型自报 Confidence 可以作为弱信号，但不能替代其中任何一项。
+Context Engineering 直接管理中间的信息选择与供给，借助执行环境装配 Agent Input。它不能通过“把资料都放进去”保证理解正确。Prompt Engineering 也可以处理背景选择和呈现；这里强调的是跨文件、跨运行的信息来源、维护和供给责任。
 
-一个来源可以：
+## 5.2 分清要求、材料与装配记录
 
-- 高相关但低 Authority；
-- 高 Authority 但已过期；
-- 新鲜但未经验证；
-- 已验证但只覆盖旧 Commit；
-- 内容正确但不允许进入当前 Agent 的数据边界。
+一份 Context Pack 曾很容易同时表示“应该提供什么”和“实际给了什么”。执行后若只剩这个名称，就难以发现漏项。本书因此保留三个职责：
 
-这些检查项会互相制约，并不声称数学上正交。例如 Authority 依赖 Scope，Freshness 会影响 Validation 对当前版本的适用性，Security Policy 也可能禁止使用高相关来源。把它们压缩成一个分数，会丢失工程决策所需的信息。
+| 对象 | 中文语义与职责 | 存档教学例子 |
+|---|---|---|
+| Context Contract | 上下文契约：本次需要、允许或禁止提供的信息，以及缺失时的处理方式 | 必须能定位目标构建、加载入口、当前格式与授权边界；真实用户存档不可擅取 |
+| Context Pack | 上下文材料集合：实际传输的文件、片段、摘要和索引 | 当前任务说明、实现片段、样本引用及相应来源 |
+| Context Manifest | 上下文清单：记录本次提供或开放访问的来源、版本及遗漏 | 哪份格式说明、哪个工作区版本、何时检查、哪个样本仍未取得 |
 
----
+Contract 可以放在[第7章的执行契约](第7章_Agent_Execution_Engineering_首轮修订稿.md)里，不要求独立文件。Manifest 也可以只是任务中的几行来源记录。它不证明材料是真的，也不证明模型实际读过；工具可见的读取行为由 Access Log（访问日志）另行表达。
 
-## 5.F 可组合的设计维度
+对存档任务，一个简短入口可以写成：“从目标构建对应的加载入口开始，核对当前格式规则；样本仅用允许读取的副本；缺失变体不纳入已验证结论。”随后记录实际取得的路径、版本与缺口。它比复制一份长模板更容易检查，但前提是执行者确实能沿入口找到材料。
 
-Static、Layered、Retrieval、Lifecycle、Snapshot 和 Projection 不是一条 Level 0–5 的线性道路。它们属于不同设计维度。
+## 5.3 初始信息要能支持第一步，也要能继续下钻
 
-### Source Organization
+**Minimum Initial Context（最小初始上下文）** 是足以理解目标、边界并开始下一步的材料集合；**Progressive Retrieval（渐进检索）** 是根据新出现的依赖逐步取得更多材料。两者是工作方法，不表示开工前就能算出唯一的最小充分集合。
 
-决定信息如何被组织和发现：
+在存档例子里，初始入口可以是任务说明、仓库规则、目标版本和加载模块的位置。读到迁移调用后，再进入对应实现；发现字段来自另一个模块，再查其契约；遇到“为什么保留这条旧路径”，再寻找当时决定。每次下钻应能说明它要解决哪个问题。
 
-```text
-static instructions
-layered documentation
-repository map
-typed index
+不必开工就加载全仓库，也不应把初始材料包当成不可越界的知识全集。前者增加无关信息与回读成本，后者会阻止必要调查。可用的边界应同时给出允许访问的范围和取得更多信息的路径。
+
+有些背景无法从代码推导，例如为什么一个看似多余的兼容分支被保留。原稿所说的人类补充背景，在这里仍有位置：优先把高影响、重复使用、容易误解的决定及例外写成有来源的短说明，不追求编码所有常识。
+
+## 5.4 从当前问题走到可用材料
+
+检索前先保留当前问题及条件。对于“目标构建如何读取 `v2` 存档”，需要的可能是加载入口和格式契约；对于“为什么暂不改格式”，需要的是有效决定及理由。只按“存档”这个词取最相似文件，会混在一起回答两种不同问题。
+
+### 图5-1 每次下钻都围绕一个待解决的问题
+
+```mermaid
+flowchart TB
+  question["当前问题与下一动作"] --> access{"来源访问被允许？"}
+  access -->|"是"| locate["按问题定位候选来源"]
+  access -->|"否"| gap["说明缺口与受影响范围"]
+  locate -->|"取得候选"| read["回读原文、版本与上下文"]
+  locate -->|"无结果"| investigate["有范围地补查入口或历史"]
+  read --> fit{"足以支持本次用途？"}
+  fit -->|"适用且无未解冲突"| assemble["装配材料并记录来源"]
+  fit -->|"缺失、冲突或不适用"| investigate
+  investigate -.->|"有新线索且获准"| locate
+  investigate -->|"无新线索或预算到达"| gap
+  gap --> disposition["继续独立工作
+或暂停依赖动作"]
 ```
 
-### Retrieval
+建议机制：箭头表示本次信息获取与选择的关系，虚线只在有新线索时重入。权限不足进入缺口处置，不通过换入口绕过；需要扩大访问范围时先取得相应授权。图中的“适用”只针对当前用途，材料真实性与规范效力仍需按其类型核对。
 
-决定何时、按什么依据取得更多信息：
+这张图的出口不是“终于搜索到一篇文章”，而是取得足以支持下一动作的材料，或明确说明为什么目前还不能支持它。补查也有界限：若相同查询和来源已检查、没有新线索，就记录缺口，选择继续独立工作、收窄建议或暂停依赖动作。无限改写同一句搜索并不产生新的证据。
 
-```text
-direct load
-search
-RAG
-dependency traversal
-progressive retrieval
-```
+## 5.5 检索失败需要先诊断发生在哪一步
 
-### Storage / Access Tier 与 Validity Lifecycle
+“没有找到”可能指没有命中、不能访问、原文不存在，也可能指结果很多却没有适用于当前问题的内容。这些情况需要不同动作。
 
-这两个维度不能放进同一状态序列。
+| 现象 | 先核对什么 | 可采取的动作与退出边界 |
+|---|---|---|
+| 零命中 | 查询词、索引范围、文件是否已收录 | 在授权范围内改用已知路径、符号、模块入口或历史搜索；保留原问题，不能据零命中断言材料不存在 |
+| 找到的都是旧版本 | 当前问题需要历史解释还是当前行为；文件是否包含多个时期 | 回读适用段落和取代关系；历史段落可解释过去，不能直接约束当前实现 |
+| 多个来源冲突 | 对象、时间、范围、事实与决定是否混在一起 | 并列保留冲突，查当前实现或有效决定；决定仍不清楚时暂停依赖它的动作 |
+| 摘要有答案但原文不可得 | 摘要来源、引用是否断链、原件是否在允许的归档中 | 修复入口或报告无法回读；缺关键条件时不用摘要填补确定结论 |
+| 访问不允许 | 是否有授权内的公开说明、脱敏材料或代查结果 | 使用允许的替代材料；需要原件才能行动时请求相应访问或决定，不绕过边界 |
+| 材料太多或预算耗尽 | 哪些候选会改变下一决定 | 优先读决定性条件与反证，记录未读范围；不把未读等同于已排除 |
 
-Storage / Access Tier 决定信息如何被访问和存放：
+候选查询可以来自文件名、符号、用户原话或已读原文中的术语。必须保留它与原问题的关系，尤其不能静默删掉“不包含某版本”“仅限某范围”这样的条件。[第15章](第15章_Memory_Engineering_首轮修订稿.md)进一步讨论查询转换、漏检纠错材料和持久记忆的评价；本章只负责这些结果如何进入当前任务。
 
-```text
-hot
-warm
-cold
-archive
-```
+## 5.6 回读原文时，按问题检查来源
 
-Validity Lifecycle 决定某个来源是否仍适用于当前问题：
+假设教学材料中有三条记录：旧设计建议升级格式，当前决定要求本轮保持格式，代码仍包含旧迁移函数。它们未必直接矛盾：旧设计可能只是提案，当前决定限定本次行动，而旧函数是否仍可达需要看调用关系。
 
-```text
-active
-stale-for-current-scope
-expired
-invalidated
-```
+这时不能建立一个固定的“代码高于文档”或“最新文件高于所有旧文件”排序。问实际执行了什么，需要运行材料；问实现包含什么，需要对应版本源码；问允许做什么，需要具名授权与决定。源码不能批准一次格式变更，决定也不能证明一个函数实际运行成功。
 
-一个 invalidated Record 可能因为正在调查而保持 hot；一个 cold archive 也可能仍然是有效历史来源。Hot / Warm / Cold 只有在存在明确的更新、归档和恢复机制时，才是有用的运维比喻。
+回读时至少保留来源、版本、对象范围和关键上下文。对于工作区未提交内容，明确它是当前观察，不能当作已交付版本。对于历史接受，说明当时接受的对象和条件，不把它自动转用于变化后的对象。
 
-### Continuity
+**Freshness（时效性）** 也不是单纯看文件年龄。很旧的记录可能仍准确解释历史原因，刚生成的摘要也可能复制过时结论。需要判断的是当前用途依赖的条件是否变化，以及变化影响了哪条判断。更完整的 Claim、State、Decision 与 Assumption 区分由[第6章](第6章_Truth与State_Architecture_重构稿.md)负责。
 
-决定长任务和跨 Agent 工作如何恢复：
+## 5.7 压缩材料时保留能够改变决定的条件
 
-```text
-checkpoint
-handoff
-context manifest
-execution snapshot
-progress record
-```
+长材料可以压缩，但摘要是一种新表达，可能删除原文的例外、时间和不确定性。对存档例子，下面两种压缩有明显区别：
 
-### Projection and Governance
-
-决定哪些角色可以访问、被授权依赖或执行哪些内容：
-
-```text
-role projection
-policy filtering
-data boundary
-tool instruction authority
-adaptive assembly
-```
-
-真实系统通常是组合：
-
-```text
-Layered Sources
-+ Progressive Retrieval
-+ Storage / Access Tier (hot / warm / cold)
-+ Checkpoint projection when needed
-+ Role Projection
-```
-
-组合是否合适，取决于风险、规模、任务持续时间和维护成本，不取决于 Pattern 数量。
-
----
-
-## 5.G Snapshot、Manifest 与 Handoff
-
-原稿中的 `State Snapshot`、`Context Snapshot` 和 Handoff Summary 需要区分。
-
-| 对象 | 回答的问题 |
+| 压缩方式 | 留给执行者的含义 |
 |---|---|
-| State Snapshot | 在声明 Domain、Scope、时点与采集边界内记录了哪些 State Claim／状态引用？ |
-| Context Manifest | 本次装配、传输或开放访问了哪些信息来源？ |
-| Access Log | 工具层能够观察到哪些实际读取行为？ |
-| Checkpoint projection（可选） | 第7章的 Checkpoint 被序列化后，当前 Attempt 进行到哪里，下一步是什么？ |
-| Handoff | 哪些状态、责任和未决问题移交给下一执行者？ |
+| “旧存档兼容，测试通过” | 看不出版本、样本、未测路径与用途，容易被当成一般结论 |
+| “目标构建的标准 `v2` 副本通过加载检查；缺字段变体未取得，失败后写入行为待查；原结果见对应记录” | 可以知道哪些动作有依据，哪些还需要核对 |
 
-这些记录都不能单独证明模型注意、理解或采纳了什么。Interpretation 只有在外显输出、选择或动作中才能被有限推断，并应保留替代解释。
+用于行动或交接的摘要应保留原问题、支持结论的范围、限制和可下钻引用。否定条件、被否决方案、来源冲突及“未验证”不能为了简洁全部删除。更深的决策面压缩见[第12章](第12章_Cognitive_Compression与Human_Decision_Interface_首轮修订稿.md)。
 
-第7章拥有 Checkpoint 的正式定义。本章只允许把它序列化为面向 Context 恢复的可选投影，不建立平行的 Execution Snapshot 上位对象。一个可恢复的 Checkpoint 投影可以包含：
+压缩到什么程度取决于用途。只为定位文件的索引可以很短；用于接受判断的简报则必须保留决定性条件。当前任务的摘要也不自动成为值得长期保存的 Memory Record，后者有自己的来源、用途和维护成本。
 
-```text
-Attempt Reference
-Intent Version
-Input State reference
-Context Manifest reference
-Completed actions
-Produced changes
-Open assumptions
-Known conflicts
-Pending validations
-Next safe action
-```
+还应检查压缩后能否回答原来的问题。重要整理可以先列三至五个原问题，再让整理稿逐一给出答案或原文入口；某问题答不了时，补回条件或明确保留缺口。第12章12.13以RandomHeroes的Buff规则演示一次具体补回及核对，第23章保留该事件的处置边界。逐条映射有成本，适合会指导后续决策的入口和交接，不必施加给每段普通文字。
 
-它不需要保存完整聊天记录，也不声称保存模型隐藏推理。
+## 5.8 不用一个总分代替来源检查
 
-普通 Summary 容易抹掉来源、冲突和未验证假设；因此用于恢复或裁决的摘要应保留可下钻引用和不确定性，而不是只保留叙事结论。
+一份材料可以高度相关却没有回答当前规范问题的权限，也可以来自可靠原件但只适用于旧版本。本章不把这些差异压成统一的 High、Medium、Low Confidence。
 
----
+| 检查项 | 需要回答的问题 |
+|---|---|
+| 相关性 | 它能回答当前问题的哪一部分？ |
+| 来源 | 能否找到原件及转换过程？ |
+| 规范效力 | 若它要求行动，谁有权作出该要求，范围是什么？ |
+| 验证 | 它实际经过什么检查，什么尚未检查？ |
+| 时效与范围 | 它对应哪个版本、环境、对象和用途？ |
+| 冲突 | 哪些记录支持、限制或挑战它？ |
+| 访问与指令边界 | 可以读取、引用还是执行，是否分别获准？ |
+| 成本 | 获取、阅读和维护的代价是否与当前需要相称？ |
 
-## 5.H Context Projection 与 Intent Execution View
+这些维度互相影响，不是数学上独立的指标。模型自报置信度可以是一个待核对信号，但不能替代来源和适用范围。即使内容正确，访问规则也可能不允许将它提供给当前执行者。
 
-第四章的 Execution View 选择“这个角色需要理解 Intent 的哪一部分”。
+## 5.9 当前运行环境与快照不能省略
 
-第五章的 Context Projection 选择“这个角色需要访问哪些信息来源”。
+存档格式文件正确，不表示正在测试的就是目标构建。运行环境、加载资源、功能开关、样本路径都可能影响观察。调查行为问题时，应记录决定性环境条件；不必为每次读取制作全环境镜像。
 
-两者共同参与 Agent Input 装配，但不能混为同一个对象。
+**State Snapshot（状态快照）** 记录声明范围与时点内的状态引用，定义归第6章；Context Manifest 记录本次装配了什么；Access Log 记录工具层看到的读取。这三种记录回答不同问题。
 
-```text
-Intent Artifact
-        ↓
-role-specific Execution View
+需要中断恢复时，可以引用[第7章的 Checkpoint（检查点）](第7章_Agent_Execution_Engineering_首轮修订稿.md)，向下一执行者提供目标版本、已做动作、产物、未决问题和下一步。这里不再建立平行的“执行快照”上位对象。保存这些外部条件便于解释和重建一次工作，但不能保证模型重放出相同输出，更不表示保存了隐藏推理。
 
-Available Information
-        ↓ Context Contract + selection
-role-specific Context Pack + Manifest
+## 5.10 角色投影与交接要保留责任差异
 
-Execution View
-+ Context Pack
-+ Policy / Tools / Output Contract
-        ↓
-Agent Input
-```
+**Context Projection（上下文投影）** 选择某个角色需要访问的材料；上一章的 Execution View 则选择它需要理解的目标部分。两者共同参与输入装配，不能互相替代。
 
-Worker 不一定需要 Controller 的全部协调记录；Reviewer 也不应只看到 Worker 对自己工作的摘要。Role Projection 应降低无关耦合，同时保留独立审查所需的原始 Evidence。
+存档实现者需要调用关系、格式契约和允许使用的样本；审阅者需要原接受条件、变更、原始检查结果及未覆盖项。只把实现者写的“已完成”摘要交给审阅者，无法支撑独立核对。共享同一个巨型材料包也不是唯一办法，可以共享稳定来源，再按角色提供不同入口。
 
----
+交接应让下一执行者知道接手什么责任、哪些动作已经发生、哪些材料仍适用，以及下一步为什么允许做。“代码改完，测试通过”缺少这些信息。教学例子中更可用的交接是：“局部修复已完成；标准样本检查通过，特殊变体仍缺；接下来先查指定归档，缺口未关闭前不作全范围兼容结论。”
 
-## 5.I Security 与指令权
+## 5.11 Memory、Skill 与外部内容进入 Context 的边界
 
-进入 Context 的内容默认是信息，不自动拥有指令权。
+持久记录先成为检索候选，再经过当前适用性与访问检查，才可能进入 Context。被反复保存的结论不因此更真实；检索到历史 Prompt 也不表示它获得本次指令权。
 
-尤其是：
+**Skill（可复用工作程序）** 可能同时包含背景信息、操作步骤、指令与工具调用要求。读取其中的解释、采用其中的方法、允许它修改状态，是不同决定。应核对版本和环境，遵守当前有效指令及工具权限；不能把“这份 Skill 出现在搜索结果中”当作执行授权。
 
-- 搜索结果；
-- 外部网页；
-- 用户生成内容；
-- Issue 和日志文本；
-- 检索到的历史 Prompt；
-- 第三方 Skill 或模板。
+对网页、日志、Issue 和第三方文档，本章建议将内容与行动权限分开。某段外部文字要求上传文件，不因进入 Context 就成为当前任务指令。这里给出的是使用边界，不是已经实现的安全防护证明；模型外的权限控制与数据保护由[第19章](第19章_Security_Privacy与IP_Boundary_首轮修订稿.md)讨论。
 
-系统需要分别判断：
+## 5.12 按需要组合机制，不给项目排成熟度
 
-```text
-may_read
-may_quote
-may_treat_as_project_authority
-may_issue_instructions
-may_trigger_tools
-```
+静态说明、分层文档、搜索、角色投影和恢复记录可以组合，不能排成必经的 Level 0–5。选择时先看实际问题：入口难找就改善导航，范围经常误解就补充约束，交接丢失未决项就改交接，而不是先购买或搭建一整套动态系统。
 
-Least Context 不是简单减少 Token，而是减少不必要的信息暴露、错误 Authority 和攻击面。
+| 设计维度 | 可选方式 | 可能的代价或失效方式 |
+|---|---|---|
+| 来源组织 | 简短入口、分层说明、类型索引 | 入口过多或长期不维护会产生分叉 |
+| 获取 | 直接读文件、符号搜索、历史搜索、RAG | 查询与索引可能漏掉关键限制，搜索结果需要回读 |
+| 访问与存储 | Hot / Warm / Cold：常用、按需、归档材料 | 存储位置不表示内容是否仍适用 |
+| 有效性管理 | 标记取代、当前不适用或需重核条件 | 标记不更新会让旧结论继续被采用 |
+| 连续性 | 任务进度、Manifest、必要的 Checkpoint 投影 | 摘要过度压缩会丢掉副作用与未决项 |
+| 角色与边界 | 按任务选材、按角色开放来源 | 过滤过度可能阻断审阅所需的原件 |
 
-当外部内容与项目 Policy 冲突时，Context Assembly 不应让模型自行调和成“看起来合理”的新指令；应保留冲突并按 Authority 升级。
+**Context Capability Profile（上下文能力配置）** 可以简要记录当前选择了哪些能力、哪些仍靠人工处理。它用于描述配置，不是能力排名。静态说明是否足够、动态检索是否值得，都需要结合任务结果与维护成本判断。
 
----
+## 5.13 让信息入口有人维护
 
-## 5.J Memory 与 Skill 进入 Context 的边界
+当格式改变、规则被取代或源码路径迁移时，受影响的索引和摘要应有更新入口。可以由模块维护者管理格式说明，由任务责任人维护本次材料清单；不要求每份临时片段都有独立 Owner。
 
-“Memory 是长期存储，Context 是当前工作集”只能作为对 Project Memory 的简化说明，不是对所有 Memory 类型的完整定义。
+维护优先处理那些会改变下一动作的断点：指向已删除 API 的示例、仍作为默认指令的旧决定、丢失来源的摘要，以及把两个版本混在一起的入口。合并重复入口、标明替代来源、保留重要例外，通常比继续增加概述更直接。
 
-更准确的关系是：
+当前不适用的记录仍可能具有历史解释价值。将它从默认输入中移出与删除原件是不同动作；证据保留、退役和恢复材料的取舍留给[第18章](第18章_Traceability_and_Accountability_首轮修订稿.md)，不能以“清理 Context”为由自行清除必要历史。
 
-```text
-Project Memory / historical records
-        ↓ retrieval candidate
-Context selection + authority / freshness checks
-        ↓
-Context Pack for this run
-```
+## 5.14 评价这次供给是否支持了行动
 
-Memory Record 被检索不表示它仍然正确，也不表示它已经进入当前 Agent Input。项目需要保留 Source、Scope、Freshness、Conflict 与 Invalidation。
+评价至少分开三种错误：该找到的材料没有找到，找到的材料不适用，以及找到并回读后仍错误采用。只统计命中数量，无法区分它们。
 
-Skill 也不能只按普通文档处理。它可能同时包含：
+在存档教学例子中，可以事先选定几个问题：当前允许改哪些范围、哪段代码加载 `v2`、缺字段样本在哪里、哪些旧方案已被否决。为每题列出相关原件与关键限制，再观察检索、回读、选择和外显回答。这个小集合是评价设计示例，不是已经运行的实验；它能否代表真实任务还需检查。
 
-```text
-Information content
-Procedure
-Instructions
-Tool or mutation authority
-```
+必要记录是问题、来源、遗漏、实际提供内容及未解决条件；有用的是对照不同入口的查找成本、错误采用和任务结果；可选的是自动索引、向量检索或复杂装配系统。更详细的预先选题与检索评价办法在第15章展开。若比较删除某类 Context 后的结果，还要固定或说明任务、模型与工具版本、顺序、预算、重复次数和判断标准，不能凭一次成功宣布架构更优。
 
-因此需要分别检查：
+还要分别检查“移出默认阅读面”“归档仍可取得”和“已整理为适用的长期知识”。三者没有自动转换关系。lessismore 的归档导航与恢复检查见第18章18.21；原文字符量减少也不能直接换算为模型 Token、费用或人类注意力同比下降。
 
-- 内容是否仍与当前项目版本兼容；
-- Procedure 是否经过当前环境验证；
-- Instruction 是否有权覆盖普通 Context；
-- Tool 调用和状态修改是否获得相应 Permission；
-- 失败后是否存在隔离和恢复路径。
-
-一个 Skill 过期，不必然表示其中每句话错误；它表示当前适用性尚未建立。把过期 Skill 直接注入 Context 并赋予高指令权，才会形成高风险组合。
-
----
-
-## 5.K Context Capability Profile，不使用单一成熟度等级
-
-**Context Capability Profile（上下文能力配置：描述 Context System 在选择、来源、时效、检索、连续性、投影、安全与评价等维度的当前配置）** 可以记录为：
-
-```yaml
-selection: structured
-provenance: partial
-freshness: manual
-retrieval: progressive-search
-storage_tier: hot-warm-cold
-validity: explicit-invalidation
-continuity: snapshot
-projection: role-based
-security: policy-filtered
-evaluation: ad-hoc
-```
-
-Context Capability Profile 用于说明“系统具有什么能力”，而不是宣称“它处于 Level 3”。
-
-一个小项目采用静态 Instructions，可能比复杂的 Adaptive Assembly 更可靠、更经济。动态装配只有在它能减少错误或成本，并且选择过程可检查时，才是改进。
-
-AI Game Dev OS 当前可以作为候选案例，用于观察 Hotspace、Archive、Index、Snapshot 和 Memory Summary 如何组合；在绑定具体版本、文件和运行结果前，不应写成已经证明的成熟度等级，也不应声称它必然降低错误率。
-
----
-
-## 5.L Evaluation 与成本
-
-Context Evaluation 应把任务结果和装配过程同时纳入观察。
-
-候选指标包括：
-
-```text
-Task Success Rate
-Context Miss Rate
-Noise / Irrelevant Load
-Stale Context Incident
-Conflict Detection Rate
-Retrieval Cost
-Human Clarification Rate
-Recovery Success Rate
-```
-
-Context Ablation 可以比较删除或替换某类信息后的结果，但结论必须绑定：
-
-- 任务集合；
-- 模型和工具版本；
-- Context 顺序和预算；
-- 重复次数；
-- 成功判据；
-- 不确定性。
-
-单次任务成功不能证明一套 Context Architecture 更优。复杂的索引、Registry、自动摘要和 Adaptive Routing 也会产生维护成本与新故障面。
-
----
-
-## 5.M 跨章接口
-
-第四、第五和第六章应形成一组稳定接口，但实际执行不是严格单向流水线：
-
-```text
-Chapter 4
-Intent Artifact
-→ role-specific Execution View
-
-Chapter 5
-Minimum Initial Context
-↔ selection / retrieval / projection
-
-Chapter 6
-Typed Records + State Claims
-↔ authority / freshness / conflict resolution
-
-Chapter 5
-Progressive Retrieval as needed
-→ Context Pack + Manifest
-
-Chapter 6
-Execution Baseline
-
-Chapter 7
-Work + Execution Contract
-→ Agent Input
-→ Attempt + Checkpoint
-```
-
-Execution Epoch 不进入这条基础链。需要长时固定引用区间时，它作为第21章定义的可选 Lifecycle 组织对象引用上述 Contract、Attempt 与 Checkpoint。
-
-章节顺序上第五章位于第六章之前，但概念上需要前向引用并承认反馈关系：
-
-> Context Item 的真实性、Authority 与冲突由下一章的 Claim 模型处理；本章只处理它是否以及如何进入当前信息表面。
-
-这样第五章就不需要重复建立 Truth Registry、Decision Truth、Evidence Truth 或统一 Confidence。
-
----
-
-## 第五章边界结论
-
-第五章的中心应当是：
-
-> **根据 Intent、风险和授权，持续选择、组织、检索、压缩、更新并记录 Agent 可访问的信息表面。**
-
-完整重写时，建议将当前 73 个小节收敛为 RR-009 提出的 12–16 个主体模块，并用可组合设计维度替换七个线性 Pattern 和 Level 0–5 成熟度。
-
-必须保留：
-
-- Context 不等于 Prompt；
-- More Context 不必然是 Better Context；
-- Initial Selection + Progressive Retrieval；
-- Provenance、Freshness、Conflict；
-- Compression 后可下钻；
-- Role Projection 与 Handoff；
-- Security 与外部内容的 Authority 边界；
-- Evaluation 与维护成本。
-
-必须修正：
-
-- Context 是完整世界模型；
-- Context Pack 本身就是 Execution Contract；
-- Context Confidence 可以概括来源质量；
-- 七个 Pattern 是固定进阶；
-- Adaptive 必然比 Static 成熟；
-- AI Game Dev OS 已经被证明处于某个 Level。
-
-这份边界稿确定了第五章与第四、第六章的接口，但尚未完成 AI Game Dev OS Context Architecture 的正式取证，也不把候选案例写成已验证结论。
+沿着本章的方法，存档任务可以形成一份有来源的当前材料集合，也可能诚实地停在一个缺口上：标准样本可取得，特殊变体尚未找到。此时继续什么、暂停什么，回到第4章的行动边界；这些材料分别属于事实、假设、决定还是证据，则进入下一章的类型与冲突处理。信息取得、对象判断与执行之间存在往返，不是一条运行一次就结束的单向流水线。

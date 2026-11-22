@@ -7,7 +7,7 @@ description: Pilot the Human-authorized derivation or revision of Beyond Code ch
 
 Turn an accepted logic draft into a chapter that one engineering practitioner can read continuously, without creating a second source of truth.
 
-This is pilot v0.1. Until the Human closes RR-039 Phase 3, use it only for the named chapter 12, 17, and 23 trials or for a separately authorized isolated evaluation. Do not infer that it is ready for whole-book expansion.
+This is pilot v0.1. Until the Human closes [W0 RR-039 Phase 3](../../../RevisedResult/RR-039_PolishedDocs人类化成书实施计划.md), use it only for the named chapter 12, 17, and 23 trials or for a separately authorized isolated evaluation. Do not infer that it is ready for whole-book expansion.
 
 ## Route Before Writing
 
