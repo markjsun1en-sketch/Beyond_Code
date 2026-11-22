@@ -1,39 +1,49 @@
 {
   "schema": 1,
   "status": "verified",
-  "recorded_at": "2026-11-22T23:01:52+08:00",
+  "recorded_at": "2026-11-22T23:19:45+08:00",
   "project_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2",
   "url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
-  "version_number": 5,
-  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_39cfc369e85c819199238178c601ca43",
-  "deployment_id": "appgdep_6b030358bd4c8191b98e30cf19197cb4",
-  "source_commit": "f15fc05101029dc0acd47527d6549a0371846a2b",
-  "source_fingerprint": "8c9d9c7e43619a0dca82f3758965b12f30915b6d637609c0db11b455bee65b2a",
-  "output_fingerprint": "3025ec8297b814381263d5230decc43a730d6127fced588627312a06581514ae",
+  "version_number": 6,
+  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_52a3c7eb308c8191bdc5142a008ce33d",
+  "deployment_id": "appgdep_6b0307cff7308191b659c9e5fcd345be",
+  "source_commit": "f4d97715db55c6e6fc4821db7da007941c7d1e8b",
+  "history": [
+    {
+      "at": "2026-11-22T23:19:45+08:00",
+      "status": "deployed_unverified"
+    },
+    {
+      "at": "2026-11-22T23:20:06+08:00",
+      "status": "verified"
+    }
+  ],
+  "source_fingerprint": "594126fd61f0fa43d83217dc3a7967d4acde39858998f9f5a777cb9cc0506f2c",
+  "output_fingerprint": "51150b4c56dd908a4274cb9ac963de2bc7c7c672e8668198402586fb8f263be7",
   "files": {
-    "OptimizedDocs/第1章_软件工程角色演进_首轮修订稿.md": "b98d55622cd9b4ce7552762995415ac880cc3752c4b682525ebb56b187feebdb",
-    "OptimizedDocs/第2章_传统软件工程操作条件_首轮修订稿.md": "cc2de337e84b4ee42387f43ab2ee8ba696add8c544607f7153fcc2c54e8e6b18",
-    "OptimizedDocs/第3章_AI原生软件工程定义_首轮修订稿.md": "94e2efcae16b38b0fe49f399cdc46d97758c8dc5648d6aa39fe3745b242509f2",
-    "OptimizedDocs/第4章_Intent与Agent_Input对象边界回接稿.md": "3b2a37920fccea5596ba4e0a6b07dd9d0e8675b84ec1e270aea27c10289d9483",
-    "OptimizedDocs/第5章_Context对象边界回接稿.md": "ccdfa0500c8d27b0eafac967de9cd1ec0723a2790ec8a8532c397fe7a9067713",
-    "OptimizedDocs/第6章_Truth与State_Architecture_重构稿.md": "c67c192aed55c4dcd10cb55715a171bc80325206c454c7808247629ff74a04cb",
-    "OptimizedDocs/第7章_Agent_Execution_Engineering_首轮修订稿.md": "86bc8d87aea97a8b72f5f8eeee11c6b1f6a5a61b6a8aafad18b483b417a53619",
-    "OptimizedDocs/第8章_Agent_Reliability_Engineering_首轮修订稿.md": "f0688a7f871595187449fba592158945cd7b1cf16c53c742c7f2932d7dae9c77",
-    "OptimizedDocs/第9章_Evidence_Use与Decision_Disposition边界稿.md": "8611585a9525e19a66e8e6a9718d3976891d9702b358f7d4028d4f4862c835e0",
-    "OptimizedDocs/第10章_Review_Engineering_首轮修订稿.md": "62f9ea1469888b801bfd06380ab9b2d8d5ef4ac31974f2d6d4d294b7212663ee",
-    "OptimizedDocs/第11章_Cognitive_Overload_首轮修订稿.md": "8a4dc65ed8d45af208f8087847501b6049bb20b7ccff10efd54f687723807f89",
-    "OptimizedDocs/第12章_Cognitive_Compression与Human_Decision_Interface_首轮修订稿.md": "15fbee702411af295599d158f3a7368f11e4f045eaae1be5a4cb4f4cbab53877",
-    "OptimizedDocs/第13章_Governed_Autonomy_首轮修订稿.md": "3142238b2bc0964979fe3f3b14f551031567c720bdaf8d40fb674a0ca76cb608",
-    "OptimizedDocs/第14章_Observability与Intervention_首轮修订稿.md": "35e217965173bf8e16fdb2d68b424a2a3f7a3badd823401ff9e35b2a14599bf3",
-    "OptimizedDocs/第15章_Memory_Engineering_首轮修订稿.md": "e3545119b0db5522b8a5b154c7095d2923761b3583da4534727850d25761c292",
-    "OptimizedDocs/第16章_Self_Evolution_Engineering_首轮修订稿.md": "a1baf0ab6d219cc6ac70f4c862276fd1726c8d3da48d1d976bc9730179f4e4bd",
-    "OptimizedDocs/第17章_Multi_Agent_Organization_Design_首轮修订稿.md": "728a894c6eb16c6955dc27e34547e99abc799289e54dbae4cf47a940fd284b96",
-    "OptimizedDocs/第18章_Traceability_and_Accountability_首轮修订稿.md": "f7fd5c0a1b05aea274178c313470de544953c2018b2a379f26c9e01f405f0cad",
-    "OptimizedDocs/第19章_Security_Privacy与IP_Boundary_首轮修订稿.md": "8f2e42b9c467bb91ed207e19eaa97db356b4eaaf38e2e9a3175e65195ce73d23",
-    "OptimizedDocs/第20章_AgentOps_成本与模型漂移_首轮修订稿.md": "1ef398c857294496b0a411cf0afdbe3141c9218ac58897cfa0b99ab1d2c9fcef",
-    "OptimizedDocs/第21章_AI_Native_SDLC_首轮修订稿.md": "ff1b872456971b7bedcf93081130f498b93bedd642ac66b7fce3767233004f9c",
-    "OptimizedDocs/第22章_AI_Native工程能力适配_首轮修订稿.md": "e16f6a9676534da412bc38e571ba9fb6c4de9863246d21cc4e49eff4bddd919a",
-    "OptimizedDocs/第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md": "f46d3b6a2025b45e02f2b4b9bb71d5305c58b90dc0fad61f338c6677dcae9f38",
+    "OptimizedDocs/第1章_软件工程角色演进_首轮修订稿.md": "e5a43ef051cba7e8369e5915d16f38978e485a42858710080c99f24cc291543a",
+    "OptimizedDocs/第2章_传统软件工程操作条件_首轮修订稿.md": "305dd8516adad9e3effbeffd4cd460b113838a221048f1ece4beb821d93162e7",
+    "OptimizedDocs/第3章_AI原生软件工程定义_首轮修订稿.md": "4d2918e6e49473261326cbae4c193838155399d77ef5a5e99fb2f56c8287754e",
+    "OptimizedDocs/第4章_Intent与Agent_Input对象边界回接稿.md": "0c117e4e7321bac9d92aaa617987b2a4bdb1c31791c710019211d9108d6c84b4",
+    "OptimizedDocs/第5章_Context对象边界回接稿.md": "edb147fb0f84b28f3a9fdb1fb934efba68655f71ed26bdc42976488cb6c9dbda",
+    "OptimizedDocs/第6章_Truth与State_Architecture_重构稿.md": "49d843c7c4052ed743c5e7c6fd9bf4e96f9e04eb557160b394d5c287d0a9ac93",
+    "OptimizedDocs/第7章_Agent_Execution_Engineering_首轮修订稿.md": "3acd3651de2a2882033382fe172258bff8ed3678c4bf784543589cab915d895b",
+    "OptimizedDocs/第8章_Agent_Reliability_Engineering_首轮修订稿.md": "29376172eac6ded04fe806cf38ec89cf1d14f19b2b31eb44da2c3930e4bca739",
+    "OptimizedDocs/第9章_Evidence_Use与Decision_Disposition边界稿.md": "033ee909f6388774e234674f7338dfe0fc8c0e82d3af5fbbbafabc4153ea1470",
+    "OptimizedDocs/第10章_Review_Engineering_首轮修订稿.md": "c7b45416d596e5a9f1c704c5406be78dfafa1697a5a7d88224f5cb1ddbff0e52",
+    "OptimizedDocs/第11章_Cognitive_Overload_首轮修订稿.md": "4a7345441b724e2e0436afb2485122d1207a61f958e58687d6e3c84c670abaff",
+    "OptimizedDocs/第12章_Cognitive_Compression与Human_Decision_Interface_首轮修订稿.md": "2e365cd9b7317c03412d87a90d31238e41be2aced9d7d2afae4ea1d8ad83dc4e",
+    "OptimizedDocs/第13章_Governed_Autonomy_首轮修订稿.md": "16491b9ad885c5ef449bc303264cdc271423016d85e42a20b34a5c7d99bd06f3",
+    "OptimizedDocs/第14章_Observability与Intervention_首轮修订稿.md": "ab4ec35023cfac9a45eceb5f935d4a653f49c723d6eaf8a0cc1f9446efe942cd",
+    "OptimizedDocs/第15章_Memory_Engineering_首轮修订稿.md": "afea546e8544a41095fc0bdcf1cd9dddc16add95c4b0afcc652a1fcd2d2b239d",
+    "OptimizedDocs/第16章_Self_Evolution_Engineering_首轮修订稿.md": "127817699eced6c3c5330f9e8f134532685c38dc4c9d131d30c05566403ddb83",
+    "OptimizedDocs/第17章_Multi_Agent_Organization_Design_首轮修订稿.md": "ea6a80b3aa04ebbc55323757647347fc046b5e5312b4308c15b72000bd64250c",
+    "OptimizedDocs/第18章_Traceability_and_Accountability_首轮修订稿.md": "ea7c8c902df44235eced17b38d9e2c1ca5310eb8797c5a7772061bb4e33eb137",
+    "OptimizedDocs/第19章_Security_Privacy与IP_Boundary_首轮修订稿.md": "9f8e95e5651755ddd1489c56a1d689c5f662218a9b1acfc2dcc75a86357b743a",
+    "OptimizedDocs/第20章_AgentOps_成本与模型漂移_首轮修订稿.md": "fcc8b431932ed98f8601e91cfe15989d7eae374bf8e742d98cf00bd67f5c7a23",
+    "OptimizedDocs/第21章_AI_Native_SDLC_首轮修订稿.md": "926d70906c2c91c1f916e4c440ee878965485a566993690320522ca30d97957c",
+    "OptimizedDocs/第22章_AI_Native工程能力适配_首轮修订稿.md": "73f700afaa32a39057505005952009c6d87ddb218d8c0c8e5f03cf7a23368afe",
+    "OptimizedDocs/第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md": "8ceba4b8be1fe5bcec0f1da18e4d79a4300a43f59426ae2ac8cec8b7db749d46",
     "OptimizedDocs/diagrams/phase-a-manifest.json": "93f9200f3f4b1469929df9e4f3112a423718ccb5415336dd84ae44a28743da00",
     "OptimizedDocs/diagrams/phase-b-manifest.json": "bc3882311f7e3665956940fab613a8664e1330186a38dc31b3a5e9ff81c6781f",
     "OptimizedDocs/diagrams/phase-c-manifest.json": "3e12a121e183f807e66962b69f52aba63398e10124394de20d9a65b4a1c92e2e",
@@ -41,7 +51,7 @@
     "OptimizedDocs/diagrams/phase-e-manifest.json": "249a4089f75aba6c8b6339f119952e15bf9d7364edc9540d9ac965c11ef829b3",
     "Showcase/publication.json": "2e28b978091ec583b75b601b58a466331bb19983aeae4a76f598b48b1e153c04",
     "tools/sync_showcase.py": "1990659c60c7ccb6975f0928dc0700688f7b34a4c28fb1a4d54d222aec3d7dfd",
-    "Showcase/build_site.py": "9d4522c28e1afe35c9fcd4fcea5d74bc488f039fd9ac8f8fe07c5c22faa6f0fb",
+    "Showcase/build_site.py": "7a5e172da2d4384bfa5d5bd5bfda77498d02f1797d8ad024b8d684a6719fe014",
     "Showcase/verify_site.py": "5abaf147d9f8de9d40476b492d3bfd1e2cd03611eb7ebf483709d85f31deb16b",
     "Showcase/site.css": "7d5fcfa5ae593fd6aa47588c9c1086b85d9358151a38b31022daf3d47c460df1",
     "Showcase/site.js": "934c871b5151d84b30a22510e537318faad0435e04086b6240b7dac7740068a1",
@@ -82,15 +92,15 @@
     "code_blocks_checked": 331,
     "tables_checked": 140,
     "links_and_assets_checked": 2884,
-    "search_targets": 5913,
+    "search_targets": 5923,
     "numbered_sections": 632,
     "all_chapter_texts_match": true,
     "errors": []
   },
   "browser_review": {
-    "output_fingerprint": "3025ec8297b814381263d5230decc43a730d6127fced588627312a06581514ae",
+    "output_fingerprint": "51150b4c56dd908a4274cb9ac963de2bc7c7c672e8668198402586fb8f263be7",
     "production_url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
-    "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_39cfc369e85c819199238178c601ca43",
+    "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_52a3c7eb308c8191bdc5142a008ce33d",
     "checks": {
       "desktop": true,
       "mobile": true,
@@ -99,42 +109,35 @@
       "production": true
     },
     "notes": [
-      "Desktop 1440px chapter 23 and homepage checked.",
-      "Mobile 390px QA维护任务 match visible; 320px no horizontal page overflow.",
-      "Figure 9-1 opened at 100% and zoomed to 120%.",
-      "Production AUTH-REVOKE-004 highlighted at visible position after extensionless redirect; production figure viewer opened.",
-      "Browser reported no JavaScript errors."
+      "1440px: chapter16 section16.3 W0 semantic-role table renders with H2/H3 hierarchy and full content.",
+      "390px: chapter4 figure4-1 displays with caption; original-size zoom opens legibly with pan controls.",
+      "320px: chapter5 text fits viewport; document scrollWidth equals320; wide table scrolls locally; fig5-1 completed723x1260; mobile chapter menu reaches23.",
+      "Local AUTH-REVOKE-004 returns2 results; first navigates to chapter13 code, mark visible at527px.",
+      "Local and production search 九种语义角色 returns1 result and navigates from another chapter to chapter16 section16.3 with visible highlighting.",
+      "Production chapter17 exposes 九个候选对象展开组织关系; figure21-1 loads1020x525 and zoom/fit controls work; homepage shows23chapters and14figures.",
+      "All temporary viewport overrides reset; final public tab retained."
     ],
     "screenshots": [
-      "/Users/macsun/Documents/Beyond_Code/Showcase/workflow-baseline-desktop.jpg",
-      "/Users/macsun/Documents/Beyond_Code/Showcase/workflow-baseline-mobile.jpg",
-      "/Users/macsun/Documents/Beyond_Code/Showcase/workflow-baseline-online-search.jpg",
-      "/Users/macsun/Documents/Beyond_Code/Showcase/workflow-baseline-online.jpg"
+      "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-desktop.jpg",
+      "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-mobile.jpg",
+      "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-mobile-search.jpg",
+      "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-online-search.jpg",
+      "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-online-figure.jpg",
+      "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-online.jpg"
     ]
   },
   "screenshot_hashes": {
-    "/Users/macsun/Documents/Beyond_Code/Showcase/workflow-baseline-desktop.jpg": "09c88ee63e09c07b378f84343d044419926fe88eafad095aabc3a112bcfe0e05",
-    "/Users/macsun/Documents/Beyond_Code/Showcase/workflow-baseline-mobile.jpg": "8911bd66a4d7af3ab24c6e15bf88c66329aed1ecb5ced1b8c3cfd36a465521dc",
-    "/Users/macsun/Documents/Beyond_Code/Showcase/workflow-baseline-online-search.jpg": "097979253f7a0ec14226caefbb38aa55c9e064bf352f0681544616aa8a872af3",
-    "/Users/macsun/Documents/Beyond_Code/Showcase/workflow-baseline-online.jpg": "bb7fa245f89ffeb872fe38c98c337c2b8329a7731d7e5b24e648f013e7fe4dba"
+    "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-desktop.jpg": "f5bf27ec1d5170b028b044adb152fae23f2a4fe6b2cc538e86cfa6a9f4739717",
+    "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-mobile.jpg": "4dbcf0afb73c2a1b7150442e1427198dfd2cad848a237a3357d2bf48c3ba5a94",
+    "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-mobile-search.jpg": "33910c20febee337f731b5beafd2b9b38062425ac393bb4373e0dac0ad36b1e8",
+    "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-online-search.jpg": "92739e97a2e8692793d354790e42dd2dcb67003df927c5d95e964adbe84b2b5c",
+    "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-online-figure.jpg": "25125656a0beb87dbb2d5b83d06b96e9f30dbb76a74646b487eb12ca39240341",
+    "/Users/macsun/Documents/Beyond_Code/Showcase/merge-w0-online.jpg": "1c730e9e8b19a38849991a7dd7897423d3c9dafbefc333ecf9d8082643a517fe"
   },
   "online": {
-    "checked_at": "2026-11-22T23:02:10+08:00",
+    "checked_at": "2026-11-22T23:20:05+08:00",
     "files_checked": 57,
     "errors": []
   },
-  "verified_at": "2026-11-22T23:02:10+08:00",
-  "history": [
-    {
-      "date": "2026-11-22",
-      "status": "deployed_unverified",
-      "error": "Initial Python urllib readback failed: CERTIFICATE_VERIFY_FAILED; unable to get local issuer certificate.",
-      "recording_note": "Retrospectively recorded from this task tool result after fixing the readback client; not another deployment."
-    },
-    {
-      "at": "2026-11-22T23:02:10+08:00",
-      "status": "verified",
-      "note": "Retried the same version using system curl with certificate and hostname verification enabled; all 57 files matched."
-    }
-  ]
+  "verified_at": "2026-11-22T23:20:06+08:00"
 }
