@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-22",
+  "site_url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
+  "project_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2",
+  "version_number": 4,
+  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_88dbfa09c8f88191852bc3fe1ade9042",
+  "deployment_id": "appgdep_6b02feccc87481918f849b2ff4591070",
+  "deployment_status": "succeeded",
+  "source_commit": "7dc37b257eb1a5638711f811f045514efb632c9b",
+  "archive_hash": "sha256:f522360a916b8ac38a87c138d1afa840d68eef71fe6048bb7269d189a9bc241a",
+  "checked": {
+    "chapters": 23,
+    "figures": 14,
+    "code_blocks": 331,
+    "tables": 140,
+    "links_and_assets": 2884,
+    "search_targets": 5913,
+    "published_chapters_match": true,
+    "viewports": [
+      320,
+      390,
+      768,
+      1440
+    ],
+    "live_code_query": "AUTH-REVOKE-004",
+    "live_table_query": "QA维护任务",
+    "title_query_actual_hits": 1,
+    "figure_viewer_default_scale": 1
+  }
+}

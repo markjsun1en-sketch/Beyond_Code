@@ -1,0 +1,43 @@
+{
+  "renderer": "Mermaid 11.12.1; Playwright with local Chrome",
+  "mermaid_js_sha256": "198b19442f86f0b46a17e56d3abf744c3a28a3427e66fa8dada3b589a77babcc",
+  "source_policy": "Edit Mermaid in the owning chapter, then regenerate. No manual edits to derived files.",
+  "figures": [
+    {
+      "id": "fig-12-1",
+      "number": "12-1",
+      "title": "决策面汇合信息，有权角色作出处置",
+      "chapter": "OptimizedDocs/第12章_Cognitive_Compression与Human_Decision_Interface_首轮修订稿.md",
+      "source_sha256": "7b1ac8e3522e1456c52bd447aabac1b489999d3d1e9998dee3252ea4123cd5e7",
+      "svg_sha256": "127b37c9183c0a4ca286d7cdd13d66c0ae947cd61baa73030953fff3330d729e",
+      "png_sha256": "662162bd4c39f8af917ed1cd89099d8ec172f6dc36d944fbf4368578d15a2a3e",
+      "width": 834.5,
+      "height": 818,
+      "caption": "教学示意：上方箭头表示信息汇合，下方分支表示可选处置；虚线分别标出重入条件和接受边界。授权来自已有规则或委托，不由卡片产生；图中的样本结果是假设情境，不是项目运行证据。"
+    },
+    {
+      "id": "fig-14-1",
+      "number": "14-1",
+      "title": "把产品输入检查与 QA 适用性判断分开",
+      "chapter": "OptimizedDocs/第14章_Observability与Intervention_首轮修订稿.md",
+      "source_sha256": "d033784216d0a04ef674ebc2580197439ee147ac8af3b11176e88d9581863fe2",
+      "svg_sha256": "2fef5dd4eb7996eef4d42e34fae19701fd975ad7aa8c58aa143b0d16fa8a33f3",
+      "png_sha256": "77a1955f9ac4c0e18d3f42ce1109df58f1cdeb0d535c3e4eb103743b16c0683d",
+      "width": 805,
+      "height": 1394.640625,
+      "caption": "案例机制简化：上框表示已保存的错误传播关系；下框把修复中的两类判断并列展示，不表示所有检查的实际调用顺序。“产品输入”包含必要数据和来源／消费契约，不只是文件是否存在；虚线表示当前决定需要该证据时的处置建议，不表示系统会自动重新验证。"
+    },
+    {
+      "id": "fig-23-1",
+      "number": "23-1",
+      "title": "同一案例保留不同决定对象",
+      "chapter": "OptimizedDocs/第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md",
+      "source_sha256": "f4504550d4be2d0231de738099a3c250d046f0b02c772149954329983bfaa304",
+      "svg_sha256": "44e84ff3248e5adc8fdce57ae71c87b9ba5bd4e879ae2024b3ef11dc2e7b77e5",
+      "png_sha256": "ee49621ebb0c36bbaa1c16ccfc6d21f08b477c662a9bf21ebf8786a1b89ecbc1",
+      "width": 783.171875,
+      "height": 820,
+      "caption": "历史关系简图，依据[SP122 两次有范围的人类决定记录](../Evidence/receipts/ER-20260827-001__CLM-C23-001.md)。无箭头连线表示并存，实线箭头表示具名处置关系，虚线表示该决定不产生下游授权；分组位置不复原全部执行步骤。早期未完成的审美签字不会被后来的接受回填。阶段关闭所接受的是包含 v035 与 lifecycle-tag repair 的当前 D2 基线，还明确排除了最终 Production Art 与 v4.94 Kickoff。"
+    }
+  ]
+}

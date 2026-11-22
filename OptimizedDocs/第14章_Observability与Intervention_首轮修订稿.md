@@ -2,7 +2,7 @@
 ## 可观测性不是日志堆积，干预也不是告警的自动后果
 
 > 工作稿状态：首轮逻辑修订稿，不替代 [全书大纲](../OringinalDocs/beyond_code_ai_native_software_engineering_outline_zh.md) 或 [Cognitive Control、Trust 与 Human Control Plane v0.1](../OringinalDocs/ai_native_cognitive_control_trust_human_control_plane_v0.1.md)。
-> 回接说明：[RR-025](../RevisedResult/RR-025_第14章Observability与Intervention首轮回接说明.md)。
+> 回接说明：[RR-041 实施记录](../RevisedResult/RR-041_RR-040实施后书稿与配图复查.md)。
 > 适用边界：本章把 Observation、Detector、Signal、Exception 与 Intervention 分开建模；相关案例提供边界示例，不证明 Observation Contract、Detector Health 或 Exception Lifecycle 是通用最优实现。
 
 第13章把自治定义为已有 Authority 下的可撤回委托配置。
@@ -391,6 +391,45 @@ target_compile = failed
 
 这项案例不证明所有 Observer 必须完全无副作用，也不证明所有静默故障都可检测。
 
+另一类问题发生在检查结果进入产品的接缝：检查器完成了工作，但它的结果被用于不适合的决定。
+
+lessismore 的一次 CardInformation 修复保留了这种情况。旧说明生成链用验证覆盖结果决定是否展示已迁移内容；保存的诊断中，六个仓库完整性检查通过的说明模型样本，因为来源摘要失配，退回了全文说明分支。这里观察的是 Repository、Composer 到 Reader 的生成结果，不是六次真实鼠标悬停。修复将展示资格与 QA 适用性分别计算：保存的受限验证中，数据有效而 QA 为 stale 或 pending 时仍可生成规定的说明；错误来源身份、缺少必要内容等拒绝检查也继续通过。具体来源与限制见[卡牌说明与 QA 适用性隔离记录](../Evidence/receipts/ER-20261030-001__CLM-C14-001.md)。
+
+## 图14-1 把产品输入检查与 QA 适用性判断分开
+
+```mermaid
+flowchart TB
+    subgraph coupled["旧生成链中的耦合"]
+        direction LR
+        stamp["来源摘要失配"] --> covered["覆盖检查未通过"]
+        covered --> fallback["误入未迁移全文分支"]
+    end
+    subgraph separated["修复后的处置关系"]
+        direction LR
+        subgraph productPath["产品消费"]
+            direction TB
+            inputCheck{"产品输入符合契约？"}
+            inputCheck -->|"是"| display["生成规定的卡牌说明"]
+            inputCheck -->|"否"| reject["拒绝受影响的说明请求"]
+        end
+        subgraph evidencePath["证据用途"]
+            direction TB
+            qaCheck{"QA 证据仍适用？"}
+            qaCheck -->|"是"| evidence["用于对应验证判断"]
+            qaCheck -->|"否或尚未验证"| pending["保留 stale 或 pending"]
+            pending -.->|"当前决定需要时"| validate["选择补查、收窄或暂缓"]
+        end
+    end
+    %% Invisible link arranges the comparison; it is not an execution edge.
+    coupled ~~~ separated
+```
+
+*案例机制简化：上框表示已保存的错误传播关系；下框把修复中的两类判断并列展示，不表示所有检查的实际调用顺序。“产品输入”包含必要数据和来源／消费契约，不只是文件是否存在；虚线表示当前决定需要该证据时的处置建议，不表示系统会自动重新验证。*
+
+图中没有从 QA 过期直接连向“拒绝说明请求”，也没有从正常展示连向“QA 通过”。前者避免验证状态替代产品输入判断，后者防止修复展示后把旧证据自动改成 PASS。源码同时调整了依赖范围与消费契约，不能把这次联合修复的结果全部归因于一个状态拆分。
+
+对其他项目，先辨认失配属于哪一层，再决定动作。真实版本不兼容、来源身份错误或必要数据缺失，仍可能要求阻断；明确受委托的交付门禁，也可以因为缺少适用证据而拒绝交付。这里提出的是限定检查的作用范围，不是普遍允许带着过期证据继续运行。
+
 ---
 
 # 14.10 Detector Health 不是一个绿色圆点
@@ -562,12 +601,14 @@ raised
 → acknowledged
 → dispositioned
 → intervention_requested
-→ intervention_applied / non-result
+→ intervention_applied / non-result / execution_unknown
 → effect_verified / unresolved / forward_recovery
 → closed / superseded
 ~~~
 
-这不是通用状态机。
+这里的`execution_unknown`表示尚不能确认干预是否执行，例如命令发出后超时。它不能被归入确认未触达目标的`non-result`；涉及外部副作用时，保留`external-effect-unknown`并先核对状态。取得新依据前保留`unresolved`，不能直接进入`effect_verified`，也不能据此重试干预。
+
+这不是通用状态机，各行也不表示所有分支都能自动前进。
 
 每个项目需要根据风险和工具能力删减。
 
@@ -663,6 +704,14 @@ Detector 可以把 Exception 路由给有权主体；除非已有明确 Grant �
 Dashboard 生成失败或陈旧时，应显示 Projection Failure，而不是继续展示上次的绿色状态。
 
 第12章的 Human Control Plane 可以投影这些信息，但不拥有它们。
+
+## 写入之后回读同一个目标
+
+[DevOS 的白板隔离故障试验](../Evidence/receipts/ER-20261122-004__CLM-C12-002.md)构造了一种具体不一致：写入响应返回 `accepted`，磁盘任务仍为 `claimed_done`。这两个值分别表示已接受和仅声明完成。修复后的界面通过绑定同一请求、项目根、实例和目标版本的独立回读核实状态；回读不匹配时没有显示“已验收”，也没有自动重复提交。
+
+可借用的处理顺序是：先提交具名请求，随后从持久状态入口回读同一目标；匹配时显示核实结果及观察时点，不匹配或无法回读时显示差异并保留待核实。涉及确认的动作还需绑定当前目标与相应确认信息，不能把上一个目标的成功提示沿用过来。
+
+这个合成故障没有查明原始生产事件的根因；独立回读也不保证状态从此不变，不自动认证人的身份。它增加一次读取及失败处置成本，适合验收等重要状态写入，不要求每个无副作用的界面操作都复制这一流程。
 
 ---
 
@@ -836,6 +885,17 @@ named detector result
 
 更多自动停止不自动意味着更安全。错误 Detector、Common-mode Failure 和 Recovery 缺失会把安全机制本身变成风险源。
 
+图14-1可以落实为一张处置表。第9章负责解释证据能支持什么决定；本章进一步明确哪些动作可以由检查结果触发。
+
+| 检查结果 | 可处置的对象 | 当前动作与停止条件 | 怎样确认处置有效 |
+|---|---|---|---|
+| 必要产品数据或来源契约不成立 | 受影响的消费请求 | 拒绝该请求，或进入契约允许的降级；不扩成无关模块的停机 | 构造相应坏输入，确认被拒绝，并确认正常输入仍可使用 |
+| 数据有效，只有 QA stale／pending | 该证据的当前用途 | 保留未验证状态；当前决定需要该证据时，按影响补查，或由有权角色收窄用途、暂缓决定；不据此改写说明内容 | 若依赖隔离机制，检查正常说明与未验证标记能同时存在，历史结果未被重新签为 PASS；不使用该证据时，不自动新增重测义务 |
+| 必需的交付证据不足 | 具名交付决定 | 由有相应委托的 Gate 阻断交付；不把阻断理由写成产品必然有错 | 用缺证输入检查门禁拒绝，再提供适用材料检查对应路径 |
+| 检查器或证据来源自身异常 | 当前证据依赖 | 暂停依赖该结果并调查，保留目标是否被执行的未知 | 恢复采集后重新确认目标、范围和结果，不能只重画绿色状态 |
+
+每一行都需要具名责任者和允许影响面。没有委托时，检查器只报告结果，由有权角色决定动作。一次处置完成且相应问题已经回答后就停止重复验证；新变化、失败或未解问题可以重新触发检查。
+
 ---
 
 # 14.21 干预后必须重新观察目标效果
@@ -869,7 +929,9 @@ Rollback 后应检查：
 
 Intervention Effect Observation 也可能失败。
 
-此时应记录 `effect_unknown` 或 `non-result`，不能因为控制命令返回 200 就宣称风险已经解除。
+若干预可能已经执行，但效果无法确认，应针对干预目标记录`effect_unknown`（干预效果未知）；涉及外部副作用时，同时保留第8章的`external-effect-unknown`。只有Trace足以确认该干预在目标执行前被阻断，才对这个Target记录`non-result`。观察任务自身若在开始前失败，也可有它自己的`non-result`，但不能由此推断干预没有发生。控制命令返回200与观察失败，都不足以宣称风险已经解除。
+
+对图14-1的隔离修复，重新观察也必须同时覆盖两面：仅验证“说明恢复了”不够，还要确认真实坏输入仍被拒绝、过期证据仍保持未验证。保存的该案例结果提供了这些受限检查，同时保留早期夹具失败和有限 UI 样本；它没有覆盖全部玩法、发布包或所有语言体验。
 
 ---
 

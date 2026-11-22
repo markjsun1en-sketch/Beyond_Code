@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-22",
+  "site_url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
+  "project_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2",
+  "version_number": 3,
+  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_7b11e0316c1881919cdecfb2f98d929c",
+  "deployment_id": "appgdep_6b02fae3e11c8191b05aee61f0175d81",
+  "deployment_status": "succeeded",
+  "source_commit": "d66566c350d6cc01e0b1e7e6a2a1a27d4f3c8d1b",
+  "archive_hash": "sha256:0c00f274334d5d74886a2231f37ff1ce09ec3747723d28073b56c18f8bddcbf2",
+  "checked": {
+    "chapters": 23,
+    "mechanism_figures": 14,
+    "static_exports": 28,
+    "pages": 25,
+    "links_and_assets": 2856,
+    "search_targets": 5913,
+    "chapter_texts_match": true,
+    "original_files_unchanged": 153,
+    "desktop_width": 1440,
+    "mobile_width": 390,
+    "live_search": "净增量",
+    "live_anchor": "/chapters/23.html#section-23-44-2",
+    "live_figures_loaded": 14
+  }
+}

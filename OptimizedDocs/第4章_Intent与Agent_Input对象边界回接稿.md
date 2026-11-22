@@ -1,431 +1,174 @@
 # 第4章 Intent Engineering
-## Intent Artifact 如何进入 Agent Execution
+## 从模糊请求到有边界的执行目标
 
-> 工作稿状态：对象边界回接稿，不替代 [第4章原稿](../OringinalDocs/第4章.md)，也不是完整章节重写。
-> 回接说明：[RR-020](../RevisedResult/RR-020_前六章首轮分别调整说明.md)。
-> 适用边界：本稿只定义 Intent Artifact 进入 Agent Execution 的接口，不让 Intent 吸收 Context、State、Policy、Authority 或执行控制。
+> 工作稿状态：阶段 B 连续正文候选，沿用历史文件名，不替代 [第4章原稿](../OringinalDocs/第4章.md)。
+> 回接说明：[RR-039 实施记录](../RevisedResult/RR-039_三项目近期进展与书稿更新评估.md)。
+> 适用边界：本章提出组织目标与执行输入的方法；存档例子均为教学情境，不代表项目已完成迁移或验证。
 
-这份回接稿只解决一个问题：
+“把这个 UI 优化一下。”
 
-> 第四章定义的 Intent，怎样在不吸收 Context、State、Policy 和执行控制的前提下，转化为具体 Agent 可以执行的输入？
+这句话可以指信息层级，也可以指视觉风格、战斗中的读取速度，或某个危险状态没有被玩家及时注意到。如果 Agent 放大字体、调整颜色并完成检查，它可能做完了一组动作，却没有解决提出请求的人遇到的问题。
 
-它不为第四章增加新的理论中心。相反，它删除 `Prompt Projection` 与 `Intent Projection` 的重复，并把原稿中混合的生命周期、授权和运行时对象拆开。
+前三章讨论了 Agent 进入软件工程后，受托解释、行动和反馈怎样改变协作条件。从本章开始，我们进入更具体的问题：如何把“希望改变什么”保存下来，让不同角色、不同执行尝试都能回到同一个目标。
 
----
+本书把这项工作称为 **Intent Engineering（意图工程：将期望结果、动机、边界和接受条件组织成可持续引用的目标说明）**。它延续需求澄清、变更控制和验收设计，不以证明自己是一门独立学科为前提。它关心的增量是：当 Agent 可以自行选择步骤时，我们怎样让目标持续可见，并在新信息出现时知道哪些可以调整、哪些需要新的决定。
 
-# 4.A Requirement、Intent、Task 与 Agent Input
+# 4.1 先识别问题，再区分目标与方法
 
-这四个对象可能包含相似文字，但承担不同职责。
+一个可执行目标需要回答四个问题：为什么做、期望什么结果、哪些边界不能越过，以及用什么判断结果。只写活动，例如“修改加载器”，没有说清修改后谁能够做什么；只写效果，例如“兼容性更好”，又没有给出可以检查的范围。
 
-| 对象 | 回答的问题 | 生命周期 | 主要责任人 |
-|---|---|---|---|
-| Requirement | 利益相关者要求或约束了什么 | 随产品和组织决策演化 | 产品、组织或授权角色 |
-| Intent Artifact | 这次变化希望达到什么结果，为什么，边界在哪里 | 跨多次执行持续存在 | Intent Owner |
-| Task | 当前要完成哪一段可分配工作 | 通常短于 Intent | Controller 或执行团队 |
-| Agent Input | 某个 Agent 在本次运行实际收到什么 | 绑定一次运行或调用 | Harness / Controller |
+动机尤其容易被省略。假设人提出“把状态栏缩短 15%”，原因是在某个分辨率下它与敌人信息重叠。如果 15% 是必须遵守的设计决定，Agent 应当保留这个约束。如果它只是一个初步办法，Agent 可以提出另一种能消除重叠的布局。两种情况下都不应自行猜测这个数字的地位；可以先查看已有说明，再在影响方案选择时澄清。
 
-Requirement 可以成为 Intent 的来源，但并不自动成为可执行 Intent。它可能包含冲突、歧义、历史遗留或尚未裁决的偏好。
+原稿用 **Intent over Instruction** 表达这一取向：在需要判断的问题上先交代目标和边界，再选择操作步骤。它允许具体指令继续存在。文件移动、固定工具调用、已经批准的迁移程序，往往恰恰需要精确步骤。理解动机不赋予 Agent 跳过这些步骤的权利。
 
-当 Task 由某个 Intent 派生时，它不应静默成为新的价值目标，并应保留 Parent Intent、范围和验收关系。
+接下来使用一个贯穿第4、5章的教学请求：
 
-并非所有 Task 都起源于 Intent Graph。调查、Incident Response、例行维护或 Evidence Collection 也可能由 Policy、告警或外部事件触发。这类 Task 应记录 Trigger Source；只有当它需要建立或改变长期价值目标时，才创建、派生或升级 Intent。
+> 让旧版存档在目标版本中继续使用，保持现有存档格式，不要顺便重做存档系统。
 
-Agent Input 是一次运行的完整输入装配结果。它可以包含 Prompt 或多轮 Message，但还可能包含：
+这句话已经给出了方向，但“旧版”覆盖哪些版本、“继续使用”包含哪些行为、目标版本是哪一个，都仍需定位。任务可以从查找这些信息开始；不能把查找前的猜测写成用户已经决定的范围。
 
-- System Instructions；
-- Context Manifest 指向的材料；
-- Policy 与 Tool Schema；
-- Execution Contract；
-- Output Schema；
-- 当前 Runtime Observation。
+# 4.2 Requirement、Intent、Task 与 Agent Input
 
-本章所说 Prompt，是 Agent Input 中的指令／消息表达层，而不是所有运行输入的同义词。实际序列化 Prompt 可能具有审计价值，但不应成为长期 Intent 的唯一载体。
+这几个对象可以出现在同一份短文档里，但职责不同。
 
-因此：
-
-```text
-Intent != Prompt
-Intent != Task
-Agent Input != Intent alone
-```
-
----
-
-# 4.B Intent Artifact 的最小职责
-
-Intent Artifact 描述 Desired State，并保存这项期望的身份、来源和边界。
-
-一个标准对象可以包含：
-
-```yaml
-intent_id: INT-042
-parent_intent_id: INT-010
-version: 3
-owner: product-owner
-status: active
-
-motivation: 为什么需要这项变化
-desired_outcome: 希望出现的结果
-in_scope:
-  - 本次允许改变的范围
-out_of_scope:
-  - 明确不应顺便处理的范围
-constraints:
-  - 必须满足的限制
-
-acceptance_targets:
-  - AC-01
-required_evidence_refs:
-  - EV-01
-human_decision_points:
-  - HDP-01
-
-source_requirements:
-  - REQ-017
-assumption_refs:
-  - ASM-009
-decision_refs:
-  - DEC-012
-```
-
-最后三组字段是引用，不是把其他对象复制进 Intent。
-
-这里的 Evidence 字段是“需要什么类型或引用的材料”，不是已经产生的 Evidence Record。Intent Artifact 不负责保存：
-
-- 当前代码或 Runtime State；
-- “已经验证”的描述性事实；
-- 本次装配、传输或开放访问的全部 Context Payload；
-- 工具权限和允许写入的文件清单；
-- 一次运行的状态、日志或结果。
-
-这些分别属于 State Claim、Evidence、Context Manifest、Execution Contract，以及第7–8章定义的 Attempt、Attempt Outcome 与 Result 记录。
-
----
-
-# 4.C Intent 的身份、版本与生命周期
-
-Intent 的增量价值不在于拥有一组比 Prompt 更新的内容字段，而在于它是可引用、可版本化、可继承和可裁决的工程对象。
-
-最小身份包括：
-
-```text
-Intent ID
-Version
-Owner
-Parent / Source
-Lifecycle Status
-```
-
-Intent Lifecycle 建议只表达 Intent 自身的状态：
-
-```text
-Draft
-  ↓ approval
-Approved
-  ↓ activation
-Active
-  ├─→ Superseded
-  └─→ Cancelled
-```
-
-`Executed`、`Verified`、`Accepted` 和 `Failed` 不属于这条生命周期。它们描述某次 Execution 或其结果。
-
-同一个长期 Intent 可能对应一个持续存在的 Work，并经历多次 Attempt：
-
-```text
-Intent v3
-└── Work W-03
-    ├── Attempt A-17 → Attempt Outcome: blocked before target
-    │                  Target Result: `non-result`
-    ├── Attempt A-18 → Target Result + Evaluation Result
-    │                  Acceptance: rejected
-    └── Attempt A-19 → Target Result + Evaluation Result
-                       Acceptance: accepted
-                       Adoption: no Decision Record yet
-```
-
-一次 Attempt 失败不等于 Intent 失效；一次 Target Result 被接受，也不一定意味着长期 Intent 已经完成或已经获得 Adoption。
-
----
-
-# 4.D Owner、Authority 与 Agent Delegation
-
-“AI 可以帮助生成 Intent，但不能拥有 Intent”需要收窄。
-
-更准确的规则是：
-
-> 最终价值目标及 Parent Intent 的变更权属于被授权的人类或组织角色；Agent 可以在明确委托范围内派生、维护或修改局部 Intent，但不能静默扩大目标和权限。
-
-授权至少区分：
-
-```text
-propose      提出候选 Intent 或修改
-derive       从 Parent Intent 派生 Child Intent
-approve      批准 Intent 进入 Active
-supersede    替换既有 Intent
-cancel       取消 Intent
-```
-
-例如，一个 Controller 可以被授权把“完成 Save Migration”拆成测试、实现和审查三个 Child Intent，但不能自行把目标扩大为“重做整个存档系统”。
-
-Agent 是否可以修改局部 Intent，不由模型能力决定，而由 Delegation 与 Policy 决定。
-
----
-
-# 4.E Hierarchy 与 Inheritance
-
-Child Intent 应继承 Parent Intent 中仍然适用的约束和验收关系，但继承不是全文复制。
-
-```text
-Parent Intent
-├── invariant constraints
-├── shared non-goals
-├── acceptance mapping
-└── decision boundaries
-        ↓ explicit inheritance
-Child Intent
-├── local outcome
-├── local scope
-├── inherited refs
-└── local exceptions
-```
-
-每一项 Exception 都应显式记录来源和授权。否则，局部优化可能通过“重新表述任务”静默抹掉 Parent Intent。
-
-Parent Intent 更新后，不应假设所有 Child Intent 自动同步。系统需要标记：
-
-```text
-still compatible
-needs review
-superseded
-```
-
-这是一种 Drift 检查，不要求每个项目都建设完整 Intent Graph。
-
----
-
-# 4.F Execution View：从长期对象到角色输入
-
-本章只保留一个投影概念：`Execution View`。
-
-Execution View 是从某个 Intent 为特定角色、任务和运行选择出的 Intent 子集。
-
-```text
-Intent Artifact
-        ↓ role / task / authority projection
-Execution View
-```
-
-不同角色可能看到不同侧面：
-
-```text
-Controller View
-├── parent intent
-├── decomposition authority
-├── cross-lane constraints
-└── escalation conditions
-
-Worker View
-├── local outcome
-├── allowed scope
-├── local non-goals
-└── required evidence
-
-Reviewer View
-├── acceptance criteria
-├── evidence requirements
-├── known risks
-└── independence constraints
-```
-
-Execution View 仍然不是完整 Agent Input。
-
-```text
-Execution View
-+ Context selected under Context Contract
-+ Decision / Policy references
-+ Tool and Runtime capabilities
-+ Execution Contract
-+ Output Contract
-        ↓ assembly / serialization
-Agent Input
-```
-
-`Prompt` 是这组输入的一种文本序列化形式。它可以很重要，但没有必要成为第二个持久工程对象。
-
----
-
-# 4.G Intent、Context、State 与 Contract 的边界
-
-四个章节对象应保持稳定分工。
-
-| 对象 | 核心语义 | 不应承担 |
+| 对象 | 在本书中的含义 | 存档例子中的作用 |
 |---|---|---|
-| Intent Artifact | Desired Outcome | 当前 State、实际 Context、运行权限 |
-| State Claim / Snapshot | 关于当前或历史状态的描述 | 价值目标、规范授权 |
-| Context Contract / Manifest | 应提供什么 / 装配和记录了什么 | 证明材料本身为真，或证明模型实际采用了它 |
-| Execution Contract | 本次执行被允许做什么、如何结束 | 长期价值目标、项目全部状态 |
+| Requirement（需求） | 利益相关者提出的需要与约束 | 老用户应能继续游戏；现有格式保持不变 |
+| Intent Artifact（意图资产） | 保存期望结果、动机、身份和范围的持续记录 | 在具名目标版本中恢复具名旧存档的继续使用能力 |
+| Task（任务） | 当前可分配的一段工作 | 调查失败路径、实现局部修复、核对迁移样本 |
+| Agent Input（执行输入） | Agent 在一次运行中实际收到的装配结果 | 目标说明、选定代码、规则、工具能力和输出要求 |
 
-跨章装配关系是：
+需求可能含有冲突或尚未裁决的偏好，不能靠改写措辞自动成为可执行目标。Task 派生自某个 Intent 时，应保存两者的范围和验收关系；但调查、告警响应和例行维护也可以由规则或事件触发，不要求每个任务先创建一棵 Intent Graph。
 
-```text
-Intent Artifact                    desired outcome
-Decision / Policy                  normative content under authority
-State Claims + Assumptions         current basis and unknowns
-Evidence / Provenance              support and counterevidence
-        ↓ selection
-Context Contract + Manifest        required and supplied information
-        ↓ authorization
-Execution Contract                 allowed action and completion gates
-        ↓ runtime serialization
-Agent Input
+本章使用 **Prompt（指令或消息表达层）** 指 Agent Input 中的文本表达。Prompt 可以持久保存、版本化和接受审查；本章不靠“Prompt 一定是一次性的”来区分它与 Intent。真正的区别在于用途：同一个长期 Intent 可以供多次运行使用，而每次输入还要结合当时可用的 Context、工具和执行边界。
+
+# 4.3 把一句请求整理成最小任务说明
+
+整理请求时，先保留用户原话，再把已明确的要求、查得的事实和 Agent 的假设分开。下面的版本标识、文件路径和角色都是教学占位。假设进一步查阅已有决定后，确认本次只覆盖 `v2` 存档，目标构建记为 `R`，已有授权允许局部实现和测试。
+
+| 项目 | 最小任务说明 |
+|---|---|
+| 动机与结果 | 使用 `v2` 存档的玩家能在目标构建 `R` 加载进度，并继续一次规定操作 |
+| 范围 | 调查并修复加载、迁移连接处；使用副本验证，保留原存档 |
+| 明确限制 | 目标格式不变；不重做存档系统，不顺带调整玩法规则 |
+| 验收范围 | 约定样本可加载；关键进度字段保持；重复加载行为符合契约；目标场景可继续操作 |
+| 仍待核对 | 是否含所有约定变体；缺失可选字段的样本在哪里；失败后是否留下部分写入 |
+| 授权引用 | 已有委托允许局部修改和验证；扩大版本范围、改变格式或覆盖真实用户数据另行处理 |
+| 输出 | 修改与检查结果、实际覆盖的样本、未覆盖条件、后续动作建议 |
+
+这份说明不需要先拥有数据库或专用格式。短任务可以直接放在当前任务入口；持续跨执行复用时，再给它稳定标识、Owner 和版本。
+
+这里有两个不能互换的句子：“本次只要求兼容 `v2`”是已经确认的范围；“我暂时只找到了 `v2` 样本”是当前信息情况。后者不能悄悄变成前者。同样，“假设字段缺失可以用默认值补齐”必须保留为待检查假设，不能因为写进任务说明就成为实现依据。
+
+专业设计也需要保留这种区分。lessismore 一项奖励设计曾用纸面价格与路线收入推演30金币的作用；当时的项目校准改变了可购买物、治疗条件和机会成本判断，方案最终保留为备选。这里的动作是核对“哪些假设会改变目标选择”，不是把推演当作已发生的玩家行为。完整任务与来源见[第23章23.44](第23章_AI_Game_Dev_OS纵向案例_首轮修订稿.md)。
+
+# 4.4 将验收拆成能分别判断的维度
+
+**Acceptance Criteria（接受条件）** 描述什么结果可以进入具名接受判断；**Required Evidence（所需证据）** 描述为该判断准备什么材料。两者应该对应，而不是在实现结束后只挑已经通过的检查作为完成标准。
+
+存档例子至少有几类不同问题：
+
+| 接受维度 | 应观察什么 | 还不能由此得出什么 |
+|---|---|---|
+| 格式与数据保持 | 指定输入副本的字段、默认值和迁移输出 | 所有历史存档都兼容 |
+| 行为 | 目标构建实际加载后能继续规定操作 | 只凭解析成功就证明游戏可继续 |
+| 异常与副作用 | 坏输入如何拒绝，失败是否破坏原副本，是否留下部分写入 | 正常样本通过就代表异常路径安全 |
+| 产品与体验 | 若范围包含提示或恢复体验，由相应角色检查具体表现 | 机器检查代替体验接受 |
+| 决定范围 | 有权角色接受哪个版本、样本集合和用途 | 局部实现接受自动允许采用或发布 |
+
+不需要为每个低影响改动机械增加全部维度。先问本次改变可能影响什么，以及现有检查是否足以判断它。一次文案调整可能只需回读；涉及存档写入的变化，则需要知道失败后的数据状态。
+
+如果接受条件包含“加载更快”，就还需要可比的修改前基线和相同条件下的测量。只有修改后耗时，无法单独支持“更快”。如果缺少关键样本，可以先完成不依赖该样本的调查和实现，但最终结论必须保留覆盖缺口；不能用“其他检查全过”补齐缺失维度。结果、证据使用和有权接受的区分由[第8章](第8章_Agent_Reliability_Engineering_首轮修订稿.md)与[第9章](第9章_Evidence_Use与Decision_Disposition边界稿.md)展开。
+
+# 4.5 未知不都阻断行动，但需要具体处置
+
+模糊请求并不意味着必须把所有问题问完才能开始。判断未知时，要同时看它是否影响下一动作、错误是否可逆，以及现有授权允许做什么。
+
+## 图4-1 从用户请求到下一步行动
+
+```mermaid
+flowchart TB
+  request["用户请求与已有决定"] --> draft["分开目标、限制与假设"]
+  draft --> criteria["明确接受范围与所需材料"]
+  criteria --> choice{"下一动作具备条件？"}
+  choice -->|"授权内且条件足够"| input["装配本次执行输入"]
+  choice -->|"关键事实可补查"| investigate["做有范围的调查"]
+  choice -->|"冲突或越出授权"| decision["交有权角色决定"]
+  investigate -.->|"新信息"| draft
+  investigate -->|"仍缺行动前提"| hold
+  decision -.->|"明确范围后"| draft
+  decision -->|"尚无决定"| hold["暂停受影响动作"]
+  input --> action["执行并按约定范围验证"]
 ```
 
-这不是一个要求所有项目都持久化全部对象的固定框架。低风险任务可以把多个对象压缩进一份短任务说明；高影响、高复用、跨执行、存在多方 Authority 或失败后难恢复的任务，更可能需要稳定 ID、版本和记录。任务时长与 Agent 数量只是风险信号，不是唯一条件。
+教学示意：实线表示行动选择，虚线表示新信息或决定使任务说明需要更新。图省略了执行内部步骤；“条件足够”针对下一动作，不表示任务全部未知已经消除，也不把任务说明本身当作授权。补查无新线索且缺口仍阻断下一动作时暂停该动作；独立且已授权的工作可继续。
 
----
+图中的调查有明确出口。比如先查 `v2` 样本是否存在，找到就核对内容，找不到就记录搜索范围和缺口。如果样本缺失只影响最终兼容性结论，可以继续已获授权的实现准备；如果下一步会覆盖唯一一份数据，就不能靠乐观假设继续。
 
-# 4.H Acceptance 与 Evidence Trace
+| 当前情况 | 可以做什么 | 停止或重新决定的条件 |
+|---|---|---|
+| 不清楚失败发生在读取还是迁移 | 读取相关实现，用副本做授权内诊断 | 下一步需接触未授权数据或产生不可逆副作用 |
+| 缺一个约定样本 | 有范围地查找；继续不依赖它的工作 | 不对未覆盖变体作接受结论；搜索无新线索时报告缺口 |
+| 可逆的局部实现选择，已有验证办法 | 记录关键假设，实施并检查 | 发现假设不成立或改变范围 |
+| 修复似乎必须改变存档格式 | 提供局部适配、范围收窄或格式变化等候选 | 格式变化超出当前委托，受影响动作暂停 |
+| 目标、交付时间与有效规则冲突 | 保存冲突，交由已有规则指定的角色处置 | 无优先级或无相应授权时，不自行宣布其中一项失效 |
 
-Acceptance Criteria 描述“什么结果可被接受”。Required Evidence 描述“用什么材料判断”。二者应该建立映射，而不是在执行结束后临时寻找证明。
+升级可以是交给被授权的 Controller、使用既有门禁，或请求人类裁决；不必每次都新设一次人工审批。另一边，具备技术能力也不表示 Agent 拥有改变目标的权利。
 
-```yaml
-acceptance_id: AC-01
-statement: 旧版 Save 可以在目标 Build 中迁移并加载
-decision_target: bounded-implementation-acceptance
-scope:
-  build: target-build-id
-  save_versions: [v2]
-non_goals:
-  - supported-adoption
-  - production-release
-required_evidence:
-  - migration_test_result
-  - target_build_runtime_capture
-decision_authority: release-owner
-```
+# 4.6 从 Intent 到不同角色的执行输入
 
-这份映射不意味着：
+**Execution View（执行视图）** 是从同一个 Intent 为特定角色与任务选出的目标子集。实现者需要局部结果、不能改动的范围和检查要求；审阅者需要接受条件、已知风险与可独立核对的材料；协调者需要任务之间的依赖和谁可以决定例外。
 
-- 测试通过自动完成产品接受；
-- Evidence 自动成为 State Claim；
-- Agent 有权裁决主观体验或发布风险。
+视图不能删去会改变行动含义的约束。只告诉实现者“恢复旧存档加载”，却省略“格式保持不变”，就不再是同一目标的合理投影。
 
-第六章将这一区分表达为：
+Execution View 仍不是完整输入。实际装配还需要[第5章](第5章_Context对象边界回接稿.md)选择的 Context、有效的 Policy 与 Decision 引用、工具能力、[第7章](第7章_Agent_Execution_Engineering_首轮修订稿.md)的 Execution Contract（执行契约）和输出要求。Intent 记录希望出现什么结果；执行契约描述本次允许怎样行动、如何结束，并服从有效授权。
 
-```text
-Evidence supports or challenges Claim in Scope
-Authority records a Disposition for a named Claim use / Decision Target
-```
+代码当前是什么样、样本是否存在、刚才的运行结果是什么，属于状态与观察材料，不能作为不带来源的事实堆进 Intent。权限也不能由目标的紧迫程度推出。短文档可以同时承载这些引用，但各项职责仍应分清。
 
-Authority 决定一条 Claim 是否足以被用于具名下游裁决，不通过处置把 Claim 本身改写成事实。
+# 4.7 让目标跨执行持续存在
 
-Intent Trace 可以按风险追踪：
+一次 Attempt（执行尝试）可能在目标执行前就中止，也可能完成实现但未获接受。同一个目标因此可以对应多次尝试。一次失败不自动取消 Intent；一次接受也不必然结束一个持续目标，更不自动产生发布决定。
 
-```text
-Requirement
-→ Intent Version
-→ Child Intent / Task
-→ Work
-→ Execution Contract
-→ Attempt
-→ Change + Attempt Outcome / Target Result
-→ Evidence Use
-→ Authorized Decision Record / Disposition
-```
+需要长期复用时，Intent Artifact 可以保存标识、版本、Owner、来源或 Parent、动机、期望结果、范围、约束，以及接受条件和相关决定的引用。它不负责复制全部日志、运行状态或证据正文。
 
-第7章拥有 Work、Execution Contract、Attempt 与 Checkpoint；第8章拥有 Attempt Outcome、Target Result、Evaluation Result、Failure、`non-result` 与 Recovery；第9章才处理结果如何进入 Evidence Use，以及具名 Authority 如何对 Decision Target 作出处置。本章只保留从 Intent 到这条执行链的引用关系。
+生命周期只描述目标自身的处置。例如，`draft` 表示尚在拟定，`approved` 表示已经按适用规则批准，`active` 表示当前采用，`superseded` 表示由新版本取代，`cancelled` 表示取消。这是一种可选记录方式；已有任务系统能表达相同区别时无需再造状态系统。某次执行的 `PASS`、失败或结果接受，应留在对应尝试与决定记录中。
 
----
+**Intent Owner（意图责任角色）** 负责维持目标说明与决定入口。最终价值目标及 Parent Intent 的变更权属于被授权的人类或组织角色；Agent 可以在明确委托内提出、派生或维护局部目标。模型更强、任务更多或执行时间更长，都不会自行扩大这种委托。
 
-# 4.I Risk-based Clarification 与治理强度
+# 4.8 拆分工作时保留继承，也保留冲突
 
-Intent 精度不等于篇幅。是否需要确认、Registry 或完整 Trace，应由错误成本和授权风险决定。
+把存档工作拆成调查、实现、验证，通常只需几个关联任务。只有这些部分确实需要独立维护结果、范围和生命周期时，才值得建立 Child Intent（子意图）。避免把每个函数改动都提升为新的目标对象。
 
-## 低风险局部任务
+拆分时至少保留仍适用的上层约束、非目标、接受映射和决定边界。验证任务不能因为容易取得样本就把“缺字段变体”排除；实现任务也不能把“格式不变”改成“尽量不变”。例外应指向允许它的决定。
 
-通常只需要：
+冲突可能来自多个同样有效的要求。假设目标要求旧存档继续可用，现行规则禁止某条解析路径，而交付计划又要求本周冻结。Agent 可以调查替代路径并说明代价：局部适配可能增加实现和验证工作；缩小支持范围会留下受影响用户；延期会改变交付承诺。它不能用一句“综合考虑后兼顾三者”掩盖实际取舍。
 
-- 一句话 Outcome；
-- Scope / Non-goal；
-- 一项可运行验证。
+如果既有规则已经指定优先级和处置者，按该规则执行；否则保留受影响范围、可选方案与未决问题，暂停依赖该决定的动作。其他独立且授权充分的工作仍可推进。
 
-## 普通多文件任务
+# 4.9 执行中发现目标需要变化
 
-通常需要：
+发现新事实后，先判断变化落在哪里：是实现方法调整、技术前提被推翻，还是目标与授权范围真的需要改变。
 
-- 可引用 Intent；
-- 关键 Constraint 和 Assumption 引用；
-- Acceptance-to-Evidence Mapping；
-- 明确允许写入范围。
+如果同样的接受条件可以通过更局部的修复满足，通常属于方法选择。若发现目标构建已变化，则需要重新核对代码、样本和原检查对新版本的适用性。若必须支持另一种存档版本或改变格式，则需要更新目标范围，并由有权角色处理新增取舍。
 
-## 高影响、跨执行或多方 Authority 任务
+目标更新后，不应默认所有任务和输入自动同步。说明哪项约束变化，哪些子任务仍兼容，哪些需要重读或停止；旧版本及其结果继续保留历史含义。新决定可以改变今后的用途，不能把此前未做过的验证补写成已完成。
 
-可能需要：
+对存档例子，若最终只找到标准 `v2` 样本，任务说明应保留特殊变体未覆盖。可以建议补样本、收窄接受范围或暂缓相关决定；收窄若属于人类保留的权利，就使用[第12章的决策面](第12章_Cognitive_Compression与Human_Decision_Interface_首轮修订稿.md)呈现这一选择，而不是让缺失材料悄悄缩小承诺。
 
-- Versioned Intent Artifact；
-- Owner 与 Delegation；
-- Parent/Child Trace；
-- Decision Points；
-- Execution Baseline；
-- 独立 Review 与 Human Disposition。
+# 4.10 按任务代价选择记录强度
 
-Clarification 同样按风险决定。可逆、局部并能验证的未知可以记录为 Assumption 后继续；涉及不可逆数据、外部发布、安全或价值取舍的未知必须进入已授权的处置路径，例如 Block、Isolate、Collect Evidence、Invoke Delegated Gate 或 Escalate，而不一定只能询问 Human。
+必要的是让执行者知道目标、边界、如何判断结果，以及缺少关键条件时如何处理。稳定 ID、独立 Registry、完整 Parent/Child 图和专用界面是条件性实现。
 
----
+| 任务情况 | 合适的起点 | 增加结构的理由与代价 |
+|---|---|---|
+| 低影响、局部、易回退 | 当前入口中的短说明和适当回读或检查 | 额外登记可能比变化本身更费维护，不必强行增加测试 |
+| 多次执行或多角色交接 | 稳定目标引用、范围与验收映射、关键假设 | 能追查各次输入差别，但需要同步维护 |
+| 高影响、多方授权或难恢复 | 明确版本、责任角色、例外决定和证据要求 | 便于定位取舍与责任；若只复制模板，会掩盖真正未决项 |
 
-# 4.J 多方 Intent 冲突
+时长和 Agent 数量可以提醒我们检查协作风险，却不是自动升级的门槛。一个很短的数据覆盖操作可能需要严密边界，一个长时间的只读整理任务则未必需要复杂治理。
 
-Parent/Child Drift 不是 Intent 冲突的唯一形式。产品、技术、安全、体验、成本和合规可能同时提出合法但不兼容的目标。
+# 4.11 把目标交给下一次具体行动
 
-例如：
+回到开头的请求，经过整理，我们得到的不是一份更长的命令，而是一项可以执行和检查的工作：指定旧存档范围与目标构建，保留格式约束，先查缺失条件，在既有委托内修复，并按实际覆盖范围报告结果。
 
-```text
-Product Intent    保持旧 Save 用户可继续进入游戏
-Security Policy   禁止继续使用存在已知缺陷的解析路径
-Delivery Intent   本周完成版本冻结
-```
-
-Agent 无权把三者压成一个看似一致的新目标。一个可检查的冲突记录至少需要：
-
-```text
-conflicting intent / policy references
-affected scope
-priority or authority source
-known trade-offs
-decision target
-authorized resolver
-current disposition
-```
-
-如果 Authority 和证据不足，允许的结果可以是缩小 Scope、延期某个目标或保留未解决冲突。Intent Engineering 的职责是保存冲突及其裁决接口，不是保证所有目标都能同时满足。
-
----
-
-# 第四章边界结论
-
-第四章的中心应当是：
-
-> **把希望达到的结果保存为可引用、可版本化、可授权和可追踪的 Intent Artifact。**
-
-它不需要证明 Intent Engineering 是一门完全独立于 Requirements Engineering 或 Prompt Engineering 的新学科。
-
-本章相对 Prompt Engineering 的有效增量是：
-
-- Intent 跨运行存在；
-- Intent 有稳定 Identity 和 Owner；
-- Intent 可以被版本化、继承和 supersede；
-- 同一 Intent 可生成多个角色的 Execution View；
-- Agent Input 由 Intent、Context、Policy、Contract 与 Runtime 共同装配；
-- 执行结果可以追溯回 Intent 与 Acceptance，而不是只追溯回一段 Prompt。
-- 多个合法 Intent 与 Policy 的冲突不会被 Agent 静默调和。
-
-应删除或降级的表述包括：
-
-- Prompt 只是一次性、无状态文本；
-- Agent 绝对不能拥有任何 Intent；
-- Intent 在一次执行后自动进入 Completed；
-- Prompt Projection 与 Intent Projection 都是核心对象；
-- Intent Object 应吸收 Truth、Context、Policy 和整个 Control Plane。
-
-这份边界确定后，第四章完整重写时可以按 RR-008 的十个主体模块压缩，而不是把原有 44 个小节和优化说明中的 23 个提案继续叠加。
+到这里还缺一件事：执行者应该读取哪份格式说明、哪个版本的代码、什么样本和历史决定。如果这些信息错误，明确目标仍可能导向错误动作。下一章沿用同一个例子，讨论如何选择和补充信息，以及搜不到、来源冲突或无权访问时怎样继续。

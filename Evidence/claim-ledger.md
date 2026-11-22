@@ -13,7 +13,7 @@
 | `CLM-OUTLINE-002` | v4.94 记录了 meta-only 治理活锁及随后分阶段、仍为 NON_QUALIFYING 的 function-first 开发闭环 | 跨章治理；第7/13/20/23章 | fact | `ER-20260818-001` | verified | accepted | keep |
 | `CLM-C06-004` | 观察目标前、阻断执行或改变 authority-bearing surface 的验证器失败应与目标结果分开，并记录 target non-result | 第6/9章 | recommendation | `ER-20260818-002` | partial | accepted | narrow |
 | `CLM-C09-001` | 未获 Acceptance Authority 委托或范围仍待裁决时，Test PASS 不证明范围必要，也不自动完成 Acceptance、Adoption 或 Release | 第4/6/9章 | recommendation | `ER-20260818-003` | partial | accepted | narrow |
-| `CLM-C09-002` | Claimed、Observed、Verified 与 Accepted Completion 不应建模为同质单轴等级；Accepted 是绑定目标与 Authority 的处置 | 第9章 9.1 | recommendation | `ER-20260818-004` | partial | unreviewed | narrow |
+| `CLM-C09-002` | Claimed、Observed、Verified 与 Accepted Completion 不应建模为同质单轴等级；Accepted 是绑定目标与 Authority 的处置 | 第9章 9.2、9.5 | recommendation | `ER-20260818-004`；补充 `ER-20261030-003` | partial | unreviewed | narrow |
 | `CLM-C09-003` | Evidence Stack 不应被解释为跨 Claim 类型的通用强弱排序；Evidence 类型应匹配 Claim、Scope 与用途 | 第9章 9.3 | recommendation | `ER-20260818-005` | partial | unreviewed | narrow |
 | `CLM-C11-001` | 当需人工判断的保留 AI 变更持续超过合格审阅容量时，逐项人工审阅不能单独维持控制；响应方式仍需在限流、扩容和风险委托之间裁决 | 第11章 | inference | `ER-20260824-001` | partial | accepted | split |
 | `CLM-C12-001` | Human Control Plane 只应作为现有 Control and Evidence Plane 面向人的有边界投影，并暴露观测覆盖、Detector Health、下钻和接管路径 | 第12–14章 | recommendation | `ER-20260824-002` | partial | accepted | narrow |
@@ -24,6 +24,16 @@
 | `CLM-C19-002` | AI-native 供应链应覆盖所有能改变 Context、Decision、Tool、Build、Runtime 或 Output 的行为组件；Provenance 说明来源与产生过程，不自动证明行为安全或适用 | 第19章 | recommendation | `ER-20260824-005` | partial | unreviewed | narrow |
 | `CLM-C19-003` | `AI-generated` 不能单独决定 IP 处置；输入权限、服务条款、第三方 License、Human Contribution、Output Provenance、下游用途与适用法域需要分开记录 | 第19章 | recommendation | `ER-20260824-006` | partial | unreviewed | narrow |
 | `CLM-C23-001` | SP122 的 Human 决定分别接受当前 D2 Battle 视觉／可读性基线与 post-repair v4.93 qualifying evidence chain，同时保留 follow-up、Supported Adoption 与 Production 边界 | 第23章 | fact | `ER-20260827-001` | verified | accepted | keep |
+| `CLM-C14-001` | lessismore CardInformation 的保存记录表明旧覆盖检查影响说明展示；具名修复分开展示资格与 QA 适用性，有限验证保留 stale／pending 下的说明生成及真实坏输入的拒绝路径 | 第14章 14.9、14.20–21 | fact | `ER-20261030-001` | verified | unreviewed | keep |
+| `CLM-C15-001` | DevOS OBS16–18 的有限保存试验显示 AND 问句漏检、标识符候选的局部召回与条件丢失；原文回读支持核对但不自动补召回或判断适用性 | 第15章 15.16–17、15.25 | fact | `ER-20261030-002` | verified | unreviewed | keep |
+| `CLM-C21-001` | lessismore与DevOS具名规则调整了原入口、交接、按影响验证及复用／停止条件，并保留硬边界；同次矩阵残缺与无收益证据限制继续可见 | 第21章 21.28–30；第23章23.44.7 | fact | `ER-20261030-004` | verified | unreviewed | keep |
+| `CLM-C16-002` | 具名奖励页对照记录单题改善，另三题未观察到预定质量优势；不构成纯AI IDE对照或整体收益证明 | 第16章 16.10–15、16.24 | fact | `ER-20261122-001` | verified | unreviewed | keep |
+| `CLM-C18-002` | 具名材料分别记录部分回收、归档导航恢复及旧S5缺口后的新执行，保留父hold与各自恢复范围，后继盘点仍待审阅 | 第18章 18.21–24 | fact | `ER-20261122-002` | verified | unreviewed | keep |
+| `CLM-C20-001` | RandomHeroes取样少于预设且弃用失真计时探针；lessismore短流程累计与最大值分向变化，均不直接证明Agent工作流收益 | 第20章 20.6–11、20.25 | fact | `ER-20261122-003` | verified | unreviewed | keep |
+| `CLM-C12-002` | GDD复核记录报告并处置遗漏，Buff静态分支可核对；白板隔离故障以独立回读核实状态，各自保留历史、运行与根因限制 | 第12章 12.13–14；第5章5.7、第14章14.16 | fact | `ER-20261122-004` | verified | unreviewed | keep |
+| `CLM-C22-001` | 本地有限Beta分发切片、RandomHeroes本机APPLIED接入与完整正式资格具有不同范围，未证明通用迁移或灾备成功 | 第22章 22.15–16、22.37 | fact | `ER-20261122-005` | verified | unreviewed | keep |
+| `CLM-C23-002` | 两个独立专业生产任务分别保留方案校准、隔离交付与采用边界；FU05人工两路线接受记录与同字节槽位限制并存 | 第23章 23.44.2–3；第4章4.3回接 | fact | `ER-20261122-006` | verified | unreviewed | keep |
+| `CLM-C23-003` | SP139保存方向比较、样段、正式绑定和指定检查过程，有限人工选择不扩为全图审美或Sprint完成 | 第23章 23.44.4 | fact | `ER-20261122-007` | verified | unreviewed | keep |
 
 ## 状态约定
 

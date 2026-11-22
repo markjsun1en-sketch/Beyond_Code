@@ -2,7 +2,7 @@
 ## Agent 数量不是组织证据；可治理安排需要显式角色、Authority、接口与责任闭环
 
 > 工作稿状态：首轮逻辑修订稿，不替代 [全书大纲](../OringinalDocs/beyond_code_ai_native_software_engineering_outline_zh.md) 或 [Cognitive Control、Trust 与 Human Control Plane v0.1](../OringinalDocs/ai_native_cognitive_control_trust_human_control_plane_v0.1.md)。
-> 回接说明：[RR-028](../RevisedResult/RR-028_第17章Multi_Agent_Organization_Design首轮回接说明.md)。
+> 回接说明：[RR-041 实施记录](../RevisedResult/RR-041_RR-040实施后书稿与配图复查.md)。
 > 适用边界：本章提出一个候选组织模型，用于区分 Work、Role、Assignment、Authority、Handoff、Conflict 与 Integration；它不声称多 Agent 必然提高质量、速度或成本表现。
 
 多个 Agent 可以同时：
@@ -203,6 +203,8 @@ escalation:
 这是设计 Profile，不是通用 Schema。
 
 “你是 Reviewer”没有说明 Reviewer 能否 Reject、Block、Recommend 或 Adopt。
+
+专业角色可以先从一个可交接的产出要求定义。例如UI角色在奖励页首次进入时，应说明默认焦点、悬停和缩放分别是什么状态，以及没有鼠标动作时画面如何呈现。第16章16.24的有限对照正是把一项此类输出要求写具体；它支持讨论交接标准，不支持仅凭增加UI职位名称就声称组织效能提高。
 
 ---
 
@@ -413,7 +415,7 @@ Worker 不因为完成了交付就自动获得：
 
 即使 Worker 同时运行了测试，测试结果也只支持其声明的行为 Claim，除非项目已把具名决定明确授权给该 Gate。
 
-Worker 返回 `non-result` 不是逃避责任。当必要输入、Authority、Tool、环境或 Observation 不成立时，一条可解释的 `non-result` 比虚构完成更有组织价值。
+Worker 返回 `non-result` 不是逃避责任，但必须有分类依据。若Trace确认必要输入、Authority、Tool或环境条件在目标执行前阻断了动作，应记录该Target的`non-result`及阻断原因；若动作可能已执行，只是日志或观察器失效，则保留Unknown，涉及外部副作用时按第8章记录`external-effect-unknown`。观察缺失本身不能证明目标未触达，也不能成为安全重试的依据。
 
 ---
 
@@ -551,7 +553,9 @@ counterevidence_refs:
 unknowns:
   - production_latency
 non_results:
-  - scenario_x_not_observed
+  - target_ref: scenario_x
+    reason: precondition_blocked_before_target
+    trace_ref: preflight_stop_trace_ref
 blockers:
   - none
 open_risks:
@@ -569,6 +573,8 @@ expires_at: named-condition-or-time
 ~~~
 
 这是设计 Profile，不是每次必填的通用表单。
+
+这里的`non_results`示例假定Trace已经确认在目标前停止。若另一项写入已发出、随后日志丢失，就应把该请求及`external-effect-unknown`放入`unknowns`，并记录下一步先回读状态；不能照搬上述阻断原因，也不能因交接完成就重试写入。
 
 小任务可用更小的 Handoff，但不应删掉会改变接收方决定的 Unknown、Counterevidence 和 Authority Boundary。
 

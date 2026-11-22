@@ -2,7 +2,7 @@
 ## 把系统复杂度转换为可判断、可下钻的投影
 
 > 工作稿状态：首轮逻辑修订稿，不替代 [全书大纲](../OringinalDocs/beyond_code_ai_native_software_engineering_outline_zh.md) 或 [Cognitive Control、Trust 与 Human Control Plane v0.1](../OringinalDocs/ai_native_cognitive_control_trust_human_control_plane_v0.1.md)。
-> 回接说明：[RR-023](../RevisedResult/RR-023_第12章Cognitive_Compression首轮回接说明.md)。
+> 回接说明：[RR-040 实施记录](../RevisedResult/RR-040_更新后书稿与机制简图整体审阅.md)。
 > 适用边界：本章提出 Cognitive Compression 与 Human Decision Interface 的候选接口契约；现有案例只支持非权威投影、Evidence 与 Authority 分离及“没有正常结果或告警不等于健康”等局部边界，尚不证明 HCP 已降低判断负担、返工或事故，也不证明统一 HCP 架构普遍适用。
 
 第11章讨论了一个条件式问题：
@@ -420,34 +420,50 @@ Risk Map 可以帮助比较：
 
 **Decision Surface（决策面：当前需要具名角色作出处置的问题、选项、依据、期限与后果的集合）** 应与一般通知分开。
 
-一个 Decision Card 可以包含：
+假设团队正在检查旧存档迁移：选定样本已经通过，但一个旧版本的样本仍缺失。此时给人看一张绿色“测试通过”卡片，会隐藏真正待决的问题：当前证据是否足以支持这次限定范围的接受？
 
-~~~yaml
-decision_id: DEC-091
-question: 是否接受本次 qualifying evidence
-decision_authority_ref: AUTH-QUAL-002
-deadline: 2026-08-25T12:00:00+08:00
+本例假设限定接受或缩减支持范围需要人类裁决；既有授权内的样本补查可以直接执行。缺少样本本身不自动触发人工审批。
 
-options:
-  - accept_for_qualifying_evidence_only
-  - reject_and_request_more_evidence
-  - narrow_claim_scope
-  - defer
+一个最小 Decision Card（决策卡：把一个待决问题及其依据、选项与边界放在同一处的信息呈现）应把通过结果与缺口并列展示。图12-1把这些信息画成汇合关系，而不是拟真界面。
 
-supporting_evidence_refs:
-  - EV-TEST-041
-counterevidence_refs:
-  - EV-REVIEW-007
-unknowns:
-  - production population exposure
+## 图12-1 决策面汇合信息，有权角色作出处置
 
-non_effects:
-  - does_not_approve_adoption
-  - does_not_approve_production
+```mermaid
+flowchart TB
+    question["本次问题：迁移证据是否足够"]
+    supporting["支持：选定样本通过"]
+    missing["未知：某旧版样本缺失"]
+    surface["决策面：展示依据、选项与来源"]
+    authority["已有授权：裁决者与允许范围"]
+    decision{"有权角色判断：依据足够？"}
+    accept["限定范围接受"]
+    followup["补查、收窄、拒绝或暂缓"]
+    boundary["不产生采用或发布授权"]
+    missing --> surface
+    supporting --> surface
+    question --> surface
+    surface --> decision
+    authority --> decision
+    decision -->|"依据足够"| accept
+    decision -->|"缺口影响判断"| followup
+    followup -.->|"有新依据再呈现"| surface
+    accept -.->|"本次接受的边界"| boundary
+```
 
-recovery_or_follow_up:
-  - collect production-like migration samples
-~~~
+*教学示意：上方箭头表示信息汇合，下方分支表示可选处置；虚线分别标出重入条件和接受边界。授权来自已有规则或委托，不由卡片产生；图中的样本结果是假设情境，不是项目运行证据。*
+
+读图时先看“本次问题”，再同时看支持与未知，最后才进入处置。如果缺失版本属于必须支持的范围，就补查或暂缓；如果可以排除它，收窄范围需要有权角色明确记录，不能只从卡片上删掉缺口。没有相应授权时，应将问题路由给有权角色。
+
+落到实际工作，决策卡至少保留下面四组信息：
+
+| 信息 | 在这个例子中怎样填写 | 它限制什么误判 |
+|---|---|---|
+| 问题与范围 | 当前版本的哪些旧存档迁移证据可被接受 | 不把局部结果看成全部版本兼容 |
+| 依据与缺口 | 通过样本、缺失版本、来源入口及更新时间 | 不把“没有样本”当成“没有问题” |
+| 选项与后果 | 接受、补查、收窄、拒绝或暂缓；各自下一步与负责人 | 不把看见通知当成必须批准 |
+| 决定与后续 | 决定者、允许范围、期限，以及未接受部分的处理 | 不把本次接受扩张成采用或发布 |
+
+决定之后，记录实际选择及其范围；需要补查就说明下一份材料应回答哪个问题。只有出现新依据、范围变化或约定的复核触发时，才重新打开同一问题。检查这张卡是否有用，可以让读者指出“现在决定什么、缺什么、谁能决定、决定后做什么”；这项读图检查不能代替对迁移行为的验证。
 
 Decision Surface 应优先路由：
 
@@ -693,6 +709,23 @@ Cognitive Compression 本身也需要 Verification。
 
 验证结果同样需要有边界。一次抽样通过不证明所有未来 Projection 都可靠。
 
+## 用原问题检查设计入口
+
+[RandomHeroes 的GDD复核](../Evidence/receipts/ER-20261122-004__CLM-C12-002.md)指出，入口整理后有些机制只剩名词。以Buff为例，复核认为仅提到事件和HUD，没有保留“下场战斗生效、可叠加、战后消失”等条件；后续合并把内容接回GDD的临时Buff段落。没有整理前独立完整稿，下面依据的是复核记录与保存现稿，不把它冒充逐字的历史差异。
+
+| 推演步骤 | 这次具体回答 |
+|---|---|
+| 原问题 | 探索中获得临时Buff后，玩家能把它带入哪场战斗，何时应从状态中移除？ |
+| 复核指出的缺口 | 只有“Buff事件／HUD”的入口无法回答生效、叠加和退出；实现者可能保留得太久，验证者也没有明确预期 |
+| 补回的条件 | 现稿写出下一场战斗／首回合生效、可以叠加、下一场Boss战消耗，并另列按步数到期的类型；不能用“有Buff系统”替代这些分支 |
+| 怎样核对 | 先区分下一战型与步数型，再对每类检查取得、推进、生效和退出条件；保存代码中，下一战及当前战斗型在胜利和失败出口都清除 |
+| 不能压掉的例外 | 步数到零在普通探索中到期；若这一步进入Boss战，代码允许将其延至当前战斗结束。只补“下一战消耗”仍不能解释这类Buff |
+| 下一动作与剩余未知 | 可据上述分支准备胜利、失败、普通步进到期和到期同时入战的检查；本轮只是文档与代码回读，没有执行这些运行路径，体验和文档权威顺序仍待各自判断 |
+
+例如读者问“下一战型Buff在失败后是否还保留”，补回后的材料给出战后清除条件，代码的失败出口也能定位到清除调用；这足以形成一条待运行的检查预期。若只留下“支持Buff”，连这条预期都无法写清。反过来，不能把下一战型的答案套给所有步数型。
+
+下钻入口必须指向同一问题的有效段落；“有链接”不是检查完成。补回正文让问题可回答，并没有自动裁决冲突文档的权威顺序，也没有把静态回读升级成运行通过。
+
 ---
 
 # 12.14 AI Summary 不能自动为 AI Execution 背书
@@ -725,6 +758,8 @@ AI builds
 如果两个 Agent 使用同一摘要、同一遗漏 Source 和同一 Prompt assumption，它们仍然可能相关失败。
 
 同样，不是每个低风险任务都需要完全独立 Review。独立强度应与 Claim、风险、可逆性和现有 Evidence Coverage 相称。
+
+对上述GDD问题，安排第二个Agent读取同一整理稿仍可能复制遗漏。较有用的独立性来自把原问题、被引用的原段落与整理稿放在一起核对；缺少整理前快照时，就明确保留历史缺口。对重要状态写入，第14章14.16进一步使用独立回读检查显示值与持久状态，不能仅凭写入摘要为自己背书。
 
 ---
 
