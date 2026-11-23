@@ -1,25 +1,25 @@
 {
   "schema": 1,
   "status": "verified",
-  "recorded_at": "2026-11-23T12:13:41+08:00",
+  "recorded_at": "2026-11-23T12:22:54+08:00",
   "project_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2",
   "url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
-  "version_number": 8,
-  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_0cb892a9a9988191bf23dd3a844cfd8c",
-  "deployment_id": "appgdep_6b03bcfcf1c081918e9cde079dc34313",
-  "source_commit": "d0cf76f5238d377e8397498c09c63867844ce6ab",
+  "version_number": 9,
+  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_47d3a1cd9dc88191aaf59002c9f47768",
+  "deployment_id": "appgdep_6b03bf6fac2481919d2a3cba6df4dcd7",
+  "source_commit": "1b71711b7bf15fb484582d5af03f56dfe3d3cf1e",
   "history": [
     {
-      "at": "2026-11-23T12:13:41+08:00",
+      "at": "2026-11-23T12:22:54+08:00",
       "status": "deployed_unverified"
     },
     {
-      "at": "2026-11-23T12:14:20+08:00",
+      "at": "2026-11-23T12:23:33+08:00",
       "status": "verified"
     }
   ],
-  "source_fingerprint": "f522bbb9ca98535c1024fe548358cac36158ef474e060c26c84be709538f88f6",
-  "output_fingerprint": "51c9b8406bf067fd88bf766595cd2fcc2801499a1149bad9cf6510eb85b77d21",
+  "source_fingerprint": "d801d3dc2b1cacaf5736385027a4d52b7fddd81257cd41ab3317577c5e2ef403",
+  "output_fingerprint": "22d8eeb2f3a6b9d01484c659a1f99040235d37e631b2ad5244cb5667b5be50db",
   "files": {
     "OptimizedDocs/第1章_软件工程角色演进_首轮修订稿.md": "e5a43ef051cba7e8369e5915d16f38978e485a42858710080c99f24cc291543a",
     "OptimizedDocs/第2章_传统软件工程操作条件_首轮修订稿.md": "305dd8516adad9e3effbeffd4cd460b113838a221048f1ece4beb821d93162e7",
@@ -69,7 +69,7 @@
     "Showcase/translations/23.en.md": "99cb51793c20f2120596e56762d9fba0d099830612e72df62f01cceaf5c3a825",
     "Showcase/publication.json": "910c9e8bd9ac33b1be99b873a55734c150f2c06fcec66b4133983716b48b687c",
     "tools/sync_showcase.py": "0d334a05ebda57eacd17b2e2086ea46df61b564dad5d37851039b14194a87b72",
-    "Showcase/build_site.py": "3bb5da4bf8c80c1d60c5c4e3fbb942d3cecd7bccb51eea26869c8503f65f984c",
+    "Showcase/build_site.py": "68053cc554d7a89cd30bdbf100adc3655ad23b469d05c577adc8b59221e36466",
     "Showcase/verify_site.py": "7d0bfa85e6ec21aca478b7113192655fe12033fd790de183543ab44db7b0520c",
     "Showcase/site.css": "2ba783a24a21fa170a9cd9ccf8085572770cd88287d973f56535c271946ec9ba",
     "Showcase/site.js": "1ef5ee1ad83816a180b062812b9c6c67413ec88ee13d3e6b7cf5534ae2de2726",
@@ -145,16 +145,16 @@
     "static_exports": 56,
     "code_blocks_checked": 616,
     "tables_checked": 278,
-    "links_and_assets_checked": 5981,
+    "links_and_assets_checked": 6031,
     "search_targets": 9757,
     "numbered_sections": 632,
     "all_chapter_texts_match": true,
     "errors": []
   },
   "browser_review": {
-    "output_fingerprint": "51c9b8406bf067fd88bf766595cd2fcc2801499a1149bad9cf6510eb85b77d21",
+    "output_fingerprint": "22d8eeb2f3a6b9d01484c659a1f99040235d37e631b2ad5244cb5667b5be50db",
     "production_url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
-    "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_0cb892a9a9988191bf23dd3a844cfd8c",
+    "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_47d3a1cd9dc88191aaf59002c9f47768",
     "checks": {
       "desktop": true,
       "mobile": true,
@@ -163,28 +163,28 @@
       "production": true
     },
     "notes": [
-      "Preview: English contents showed 23 chapters. Chapter 23 switched both ways and Previous Chapter stayed in English, opening Chapter 22.",
-      "Preview: the Chapter 21 English route used the 320 and 390 pixel viewports with no page-wide horizontal overflow. The chapter contents linked to section 21.6, tables stayed within the page, and wide code blocks scrolled locally.",
-      "Preview: English search clear and no-result, LP-021-bounded-change landing with inline code highlight, and Chinese regression searches AUTH-REVOKE-004, QA维护任务 and 工程能力适配. Opened each of 14 English SVGs in the figure dialog and checked Figure 23-2's link to its English chapter. Figure source comparison found the same topology for all 14 diagrams.",
-      "Production: English contents showed 23 chapters. Chapter 1 returned to Chinese; the next Chinese chapter (2) switched to Chapter 2 in English. Figure 23-2 zoomed to 120% and linked back to its English figure anchor. From Chapter 23 English, search landed on Chapter 21 English with a highlighted code hit. At 390 pixels that page fit horizontally and the Chinese switch stayed in Chapter 21."
+      "Local static inspection found exactly one MIT License anchor targeting GitHub main/LICENSE in each of the 50 footer elements.",
+      "Preview: Chinese desktop and English mobile footer anchors point to the same requested URL. At 320 and 390 pixels the footer was visible and no page-wide horizontal overflow was found.",
+      "Preview: LP-021-bounded-change landed and highlighted in the English chapter code block. Figure gallery opened its English SVG at actual size. Both pages also had the license footer link.",
+      "Production: both site homepages displayed the footer link with the exact GitHub target, and the English footer fit at 390 pixels. An unsigned direct request to the GitHub destination returned HTTP 404; authenticated Git remote inspection confirmed main at the commit containing LICENSE."
     ],
     "screenshots": [
-      "/private/tmp/beyond-showcase-en.Rqaf13/book-en-local.jpg",
-      "/private/tmp/beyond-showcase-en.Rqaf13/book-en-mobile-code.jpg",
-      "/private/tmp/beyond-showcase-en.Rqaf13/book-en-figure.jpg",
-      "/private/tmp/beyond-showcase-en.Rqaf13/book-en-production.jpg"
+      "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-zh-local.jpg",
+      "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-en-mobile.jpg",
+      "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-zh-live.jpg",
+      "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-en-live.jpg"
     ]
   },
   "screenshot_hashes": {
-    "/private/tmp/beyond-showcase-en.Rqaf13/book-en-local.jpg": "58aa422e86eb0e2c827813908ef0fbe05057d3ff7cd1dbe5ffb7b0809fe02240",
-    "/private/tmp/beyond-showcase-en.Rqaf13/book-en-mobile-code.jpg": "2901eee48ef71678ffa3db8a705f148757f4b73038aa944d228c8b487183cfbc",
-    "/private/tmp/beyond-showcase-en.Rqaf13/book-en-figure.jpg": "0e99a35e16feb8b36430be4cbfa2cd85dca1be0f8131769b377ba5e7f24a9d3c",
-    "/private/tmp/beyond-showcase-en.Rqaf13/book-en-production.jpg": "58aa422e86eb0e2c827813908ef0fbe05057d3ff7cd1dbe5ffb7b0809fe02240"
+    "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-zh-local.jpg": "1e271f971bfd4440b1f52c974ae58546c88cb15d48aa623b827f63d8e031435c",
+    "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-en-mobile.jpg": "b69b5b6aa55840c3d5c24d5a82a9b2a0a0c67c4a3cd6c50ab04177058935441c",
+    "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-zh-live.jpg": "1e271f971bfd4440b1f52c974ae58546c88cb15d48aa623b827f63d8e031435c",
+    "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-en-live.jpg": "22e1c0944e868cbf5199cca7d1cb8d4eaa3a24091a0622facfaf3b012f4d0de4"
   },
   "online": {
-    "checked_at": "2026-11-23T12:14:20+08:00",
+    "checked_at": "2026-11-23T12:23:33+08:00",
     "files_checked": 110,
     "errors": []
   },
-  "verified_at": "2026-11-23T12:14:20+08:00"
+  "verified_at": "2026-11-23T12:23:33+08:00"
 }
