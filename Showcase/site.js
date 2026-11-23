@@ -5,6 +5,10 @@
   const input = document.getElementById('book-search');
   const status = document.getElementById('search-status');
   const results = document.getElementById('search-results');
+  const language = document.documentElement.lang;
+  const english = language === 'en';
+  const idleText = status.textContent;
+  const searchingText = english ? 'Searching…' : '正在检索全书…';
   const normalize = text => text.normalize('NFKC').toLocaleLowerCase();
   const chapterPath = path => path.replace(/\.html$/, '').replace(/\/index$/, '/');
   let indexPromise, searchIndex, sequence = 0, timer;
@@ -59,17 +63,26 @@
     const request = ++sequence;
     const query = input.value.trim();
     results.replaceChildren();
-    if (!query) {status.textContent='输入关键词，搜索23章正文、表格、代码示例与图注。';return;}
-    status.textContent='正在检索全书…';
+    if (!query) {status.textContent=idleText;return;}
+    status.textContent=searchingText;
     try {
       const rows = searchIndex || await loadIndex();
       if (request !== sequence) return;
       const terms = normalize(query).split(/\s+/).filter(Boolean);
-      const matches = rows.filter(row => terms.every(term => row.normalized.includes(term))).map(row => ({...row,score:(row.text===row.section?3:0)+(row.normalized===normalize(query)?5:0)})).sort((a,b) => b.score-a.score || a.chapter-b.chapter);
-      status.textContent = matches.length ? `“${query}”：找到 ${matches.length} 处相关内容${matches.length>60?'，显示前60处；可增加关键词缩小范围。':'。'}` : `“${query}”：没有找到匹配内容。试试更短的关键词或不同表述。`;
+      const matches = rows.filter(row => terms.every(term => row.normalized.includes(term))).map(row => ({...row,score:(row.text===row.section?3:0)+(row.normalized===normalize(query)?5:0)})).sort((a,b) => b.score-a.score || Number(b.language===language)-Number(a.language===language) || a.chapter-b.chapter);
+      if (english) {
+        status.textContent = matches.length
+          ? `“${query}” · ${matches.length} results${matches.length>60?' (showing the first 60)':''}`
+          : `No matches for “${query}”. Try a shorter search.`;
+      } else {
+        status.textContent = matches.length ? `“${query}”：找到 ${matches.length} 处相关内容${matches.length>60?'，显示前60处；可增加关键词缩小范围。':'。'}` : `“${query}”：没有找到匹配内容。试试更短的关键词或不同表述。`;
+      }
       for (const row of matches.slice(0,60)) {
         const li=document.createElement('li'), a=document.createElement('a'), chapter=document.createElement('span'), title=document.createElement('strong'), excerpt=document.createElement('p');
-        a.href=row.url;chapter.className='result-chapter';chapter.textContent=`第${row.chapter}章 · ${row.title}`;
+        a.href=row.url;
+        a.lang=row.language;
+        chapter.className='result-chapter';
+        chapter.textContent=row.language==='en' ? `Chapter ${row.chapter} · ${row.title} (English)` : `第${row.chapter}章 · ${row.title}`;
         title.append(highlighted(row.section,terms));excerpt.append(highlighted(snippet(row.text,terms),terms));
         a.append(chapter,title,excerpt);li.append(a);results.append(li);
         a.addEventListener('click',()=>{
@@ -80,10 +93,10 @@
         });
       }
     } catch {
-      if (request===sequence)status.textContent='搜索暂时不可用，请稍后重试；章节目录仍可正常阅读。';
+      if (request===sequence)status.textContent=english ? 'Search is unavailable. Try again in a moment.' : '搜索暂时不可用，请稍后重试；章节目录仍可正常阅读。';
     }
   }
-  input.addEventListener('input', () => {sequence++;clearTimeout(timer);results.replaceChildren();status.textContent=input.value.trim()?'正在检索全书…':'输入关键词，搜索23章正文、表格、代码示例与图注。';timer=setTimeout(search,100);});
+  input.addEventListener('input', () => {sequence++;clearTimeout(timer);results.replaceChildren();status.textContent=input.value.trim()?searchingText:idleText;timer=setTimeout(search,100);});
   document.getElementById('clear-search').addEventListener('click', () => {input.value='';clearTimeout(timer);try{sessionStorage.removeItem('beyond-code-query');sessionStorage.removeItem('beyond-code-landing');}catch{}clearSearchMarks();search();input.focus();});
   function clearSearchMarks() {
     document.querySelectorAll('#chapter-body mark.search-match').forEach(mark=>{const parent=mark.parentNode;mark.replaceWith(document.createTextNode(mark.textContent));parent.normalize();});
@@ -113,7 +126,8 @@
   function resizeFigure(scale,center=true) {
     const old=figureScale, x=figureViewport.scrollLeft+figureViewport.clientWidth/2, y=figureViewport.scrollTop+figureViewport.clientHeight/2;
     figureScale=Math.max(.15,Math.min(3,scale));figureImage.style.width=`${figureWidth*figureScale}px`;
-    document.getElementById('figure-status').textContent=`${Math.round(figureScale*100)}% · 可横向、纵向滑动查看`;
+    const hint=english?'Scroll to explore the figure':'可横向、纵向滑动查看';
+    document.getElementById('figure-status').textContent=`${Math.round(figureScale*100)}% · ${hint}`;
     if(center){figureViewport.scrollLeft=x*figureScale/old-figureViewport.clientWidth/2;figureViewport.scrollTop=y*figureScale/old-figureViewport.clientHeight/2;}
   }
   document.querySelectorAll('[data-zoom]').forEach(link=>link.addEventListener('click',event=>{
@@ -134,7 +148,12 @@
   }
   updateOverflowHints();window.addEventListener('resize',updateOverflowHints);
   const themeButton = document.querySelector('[data-theme]');
-  function setTheme(theme) {document.documentElement.dataset.theme=theme;themeButton.textContent=theme==='dark'?'浅色':'深色';themeButton.setAttribute('aria-label',theme==='dark'?'切换浅色主题':'切换深色主题');}
+  function setTheme(theme) {
+    document.documentElement.dataset.theme=theme;
+    const dark=theme==='dark';
+    themeButton.textContent=english?(dark?'Light':'Dark'):(dark?'浅色':'深色');
+    themeButton.setAttribute('aria-label',english?(dark?'Switch to light theme':'Switch to dark theme'):(dark?'切换浅色主题':'切换深色主题'));
+  }
   try {setTheme(localStorage.getItem('beyond-code-theme')==='dark'?'dark':'light');} catch {setTheme('light');}
   themeButton.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';setTheme(next);try{localStorage.setItem('beyond-code-theme',next);}catch{}});
   // Keep old Showcase bookmarks useful while the visible navigation uses the current book.

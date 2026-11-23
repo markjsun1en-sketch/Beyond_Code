@@ -60,17 +60,10 @@ def chapter_files(root):
                   key=lambda p: int(re.match(r'第(\d+)', p.name)[1]))
 
 
-def source_inventory(root):
-    """Fail on stale figure metadata as well as stale exported pixels."""
+def figure_inventory(root, chapters, manifests, expected_ids, english=False):
     from markdown_it import MarkdownIt
-    cfg = config(root)
-    chapters = chapter_files(root)
-    require([int(re.match(r'第(\d+)', p.name)[1]) for p in chapters] == cfg['chapter_numbers'],
-            'Chapter inventory changed; reconcile publication.json and the reader before publishing')
-    manifests = sorted((root / 'OptimizedDocs/diagrams').glob('phase-*-manifest.json'))
+    paths = list(manifests)
     figures = {}
-    paths = chapters + manifests + [root / 'Showcase/publication.json', root / 'tools/sync_showcase.py']
-    paths += [root / 'Showcase' / name for name in READERS]
     for manifest in manifests:
         for figure in read(manifest)['figures']:
             ident = figure['id']
@@ -81,7 +74,7 @@ def source_inventory(root):
                 require(path.is_file() and sha(path.read_bytes()) == figure[f'{ext}_sha256'],
                         f'Stale or missing export: {ident}.{ext}; regenerate its owning batch')
                 paths.append(path)
-    require(set(figures) == set(cfg['figure_ids']), 'Figure inventory differs from publication.json')
+    require(set(figures) == set(expected_ids), 'Figure inventory differs from publication.json')
     seen = set()
     for chapter in chapters:
         text = chapter.read_text()
@@ -90,10 +83,11 @@ def source_inventory(root):
         require(len(blocks) == sum(t.type == 'fence' and t.info.strip() == 'mermaid' for t in tokens),
                 f'Unsupported Mermaid fence format in {chapter.name}')
         for match in blocks:
-            headings = list(re.finditer(r'^#{2,6} 图(\d+-\d+) (.+)$', text[:match.start()], re.M))
+            prefix = 'Figure ' if english else '图'
+            headings = list(re.finditer(rf'^#{{2,6}} {prefix}(\d+-\d+) (.+)$', text[:match.start()], re.M))
             require(bool(headings), f'Missing figure heading: {chapter.name}')
             number, title = headings[-1].groups()
-            ident = f'fig-{number}'
+            ident = f'fig-{number}' + ('-en' if english else '')
             require(ident in figures and ident not in seen, f'Unmapped or duplicate figure {ident}')
             seen.add(ident)
             figure = figures[ident]
@@ -103,6 +97,27 @@ def source_inventory(root):
             for key, value in expected.items():
                 require(figure[key] == value, f'Stale {key} for {ident}; regenerate its owning batch')
     require(seen == set(figures), 'Orphaned diagram export or missing chapter Mermaid source')
+    return paths
+
+
+def source_inventory(root):
+    """Fail on missing chapters and stale figure sources, captions, or exports."""
+    cfg = config(root)
+    chapters = chapter_files(root)
+    require([int(re.match(r'第(\d+)', p.name)[1]) for p in chapters] == cfg['chapter_numbers'],
+            'Chapter inventory changed; reconcile publication.json and the reader before publishing')
+    translations = root / 'Showcase/translations'
+    expected_translations = [translations / f'{n:02}.en.md' for n in cfg['english_chapters']]
+    require(sorted(translations.glob('*.en.md')) == expected_translations
+            and cfg['english_chapters'] == cfg['chapter_numbers'],
+            'The English edition must include the same chapter inventory as the Chinese edition')
+    figure_ids = cfg['figure_ids']
+    manifests = sorted((root / 'OptimizedDocs/diagrams').glob('phase-*-manifest.json'))
+    paths = chapters + expected_translations + [root / 'Showcase/publication.json', root / 'tools/sync_showcase.py']
+    paths += [root / 'Showcase' / name for name in READERS]
+    paths += figure_inventory(root, chapters, manifests, figure_ids)
+    paths += figure_inventory(root, expected_translations, [translations / 'diagrams/manifest.json'],
+                              [f'{ident}-en' for ident in figure_ids], english=True)
     files = {str(p.relative_to(root)): sha(p.read_bytes()) for p in paths}
     return {'source_fingerprint': fingerprint(files), 'files': files}
 

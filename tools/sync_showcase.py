@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync the current 23 reader chapters and 14 figures into the existing Sites checkout."""
+"""Sync the reader chapters, English translations, and figures into the existing Sites checkout."""
 from pathlib import Path
 from urllib.parse import unquote
 import argparse
@@ -16,6 +16,21 @@ SITE_ID = 'appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2'
 sha = lambda data: hashlib.sha256(data).hexdigest()
 
 
+def sync_figures(manifests, target):
+    figures = []
+    for manifest in manifests:
+        for figure in json.loads(manifest.read_text())['figures']:
+            item = {k: figure[k] for k in ['id', 'number', 'title', 'caption', 'source_sha256', 'svg_sha256', 'png_sha256']}
+            item['caption'] = re.sub(r'\[([^\]]+)\]\((?:\.\./)+Evidence/receipts/[^)]+\)', r'\1', item['caption'])
+            item['chapter'] = int(figure['number'].split('-')[0])
+            figures.append(item)
+            for ext in ['svg', 'png']:
+                source = manifest.parent / f'{figure["id"]}.{ext}'
+                assert sha(source.read_bytes()) == figure[f'{ext}_sha256']
+                shutil.copyfile(source, target / source.name)
+    return sorted(figures, key=lambda f: tuple(map(int, f['number'].split('-'))))
+
+
 def main():
     parser = argparse.ArgumentParser(); parser.add_argument('--checkout', type=Path, required=True)
     parser.add_argument('--date', default=datetime.now(ZoneInfo('Asia/Shanghai')).date().isoformat()); args=parser.parse_args()
@@ -28,18 +43,10 @@ def main():
     chapter_urls = {p.resolve():f'/chapters/{n:02}.html' for n,p in enumerate(files,1)}
     for folder in ['reader','content/chapters','content/figures']:(target/folder).mkdir(parents=True,exist_ok=True)
     for name in ['build_site.py','verify_site.py','site.css','site.js']:shutil.copyfile(ROOT/'Showcase'/name,target/'reader'/name)
-    figures=[]
-    for manifest in sorted((ROOT/'OptimizedDocs/diagrams').glob('phase-*-manifest.json')):
-        for f in json.loads(manifest.read_text())['figures']:
-            item={k:f[k] for k in ['id','number','title','caption','source_sha256','svg_sha256','png_sha256']}
-            item['caption']=re.sub(r'\[([^\]]+)\]\(\.\./Evidence/receipts/[^)]+\)',r'\1',item['caption'])
-            item['chapter']=int(f['number'].split('-')[0]);figures.append(item)
-            for ext in ['svg','png']:
-                source=manifest.parent/f'{f["id"]}.{ext}';assert sha(source.read_bytes())==f[f'{ext}_sha256']
-                shutil.copyfile(source,target/'content/figures'/source.name)
-    figures.sort(key=lambda f:tuple(int(x) for x in f['number'].split('-')))
-    assert len(figures)==len({f['id'] for f in figures})==14
+    figures = sync_figures(sorted((ROOT / 'OptimizedDocs/diagrams').glob('phase-*-manifest.json')), target / 'content/figures')
+    english_figures = sync_figures([ROOT / 'Showcase/translations/diagrams/manifest.json'], target / 'content/figures')
     chapters=[]; source_references=0; cross_links=0; removed_headers=0
+    translation_paths = sorted((ROOT / 'Showcase/translations').glob('*.en.md'))
     for n,p in enumerate(files,1):
         original=p.read_text(); lines=original.splitlines(); title=lines[0].lstrip('# ').strip();subtitle=lines[1].lstrip('# ').strip() if len(lines)>1 and lines[1].startswith('## ') else ''
         def replace_link(match):
@@ -65,11 +72,27 @@ def main():
         assert not re.search(r'/Users/|file://|\.\./(?:Evidence|RevisedResult|OringinalDocs)/|CLM-|ER-2026|RR-0',clean)
         (target/'content/chapters'/f'{n:02}.md').write_text(clean)
         chapters.append({'number':n,'title':title,'subtitle':subtitle,'source_sha256':sha(original.encode()),'reader_sha256':sha(clean.encode()),'figures':[f['id'] for f in figures if f['chapter']==n]})
-    book={'date':args.date,'chapters':chapters,'figures':figures,'source_fingerprint':inventory['source_fingerprint']}
+    english_chapters = []
+    for path in translation_paths:
+        number = int(path.name.split('.')[0])
+        original = path.read_text()
+        lines = original.splitlines()
+        title = lines[0].removeprefix('# ')
+        subtitle = lines[1].removeprefix('## ') if lines[1].startswith('## ') else ''
+        assert title.startswith(f'Chapter {number}. ')
+        clean, refs = re.subn(r'\[([^\]]+)\]\(\.\./\.\./Evidence/receipts/[^)]+\)', r'\1', original)
+        source_references += refs
+        (target / 'content/chapters' / f'{number:02}-en.md').write_text(clean)
+        english_chapters.append({
+            'number': number, 'title': title, 'subtitle': subtitle, 'language': 'en',
+            'figures': [f['id'] for f in english_figures if f['chapter'] == number],
+            'source_sha256': sha(original.encode()), 'reader_sha256': sha(clean.encode()),
+        })
+    book={'date':args.date,'chapters':chapters,'english_chapters':english_chapters,'figures':figures,'english_figures':english_figures,'source_fingerprint':inventory['source_fingerprint']}
     (target/'content/book.json').write_text(json.dumps(book,ensure_ascii=False,indent=2))
     (target/'reader/requirements.txt').write_text('markdown-it-py==4.0.0\n')
     config['static']={'directory':'dist'};hosting.write_text(json.dumps(config,indent=2)+'\n')
-    report={'date':args.date,'chapters':23,'figures':14,'source_fingerprint':inventory['source_fingerprint'],'input_files':inventory['files'],'editorial_header_lines_removed':removed_headers,'source_labels_preserved':source_references,'cross_chapter_links_rewritten':cross_links,'source_files':[{'file':str(p.relative_to(ROOT)),'sha256':sha(p.read_bytes())} for p in files]}
+    report={'date':args.date,'chapters':23,'english_chapters':len(english_chapters),'figures':14,'source_fingerprint':inventory['source_fingerprint'],'input_files':inventory['files'],'editorial_header_lines_removed':removed_headers,'source_labels_preserved':source_references,'cross_chapter_links_rewritten':cross_links,'source_files':[{'file':str(p.relative_to(ROOT)),'sha256':sha(p.read_bytes())} for p in files + translation_paths]}
     (target/'sync-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
     print(json.dumps({k:v for k,v in report.items() if k not in ('source_files','input_files')},ensure_ascii=False))
 

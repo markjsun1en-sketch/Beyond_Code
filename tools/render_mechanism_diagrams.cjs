@@ -2,7 +2,7 @@
 // Usage: node tools/render_mechanism_diagrams.cjs --mermaid-js PATH
 //   Optional: --figures fig-16-1,fig-23-2 selects only named figures.
 //   --preview-only all refreshes preview HTML from existing manifests without rendering images.
-//   --playwright-module PATH --browser-path PATH [--batch phase-a|phase-b|phase-c|phase-d|phase-e] chapter.md [chapter.md ...]
+//   --playwright-module PATH --browser-path PATH [--batch phase-a|phase-b|phase-c|phase-d|phase-e] [--language en] chapter.md [chapter.md ...]
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -16,7 +16,10 @@ for (let i = 0; i < args.length; i++) {
 const batch = options.batch || 'phase-a';
 if (!['phase-a', 'phase-b', 'phase-c', 'phase-d', 'phase-e'].includes(batch)) throw new Error('Unknown --batch');
 const root = path.resolve(__dirname, '..');
-const output = path.join(root, 'OptimizedDocs', 'diagrams');
+const english = options.language === 'en';
+if (options.language && !english) throw new Error('Only --language en is supported as an alternative');
+const output = english ? path.join(root, 'Showcase', 'translations', 'diagrams') : path.join(root, 'OptimizedDocs', 'diagrams');
+const figureHeading = english ? /^#{2,6} Figure (\d+-\d+) (.+)$/gm : /^#{2,6} 图(\d+-\d+) (.+)$/gm;
 const sha256 = value => crypto.createHash('sha256').update(value).digest('hex');
 const escapeHtml = value => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 
@@ -28,6 +31,7 @@ function writePreview(records, previewBatch) {
 
 (async () => {
   if (options['preview-only']) {
+    if (english) throw new Error('Use the English Showcase figures page for preview');
     const batches = options['preview-only'] === 'all' ? ['phase-a', 'phase-b', 'phase-c', 'phase-d', 'phase-e'] : [batch];
     for (const name of batches) {
       const manifest = JSON.parse(fs.readFileSync(path.join(output, `${name}-manifest.json`), 'utf8'));
@@ -58,10 +62,10 @@ function writePreview(records, previewBatch) {
     for (const file of chapters) {
       const markdown = fs.readFileSync(file, 'utf8');
       for (const match of markdown.matchAll(/```mermaid\r?\n([\s\S]*?)\r?\n```/g)) {
-        const headings = [...markdown.slice(0, match.index).matchAll(/^#{2,6} 图(\d+-\d+) (.+)$/gm)];
+        const headings = [...markdown.slice(0, match.index).matchAll(figureHeading)];
         if (!headings.length) throw new Error(`Diagram lacks a figure heading: ${file}`);
         const [, number, title] = headings.at(-1);
-        const id = `fig-${number}`;
+        const id = `fig-${number}${english ? '-en' : ''}`;
         if (options.figures && !options.figures.split(',').includes(id)) continue;
         if (seen.has(id)) throw new Error(`Duplicate figure: ${id}`);
         seen.add(id);
@@ -92,7 +96,7 @@ function writePreview(records, previewBatch) {
   } finally {
     await browser.close();
   }
-  const manifestPath = path.join(output, `${batch}-manifest.json`);
+  const manifestPath = path.join(output, english ? 'manifest.json' : `${batch}-manifest.json`);
   if (options.figures) {
     for (const id of options.figures.split(',')) if (!seen.has(id)) throw new Error(`Selected figure not found: ${id}`);
     if (fs.existsSync(manifestPath)) {
@@ -102,7 +106,7 @@ function writePreview(records, previewBatch) {
     }
   }
   const manifest = { renderer: 'Mermaid 11.12.1; Playwright with local Chrome', mermaid_js_sha256: sha256(fs.readFileSync(options['mermaid-js'])), source_policy: 'Edit Mermaid in the owning chapter, then regenerate. No manual edits to derived files.', figures: records };
-  fs.writeFileSync(path.join(output, `${batch}-manifest.json`), JSON.stringify(manifest, null, 2) + '\n');
-  writePreview(records, batch);
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + '\n');
+  if (!english) writePreview(records, batch);
   console.log(JSON.stringify({ output, figures: records.map(({ id, width, height }) => ({ id, width, height })) }, null, 2));
 })().catch(error => { console.error(error); process.exitCode = 1; });

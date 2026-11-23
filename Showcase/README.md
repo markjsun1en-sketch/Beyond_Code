@@ -1,8 +1,10 @@
 # Showcase 固定同步与发布流程
 
-站点：[Beyond Code](https://ai-native-software-engineering.mac1en.chatgpt.site)。唯一站点身份与当前23章、14图的范围保存在 [publication.json](publication.json)。最新已验证版本见 [latest-release.json](latest-release.json)；历史发布记录保存在 `releases/`，不能用旧记录代替新验证。
+站点：[Beyond Code](https://ai-native-software-engineering.mac1en.chatgpt.site) · [English](https://ai-native-software-engineering.mac1en.chatgpt.site/en)。唯一站点身份与全书双语 23 章、14 幅机制图的范围保存在 [publication.json](publication.json)。最新已验证版本见 [latest-release.json](latest-release.json)，历史发布记录保存在 `releases/`。
 
-当前正文来源仍是合并后的完整 `OptimizedDocs/` 工作稿。`PolishedDocs/` 的第1、6、23章成书候选保留为独立编辑产物；没有明确选择新发布基线前，不混入网站或覆盖对应章节。
+中文正文来源是合并后的完整 `OptimizedDocs/` 工作稿。`PolishedDocs/` 的第 1、6、23 章保留为独立成书候选稿。
+
+英文稿存放在 [translations/](translations/)。第 6 章依据 `01faed1` 的[成书候选稿](../PolishedDocs/第6章_Truth与State_Architecture_成书候选稿.md)翻译，保留引言和 6.1–6.10 的节序。其余 22 章依据 `3cdd900` 中的中文工作稿翻译，并沿用其编号小节、案例、证据边界和图号。顶栏语言入口连接对应的目录、图集或同一章。英文目录和前后章导航保持英文，搜索可定位两种语言的正文。英文稿与英文图稿纳入发布来源指纹。
 
 ## 默认完成条件
 
@@ -24,9 +26,11 @@ python3 tools/showcase_workflow.py status --online
 
 ## 2. 图稿来源核对与必要的重渲染
 
-唯一图源是所属章节中的Mermaid和相邻图题、图注。准备入口会核对：编号与所属章节、图题、图注、Mermaid、SVG和PNG哈希，以及完整清单。
+图源保存在相应语种的章节中，由 Mermaid 和相邻图题、图注组成。准备入口核对两种语言的编号、所属章节、图题、图注、Mermaid、SVG 和 PNG 指纹，以及清单完整性。
 
 任何不一致都先处理，不能只改manifest里的哈希。用 `tools/render_mechanism_diagrams.cjs` 的原有渲染方式，传入当前环境实际可用的Mermaid、渲染依赖及浏览器路径。增量更新必须明确所属 `--batch phase-x` 与 `--figures fig-x-y`，并传入所属章节；不带 `--figures` 的部分章节渲染可能覆盖整批清单。渲染失败后停止后续同步，修复并重新核对全部图。
+
+英文导出使用同一脚本加 `--language en`，输入 `Showcase/translations/*.en.md`。图文件和清单写入 `Showcase/translations/diagrams/`。增量导出使用 `--figures fig-x-y-en` 并传入所属英文稿。
 
 图题/图注虽不一定改变像素，也必须更新对应manifest。不得把同一图登记进另一批次。新增或删除章节/图时，同步调整 `publication.json`、构建器中的规模约定和导航，再运行完整检查；不要绕过数量检查发布缺页版本。
 
@@ -40,7 +44,7 @@ python3 tools/showcase_workflow.py prepare --checkout /path/to/site-checkout
 
 入口依次执行图稿预检、`sync_showcase.py`、构建和强制带书稿根目录的验证。正文只去除约定的两类编辑Header；内部Evidence链接变成自然语言来源标签，适用边界、代码、表格及正文全部保留。公开目录不包含内部路径、Receipt编号或编辑档案。
 
-检查覆盖23章正文、精确代码空白、表格结构、图文件、导航、锚点和搜索索引。每次重新生成 `dist/`，防止旧页面或旧图遗留。成功后产生 `showcase-prepared.json`，固定本次来源、站点快照及所有公开文件的指纹。来源指纹覆盖正文、图清单、图文件、阅读器和同步逻辑；不覆盖日志或截图等非发布输入。
+检查覆盖两种语言各 23 章、同章切换、前后章导航、代码空白、表格结构、图文件、锚点和搜索索引。每次重新生成 `dist/`。成功后产生 `showcase-prepared.json`，固定本次来源、站点快照及所有公开文件的指纹。来源指纹覆盖正文、图清单、图文件、阅读器和同步逻辑。
 
 ## 4. 实际阅读检查
 

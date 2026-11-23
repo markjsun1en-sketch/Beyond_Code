@@ -19,9 +19,14 @@ class Page(HTMLParser):
     def __init__(self):
         super().__init__();self.ids=[];self.links=[];self.images=[];self.h1=0;self.figures=[];self.body=[];self.in_article=False;self.body_depth=0
         self.codes=[];self.in_pre=False;self.code_parts=None;self.tables=[];self.row=None;self.cell=None;self.figure_dimensions=[]
-        self.pagination={}
+        self.pagination={};self.language=None;self.language_links={};self.alternates={}
     def handle_starttag(self,tag,attrs):
         a=dict(attrs)
+        if tag=='html':self.language=a.get('lang')
+        if tag=='a' and 'language-switch' in a.get('class','').split():
+            self.language_links[a.get('hreflang')]=a.get('href')
+        if tag=='link' and a.get('rel')=='alternate':
+            self.alternates[a.get('hreflang')]=a.get('href')
         if 'id' in a:self.ids.append(a['id'])
         if tag=='a' and 'href' in a:self.links.append(a['href'])
         if tag=='a' and a.get('rel') in ('prev','next'):self.pagination[a['rel']]=a.get('href')
@@ -73,13 +78,32 @@ def main():
         if u.fragment and (route not in pages or unquote(u.fragment) not in pages[route].ids):errors.append(f'Missing anchor: {current} -> {href}')
     for route,p in pages.items():
         for href in p.links+p.images:resolve(href,route);link_count+=1
-    assert len(pages)==25
+    english_numbers = [c['number'] for c in book['english_chapters']]
+    assert len(pages)==50
     assert [x['number'] for x in manifest['chapters']]==list(range(1,24))
-    for c in manifest['chapters']:
+    assert [x['number'] for x in manifest['english_chapters']]==english_numbers==list(range(1,24))
+    for route, language, other_route, other_language in [
+        ('/index.html', 'zh-CN', '/en.html', 'en'),
+        ('/en.html', 'en', '/', 'zh-CN'),
+        ('/figures.html', 'zh-CN', '/figures-en.html', 'en'),
+        ('/figures-en.html', 'en', '/figures.html', 'zh-CN'),
+    ]:
+        page = pages[route]
+        alternate = {other_language: other_route}
+        if page.language != language or page.language_links != alternate or page.alternates != alternate:
+            errors.append(f'Incorrect language navigation: {route}')
+    for c, language in [(c, 'zh-CN') for c in manifest['chapters']] + [(c, 'en') for c in manifest['english_chapters']]:
         p=pages[c['url']]
+        if p.language!=language:errors.append(f'Incorrect page language: {c["url"]}')
+        n=c['number']
+        alternate = {}
+        if n in english_numbers:
+            alternate = {'zh-CN':f'/chapters/{n:02}.html'} if language=='en' else {'en':f'/chapters/{n:02}-en.html'}
+        if p.language_links!=alternate or p.alternates!=alternate:
+            errors.append(f'Incorrect reciprocal language switch: {c["url"]}')
         if p.figures!=c['figures']:errors.append(f'Chapter figure mismatch: {c["number"]}')
         if build.digest(build.plain(''.join(p.body)))!=c['rendered_text_sha256']:errors.append(f'Final HTML text mismatch: {c["number"]}')
-        source=(ROOT/'content/chapters'/f'{c["number"]:02}.md').read_text()
+        source=(ROOT/'content/chapters'/f'{Path(c["url"]).stem}.md').read_text()
         if build.digest(source)!=c['reader_sha256']:errors.append(f'Reader source mismatch: {c["number"]}')
         reference=MarkdownIt('commonmark',{'html':False}).enable('table')
         fence=reference.renderer.rules['fence']
@@ -88,25 +112,36 @@ def main():
         if p.codes!=expected.codes:errors.append(f'Exact code block mismatch: {c["number"]}')
         if p.tables!=expected.tables:errors.append(f'Table rows or cells mismatch: {c["number"]}')
         if any(not w or not h for w,h in p.figure_dimensions):errors.append(f'Missing reserved figure size: {c["number"]}')
-        if p.pagination.get('prev')!=(f'/chapters/{c["number"]-1:02}.html' if c['number']>1 else None):errors.append(f'Previous chapter incorrect: {c["number"]}')
-        if p.pagination.get('next')!=(f'/chapters/{c["number"]+1:02}.html' if c['number']<23 else None):errors.append(f'Next chapter incorrect: {c["number"]}')
+        suffix = '-en' if language == 'en' else ''
+        if p.pagination.get('prev')!=(f'/chapters/{n-1:02}{suffix}.html' if n>1 else None):errors.append(f'Previous chapter incorrect: {c["url"]}')
+        if p.pagination.get('next')!=(f'/chapters/{n+1:02}{suffix}.html' if n<23 else None):errors.append(f'Next chapter incorrect: {c["url"]}')
+    for zh, en in zip(manifest['chapters'], manifest['english_chapters']):
+        if zh['number'] != 6 and zh['numbered_sections'] != en['numbered_sections']:
+            errors.append(f'Translated section numbering differs for chapter {zh["number"]}')
     if args.book_root:
+        config=json.loads((args.book_root/'Showcase/publication.json').read_text())
+        if english_numbers!=config['english_chapters']:errors.append('English chapter inventory differs from publication.json')
         sync=json.loads((ROOT/'sync-report.json').read_text())
         for source in sync['source_files']:
             if hashlib.sha256((args.book_root/source['file']).read_bytes()).hexdigest()!=source['sha256']:errors.append(f'Outdated source snapshot: {source["file"]}')
-    for row in search:resolve(row['url'],'/index.html')
+    for row in search:
+        resolve(row['url'],'/index.html')
+        if pages.get(urlsplit(row['url']).path) and pages[urlsplit(row['url']).path].language != row['language']:
+            errors.append(f'Search language differs from destination: {row["url"]}')
     assert len({r['url'] for r in search})==len(search)
-    assert {r['chapter'] for r in search}==set(range(1,24))
+    assert {r['chapter'] for r in search if r['language']=='zh-CN'}==set(range(1,24))
+    assert {r['chapter'] for r in search if r['language']=='en'}==set(english_numbers)
     for term,n in [('Checkpoint',7),('external-effect-unknown',8),('effect_unknown',14),('旧CardFace',23),('净增量',23)]:
         if not any(term in row['text'] and row['chapter']==n for row in search):errors.append(f'Search term missing: {term}')
-    for f in book['figures']:
+    assert [f['id'] for f in book['english_figures']]==[f'{f["id"]}-en' for f in book['figures']]
+    for f in book['figures'] + book['english_figures']:
         for ext in ['svg','png']:
             actual=hashlib.sha256((OUT/'figures'/f'{f["id"]}.{ext}').read_bytes()).hexdigest()
             if actual!=f[f'{ext}_sha256']:errors.append(f'Figure hash mismatch: {f["id"]}')
     for path in OUT.rglob('*'):
         if path.suffix not in ['.html','.json']:continue
         if re.search(r'/Users/|file://|\.\./(?:Evidence|RevisedResult|OringinalDocs)/|CLM-|ER-2026|RR-0',path.read_text()):errors.append(f'Editorial path or ID in public output: {path.name}')
-    report={'pages':len(pages),'chapters':23,'figures':14,'static_exports':28,'code_blocks_checked':sum(len(p.codes) for p in pages.values()),'tables_checked':sum(len(p.tables) for p in pages.values()),'links_and_assets_checked':link_count,'search_targets':len(search),'numbered_sections':sum(len(c['numbered_sections']) for c in manifest['chapters']),'all_chapter_texts_match':not any('text mismatch' in e for e in errors),'errors':errors}
+    report={'pages':len(pages),'chapters':23,'english_chapters':len(english_numbers),'figures':14,'english_figures':14,'static_exports':56,'code_blocks_checked':sum(len(p.codes) for p in pages.values()),'tables_checked':sum(len(p.tables) for p in pages.values()),'links_and_assets_checked':link_count,'search_targets':len(search),'numbered_sections':sum(len(c['numbered_sections']) for c in manifest['chapters']),'all_chapter_texts_match':not any('text mismatch' in e for e in errors),'errors':errors}
     (ROOT/'verification-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
     print(json.dumps(report,ensure_ascii=False,indent=2))
     raise SystemExit(bool(errors))
