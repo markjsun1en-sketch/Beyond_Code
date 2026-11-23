@@ -1,25 +1,25 @@
 {
   "schema": 1,
   "status": "verified",
-  "recorded_at": "2026-11-23T12:22:54+08:00",
+  "recorded_at": "2026-11-23T14:36:52+08:00",
   "project_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2",
   "url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
-  "version_number": 9,
-  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_47d3a1cd9dc88191aaf59002c9f47768",
-  "deployment_id": "appgdep_6b03bf6fac2481919d2a3cba6df4dcd7",
-  "source_commit": "1b71711b7bf15fb484582d5af03f56dfe3d3cf1e",
+  "version_number": 10,
+  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_564b0609a66481918c035aa23ab3a710",
+  "deployment_id": "appgdep_6b03dedc291c819180a5411888cb528c",
+  "source_commit": "30b9aacf67ea0b7099804424c91dc9b49a634333",
   "history": [
     {
-      "at": "2026-11-23T12:22:54+08:00",
+      "at": "2026-11-23T14:36:52+08:00",
       "status": "deployed_unverified"
     },
     {
-      "at": "2026-11-23T12:23:33+08:00",
+      "at": "2026-11-23T14:37:29+08:00",
       "status": "verified"
     }
   ],
-  "source_fingerprint": "d801d3dc2b1cacaf5736385027a4d52b7fddd81257cd41ab3317577c5e2ef403",
-  "output_fingerprint": "22d8eeb2f3a6b9d01484c659a1f99040235d37e631b2ad5244cb5667b5be50db",
+  "source_fingerprint": "06d09e051cbfca144ab10c9bb8fa89333737a87409a81a454c0e03f097e58dcc",
+  "output_fingerprint": "0d0872c6f61dd899929b7354011a0598d5d0249106050325b7fcd22c1ed9eb1c",
   "files": {
     "OptimizedDocs/第1章_软件工程角色演进_首轮修订稿.md": "e5a43ef051cba7e8369e5915d16f38978e485a42858710080c99f24cc291543a",
     "OptimizedDocs/第2章_传统软件工程操作条件_首轮修订稿.md": "305dd8516adad9e3effbeffd4cd460b113838a221048f1ece4beb821d93162e7",
@@ -69,9 +69,9 @@
     "Showcase/translations/23.en.md": "99cb51793c20f2120596e56762d9fba0d099830612e72df62f01cceaf5c3a825",
     "Showcase/publication.json": "910c9e8bd9ac33b1be99b873a55734c150f2c06fcec66b4133983716b48b687c",
     "tools/sync_showcase.py": "0d334a05ebda57eacd17b2e2086ea46df61b564dad5d37851039b14194a87b72",
-    "Showcase/build_site.py": "68053cc554d7a89cd30bdbf100adc3655ad23b469d05c577adc8b59221e36466",
+    "Showcase/build_site.py": "407fc9f179483e556221dcbf5e42f77cf7272cd702a8c3493e755bf1a83a28e9",
     "Showcase/verify_site.py": "7d0bfa85e6ec21aca478b7113192655fe12033fd790de183543ab44db7b0520c",
-    "Showcase/site.css": "2ba783a24a21fa170a9cd9ccf8085572770cd88287d973f56535c271946ec9ba",
+    "Showcase/site.css": "1c500c13995dcb42097cf30ce7bd436ce587c2ca4743e16a97a54e3b343315b1",
     "Showcase/site.js": "1ef5ee1ad83816a180b062812b9c6c67413ec88ee13d3e6b7cf5534ae2de2726",
     "OptimizedDocs/diagrams/phase-a-manifest.json": "93f9200f3f4b1469929df9e4f3112a423718ccb5415336dd84ae44a28743da00",
     "OptimizedDocs/diagrams/phase-b-manifest.json": "bc3882311f7e3665956940fab613a8664e1330186a38dc31b3a5e9ff81c6781f",
@@ -152,9 +152,9 @@
     "errors": []
   },
   "browser_review": {
-    "output_fingerprint": "22d8eeb2f3a6b9d01484c659a1f99040235d37e631b2ad5244cb5667b5be50db",
+    "output_fingerprint": "0d0872c6f61dd899929b7354011a0598d5d0249106050325b7fcd22c1ed9eb1c",
     "production_url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
-    "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_47d3a1cd9dc88191aaf59002c9f47768",
+    "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_564b0609a66481918c035aa23ab3a710",
     "checks": {
       "desktop": true,
       "mobile": true,
@@ -163,28 +163,28 @@
       "production": true
     },
     "notes": [
-      "Local static inspection found exactly one MIT License anchor targeting GitHub main/LICENSE in each of the 50 footer elements.",
-      "Preview: Chinese desktop and English mobile footer anchors point to the same requested URL. At 320 and 390 pixels the footer was visible and no page-wide horizontal overflow was found.",
-      "Preview: LP-021-bounded-change landed and highlighted in the English chapter code block. Figure gallery opened its English SVG at actual size. Both pages also had the license footer link.",
-      "Production: both site homepages displayed the footer link with the exact GitHub target, and the English footer fit at 390 pixels. An unsigned direct request to the GitHub destination returned HTTP 404; authenticated Git remote inspection confirmed main at the commit containing LICENSE."
+      "Local desktop and narrow mobile previews showed 作者 mac1en and By mac1en directly under the book title without horizontal overflow.",
+      "Chinese search found AUTH-REVOKE-004, QA维护任务 and 工程能力适配. Clearing and a no-result query behaved as expected. English search opened LP-021-bounded-change with a code highlight.",
+      "The English figure gallery opened its SVG zoom view at 100% and closed.",
+      "The production Chinese homepage visibly showed 作者 mac1en. Its English link opened /en, where By mac1en was visible under the title."
     ],
     "screenshots": [
-      "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-zh-local.jpg",
-      "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-en-mobile.jpg",
-      "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-zh-live.jpg",
-      "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-en-live.jpg"
+      "/private/tmp/beyond-code-author.bT7EVu/preview-zh.jpg",
+      "/private/tmp/beyond-code-author.bT7EVu/preview-zh-mobile.jpg",
+      "/private/tmp/beyond-code-author.bT7EVu/showcase-zh-live.jpg",
+      "/private/tmp/beyond-code-author.bT7EVu/showcase-en-live.jpg"
     ]
   },
   "screenshot_hashes": {
-    "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-zh-local.jpg": "1e271f971bfd4440b1f52c974ae58546c88cb15d48aa623b827f63d8e031435c",
-    "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-en-mobile.jpg": "b69b5b6aa55840c3d5c24d5a82a9b2a0a0c67c4a3cd6c50ab04177058935441c",
-    "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-zh-live.jpg": "1e271f971bfd4440b1f52c974ae58546c88cb15d48aa623b827f63d8e031435c",
-    "/private/tmp/beyond-showcase-en.Rqaf13/license-footer-en-live.jpg": "22e1c0944e868cbf5199cca7d1cb8d4eaa3a24091a0622facfaf3b012f4d0de4"
+    "/private/tmp/beyond-code-author.bT7EVu/preview-zh.jpg": "a5d027f0d839aa548d034162a9ab029dae11b8957f8eca58d64efbe6b44c5e6b",
+    "/private/tmp/beyond-code-author.bT7EVu/preview-zh-mobile.jpg": "cbc4a7a7e418d5116da7e9f41d0c49c34c47ba37016ec0d17b818963e51ca81a",
+    "/private/tmp/beyond-code-author.bT7EVu/showcase-zh-live.jpg": "690273e77220c5c0bdf0024ebbd37db7ea1c12dafa46a994e43fdde9fc896b10",
+    "/private/tmp/beyond-code-author.bT7EVu/showcase-en-live.jpg": "ddb4b6d34c445a018d8469e7affa511cdb56fca815958cc419f655fa0ce67439"
   },
   "online": {
-    "checked_at": "2026-11-23T12:23:33+08:00",
+    "checked_at": "2026-11-23T14:37:29+08:00",
     "files_checked": 110,
     "errors": []
   },
-  "verified_at": "2026-11-23T12:23:33+08:00"
+  "verified_at": "2026-11-23T14:37:29+08:00"
 }
