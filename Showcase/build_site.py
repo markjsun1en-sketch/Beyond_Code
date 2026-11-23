@@ -86,6 +86,8 @@ def shell(title, body, current=0, toc='', english=False, gallery=False):
         return en if english else zh
     contents_url = label('/', '/en.html')
     gallery_url = label('/figures.html', '/figures-en.html')
+    github_main_url = 'https://github.com/markjsun1en-sketch/Beyond_Code/blob/main'
+    readme_file = label('README.md', 'README.en.md')
     if current:
         other_url = url(CHAPTERS[current - 1] if english else ENGLISH[current])
     elif gallery:
@@ -106,7 +108,10 @@ def shell(title, body, current=0, toc='', english=False, gallery=False):
 <nav class="topnav" aria-label="{label('全站导航', 'Site navigation')}"><a href="{contents_url}">{label('全书目录', 'Contents')}</a><a href="{gallery_url}">{label('机制简图', 'Figures')}</a></nav>
 <div class="header-actions"><span class="version">{label('工作稿', 'Working manuscript')} · {UPDATED:%Y.%m.%d}</span>{switch}<button type="button" data-open-search>{label('搜索全书', 'Search')} <kbd>⌘ K</kbd></button><button type="button" data-theme aria-label="{label('切换深色主题', 'Switch to dark theme')}">{label('深色', 'Dark')}</button></div></header>
 <aside class="sidebar"><nav aria-label="{label('章节目录', 'Book contents')}">{nav}</nav><div class="sidebar-foot">{label(f'23章正文 · 14张机制简图<br>同步至{UPDATED.year}年{UPDATED.month}月{UPDATED.day}日', f'23 chapters · 14 figures<br>Updated {UPDATED:%Y-%m-%d}')}</div></aside>
-<main id="main" class="content" tabindex="-1">{body}<footer><nav aria-label="{label('页脚导航', 'Footer navigation')}"><a href="{contents_url}">Beyond Code</a> · <a href="https://github.com/markjsun1en-sketch/Beyond_Code/blob/main/LICENSE" lang="en">MIT License</a></nav><span>{label('工作稿持续修订；案例的适用范围以正文为准。', 'Working manuscript. Each case states the scope of its conclusions.')}</span></footer></main>
+<main id="main" class="content" tabindex="-1">{body}<footer>
+<nav aria-label="{label('页脚导航', 'Footer navigation')}">
+<a href="{contents_url}">Beyond Code</a> · <a href="{github_main_url}/{readme_file}" lang="en" hreflang="{language}">GitHub README</a> · <a href="{github_main_url}/LICENSE" lang="en">MIT License</a>
+</nav><span>{label('工作稿持续修订；案例的适用范围以正文为准。', 'Working manuscript. Each case states the scope of its conclusions.')}</span></footer></main>
 {f'<aside class="page-toc"><h2>{label("本章目录", "In this chapter")}</h2><nav aria-label="{label("本章小节", "Chapter sections")}">{toc}</nav><a class="back-top" href="#main">{label("回到章首", "Back to top")}</a></aside>' if toc else ''}
 <dialog id="nav-dialog"><div class="dialog-top"><strong>{label('章节目录', 'Book contents')}</strong><button type="button" data-close-dialog>{label('关闭', 'Close')}</button></div><nav aria-label="{label('章节目录', 'Book contents')}">{nav}</nav></dialog>
 <dialog id="search-dialog"><div class="dialog-top"><label for="book-search">{label('搜索全书', 'Search the book')}</label><button type="button" data-close-dialog>{label('关闭', 'Close')}</button></div>

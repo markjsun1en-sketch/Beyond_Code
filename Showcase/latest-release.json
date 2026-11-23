@@ -1,25 +1,25 @@
 {
   "schema": 1,
   "status": "verified",
-  "recorded_at": "2026-11-23T14:36:52+08:00",
+  "recorded_at": "2026-11-23T14:48:48+08:00",
   "project_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2",
   "url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
-  "version_number": 10,
-  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_564b0609a66481918c035aa23ab3a710",
-  "deployment_id": "appgdep_6b03dedc291c819180a5411888cb528c",
-  "source_commit": "30b9aacf67ea0b7099804424c91dc9b49a634333",
+  "version_number": 11,
+  "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_14da00e043a08191a038508d570bbae9",
+  "deployment_id": "appgdep_6b03e19ce0fc8191b4d9071c2364d296",
+  "source_commit": "4761fbf4221469f5986fc57127907c3e5ff3115a",
   "history": [
     {
-      "at": "2026-11-23T14:36:52+08:00",
+      "at": "2026-11-23T14:48:48+08:00",
       "status": "deployed_unverified"
     },
     {
-      "at": "2026-11-23T14:37:29+08:00",
+      "at": "2026-11-23T14:49:26+08:00",
       "status": "verified"
     }
   ],
-  "source_fingerprint": "06d09e051cbfca144ab10c9bb8fa89333737a87409a81a454c0e03f097e58dcc",
-  "output_fingerprint": "0d0872c6f61dd899929b7354011a0598d5d0249106050325b7fcd22c1ed9eb1c",
+  "source_fingerprint": "13258ef8718d4924c1806d42befe44d059f73a33ea097d236565ad768fcebb4c",
+  "output_fingerprint": "e637750315245b4f41a1d3b4835f4cb9419b8aa0d18268077d8f57fabaf890de",
   "files": {
     "OptimizedDocs/第1章_软件工程角色演进_首轮修订稿.md": "e5a43ef051cba7e8369e5915d16f38978e485a42858710080c99f24cc291543a",
     "OptimizedDocs/第2章_传统软件工程操作条件_首轮修订稿.md": "305dd8516adad9e3effbeffd4cd460b113838a221048f1ece4beb821d93162e7",
@@ -69,7 +69,7 @@
     "Showcase/translations/23.en.md": "99cb51793c20f2120596e56762d9fba0d099830612e72df62f01cceaf5c3a825",
     "Showcase/publication.json": "910c9e8bd9ac33b1be99b873a55734c150f2c06fcec66b4133983716b48b687c",
     "tools/sync_showcase.py": "0d334a05ebda57eacd17b2e2086ea46df61b564dad5d37851039b14194a87b72",
-    "Showcase/build_site.py": "407fc9f179483e556221dcbf5e42f77cf7272cd702a8c3493e755bf1a83a28e9",
+    "Showcase/build_site.py": "c50f87d197ff3662ab901d10f7bdee1736d72730247448cfcb49f177a481114b",
     "Showcase/verify_site.py": "7d0bfa85e6ec21aca478b7113192655fe12033fd790de183543ab44db7b0520c",
     "Showcase/site.css": "1c500c13995dcb42097cf30ce7bd436ce587c2ca4743e16a97a54e3b343315b1",
     "Showcase/site.js": "1ef5ee1ad83816a180b062812b9c6c67413ec88ee13d3e6b7cf5534ae2de2726",
@@ -145,16 +145,16 @@
     "static_exports": 56,
     "code_blocks_checked": 616,
     "tables_checked": 278,
-    "links_and_assets_checked": 6031,
+    "links_and_assets_checked": 6081,
     "search_targets": 9757,
     "numbered_sections": 632,
     "all_chapter_texts_match": true,
     "errors": []
   },
   "browser_review": {
-    "output_fingerprint": "0d0872c6f61dd899929b7354011a0598d5d0249106050325b7fcd22c1ed9eb1c",
+    "output_fingerprint": "e637750315245b4f41a1d3b4835f4cb9419b8aa0d18268077d8f57fabaf890de",
     "production_url": "https://ai-native-software-engineering.mac1en.chatgpt.site",
-    "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_564b0609a66481918c035aa23ab3a710",
+    "version_id": "appgprj_6a8276ef7e0c81919a7e490c3ea5bfc2~appgver_14da00e043a08191a038508d570bbae9",
     "checks": {
       "desktop": true,
       "mobile": true,
@@ -163,28 +163,28 @@
       "production": true
     },
     "notes": [
-      "Local desktop and narrow mobile previews showed 作者 mac1en and By mac1en directly under the book title without horizontal overflow.",
-      "Chinese search found AUTH-REVOKE-004, QA维护任务 and 工程能力适配. Clearing and a no-result query behaved as expected. English search opened LP-021-bounded-change with a code highlight.",
-      "The English figure gallery opened its SVG zoom view at 100% and closed.",
-      "The production Chinese homepage visibly showed 作者 mac1en. Its English link opened /en, where By mac1en was visible under the title."
+      "The local Chinese homepage footer showed the GitHub README link at desktop width. The local English homepage had the matching link in view at 320 and 390 pixels without horizontal overflow.",
+      "English search for LP-021-bounded-change opened Chapter 21 at the highlighted passage. Its footer used the English README.",
+      "The English gallery opened Figure 4-1, displayed 100% at actual size, and closed its zoom dialog.",
+      "Both production homepage footer links were clicked. The Chinese link rendered README.md with its Chinese subtitle and mac1en byline, and the English link rendered README.en.md with its English subtitle and mac1en byline."
     ],
     "screenshots": [
-      "/private/tmp/beyond-code-author.bT7EVu/preview-zh.jpg",
-      "/private/tmp/beyond-code-author.bT7EVu/preview-zh-mobile.jpg",
-      "/private/tmp/beyond-code-author.bT7EVu/showcase-zh-live.jpg",
-      "/private/tmp/beyond-code-author.bT7EVu/showcase-en-live.jpg"
+      "/private/tmp/beyond-code-readme-footer.FoGNiV/preview-footer-zh.jpg",
+      "/private/tmp/beyond-code-readme-footer.FoGNiV/preview-footer-en-mobile.jpg",
+      "/private/tmp/beyond-code-readme-footer.FoGNiV/showcase-footer-zh-live.jpg",
+      "/private/tmp/beyond-code-readme-footer.FoGNiV/showcase-footer-en-live.jpg"
     ]
   },
   "screenshot_hashes": {
-    "/private/tmp/beyond-code-author.bT7EVu/preview-zh.jpg": "a5d027f0d839aa548d034162a9ab029dae11b8957f8eca58d64efbe6b44c5e6b",
-    "/private/tmp/beyond-code-author.bT7EVu/preview-zh-mobile.jpg": "cbc4a7a7e418d5116da7e9f41d0c49c34c47ba37016ec0d17b818963e51ca81a",
-    "/private/tmp/beyond-code-author.bT7EVu/showcase-zh-live.jpg": "690273e77220c5c0bdf0024ebbd37db7ea1c12dafa46a994e43fdde9fc896b10",
-    "/private/tmp/beyond-code-author.bT7EVu/showcase-en-live.jpg": "ddb4b6d34c445a018d8469e7affa511cdb56fca815958cc419f655fa0ce67439"
+    "/private/tmp/beyond-code-readme-footer.FoGNiV/preview-footer-zh.jpg": "28b0560ad6ed847b37bc4bd2bdfa858e726ebc86c490c849d17410f8d022e0a2",
+    "/private/tmp/beyond-code-readme-footer.FoGNiV/preview-footer-en-mobile.jpg": "81676000781b45a11696f505a66f12a5adf635f2211066f44af7c7b399d728e9",
+    "/private/tmp/beyond-code-readme-footer.FoGNiV/showcase-footer-zh-live.jpg": "af258a24175f77bc71f8c96170e3c5befaf8408cf9225f190073e8c35d25152d",
+    "/private/tmp/beyond-code-readme-footer.FoGNiV/showcase-footer-en-live.jpg": "f651acaf976f1a6b3698fb39ae6f73267e75999b01454e2bc18674b843c454d1"
   },
   "online": {
-    "checked_at": "2026-11-23T14:37:29+08:00",
+    "checked_at": "2026-11-23T14:49:26+08:00",
     "files_checked": 110,
     "errors": []
   },
-  "verified_at": "2026-11-23T14:37:29+08:00"
+  "verified_at": "2026-11-23T14:49:26+08:00"
 }
