@@ -1,18 +1,18 @@
 # Beyond Code
 
-**AI-Native Software Engineering · AI 原生软件工程**
+**中文** · [English](README.en.md)
 
-作者 · Author **mac1en**
+**AI 原生软件工程**
 
-| 阅读入口 · Read the book | 中文 | English |
+作者 **mac1en**
+
+| 阅读站点 | 中文版 | 英文版 |
 |---|---|---|
-| GitHub Pages | [中文目录](https://markjsun1en-sketch.github.io/Beyond_Code/) | [English contents](https://markjsun1en-sketch.github.io/Beyond_Code/en.html) |
-| Showcase | [中文目录](https://ai-native-software-engineering.mac1en.chatgpt.site/) | [English contents](https://ai-native-software-engineering.mac1en.chatgpt.site/en) |
+| GitHub Pages | [中文目录](https://markjsun1en-sketch.github.io/Beyond_Code/) | [英文目录](https://markjsun1en-sketch.github.io/Beyond_Code/en.html) |
+| Showcase | [中文目录](https://ai-native-software-engineering.mac1en.chatgpt.site/) | [英文目录](https://ai-native-software-engineering.mac1en.chatgpt.site/en) |
 
 本书从受托执行出发，讨论软件 Agent 如何进入真实工程，包括意图、上下文、验证、授权、协作、恢复与长期演进。中英文版各有 23 章，支持同章语言切换、全文搜索和机制图阅读。
 
-Beyond Code follows software work delegated to agents, from intent and execution through evidence, authorization, collaboration, recovery, and long-term evolution. Both editions contain 23 chapters, with chapter-level language switching, full-text search, and diagrams.
+两个阅读站共用 [Showcase 构建与验证流程](Showcase/README.md)。推送到 `main` 时，[GitHub Pages 工作流](.github/workflows/github-pages.yml) 会构建并发布静态阅读站。
 
-The readers share the [Showcase build and verification workflow](Showcase/README.md). The [GitHub Pages workflow](.github/workflows/github-pages.yml) builds and publishes the static reader on pushes to `main`.
-
-[MIT License](LICENSE)
+[MIT 许可证](LICENSE)
